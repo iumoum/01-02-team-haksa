@@ -28,7 +28,13 @@
 	<!-- 커넥션 풀 설정 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
+        <!-- 
+        	외부에서 작업할 때
+         -->
         <property name="url" value="jdbc:mariadb://iumium.cafe24.com:3306/iumium?useUnicode=true&amp;characterEncoding=utf8"/>
+        <!-- cafe24에 호스팅 할 때
+        	<property name="url" value="jdbc:mariadb://localhost:3306/iumium?useUnicode=true&amp;characterEncoding=utf8"/> 
+        -->
         <property name="username" value="iumium"/>
         <property name="password" value="darkhosoon1!"/>
     </bean>
@@ -41,13 +47,12 @@
         <!-- mybatis 세션생성후 쿼리를 실행시킬때 사용할 쿼리위치(메퍼)설정 -->
         <property name="mapperLocations">
             <list>
-               
+           		<value>classpath:com/cafe24/iumium/dao/UserMapper.xml</value>
             </list>
         </property>
     </bean>
     <!-- mybatis설정 2. SqlSessionTemplate-->
     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="sqlSessionFactory" />
-        <!-- new SqlSessionTemplate(sqlSessionFactory) -->
     </bean>
 </beans>
