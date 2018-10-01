@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cafe24.iumium.dao.UserMapper">
+<mapper namespace="com.cafe24.iumium.commoncode.dao.UserMapper">
 
 	<!-- 로그인 체크 쿼리 -->
-	<select id="userLoginCheck" parameterType="com.cafe24.iumium.dto.UserLoginData" resultType="com.cafe24.iumium.dto.UserLoginData">
+	<select id="userLoginCheck" parameterType="com.cafe24.iumium.commoncode.dto.UserLoginData" resultType="com.cafe24.iumium.commoncode.dto.UserLoginData">
 		SELECT
 			record_id as userId
 			, level as userLevel

@@ -17,13 +17,13 @@
 				<a class="dropdown-item" href="#">기구 코드</a> 
 				<a class="dropdown-item" href="#">부서 코드</a>
 				<a class="dropdown-item" href="#">팀 코드</a> 
-				<a class="dropdown-item" href="#">직군 코드</a>
-				<a class="dropdown-item" href="#">직종 코드</a>
-				<a class="dropdown-item" href="#">직급 코드</a>
-				<a class="dropdown-item" href="#">직위 코드</a>
-				<a class="dropdown-item" href="#">건물 코드</a>
-				<a class="dropdown-item" href="#">강의실 코드</a>
-				<a class="dropdown-item" href="#">국가 코드</a>
+				<a class="dropdown-item" href="/common/codes/jobGroup">직군 코드</a>
+				<a class="dropdown-item" href="/common/codes/jobType">직종 코드</a>
+				<a class="dropdown-item" href="/common/codes/jobRank">직급 코드</a>
+				<a class="dropdown-item" href="/common/codes/jobPosition">직위 코드</a>
+				<a class="dropdown-item" href="/common/codes/building">건물 코드</a>
+				<a class="dropdown-item" href="/common/codes/room">강의실 코드</a>
+				<a class="dropdown-item" href="/common/codes/country">국가 코드</a>
 			</div>
 		</li>
 		<li class="nav-item dropdown">
@@ -32,7 +32,7 @@
 			</a>
 			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
 				<h1 class="dropdown-header">코드 관리</h1>
-				<a class="dropdown-item" href="#">학기 코드</a> 
+				<a class="dropdown-item" href="/schoolRegister/codes/semester">학기 코드</a> 
 				<a class="dropdown-item" href="#">학기별상세일정 코드</a> 
 				<a class="dropdown-item" href="#">학적변동사유 코드</a>
 				<a class="dropdown-item" href="#">상담구분 코드</a> 

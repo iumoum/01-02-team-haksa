@@ -1,4 +1,4 @@
-package com.cafe24.iumium.dto;
+package com.cafe24.iumium.commoncode.dto;
 
 public class UserLoginData {
 	private String userId;

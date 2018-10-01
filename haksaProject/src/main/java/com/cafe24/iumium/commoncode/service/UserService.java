@@ -1,11 +1,11 @@
-package com.cafe24.iumium.service;
+package com.cafe24.iumium.commoncode.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cafe24.iumium.dao.UserDao;
-import com.cafe24.iumium.dto.UserLoginData;
+import com.cafe24.iumium.commoncode.dao.UserDao;
+import com.cafe24.iumium.commoncode.dto.UserLoginData;
 
 @Service
 @Transactional

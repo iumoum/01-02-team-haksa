@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.iumium.commoncode.dao.CommonCodeMapper">
+	<!-- 직군 코드 테이블 -->
+	<select id="selectAllJobGroupCodes" resultType="com.cafe24.iumium.commoncode.dto.JobGroupCode">
+		SELECT
+			job_group_code as jobGroupCode
+			, record_id as recordId
+			, job_group_name as jobGroupName
+			, job_group_is_used as jobGroupIsUsed
+			, job_group_is_changed as jobGroupIsChanged
+			, job_group_reason_for_change as jobGroupReasonForChange
+			, job_group_changed_date as jobGroupChangedDate
+			, job_group_registered_date as jobGroupRegisteredDate
+			
+		FROM haksa_job_group
+	</select>
+
+	<!-- 직종 코드 테이블 -->
+	<select id="selectAllJobTypeCodes" resultType="com.cafe24.iumium.commoncode.dto.JobTypeCode">
+		SELECT
+			job_type_code as jobTypeCode
+			, jt.record_id as recordId
+			, jt.job_group_code as jobGroupCode
+			, job_group_name as jobGroupName
+			, job_type_name as jobTypeName
+			, job_type_is_used as jobTypeIsUsed
+			, job_type_is_changed as jobTypeIsChanged
+			, job_type_reason_for_change as jobTypeReasonForChange
+			, job_type_changed_date as jobTypeChangedDate
+			, job_type_registered_date as jobTypeRegisteredDate
+			
+		FROM haksa_job_type jt
+		INNER JOIN haksa_job_group jg
+		ON jt.job_group_code = jg.job_group_code
+	</select>
+	
+	<!-- 직급 코드 테이블 -->
+	<select id="selectAllJobRankCodes" resultType="com.cafe24.iumium.commoncode.dto.JobRankCode">
+		SELECT
+			job_rank_code as jobRankCode
+			, jr.job_type_code as jobTypeCode
+			, job_type_name as jobTypeName
+			, jt.job_group_code as jobGroupCode
+			, job_group_name as jobGroupName
+			, jr.record_id as recordId
+			, job_rank_name_korean as jobRankNameKorean
+			, job_rank_name_english as jobRankNameEnglish
+			, job_rank_min_promotion_required as jobRankMinPromotionRequired
+			, job_rank_is_used as jobRankIsUsed
+			, job_rank_is_changed as jobRankIsChanged
+			, job_rank_reason_for_change as jobRankReasonForChange
+			, job_rank_changed_date as jobRankChangedDate
+			, job_rank_registered_date as jobRankRegisteredDate
+			
+		FROM haksa_job_rank jr
+		INNER JOIN haksa_job_type jt
+		ON jr.job_type_code = jt.job_type_code
+		INNER JOIN haksa_job_group jg
+		ON jt.job_group_code = jg.job_group_code
+	</select>
+	
+	<!-- 직위 코드 테이블 -->
+	<select id="selectAllJobPositionCodes" resultType="com.cafe24.iumium.commoncode.dto.JobPositionCode">
+		SELECT
+			job_position_code as jobPositionCode
+			, record_id as recordId
+			, job_position_name_korean as jobPositionNameKorean
+			, job_position_name_english as jobPositionNameEnglish
+			, job_position_sort_number as jobPositionSortNumber
+			, job_position_is_used as jobPositionIsUsed
+			, job_position_is_changed as jobPositionIsChanged
+			, job_position_reason_for_change as jobPositionReasonForChange
+			, job_position_changed_date as jobPositionChangedDate
+			, job_position_registered_date as jobPositionRegisteredDate
+		FROM haksa_job_position
+		ORDER BY job_position_sort_number ASC
+	</select>
+	
+	<!-- 건물 코드 테이블-->
+	<select id="selectAllBuildingCodes" resultType="com.cafe24.iumium.commoncode.dto.BuildingCode">
+		SELECT
+			building_code as buildingCode
+			, b.record_id as recordId
+			, b.agency_code as agencyCode
+			, agency_name_korean as agencyNameKorean
+			, building_name as buildingName
+			, building_sort_number as buildingSortNumber
+			, building_is_used as buildingIsUsed
+			, building_is_changed as buildingIsChanged
+			, building_reason_for_change as buildingReasonForChange
+			, building_changed_date as buildingChangedDate
+			, building_registered_date as buildingRegisteredDate
+		FROM haksa_building b
+		INNER JOIN haksa_agency a
+		ON b.agency_code = a.agency_code
+		ORDER BY building_sort_number ASC
+	</select>
+	
+	<!-- 강의실 코드 테이블 -->
+	<select id="selectAllRoomCodes" resultType="com.cafe24.iumium.commoncode.dto.RoomCode">
+		SELECT
+			room_code as roomCode
+			, r.record_id as recordId
+			, r.building_code as buildingCode
+			, building_name as buildingName
+			, room_number as roomNumber
+			, room_name as roomName
+			, room_floor as roomFloor
+			, room_usage as roomUsage
+			, room_is_used as roomIsUsed
+			, room_is_changed as roomIsChanged
+			, room_reason_for_change as roomReasonForChange
+			, room_changed_date as roomChangedDate
+			, room_registered_date as roomRegisteredDate
+		FROM haksa_room r
+		INNER JOIN haksa_building b
+		ON r.building_code = b.building_code
+	</select>
+	
+	<!-- 국가 코드 테이블 -->
+	<select id="selectAllCountryCodes" resultType="com.cafe24.iumium.commoncode.dto.CountryCode">
+		SELECT
+			country_code as countryCode
+			, record_id as recordId
+			, country_name as countryName
+			, country_is_used as countryIsUsed
+			, country_is_changed as countryIsChanged
+			, country_reason_for_change as countryReasonForChange
+			, country_changed_date as countryChangedDate
+			, country_registered_date as countryRegisteredDate
+		FROM haksa_country
+	</select>
+</mapper>

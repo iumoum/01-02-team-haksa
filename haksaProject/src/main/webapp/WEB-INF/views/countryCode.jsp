@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>학사관리 시스템</title>
+<title>국가코드 관리</title>
 
 <!-- Bootstrap core CSS-->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -36,6 +37,37 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
+			
+			<h1>공통코드 관리 > 국가코드 관리</h1>
+			<br><br>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>국가 코드</th>
+						<th>국가 명</th>
+						<th>코드 사용유무</th>
+						<th>코드 변경유무</th>
+						<th>코드 변경사유</th>
+						<th>코드 변경일자</th>
+						<th>코드 등록일자</th>
+						<th>코드 등록자 아이디</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="row" items="${countryCodes}">
+						<tr>
+							<td>${row.countryCode}</td>
+							<td>${row.countryName}</td>
+							<td>${row.countryIsUsed}</td>
+							<td>${row.countryIsChanged}</td>
+							<td>${row.countryReasonForChange}</td>
+							<td>${row.countryChangedDate}</td>
+							<td>${row.countryRegisteredDate}</td>
+							<td>${row.recordId}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 			
 			</div>
 			<!-- /.container-fluid -->
@@ -101,5 +133,6 @@
 	<!-- Demo scripts for this page-->
 	<script src="/resources/js/demo/datatables-demo.js"></script>
 	<script src="/resources/js/demo/chart-area-demo.js"></script>
+
 </body>
 </html>

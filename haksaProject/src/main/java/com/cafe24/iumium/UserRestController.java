@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cafe24.iumium.dto.UserLoginData;
-import com.cafe24.iumium.service.UserService;
+import com.cafe24.iumium.commoncode.dto.UserLoginData;
+import com.cafe24.iumium.commoncode.service.UserService;
 
 @CrossOrigin
 @RestController

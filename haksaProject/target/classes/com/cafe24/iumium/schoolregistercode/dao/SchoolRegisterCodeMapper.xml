@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.iumium.schoolregistercode.dao.SchoolRegisterCodeMapper">
+
+	<!-- 학기코드 테이블 -->
+	<select id="selectAllSemesterCodes" resultType="com.cafe24.iumium.schoolregistercode.dto.SemesterCode">
+		SELECT
+			semester_code as semesterCode
+			, record_id as recordId
+			, semester_begin_date as semesterBeginDate
+			, semester_end_date as semesterEndDate
+			, semester_is_used as semesterIsUsed
+			, semester_is_changed as semesterIsChanged
+			, semester_reason_for_change as semesterReasonForChange
+			, semester_changed_date as semesterChangedDate
+			, semester_registered_date as semesterRegisteredDate
+			
+		FROM haksa_semester
+		ORDER BY semester_registered_date DESC;
+	</select>
+</mapper>
