@@ -32,9 +32,28 @@
 	
 			<div id="content-wrapper">
 	
+				<!-- holiday List 출력 -->
 				<div class="container-fluid">
-				<!-- 여기에 내용이 담긴다 -->
-				
+					<table>
+						<thead>
+							<tr>
+								<td>월</td>
+								<td>시작날짜</td>
+								<td>종료날짜</td>
+								<td>휴일 명</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<c:forEach var="h" items=" ${holidayList}" >
+									<td></td>
+									<td>${h.holidayStartDay }</td>
+									<td>${h.holidayEndDay }</td>
+									<td>${h.holidayName }</td>
+								</c:forEach>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				<!-- /.container-fluid -->
 	
@@ -53,28 +72,6 @@
 		</div>
 		<!-- /#wrapper -->
 		
-		<!-- holiday List 출력 -->
-		<div>
-			<table>
-				<thead>
-					<tr>
-						<td>월</td>
-						<td>시작날짜</td>
-						<td>종료날짜</td>
-						<td>휴일 명</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<c:forEach var="h" items=" ${holidayList}" >
-							<td></td>
-							<td>${h.holidayStartDay }</td>
-							<td>${h.holidayEndDay }</td>
-							<td>${h.holidayName }</td>
-						</c:forEach>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		
 	</body>
 </html>
