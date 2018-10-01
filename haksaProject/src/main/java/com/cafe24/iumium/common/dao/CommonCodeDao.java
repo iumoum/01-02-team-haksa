@@ -8,11 +8,15 @@ import org.springframework.stereotype.Repository;
 
 import com.cafe24.iumium.common.dto.BuildingCode;
 import com.cafe24.iumium.common.dto.CountryCode;
+import com.cafe24.iumium.common.dto.DepartmentCode;
 import com.cafe24.iumium.common.dto.JobGroupCode;
 import com.cafe24.iumium.common.dto.JobPositionCode;
 import com.cafe24.iumium.common.dto.JobRankCode;
 import com.cafe24.iumium.common.dto.JobTypeCode;
 import com.cafe24.iumium.common.dto.RoomCode;
+import com.cafe24.iumium.common.dto.TeamCode;
+import com.cafe24.iumium.common.dto.OrganizationCode;
+import com.cafe24.iumium.common.dto.AgencyCode;
 
 @Repository
 public class CommonCodeDao {
@@ -56,4 +60,24 @@ public class CommonCodeDao {
 	public List<CountryCode> selectAllCountryCodes(){
 		return sqlSessionTemplate.selectList(nameSpace + "selectAllCountryCodes");
 	}
+	
+	//기관 코드 리스트 조회
+	public List<AgencyCode> selectAllAgencyCodes() {
+        return sqlSessionTemplate.selectList(nameSpace+"selectAllAgencyCodes");
+    }
+	
+	//기구 코드 리스트 조회
+	public List<OrganizationCode> selectAllOrganizationCodes() {
+        return sqlSessionTemplate.selectList(nameSpace+"selectAllOrganizationCodes");
+    }
+	
+	//부서 코드 리스트 조회
+	public List<DepartmentCode> selectAllDepartmentCodes() {
+        return sqlSessionTemplate.selectList(nameSpace+"selectAllDepartmentCodes");
+    }
+	
+	//팀 코드 리스트 조회
+	public List<TeamCode> selectAllTeamCodes() {
+        return sqlSessionTemplate.selectList(nameSpace+"selectAllTeamCodes");
+    }
 }

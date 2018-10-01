@@ -9,11 +9,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cafe24.iumium.common.dao.CommonCodeDao;
 import com.cafe24.iumium.common.dto.BuildingCode;
 import com.cafe24.iumium.common.dto.CountryCode;
+import com.cafe24.iumium.common.dto.DepartmentCode;
 import com.cafe24.iumium.common.dto.JobGroupCode;
 import com.cafe24.iumium.common.dto.JobPositionCode;
 import com.cafe24.iumium.common.dto.JobRankCode;
 import com.cafe24.iumium.common.dto.JobTypeCode;
 import com.cafe24.iumium.common.dto.RoomCode;
+import com.cafe24.iumium.common.dto.TeamCode;
+import com.cafe24.iumium.common.dto.OrganizationCode;
+import com.cafe24.iumium.common.dto.AgencyCode;
 
 @Service
 @Transactional
@@ -55,4 +59,25 @@ public class CommonCodeService {
 	public List<CountryCode> selectAllCountryCodes(){ 
 		return commonCodeDao.selectAllCountryCodes();
 	}
+	
+	// 모든 기관 코드 리스트
+	public List<AgencyCode> selectAllAgencyCodes() {
+        return commonCodeDao.selectAllAgencyCodes();
+    }
+	
+	// 모든 기구 코드 리스트
+	public List<OrganizationCode> selectAllOrganizationCodes() {
+        return commonCodeDao.selectAllOrganizationCodes();
+    }
+	
+	// 모든 부서 코드 리스트 
+	public List<DepartmentCode> selectAllDepartmentCodes() {
+        return commonCodeDao.selectAllDepartmentCodes();
+	}
+	
+	// 모든 팀 코드 리스트
+	public List<TeamCode> selectAllTeamCodes(){
+		return commonCodeDao.selectAllTeamCodes();
+	}
+	
 }

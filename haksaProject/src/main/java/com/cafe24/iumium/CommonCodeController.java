@@ -10,17 +10,66 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.iumium.common.dto.BuildingCode;
 import com.cafe24.iumium.common.dto.CountryCode;
+import com.cafe24.iumium.common.dto.DepartmentCode;
 import com.cafe24.iumium.common.dto.JobGroupCode;
 import com.cafe24.iumium.common.dto.JobPositionCode;
 import com.cafe24.iumium.common.dto.JobRankCode;
 import com.cafe24.iumium.common.dto.JobTypeCode;
 import com.cafe24.iumium.common.dto.RoomCode;
+import com.cafe24.iumium.common.dto.TeamCode;
 import com.cafe24.iumium.common.service.CommonCodeService;
+import com.cafe24.iumium.common.dto.OrganizationCode;
+import com.cafe24.iumium.common.dto.AgencyCode;
+
 
 @Controller
 public class CommonCodeController {
 	@Autowired
 	private CommonCodeService commonCodeService;
+	
+	// 기관코드 관리
+	@RequestMapping(value="/common/codes/agency", method = RequestMethod.GET)
+    public String AgencyList(Model model) {
+        List<AgencyCode> list = commonCodeService.selectAllAgencyCodes();
+        
+        //객체 내부에 기관 코드 리스트 저장
+        model.addAttribute("list", list);
+        
+        return "commonCode/agencyCode";
+    }
+	
+	// 기구코드 관리
+	@RequestMapping(value="/common/codes/organization", method = RequestMethod.GET)
+    public String OrgList(Model model) {
+        List<OrganizationCode> list = commonCodeService.selectAllOrganizationCodes();
+       
+        //객체 내부에 기구 코드 리스트 저장
+        model.addAttribute("list", list);
+        
+        return "commonCode/organizationCode";
+    }
+	
+	// 부서코드 관리
+	@RequestMapping(value="/common/codes/department", method = RequestMethod.GET)
+    public String DeptList(Model model) {
+        List<DepartmentCode> list = commonCodeService.selectAllDepartmentCodes();
+       
+        //객체 내부에 부서 코드 리스트 저장
+        model.addAttribute("list", list);
+        
+        return "commonCode/departmentCode";
+    }
+	
+	// 팀코드 관리
+	@RequestMapping(value="/common/codes/teamCode", method = RequestMethod.GET)
+    public String TeamList(Model model) {
+        List<TeamCode> list = commonCodeService.selectAllTeamCodes();
+        
+        //객체 내부에 팀 코드 리스트 저장
+        model.addAttribute("list", list);
+        
+        return "commonCode/teamCode";
+    }
 	
 	// 직군코드 관리
 	@RequestMapping(value="/common/codes/jobGroup", method=RequestMethod.GET)

@@ -10,13 +10,13 @@
 	<ul class="sidebar navbar-nav">
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-				<i class="fas fa-fw fa-folder"></i> <span>공통 코드 관리</span>
+				<i class="fas fa-fw fa-folder"></i> <span>공통코드 관리</span>
 			</a>
 			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-				<a class="dropdown-item" href="#">기관 코드</a> 
-				<a class="dropdown-item" href="#">기구 코드</a> 
-				<a class="dropdown-item" href="#">부서 코드</a>
-				<a class="dropdown-item" href="#">팀 코드</a> 
+				<a class="dropdown-item" href="/common/codes/agency">기관 코드</a> 
+				<a class="dropdown-item" href="/common/codes/organization">기구 코드</a> 
+				<a class="dropdown-item" href="/common/codes/department">부서 코드</a>
+				<a class="dropdown-item" href="/common/codes/teamCode">팀 코드</a> 
 				<a class="dropdown-item" href="/common/codes/jobGroup">직군 코드</a>
 				<a class="dropdown-item" href="/common/codes/jobType">직종 코드</a>
 				<a class="dropdown-item" href="/common/codes/jobRank">직급 코드</a>
@@ -28,12 +28,12 @@
 		</li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-				<i class="fas fa-fw fa-folder"></i> <span>학적 관리</span>
+				<i class="fas fa-fw fa-folder"></i> <span>학적코드 관리</span>
 			</a>
 			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
 				<h1 class="dropdown-header">코드 관리</h1>
 				<a class="dropdown-item" href="/schoolRegister/codes/semester">학기 코드</a> 
-				<a class="dropdown-item" href="#">학기별상세일정 코드</a> 
+				<a class="dropdown-item" href="#">학기별상세일정</a> 
 				<a class="dropdown-item" href="#">학적변동사유 코드</a>
 				<a class="dropdown-item" href="#">상담구분 코드</a> 
 				<a class="dropdown-item" href="#">상담결과 코드</a>
@@ -42,10 +42,10 @@
 		</li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-				<i class="fas fa-fw fa-folder"></i> <span>수업 코드 관리</span>
+				<i class="fas fa-fw fa-folder"></i> <span>수업코드 관리</span>
 			</a>
 			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-				<a class="dropdown-item" href="#">이수구분 코드</a> 
+				<a class="dropdown-item" href="/lecture/codes">이수구분 코드</a> 
 				<a class="dropdown-item" href="#">과목 코드</a> 
 				<a class="dropdown-item" href="#">강의평가항목 코드</a>
 				<a class="dropdown-item" href="#">성적평가기준 코드</a> 
@@ -53,7 +53,7 @@
 		</li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-				<i class="fas fa-fw fa-folder"></i> <span>졸업 코드 관리</span>
+				<i class="fas fa-fw fa-folder"></i> <span>졸업코드 관리</span>
 			</a>
 			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
 				<a class="dropdown-item" href="#">졸업불가사유 코드</a> 

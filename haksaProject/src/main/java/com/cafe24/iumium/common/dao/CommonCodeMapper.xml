@@ -1,6 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.iumium.common.dao.CommonCodeMapper">
+	
+	<!-- 팀 코드 테이블 -->
+	<select id="selectAllTeamCodes" resultType="com.cafe24.iumium.common.dto.TeamCode">
+        SELECT
+            t.team_code AS teamCode 
+            , t.record_id AS recordId
+            , t.agency_code AS agencyCode
+            , a.agency_name_korean AS agencyName
+            , t.org_code AS orgCode
+            , o.org_name_korean AS orgName
+            , t.dept_code AS deptCode
+            , d.dept_name_korean AS deptName
+            , t.team_name_korean AS teamNameKorean
+            , t.team_name_english AS teamNameEnglish
+            , t.team_establish_date AS teamEstablishDate
+            , t.team_sort_number AS teamSortNumber
+            , t.team_rep_phone_number AS teamRepPhoneNumber
+            , t.team_is_used AS teamIsUsed
+            , t.team_is_changed AS teamIsChanged
+            , t.team_reason_for_change AS teamReasonForChange
+            , t.team_changed_date AS teamChangedDate
+            , t.team_registered_date AS teamRegisteredDate
+        FROM haksa_team AS t
+        JOIN haksa_agency AS a
+        ON a.agency_code=t.agency_code
+        JOIN haksa_organization AS o
+        ON o.org_code=t.org_code
+        JOIN haksa_department AS d
+        ON d.dept_code=t.dept_code
+        ORDER BY team_sort_number ASC
+    </select>
+	
+	<!-- 부서 코드 테이블 -->
+	<select id="selectAllDepartmentCodes" resultType="com.cafe24.iumium.common.dto.DepartmentCode">
+        SELECT
+            d.dept_code AS deptCode 
+            , d.record_id AS recordId
+            , d.agency_code AS agencyCode
+            , a.agency_name_korean AS agencyName
+            , d.org_code AS orgCode
+            , o.org_name_korean AS orgName
+            , d.dept_for_edu_or_admin AS deptForEduOrAdmin
+            , d.dept_name_korean AS deptNameKorean
+            , d.dept_name_english AS deptNameEnglish
+            , d.dept_establish_date AS deptEstablishDate
+            , d.dept_sort_number AS deptSortNumber
+            , d.dept_rep_phone_number AS deptRepPhoneNumber
+            , d.dept_graduated_grade AS deptGraduatedGrade
+            , d.dept_is_used AS deptIsUsed
+            , d.dept_is_changed AS deptIsChanged
+            , d.dept_reason_for_change AS deptReasonForChange
+            , d.dept_changed_date AS deptChangedDate
+            , d.dept_registered_date AS deptRegisteredDate
+        FROM haksa_department AS d
+        JOIN haksa_agency AS a
+        ON a.agency_code=d.agency_code
+        JOIN haksa_organization AS o
+        ON o.org_code=d.org_code
+        ORDER BY dept_sort_number ASC
+    </select>
+	
+	<!-- 기구 코드 테이블 -->
+	<select id="selectAllOrganizationCodes" resultType="com.cafe24.iumium.common.dto.OrganizationCode">
+        SELECT
+            o.org_code AS orgCode 
+            , o.record_id AS recordId
+            , o.agency_code AS agencyCode
+            , a.agency_name_korean AS agencyName
+            , o.org_name_korean AS orgNameKorean
+            , o.org_name_english AS orgNameEnglish
+            , o.org_establish_date AS orgEstablishDate
+            , o.org_sort_number AS orgSortNumber
+            , o.org_is_used AS orgIsUsed
+            , o.org_is_changed AS orgIsChanged
+            , o.org_reason_for_change AS orgReasonForChange
+            , o.org_changed_date AS orgChangedDate
+            , o.org_registered_date AS orgRegisteredDate
+        FROM haksa_organization AS o
+        JOIN haksa_agency AS a
+        ON a.agency_code=o.agency_code
+        ORDER BY org_sort_number ASC
+    </select>
+    
+	<!-- 기관 코드 테이블 -->
+	<select id="selectAllAgencyCodes" resultType="com.cafe24.iumium.common.dto.AgencyCode">
+        SELECT
+            agency_code AS agencyCode 
+            , record_id AS recordId
+            , agency_name_korean AS agencyNameKorean
+            , agency_name_english AS agencyNameEnglish
+            , agency_establish_date AS agencyEstablishDate
+            , agency_sort_number AS agencySortNumber
+            , agency_is_used AS agencyIsUsed
+            , agency_is_changed AS agencyIsChanged
+            , agency_reason_for_change AS agencyReasonForChange
+            , agency_changed_date AS agencyChangedDate
+            , agency_registered_date AS agencyRegisteredDate
+        FROM haksa_agency
+        ORDER BY agency_sort_number ASC
+    </select>
+
 	<!-- 직군 코드 테이블 -->
 	<select id="selectAllJobGroupCodes" resultType="com.cafe24.iumium.common.dto.JobGroupCode">
 		SELECT
