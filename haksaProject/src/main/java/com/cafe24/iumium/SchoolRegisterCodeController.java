@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cafe24.iumium.schoolregistercode.dto.SemesterCode;
-import com.cafe24.iumium.schoolregistercode.service.SchoolRegisterCodeService;
+import com.cafe24.iumium.schoolregister.code.dto.SemesterCode;
+import com.cafe24.iumium.schoolregister.code.service.SchoolRegisterCodeService;
 
 @Controller
 public class SchoolRegisterCodeController {
@@ -20,6 +20,6 @@ public class SchoolRegisterCodeController {
 	public String getAllSemesterCodes(Model model) {
 		List<SemesterCode> semesterCodes = schoolRegisterCodeService.selectAllSemesterCodes();
 		model.addAttribute("semesterCodes", semesterCodes);
-		return "semesterCode";
+		return "schoolRegister/code/semesterCode";
 	}
 }

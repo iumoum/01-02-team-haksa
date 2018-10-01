@@ -8,14 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.cafe24.iumium.commoncode.dto.BuildingCode;
-import com.cafe24.iumium.commoncode.dto.CountryCode;
-import com.cafe24.iumium.commoncode.dto.JobGroupCode;
-import com.cafe24.iumium.commoncode.dto.JobPositionCode;
-import com.cafe24.iumium.commoncode.dto.JobRankCode;
-import com.cafe24.iumium.commoncode.dto.JobTypeCode;
-import com.cafe24.iumium.commoncode.dto.RoomCode;
-import com.cafe24.iumium.commoncode.service.CommonCodeService;
+import com.cafe24.iumium.common.dto.BuildingCode;
+import com.cafe24.iumium.common.dto.CountryCode;
+import com.cafe24.iumium.common.dto.JobGroupCode;
+import com.cafe24.iumium.common.dto.JobPositionCode;
+import com.cafe24.iumium.common.dto.JobRankCode;
+import com.cafe24.iumium.common.dto.JobTypeCode;
+import com.cafe24.iumium.common.dto.RoomCode;
+import com.cafe24.iumium.common.service.CommonCodeService;
 
 @Controller
 public class CommonCodeController {
@@ -30,7 +30,7 @@ public class CommonCodeController {
 		// 직군 코드 model 객체 내부에 저장
 		model.addAttribute("jobGroupCodes", jobGroupCodes);
 		
-		return "jobGroupCode";
+		return "commonCode/jobGroupCode";
 	}
 	
 	// 직종코드 관리
@@ -41,7 +41,7 @@ public class CommonCodeController {
 		// 직종 코드 model 객체 내부에 저장
 		model.addAttribute("jobTypeCodes", jobTypeCodes);
 		
-		return "jobTypeCode";
+		return "commonCode/jobTypeCode";
 	}
 	
 	// 직급코드 관리
@@ -52,7 +52,7 @@ public class CommonCodeController {
 		// 직급 코드 model 객체 내부에 저장
 		model.addAttribute("jobRankCodes", JobRankCodes);
 		
-		return "jobRankCode";
+		return "commonCode/jobRankCode";
 	}
 	
 	// 직위코드 관리
@@ -63,7 +63,7 @@ public class CommonCodeController {
 		// 직위 코드 model 객체 내부에 저장
 		model.addAttribute("jobPositionCodes", jobPositionCodes);
 		
-		return "jobPositionCode";
+		return "commonCode/jobPositionCode";
 	}
 	
 	// 건물코드 관리
@@ -74,7 +74,7 @@ public class CommonCodeController {
 		// 건물 코드 model 객체 내부에 저장
 		model.addAttribute("buildingCodes", buildingCodes);
 		
-		return "buildingCode";
+		return "commonCode/buildingCode";
 	}
 	
 	// 강의실코드 관리
@@ -85,7 +85,7 @@ public class CommonCodeController {
 		// 강의실 코드 model 객체 내부에 저장
 		model.addAttribute("roomCodes", roomCodes);
 		
-		return "roomCode";
+		return "commonCode/roomCode";
 	}
 	
 	// 국가코드 관리
@@ -96,6 +96,6 @@ public class CommonCodeController {
 		// 강의실 코드 model 객체 내부에 저장
 		model.addAttribute("countryCodes", countryCodes);
 		
-		return "countryCode";
+		return "commonCode/countryCode";
 	}
 }

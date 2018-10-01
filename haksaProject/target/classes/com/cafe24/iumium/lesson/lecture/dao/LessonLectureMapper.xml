@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.iumium.lesson.lecture.dao.LessonLectureMapper">
+
+	<!-- 학과별 반 테이블 -->
+	<select id="selectAllClassesByDepartment" resultType="com.cafe24.iumium.lesson.lecture.dto.ClassByDepartment">
+		SELECT
+			class_by_department_number as classByDepartmentNumber
+			, cbd.record_id as recordId
+			, cbd.dept_code as deptCode
+			, dept_name_korean as deptNameKorean
+			, cbd.appointment_school_personnel_number as appointmentSchoolPersonnelNumber
+			, human_name as humanName
+			, semester_code as semesterCode
+			, class_by_department_grade as classByDepartmentGrade
+			, class_by_department_class as classByDepartmentClass
+			, class_by_department_day_and_night as classByDepartmentDayAndNight
+			, class_by_department_curriculum_division as classByDepartmentCurriculumDivision
+			, class_by_department_registered_date as classByDepartmentRegisteredDate
+			
+		FROM haksa_class_by_department cbd
+		INNER JOIN haksa_department d
+		ON cbd.dept_code = d.dept_code
+		INNER JOIN ilban_human h
+		ON cbd.appointment_school_personnel_number = h.student_teacher_no
+	</select>
+</mapper>
