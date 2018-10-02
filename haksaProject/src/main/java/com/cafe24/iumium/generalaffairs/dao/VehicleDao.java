@@ -19,6 +19,7 @@ public class VehicleDao {
 	
 	// 차량 리스트 
 	public List<VehicleDto> selectVehicleList() {
+		System.out.println("VehicleDao-selectVehicleList()");
 		
 		return sqlSessionTemplate.selectList(nameSpace +"selectVehicleList");
 	}

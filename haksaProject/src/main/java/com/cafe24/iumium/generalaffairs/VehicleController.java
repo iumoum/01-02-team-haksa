@@ -27,7 +27,9 @@ public class VehicleController {
 	
 	// 검색 리스트 출력
 	@RequestMapping(value="/personnel/generalAffairsManagement/vehicle/selectVehicleList", method = RequestMethod.GET)
-	public String selectVehicleList(Model model) {
+	public String selectVehicleList(Model model ,String ApprovalStatus) {
+		System.out.println("controller-ApprovalStatus  : " +ApprovalStatus);
+		
 		List<VehicleDto> vehicleList = vehicleService.vehicleList();
 
 		model.addAttribute("vehicleList" ,vehicleList);

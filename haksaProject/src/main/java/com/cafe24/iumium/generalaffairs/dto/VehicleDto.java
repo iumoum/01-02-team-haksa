@@ -4,7 +4,7 @@ package com.cafe24.iumium.generalaffairs.dto;
 public class VehicleDto {
 
 	private int vehicleNo;
-	private int personnelNumber;
+	private String personnelNumber;
 	private String vehicleNumber;
 	private String vehicleType;
 	private String vehiclePurpose;
@@ -20,10 +20,10 @@ public class VehicleDto {
 	public void setVehicleNo(int vehicleNo) {
 		this.vehicleNo = vehicleNo;
 	}
-	public int getPersonnelNumber() {
+	public String getPersonnelNumber() {
 		return personnelNumber;
 	}
-	public void setPersonnelNumber(int personnelNumber) {
+	public void setPersonnelNumber(String personnelNumber) {
 		this.personnelNumber = personnelNumber;
 	}
 	public String getVehicleNumber() {

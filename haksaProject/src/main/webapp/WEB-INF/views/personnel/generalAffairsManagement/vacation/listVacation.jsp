@@ -9,7 +9,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-		<title>holiday List</title>
+		<title>vacation List</title>
 		
 		<!-- Bootstrap core CSS-->
 		<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,24 +42,47 @@
 				
 				<h1>공통코드 관리 > 기관코드 관리</h1>
 				<br><br>
-				<table border="">
-			        <thead>
-			            <tr>
-			            	<td>시작날짜</td>
-							<td>종료날짜</td>
-							<td>휴일 명</td>
-			            </tr>
-			        </thead>
-			        <tbody>
-	            		<c:forEach var="row" items="${holidayList}">
-			                <tr>
-			                    <td>${row.holidayStartDay}</td>
-			                    <td>${row.holidayEndDay}</td>
-			                    <td>${row.holidayName}</td>
-			                </tr>
-			            </c:forEach>
-	        		</tbody>
-	    		</table>
+				<table>
+					<thead>
+						<tr>
+							<td>부서</td>
+							<td>직급</td>
+							<td>성명</td>
+							<td>휴가 구분</td>
+							<td>전일/반일</td>
+							<td>휴가 시작일</td>
+							<td>휴가 종료일</td>
+							<td>휴가 사유</td>
+							<td>실제 사용</td>
+							<td>승인 여부</td>
+							<td>등록 일자</td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="row" items="${vacationList }">
+							<td>${row.deptNameKorean }</td>
+							<td>${row.jobRankNameKorean }</td>
+							<td>${row.humanName }</td>
+							<td>${row.vacationDivision }</td>
+							<td>${row.vacationType }</td>
+							<td>${row.vacationStartDate }</td>
+							<td>${row.vacationEndDate }</td>
+							<td>${row.vacationActualUse }</td>
+							<td>${row.vacationReason }</td>
+							<c:if test="${row.vacationApprovalStatus } eq  C">
+								<td>확인중</td>
+							</c:if>
+							<c:if test="${row.vacationApprovalStatus } eq Y">
+								<td>승인</td>
+							</c:if>
+							<c:if test ="${row.vacationApprovalStatus } eq N">
+								<td>불가</td>
+							</c:if>
+							<td>${row.vacationApprovalStatus }</td>
+							<td>${rpw.vacationRegistrationDay }</td>
+						</c:forEach>
+					</tbody>
+				</table>
 				
 				</div>
 				<!-- /.container-fluid -->
