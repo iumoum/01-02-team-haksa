@@ -4,6 +4,7 @@
 <html lang="ko">
 <head>
 
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -19,6 +20,7 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
+
 
 </head>
 
@@ -43,46 +45,54 @@
 				 3.학과 번호가 일치하는 과목들 정보 조회
 				 4.조회된 과목 정보 출력
 			 -->
-			
-			<table border=1>
-				<thead>
-					<tr>
-						<th>선택</th>
-						<th>이수구분</th>
-						<th>학년</th>
-						<th>강좌번호</th>
-						<th>과목명</th>
-						<th>학점</th>
-						<th>수업교시</th>
-						<th>강의실명</th>
-						<th>교수명</th>
-						<th>강의계획서</th>
-						<th>정원</th>
-						<th>수강신청인원</th>
-						<th>재수강횟수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="row" items="${enrolCourse}">
+			<form action="enrolCourseWrite" method="post">
+				<table border=1>
+					<thead align="center">
 						<tr>
-							<td>${row.deptCode}</td>
-							<td>2</td>
-							<td>3</td>
-							<td>4</td>
-							<td>5</td>
-							<td>6</td>
-							<td>7</td>
-							<td>8</td>
-							<td>9</td>
-							<td>9</td>
-							<td>9</td>
-							<td>9</td>
-							<td>9</td>
+							<th>선택</th>
+							<th>강좌번호</th>
+							 <th>학번</th>
+							<th>과목명</th>
+							<th>이수구분</th>
+							 <th>학점</th>
+							 <th>학과명</th>
+							 <th>학년</th>
+							<th>반</th>
+							 <th>교수명</th>
+							<th>강의실명</th>
+							<th>년도</th>
+							<th>학기</th>
+							 <th>재수강횟수</th>
+							<th>총 수강인원</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			
+					</thead>
+					<tbody align="center">
+						<c:forEach var="row" items="${enrolCourse}">
+							<tr>
+								<td><input type="checkbox" name ="course" value="${row.lectureStatusNumber}"></td>
+								<td>${row.lectureStatusNumber}</td>
+								<td>${id}</td>
+								<td>${row.enrolCourseCourseName}</td>
+								<td>${row.enrolCourseCompletionDivision}</td>
+								 <td>${row.enrolCourseCourseCredit}</td>
+								 <td>${row.enrolCourseDeptName}</td>
+								 <td>${row.enrolCourseSchoolYear}</td>
+								<td>${row.enrolCourseClass}</td>
+								 <td>${row.enrolCourseProfName}</td>
+								<td>${row.enrolCourseClassroom}</td>
+								<td>${row.enrolCourseYear}</td>
+								<td>${row.enrolCourseSemester}</td>
+								 <td>${row.enrolCourseCourseRetakeNumber}</td>
+								<td>${row.enrolCourseCourseRetakeNumber}</td>
+								
+							</tr>
+						</c:forEach>
+						<tr align="right">
+							<td colspan="15"><button type="submit">수강신청입력</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
 
 			<!-- Sticky Footer -->
 			<footer class="sticky-footer">
@@ -119,6 +129,7 @@
 	<!-- Demo scripts for this page-->
 	<script src="/resources/js/demo/datatables-demo.js"></script>
 	<script src="/resources/js/demo/chart-area-demo.js"></script>
-
+	
+	
 </body>
 </html>

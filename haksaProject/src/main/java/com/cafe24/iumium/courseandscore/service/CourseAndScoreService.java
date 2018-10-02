@@ -24,15 +24,24 @@ public class CourseAndScoreService {
 	
 	public List<EnrolCourse> selectEnrolCourse(String id){ 
 		System.out.println("CourseAndScoreService - selectEnrolCourse() 호출");
-		List<EnrolCourse> list = new ArrayList<EnrolCourse>();
 		
-		int deptCode = courseAndScoreDao.inquireStudentDept(id);
-		System.out.println("세션 학번으로 학과별반번호 조회 : " + deptCode);
+		int classByDepartmentNumber = courseAndScoreDao.inquireClassByDepartmentNumber(id);
+		System.out.println("세션 학번으로 학과별반번호 조회 : " + classByDepartmentNumber);
+		
+		List<EnrolCourse> lectureStatusNumber = courseAndScoreDao.inquireLectureStatus(classByDepartmentNumber);
+		System.out.println("학과별반번호로 강의상황서 번호 : " + lectureStatusNumber);
 		
 		//list = courseAndScoreDao.inquireDeptCourse(deptCode);
 		
-		return list;
+		return lectureStatusNumber;
 	}
 	
+	/*
+	 *	1.입력된 아이디로 수강신청 테이블 조회
+	 *	2.강의상황서 레코드의 속성별로 코드는 해당 코드의 필요값 조회
+	 */
+	public List<EnrolCourse> searchEnrolCourse(String id){
+		return courseAndScoreDao.inquireSearchLectureById(id);
+	}
 	
 }

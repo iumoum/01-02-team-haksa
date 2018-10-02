@@ -2,7 +2,22 @@ package com.cafe24.iumium.courseandscore.dto;
 
 public class EnrolCourse {
 	
-	private int class_by_department_number;
+/*	학번
+	과목명
+	이수구분
+	학점
+	학과명
+	학년
+	반
+	교수명
+	강의실명
+	년도
+	학기
+	재수강횟수
+	시스템등록일자
+*/
+	private int lectureStatusNumber;
+	private int classByDepartmentNumber;
 	private String enrolCourseNo;
 	private String enrolCourseStudentNumber;
 	private String enrolCourseCourseName;
@@ -19,12 +34,17 @@ public class EnrolCourse {
 	private String enrolCourseDate;
 	
 	
-	
-	public int getClass_by_department_number() {
-		return class_by_department_number;
+	public int getLectureStatusNumber() {
+		return lectureStatusNumber;
 	}
-	public void setClass_by_department_number(int class_by_department_number) {
-		this.class_by_department_number = class_by_department_number;
+	public void setLectureStatusNumber(int lectureStatusNumber) {
+		this.lectureStatusNumber = lectureStatusNumber;
+	}
+	public int getClassByDepartmentNumber() {
+		return classByDepartmentNumber;
+	}
+	public void setClassByDepartmentNumber(int classByDepartmentNumber) {
+		this.classByDepartmentNumber = classByDepartmentNumber;
 	}
 	public String getEnrolCourseNo() {
 		return enrolCourseNo;
