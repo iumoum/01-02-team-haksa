@@ -45,10 +45,11 @@
 				<i class="fas fa-fw fa-folder"></i> <span>수업코드 관리</span>
 			</a>
 			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-				<a class="dropdown-item" href="/lecture/codes">이수구분 코드</a> 
-				<a class="dropdown-item" href="#">과목 코드</a> 
-				<a class="dropdown-item" href="#">강의평가항목 코드</a>
-				<a class="dropdown-item" href="#">성적평가기준 코드</a> 
+				<a class="dropdown-item" href="/lecture/codes/Toc">이수구분 코드</a> 
+				<a class="dropdown-item" href="/lecture/codes/subject">과목 코드</a> 
+				<a class="dropdown-item" href="/lecture/codes/Qfel">강의평가항목 코드</a>
+				<a class="dropdown-item" href="/lecture/codes/Afe">평가항목 배정 코드</a>
+				<a class="dropdown-item" href="/lecture/codes/Gc">성적평가기준 코드</a> 
 			</div>
 		</li>
 		<li class="nav-item dropdown">
