@@ -26,7 +26,7 @@ public class VehicleController {
 	}
 	
 	// 검색 리스트 출력
-	@RequestMapping(value="/personnel/generalAffairsManagement/vehicle/listVehicle", method = RequestMethod.GET)
+	@RequestMapping(value="/personnel/generalAffairsManagement/vehicle/selectVehicleList", method = RequestMethod.GET)
 	public String selectVehicleList(Model model) {
 		List<VehicleDto> vehicleList = vehicleService.vehicleList();
 

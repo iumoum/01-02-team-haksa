@@ -20,22 +20,22 @@
 		<link href="/resources/css/sb-admin.css" rel="stylesheet">
 		
 		<script>
-		$(document).ready(function {
+		$(document).ready( {
 			
 			$('#check').click(function (e) {
-				  e.preventDefault()
-				  $(this).tab('show')
-				})
+			  e.preventDefault()
+			  $(this).tab('show')
+			});
 				
 			$('#approval').click(function (e) {
 			  e.preventDefault()
 			  $(this).tab('show')
-			})
+			});
 			
 			$('#refusal').click(function (e) {
 			  e.preventDefault()
 			  $(this).tab('show')
-			})
+			});
 		});
 		</script>
 	</head>
@@ -59,7 +59,7 @@
 			
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#check" aria-controls="check" role="tab" data-toggle="tab">차량운행 승인여부 리스트</a></li>
+							<li role="presentation" class="active"><a href="#check" aria-controls="check" role="tab" data-toggle="tab" >차량운행 승인여부 리스트</a></li>
 							<li role="presentation"><a href="#approval" aria-controls="approval" role="tab" data-toggle="tab">차량운행 승인 리스트</a></li>
 							<li role="presentation"><a href="#refusal" aria-controls="refusal" role="tab" data-toggle="tab">차량운행 승인 불가 리스트</a></li>
 						</ul>
@@ -69,92 +69,6 @@
 						
 							<!-- 차량 승인여부 리스트 -->
 							<div role="tabpanel" class="tab-pane active" id="check">
-								<table>
-									<thead>
-										<tr>
-											<td>
-												<input type="checkbox" >
-											</td>
-											<td>부서 명</td>
-											<td>직급 명</td>
-											<td>성명</td>
-											<td>차량 번호</td>
-											<td>차량종류</td>
-											<td>차량 운행목적</td>
-											<td>차량 승인 여부</td>
-											<td>등록일자</td>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="s" items="${vehicleList }">
-											<tr>
-												<td>
-													<input type="checkbox" >
-												</td>
-												<td>${s.deptName }</td>
-												<td>${s.rankName }</td>
-												<td>${s.humanName }</td>
-												<td>${s.vehicleNumber }</td>
-												<td>${s.vehicleType }</td>
-												<td>${s.vehiclePurpose }</td>
-												<c:if test="${s.vehicleApprovalStatus eq null }">
-													<td>확인중</td>
-												</c:if>
-												<td>${s.vehicleRegistrationDay }</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-							
-							<!-- 차량 승인 리스트 -->
-							<div role="tabpanel" class="tab-pane active" id="approval">
-								<table>
-									<thead>
-										<tr>
-											<td>
-												<input type="checkbox" >
-											</td>
-											<td>부서 명</td>
-											<td>직급 명</td>
-											<td>성명</td>
-											<td>차량 번호</td>
-											<td>차량종류</td>
-											<td>차량 운행목적</td>
-											<td>차량 승인 여부</td>
-											<td>등록일자</td>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="s" items="${vehicleList }">
-											<tr>
-												<td>
-													<input type="checkbox" >
-												</td>
-												<td>${s.deptName }</td>
-												<td>${s.rankName }</td>
-												<td>${s.humanName }</td>
-												<td>${s.vehicleNumber }</td>
-												<td>${s.vehicleType }</td>
-												<td>${s.vehiclePurpose }</td>
-												<c:if test="${s.vehicleApprovalStatus eq null }">
-													<td>확인중</td>
-												</c:if>
-												<c:if test="${s.vehicleApprovalStatus eq Y }">
-													<td>승인</td>
-												</c:if>
-												<c:if test="${s.vehicleApprovalStatus eq N }">
-													<td>거부</td>
-												</c:if>
-												<td>${s.vehicleRegistrationDay }</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-							
-							<!-- 차량 거부 리스트 -->
-							<div role="tabpanel" class="tab-pane active" id="refusal">
 								<table>
 									<thead>
 										<tr>
