@@ -51,6 +51,8 @@
            		<value>classpath:com/cafe24/iumium/common/dao/CommonCodeMapper.xml</value>
            		<value>classpath:com/cafe24/iumium/schoolregister/code/dao/SchoolRegisterCodeMapper.xml</value>
            		<value>classpath:com/cafe24/iumium/lesson/lecture/dao/LessonLectureMapper.xml</value>
+           		<value>classpath:com/cafe24/iumium/generalaffairs/dao/HolidayMapper.xml</value>
+           		<value>classpath:com/cafe24/iumium/generalaffairs/dao/VehicleMapper.xml</value>
             </list>
         </property>
     </bean>

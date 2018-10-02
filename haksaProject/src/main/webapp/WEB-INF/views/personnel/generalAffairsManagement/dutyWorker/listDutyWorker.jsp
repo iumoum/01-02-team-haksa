@@ -30,10 +30,47 @@
 			<jsp:include page="/WEB-INF/views/module/sidebar.jsp"/>
 	
 			<div id="content-wrapper">
-	
-				<div class="container-fluid">
-				<!-- 여기에 내용이 담긴다 -->
 				
+				<!-- 여기에 내용이 담긴다 -->
+				<div class="container-fluid">
+				
+				<!-- 당직 근무조 리스트  -->
+					<div role="tabpanel">
+			
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">당직 승인여부 리스트</a></li>
+							<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">당직 승인 리스트</a></li>
+							<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">당직 승인 불가 리스트</a></li>
+						</ul>
+						
+						<!-- Tab panes -->
+						<div class="tab-content">
+						
+							<!-- 당직 승인여부 리스트 -->
+							<div role="tabpanel" class="tab-pane active" id="home">
+								<table>
+									<thead>
+										<tr>
+											<td></td>
+										</tr>
+									</thead>
+								</table>
+							</div>
+							
+							<!-- 당직 승인 리스트 -->
+							<div role="tabpanel" class="tab-pane" id="profile">
+							
+							</div>
+							
+							<!-- 당직 승인 불가 리스트 -->
+							<div role="tabpanel" class="tab-pane" id="messages">
+							
+							</div>
+							
+						</div>
+						
+					</div>
 				</div>
 				<!-- /.container-fluid -->
 	
@@ -52,42 +89,6 @@
 		</div>
 		<!-- /#wrapper -->
 		
-		<!-- 당직 근무조 리스트  -->
-		<div role="tabpanel">
-
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">당직 승인여부 리스트</a></li>
-				<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">당직 승인 리스트</a></li>
-				<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">당직 승인 불가 리스트</a></li>
-			</ul>
-			
-			<!-- Tab panes -->
-			<div class="tab-content">
-			
-				<!-- 당직 승인여부 리스트 -->
-				<div role="tabpanel" class="tab-pane active" id="home">
-					<table>
-						<thead>
-							<tr>
-								<td></td>
-							</tr>
-						</thead>
-					</table>
-				</div>
-				
-				<!-- 당직 승인 리스트 -->
-				<div role="tabpanel" class="tab-pane" id="profile">
-				
-				</div>
-				
-				<!-- 당직 승인 불가 리스트 -->
-				<div role="tabpanel" class="tab-pane" id="messages">
-				
-				</div>
-				
-			</div>
-			
-		</div>
+		
 	</body>
 </html>

@@ -1,5 +1,5 @@
 // 2018.10.01 28기 전재현
-package com.cafe24.iumium.personnel.generalaffairs.dto;
+package com.cafe24.iumium.generalaffairs.dto;
 
 public class HolidayDto {
 	
@@ -7,8 +7,8 @@ public class HolidayDto {
 	private String personnelNumber;
 	private String holidayName;
 	private String holidayCategory;
-	private int holidayStartDay;
-	private int holidayEndDay;
+	private String holidayStartDay;
+	private String holidayEndDay;
 	
 	public String getHolidayNumber() {
 		return holidayNumber;
@@ -34,16 +34,16 @@ public class HolidayDto {
 	public void setHolidayCategory(String holidayCategory) {
 		this.holidayCategory = holidayCategory;
 	}
-	public int getHolidayStartDay() {
+	public String getHolidayStartDay() {
 		return holidayStartDay;
 	}
-	public void setHolidayStartDay(int holidayStartDay) {
+	public void setHolidayStartDay(String holidayStartDay) {
 		this.holidayStartDay = holidayStartDay;
 	}
-	public int getHolidayEndDay() {
+	public String getHolidayEndDay() {
 		return holidayEndDay;
 	}
-	public void setHolidayEndDay(int holidayEndDay) {
+	public void setHolidayEndDay(String holidayEndDay) {
 		this.holidayEndDay = holidayEndDay;
 	}
 	
