@@ -33,10 +33,10 @@
 			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
 				<h1 class="dropdown-header">코드 관리</h1>
 				<a class="dropdown-item" href="/schoolRegister/codes/semester">학기 코드</a> 
-				<a class="dropdown-item" href="#">학기별상세일정</a> 
-				<a class="dropdown-item" href="#">학적변동사유 코드</a>
-				<a class="dropdown-item" href="#">상담구분 코드</a> 
-				<a class="dropdown-item" href="#">상담결과 코드</a>
+				<a class="dropdown-item" href="/schoolRegister/codes/calander">학기별상세일정</a> 
+				<a class="dropdown-item" href="/schoolRegister/codes/reasonForChangeSchoolRegister">학적변동사유 코드</a>
+				<a class="dropdown-item" href="/schoolRegister/codes/typeOfCounsel">상담구분 코드</a> 
+				<a class="dropdown-item" href="/schoolRegister/codes/resultOfCounsel">상담결과 코드</a>
 				<div class="dropdown-divider"></div>
 			</div>
 		</li>
