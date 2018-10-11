@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>기관코드 관리</title>
+<title>직급코드 입력 폼</title>
 
 <!-- Bootstrap core CSS-->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,33 +22,6 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-        <script>
-            $(document).ready(function() {
-                $("#keyword").keyup(function() {
-                    var selectBox = $("#selectBox option:selected").val();
-                    var word = $('#keyword').val();
-                    $("#agencyTable > tbody").children().hide();
-                    if(selectBox == "code"){
-                        var temp = $("#agencyTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
-                        
-                    }else if(selectBox == "name"){
-						var temp = $("#agencyTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");    
-						
-                    }else if(selectBox == "establish_date"){
-                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
-                    	
-                    }else if(selectBox == "check_a_use"){
-                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
-                    	
-                    }else if(selectBox == "check_a_change"){
-                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
-                    	
-                    }
-                    $(temp).parent().show();
-                });
-            });
-       	</script>
 
 </head>
 
@@ -65,45 +38,36 @@
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
 			
-			<h1>공통코드 관리 > 기관코드 관리</h1>
+			<h1>공통코드 관리 > 직급코드 관리</h1>
 			<br><br>
-			 <div>
-	            <select id="selectBox">
-	                <option value="code">코드</option>
-	                <option value="name">기관명</option>
-	                <option value="establish_date">설치일자</option>
-	                <option value="check_a_use">사용유무</option>
-	                <option value="check_a_change">변경유무</option>
-	            </select>
-	            <input type="text" id="keyword" />
-	        </div>
 			
-			<table border="1" id="agencyTable">
-		        <thead>
-		            <tr>
-		                <th>기관코드</th>
-		                <th>기관명(국문)</th>
-		                <th>기관명(영문)</th>
-		                <th>설치일자</th>
-		                <th>코드 사용유무</th>
-		                <th>코드 변경유무</th>
-		            </tr>
-		        </thead>
-		        <tbody>
-            		<c:forEach var="agency" items="${list}">
-		                <tr>
-		                    <td>${agency.agencyCode}</td>
-		                    <td>${agency.agencyNameKorean}</td>
-		                    <td>${agency.agencyNameEnglish}</td>
-		                    <td>${agency.agencyEstablishDate}</td>
-		                    <td>${agency.agencyIsUsed}</td>
-		                    <td>${agency.agencyIsChanged}</td>
-		                </tr>
-		            </c:forEach>
-        		</tbody>
-    		</table>
-			<br><br>
-			<a href="/common/codes/addAgencyCodeForm">코드 추가</a>
+			<form action="${pageContext.request.contextPath}/common/codes/addJobRankCodeAction" method="POST"> 
+				<table>
+					<tr>
+						<td>직급코드 :</td><td><input type="text" name="jobRankCode"></td>
+					</tr>
+					<tr>
+						<td>직종명 :</td><td>
+							<select name="jobTypeCode">
+								<option>선택</option>
+								<c:forEach var="row" items="${list}">
+									<option value="${row.jobGroupCode}:${row.jobTypeCode}">${row.jobTypeName}</option>
+								</c:forEach>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>직급명(국문) :</td><td><input type="text" name="jobRankNameKorean"></td>
+					</tr>
+					<tr>
+						<td>직급명(영문) :</td><td><input type="text" name="jobRankNameEnglish"></td>
+					</tr>
+					<tr>
+						<td>승진소요최저연수 :</td><td><input type="text" name="jobRankMinPromotionRequired"></td>
+					</tr>
+				</table><br>
+				<input type="submit" value="입력">
+			</form>
 			</div>
 			<!-- /.container-fluid -->
 

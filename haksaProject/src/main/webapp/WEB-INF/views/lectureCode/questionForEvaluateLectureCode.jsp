@@ -25,6 +25,33 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+        <script>
+            $(document).ready(function() {
+                $("#keyword").keyup(function() {
+                    var selectBox = $("#selectBox option:selected").val();
+                    var word = $('#keyword').val();
+                    $("#agencyTable > tbody").children().hide();
+                    if(selectBox == "code"){
+                        var temp = $("#agencyTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
+                        
+                    }else if(selectBox == "name"){
+						var temp = $("#agencyTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");    
+						
+                    }else if(selectBox == "establish_date"){
+                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
+                    	
+                    }else if(selectBox == "check_a_use"){
+                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
+                    	
+                    }else if(selectBox == "check_a_change"){
+                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
+                    	
+                    }
+                    $(temp).parent().show();
+                });
+            });
+       	</script>
 </head>
 <body id="page-top">
 
@@ -73,6 +100,8 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<br><br>
+				<a href="/lecture/codes/addQuestionForEvaluateLectureCodeForm">코드 입력</a>
 			</div>
 			<!-- /.container-fluid -->
 

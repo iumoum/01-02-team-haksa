@@ -19,6 +19,11 @@ public class ManageLectureCodeService {
 	@Autowired
 	private ManageLectureCodeDao lectureCode;
 	
+	
+	
+//수업관리 코드 리스트 service
+	
+	
 	// 이수 구분 코드 리스트
 	public List<TypeOfCompletionCode> selectManageLectureTocList() {
         return lectureCode.selectManageLectureTocList();
@@ -44,4 +49,36 @@ public class ManageLectureCodeService {
 		return lectureCode.selectManageLectureGccList();
 	
 	}
+	
+	
+//수업관리 코드 입력 처리 service
+	
+	// 이수 구분 코드 추가
+	public int addTocAction(TypeOfCompletionCode toc, String recordId) {
+		toc.setRecordId(recordId);
+        return lectureCode.addTocAction(toc);
+    }
+	
+	// 과목 코드 추가
+	public int addSubjectCodeAction(SubjectCode subjectCode, String recordId) {
+		subjectCode.setRecordId(recordId);
+        return lectureCode.addSubjectCodeAction(subjectCode);
+    }
+	
+	// 강의 평가 항목 코드 selectBox 학기코드 조회
+	public List<QuestionForEvaluateLectureCode> addQuestionForEvaluateLectureCodeForm(){
+		return lectureCode.addQuestionForEvaluateLectureCodeForm();
+	}
+	
+	// 강의 평가 항목 코드 추가
+	public int addQuestionForEvaluateLectureCodeAction(QuestionForEvaluateLectureCode qfel, String recordId) {
+		qfel.setRecordId(recordId);
+        return lectureCode.addQuestionForEvaluateLectureCodeAction(qfel);
+    }
+	
+	// 성적평가 기준 코드 추가
+	public int addGradingCriteriaCodeAction(GradingCriteriaCode gc, String recordId) {
+		gc.setRecordId(recordId);
+        return lectureCode.addGradingCriteriaCodeAction(gc);
+    }
 }

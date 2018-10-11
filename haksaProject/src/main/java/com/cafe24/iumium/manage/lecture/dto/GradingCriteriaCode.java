@@ -5,7 +5,7 @@ public class GradingCriteriaCode {
 	private String recordId;
 	private int gradingCriteriaStartOfSection;
 	private int gradingCriteriaEndOfSection;
-	private int gradingCriteriaGrade;
+	private double gradingCriteriaGrade;
 	public String getGradingCriteriaRating() {
 		return gradingCriteriaRating;
 	}
@@ -30,10 +30,10 @@ public class GradingCriteriaCode {
 	public void setGradingCriteriaEndOfSection(int gradingCriteriaEndOfSection) {
 		this.gradingCriteriaEndOfSection = gradingCriteriaEndOfSection;
 	}
-	public int getGradingCriteriaGrade() {
+	public double getGradingCriteriaGrade() {
 		return gradingCriteriaGrade;
 	}
-	public void setGradingCriteriaGrade(int gradingCriteriaGrade) {
+	public void setGradingCriteriaGrade(double gradingCriteriaGrade) {
 		this.gradingCriteriaGrade = gradingCriteriaGrade;
 	}
 }

@@ -25,6 +25,10 @@ public class CommonCodeDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	private final String nameSpace = "com.cafe24.iumium.common.dao.CommonCodeMapper.";
+
+
+//공통 코드 리스트 DAO
+	
 	
 	// 직군 코드 리스트 조회
 	public List<JobGroupCode> selectAllJobGroupCodes(){
@@ -76,8 +80,104 @@ public class CommonCodeDao {
         return sqlSessionTemplate.selectList(nameSpace+"selectAllDepartmentCodes");
     }
 	
+	// 직군 코드 추가
+	public int addJobGroupCodeAction(JobGroupCode jobGroupCode){
+		return sqlSessionTemplate.insert(nameSpace + "addJobGroupCodeAction", jobGroupCode);
+	}
+	
+	// 직군 코드, 이름 리스트
+	public List<JobTypeCode> addJobTypeCodesForm(){
+		return sqlSessionTemplate.selectList(nameSpace + "addJobTypeCodesForm");
+	}
+	
+	// 직종 코드 추가
+	public int addJobTypeCodesAction(JobTypeCode jobTypeCode){
+		return sqlSessionTemplate.insert(nameSpace + "addJobTypeCodesAction", jobTypeCode);
+	}
+	
 	//팀 코드 리스트 조회
 	public List<TeamCode> selectAllTeamCodes() {
         return sqlSessionTemplate.selectList(nameSpace+"selectAllTeamCodes");
+    }
+	
+	
+	
+	
+//공통코드 입력처리, selectBox 데이터 조회.
+	
+	
+	// 직군코드, 직종코드, 직종명 리스트 조회
+	public List<JobRankCode> addJobRankCodesForm(){
+		return sqlSessionTemplate.selectList(nameSpace + "addJobRankCodesForm");
+	}
+	
+	// 직급 코드 추가
+	public int addJobRankCodesAction(JobRankCode jobRankCode){
+		return sqlSessionTemplate.insert(nameSpace + "addJobRankCodesAction", jobRankCode);
+	}
+	
+	// 직위 코드 추가
+	public int addJobPositionCodesAction(JobPositionCode jobPositionCode){
+		return sqlSessionTemplate.insert(nameSpace + "addJobPositionCodesAction", jobPositionCode);
+	}
+	
+	// 건물 코드 입력 폼 select box 기관코드
+	public List<BuildingCode> addBuildingCodesForm(){
+		return sqlSessionTemplate.selectList(nameSpace + "addBuildingCodesForm");
+	}
+	
+	// 건물 코드 추가
+	public int addBuildingCodesAction(BuildingCode buildingCode){
+		return sqlSessionTemplate.insert(nameSpace + "addBuildingCodesAction", buildingCode);
+	}
+	
+	// 강의실 코드 입력 폼 select box 건물코드
+	public List<RoomCode> addRoomCodesForm(){
+		return sqlSessionTemplate.selectList(nameSpace + "addRoomCodesForm");
+	}
+	
+	// 강의실 코드 추가
+	public int addRoomCodesAction(RoomCode roomCode){
+		return sqlSessionTemplate.insert(nameSpace + "addRoomCodesAction", roomCode);
+	}
+	
+	// 국가 코드 추가
+	public int addCountryCodesAction(CountryCode countryCode){
+		return sqlSessionTemplate.insert(nameSpace + "addCountryCodesAction", countryCode);
+	}
+	
+	//기관 코드 추가
+	public int AddAgencyCodes(AgencyCode agencyCode) {
+        return sqlSessionTemplate.insert(nameSpace+"AddAgencyCodes", agencyCode);
+    }
+	
+	// 기관 코드, 이름 리스트 조회
+	public List<OrganizationCode> selectAllAgencyName() {
+        return sqlSessionTemplate.selectList(nameSpace+"selectAllAgencyName");
+    }
+	
+	// 기구 코드 추가
+	public int AddOrgCodeAction(OrganizationCode orgCode) {
+        return sqlSessionTemplate.insert(nameSpace+"AddOrgCodeAction", orgCode);
+    }
+	
+	// 기구코드, 이름, 기관 코드 히스트 조회
+	public List<DepartmentCode> selectAllOrgName() {
+        return sqlSessionTemplate.selectList(nameSpace+"selectAllOrgName");
+    }
+	
+	// 기구 코드 추가
+	public int addDeptCodeAction(DepartmentCode deptCode) {
+        return sqlSessionTemplate.insert(nameSpace+"addDeptCodeAction", deptCode);
+    }
+	
+	//부서코드, 부서명, 기구코드, 기관코드 리스트 조회
+	public List<TeamCode> addTeamCodeForm() {
+        return sqlSessionTemplate.selectList(nameSpace+"addTeamCodeForm");
+    }
+	
+	//팀 코드 추가
+	public int addTeamCodeAction(TeamCode team) {
+        return sqlSessionTemplate.insert(nameSpace+"addTeamCodeAction", team);
     }
 }

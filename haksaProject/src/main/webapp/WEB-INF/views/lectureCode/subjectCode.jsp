@@ -77,6 +77,8 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<br><br>
+				<a href="/lecture/codes/addSubjectCodeForm">코드 입력</a>
 			</div>
 			<!-- /.container-fluid -->
 

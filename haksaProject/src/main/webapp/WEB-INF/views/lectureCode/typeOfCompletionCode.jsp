@@ -70,6 +70,8 @@
             </c:forEach>
         </tbody>
     </table>
+    <br><br>
+    <a href="/lecture/codes/addTocForm">코드 추가</a>
 			</div>
 			<!-- /.container-fluid -->
 

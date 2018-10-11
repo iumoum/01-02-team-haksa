@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>기관코드 관리</title>
+<title>건물코드 입력 폼</title>
 
 <!-- Bootstrap core CSS-->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,34 +22,6 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-        <script>
-            $(document).ready(function() {
-                $("#keyword").keyup(function() {
-                    var selectBox = $("#selectBox option:selected").val();
-                    var word = $('#keyword').val();
-                    $("#agencyTable > tbody").children().hide();
-                    if(selectBox == "code"){
-                        var temp = $("#agencyTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
-                        
-                    }else if(selectBox == "name"){
-						var temp = $("#agencyTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");    
-						
-                    }else if(selectBox == "establish_date"){
-                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
-                    	
-                    }else if(selectBox == "check_a_use"){
-                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
-                    	
-                    }else if(selectBox == "check_a_change"){
-                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
-                    	
-                    }
-                    $(temp).parent().show();
-                });
-            });
-       	</script>
-
 </head>
 
 <body id="page-top">
@@ -65,46 +37,36 @@
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
 			
-			<h1>공통코드 관리 > 기관코드 관리</h1>
+			<h1>공통코드 관리 > 건물코드 관리</h1>
 			<br><br>
-			 <div>
-	            <select id="selectBox">
-	                <option value="code">코드</option>
-	                <option value="name">기관명</option>
-	                <option value="establish_date">설치일자</option>
-	                <option value="check_a_use">사용유무</option>
-	                <option value="check_a_change">변경유무</option>
-	            </select>
-	            <input type="text" id="keyword" />
-	        </div>
 			
-			<table border="1" id="agencyTable">
-		        <thead>
-		            <tr>
-		                <th>기관코드</th>
-		                <th>기관명(국문)</th>
-		                <th>기관명(영문)</th>
-		                <th>설치일자</th>
-		                <th>코드 사용유무</th>
-		                <th>코드 변경유무</th>
-		            </tr>
-		        </thead>
-		        <tbody>
-            		<c:forEach var="agency" items="${list}">
-		                <tr>
-		                    <td>${agency.agencyCode}</td>
-		                    <td>${agency.agencyNameKorean}</td>
-		                    <td>${agency.agencyNameEnglish}</td>
-		                    <td>${agency.agencyEstablishDate}</td>
-		                    <td>${agency.agencyIsUsed}</td>
-		                    <td>${agency.agencyIsChanged}</td>
-		                </tr>
-		            </c:forEach>
-        		</tbody>
-    		</table>
-			<br><br>
-			<a href="/common/codes/addAgencyCodeForm">코드 추가</a>
+			<form id="fsm" action="${pageContext.request.contextPath}/common/codes/addBuildingCodeAction" method="POST"> 
+				<table>
+					<tr>
+						<td>건물코드 :</td><td><input type="text" name="buildingCode"></td>
+					</tr>
+					<tr>
+						<td>기관코드 :</td>
+						<td>
+							<select name="agencyCode">
+								<option>입력해주세요</option>
+								<c:forEach var="agencyCodeName" items="${list}">
+									<option value="${agencyCodeName.agencyCode}">${agencyCodeName.agencyNameKorean}</option>
+								</c:forEach>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>건물명 :</td><td><input type="text" name="buildingName"></td>
+					</tr>
+					<tr>
+						<td>정렬번호 :</td><td><input type="text" name="buildingSortNumber"></td>
+					</tr>
+				</table><br>
+				<input type="submit" value="코드 입력">
+			</form>
 			</div>
+			
 			<!-- /.container-fluid -->
 
 			<!-- Sticky Footer -->

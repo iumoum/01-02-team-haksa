@@ -2,6 +2,8 @@ package com.cafe24.iumium;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,11 @@ import com.cafe24.iumium.manage.lecture.service.ManageLectureCodeService;
 public class ManageLectureController {
     @Autowired
     private ManageLectureCodeService lectureCodeService;
+    
+    
+    
+//수업관리 코드 리시트 Controller
+    
     
     //이수구분 코드 관리
     @RequestMapping(value="/lecture/codes/Toc", method = RequestMethod.GET)
@@ -59,5 +66,72 @@ public class ManageLectureController {
         List<GradingCriteriaCode> list = lectureCodeService.selectManageLectureGccList();
         model.addAttribute("list", list);
         return "lectureCode/gradingCriteriaCode";
+    }
+    
+    
+ //수업관리 코드 입력 처리
+    
+    //이수구분 코드 입력 폼 이동 관리
+    @RequestMapping(value="/lecture/codes/addTocForm", method = RequestMethod.GET)
+    public String addtocForm(Model model) {
+    	
+        return "lectureCode/form/addTypeOfCompletionCodeForm";
+    }
+    
+    //이수구분 코드 입력 처리 관리
+	@RequestMapping(value="/lecture/codes/addTocAction", method = RequestMethod.POST)
+	public String addTocAction(TypeOfCompletionCode toc, HttpSession session) {
+		String sessionId = (String) session.getAttribute("userId");
+		lectureCodeService.addTocAction(toc, sessionId);
+		
+	    return "redirect:/lecture/codes/Toc";
+	}
+    
+	//과목구분 코드 입력 폼 이동 관리
+    @RequestMapping(value="/lecture/codes/addSubjectCodeForm", method = RequestMethod.GET)
+    public String addSubjectCodeForm(Model model) {
+    	
+        return "lectureCode/form/addSubjectCodeForm";
+    }
+    
+    //과목구분 코드 입력 처리 관리
+	@RequestMapping(value="/lecture/codes/addSubjectCodeAction", method = RequestMethod.POST)
+	public String addSubjectCodeForm(SubjectCode subject, HttpSession session) {
+		String sessionId = (String) session.getAttribute("userId");
+		lectureCodeService.addSubjectCodeAction(subject, sessionId);
+		
+	    return "redirect:/lecture/codes/subject";
+	}
+	
+    //강의평가 항목 코드 입력 폼 이동 관리
+    @RequestMapping(value="/lecture/codes/addQuestionForEvaluateLectureCodeForm", method = RequestMethod.GET)
+    public String addQuestionForEvaluateLectureCodeForm(Model model) {
+    	List<QuestionForEvaluateLectureCode> list = lectureCodeService.addQuestionForEvaluateLectureCodeForm();
+        model.addAttribute("list", list);
+        return "lectureCode/form/addQuestionForEvaluateLectureCodeForm";
+    }
+    
+    //강의평가 항목 코드 입력 처리 관리
+  	@RequestMapping(value="/lecture/codes/addQuestionForEvaluateLectureCodeAction", method = RequestMethod.POST)
+  	public String addQuestionForEvaluateLectureCodeAction(QuestionForEvaluateLectureCode qfel, HttpSession session) {
+  		String sessionId = (String) session.getAttribute("userId");
+  		lectureCodeService.addQuestionForEvaluateLectureCodeAction(qfel, sessionId);
+  		
+  	    return "redirect:/lecture/codes/Qfel";
+  	}
+  	
+  	//성적평가 기준 코드 입력 폼 이동 관리
+    @RequestMapping(value="/lecture/codes/addGradingCriteriaCodeForm", method = RequestMethod.GET)
+    public String addGradingCriteriaCodeForm(Model model) {
+        return "lectureCode/form/addGradingCriteriaCodeForm";
+    }
+    
+    //성적평가 기준 코드 입력 처리 관리
+    @RequestMapping(value="/lecture/codes/addGradingCriteriaCodeAction", method = RequestMethod.POST)
+    public String addGradingCriteriaCodeAction(GradingCriteriaCode gc, HttpSession session) {
+    	String sessionId = (String) session.getAttribute("userId");
+    	lectureCodeService.addGradingCriteriaCodeAction(gc, sessionId);
+    	
+        return "redirect:/lecture/codes/Gc";
     }
 }

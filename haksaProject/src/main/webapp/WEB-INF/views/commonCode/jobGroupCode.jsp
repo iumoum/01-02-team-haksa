@@ -22,7 +22,30 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	   <script>
+	       $(document).ready(function() {
+	           $("#keyword").keyup(function() {
+	               var selectBox = $("#selectBox option:selected").val();
+	               var word = $('#keyword').val();
+	               $("#jobGroupTable > tbody").children().hide();
+	               if(selectBox == "code"){
+	                   	var temp = $("#jobGroupTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
+	                   	
+	               }else if(selectBox == "name"){
+						var temp = $("#jobGroupTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");     
+						
+	               }else if(selectBox == "check_a_use"){
+	               		var temp = $("#jobGroupTable > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "check_a_change"){
+	               		var temp = $("#jobGroupTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
+	               		
+	               }
+	               $(temp).parent().show();
+	           });
+	       });
+	  	</script>
 </head>
 
 <body id="page-top">
@@ -40,17 +63,22 @@
 			
 			<h1>공통코드 관리 > 직군코드 관리</h1>
 			<br><br>
-			<table border="1">
+			<div>
+	            <select id="selectBox">
+	                <option value="code">코드</option>
+	                <option value="name">직군 명</option>
+	                <option value="check_a_use">사용 유무</option>
+	                <option value="check_a_change">변경 유무</option>
+	            </select>
+	            <input type="text" id="keyword" />
+	        </div>
+			<table border="1" id="jobGroupTable">
 				<thead>
 					<tr>
 						<th>직군 코드</th>
 						<th>직군 명</th>
 						<th>코드 사용유무</th>
 						<th>코드 변경유무</th>
-						<th>코드 변경사유</th>
-						<th>코드 변경일자</th>
-						<th>코드 등록일자</th>
-						<th>코드 등록자 아이디</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -60,15 +88,12 @@
 							<td>${row.jobGroupName}</td>
 							<td>${row.jobGroupIsUsed}</td>
 							<td>${row.jobGroupIsChanged}</td>
-							<td>${row.jobGroupReasonForChange}</td>
-							<td>${row.jobGroupChangedDate}</td>
-							<td>${row.jobGroupRegisteredDate}</td>
-							<td>${row.recordId}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			
+			<br><br>
+			<a href="/common/codes/addJobGroupForm">코드 입력</a>
 			</div>
 			<!-- /.container-fluid -->
 

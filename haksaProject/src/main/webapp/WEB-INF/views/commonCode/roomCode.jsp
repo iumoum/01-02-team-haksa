@@ -22,7 +22,33 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	   <script>
+	       $(document).ready(function() {
+	           $("#keyword").keyup(function() {
+	               var selectBox = $("#selectBox option:selected").val();
+	               var word = $('#keyword').val();
+	               $("#roomTable > tbody").children().hide();
+	               if(selectBox == "code"){
+	                   	var temp = $("#roomTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
+	                   	
+	               }else if(selectBox == "name"){
+						var temp = $("#roomTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");  
+						
+	               }else if(selectBox == "buildingName"){
+	               		var temp = $("#roomTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "check_a_use"){
+	               		var temp = $("#roomTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "check_a_change"){
+	               		var temp = $("#roomTable > tbody > tr").find("td:nth-child(8):contains('" + word + "')");
+	               		
+	               }
+	               $(temp).parent().show();
+	           });
+	       });
+	  	</script>
 </head>
 
 <body id="page-top">
@@ -40,7 +66,17 @@
 			
 			<h1>공통코드 관리 > 강의실코드 관리</h1>
 			<br><br>
-			<table border="1">
+			<div>
+	            <select id="selectBox">
+	                <option value="code">코드</option>
+	                <option value="buildingName">소속 건물 명</option>
+	                <option value="name">강의실 명</option>
+	                <option value="check_a_use">사용 유무</option>
+	                <option value="check_a_change">변경 유무</option>
+	            </select>
+	            <input type="text" id="keyword" />
+	        </div>
+			<table border="1" id="roomTable">
 				<thead>
 					<tr>
 						<th>강의실 코드</th>
@@ -51,10 +87,6 @@
 						<th>강의실 용도</th>
 						<th>코드 사용유무</th>
 						<th>코드 변경유무</th>
-						<th>코드 변경사유</th>
-						<th>코드 변경일자</th>
-						<th>코드 등록일자</th>
-						<th>코드 등록자 아이디</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,15 +100,12 @@
 							<td>${row.roomUsage}</td>
 							<td>${row.roomIsUsed}</td>
 							<td>${row.roomIsChanged}</td>
-							<td>${row.roomReasonForChange}</td>
-							<td>${row.roomChangedDate}</td>
-							<td>${row.roomRegisteredDate}</td>
-							<td>${row.recordId}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			
+			<br><br>
+			<a href="/common/codes/addRoomCodeForm">코드 입력</a>
 			</div>
 			<!-- /.container-fluid -->
 

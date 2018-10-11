@@ -25,6 +25,7 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
+
 </head>
 <body id="page-top">
 
@@ -64,6 +65,8 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<br><br>
+				<a href="/lecture/codes/addGradingCriteriaCodeForm">코드 입력</a>
 			</div>
 			<!-- /.container-fluid -->
 

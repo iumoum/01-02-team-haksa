@@ -22,7 +22,42 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	   <script>
+	       $(document).ready(function() {
+	           $("#keyword").keyup(function() {
+	               var selectBox = $("#selectBox option:selected").val();
+	               var word = $('#keyword').val();
+	               $("#teamTable > tbody").children().hide();
+	               if(selectBox == "code"){
+	                   	var temp = $("#teamTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
+	                   	
+	               }else if(selectBox == "name"){
+						var temp = $("#teamTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");     
+						
+	               }else if(selectBox == "agencyName"){
+	               		var temp = $("#teamTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "orgName"){
+	               		var temp = $("#teamTable > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "deptName"){
+	               		var temp = $("#teamTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "establishDate"){
+	               		var temp = $("#teamTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "check_a_use"){
+	               		var temp = $("#teamTable > tbody > tr").find("td:nth-child(10):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "check_a_change"){
+	               		var temp = $("#teamTable > tbody > tr").find("td:nth-child(11):contains('" + word + "')");
+	               		
+	               }
+	               $(temp).parent().show();
+	           });
+	       });
+	  	</script>
 </head>
 
 <body id="page-top">
@@ -40,7 +75,20 @@
 			
 			<h1>공통코드 관리 > 팀코드 관리</h1>
 			<br><br>
-			<table border="1">
+			<div>
+	            <select id="selectBox">
+	                <option value="code">코드</option>
+	                <option value="name">팀 명</option>
+	                <option value="agencyName">소속 기관</option>
+	                <option value="orgName">소속 기구</option>
+	                <option value="deptName">소속 부서</option>
+	                <option value="establishDate">설치일자</option>
+	                <option value="check_a_use">사용 유무</option>
+	                <option value="check_a_change">변경 유무</option>
+	            </select>
+	            <input type="text" id="keyword" />
+	        </div>
+			<table border="1" id="teamTable">
 				<thead>
 		            <tr>
 		                <th>팀코드</th>
@@ -50,14 +98,9 @@
 		                <th>팀명(국문)</th>
 		                <th>팀명(영문)</th>
 		                <th>설치일자</th>
-		                <th>정렬번호</th>
 		                <th>대표전화번호</th>
 		                <th>코드 사용유무</th>
 		                <th>코드 변경유무</th>
-		                <th>코드 변경사유</th>
-		                <th>코드 변경일자</th>
-		                <th>시스템 등록일자</th>
-		                <th>시스템 등록자 아이디</th>
 		            </tr>
 		        </thead>
 		        <tbody>
@@ -70,19 +113,15 @@
 		                    <td>${team.teamNameKorean}</td>
 		                    <td>${team.teamNameEnglish}</td>
 		                    <td>${team.teamEstablishDate}</td>
-		                    <td>${team.teamSortNumber}</td>
 		                    <td>${team.teamRepPhoneNumber}</td>
 		                    <td>${team.teamIsUsed}</td>
 		                    <td>${team.teamIsChanged}</td>
-		                    <td>${team.teamReasonForChange}</td>
-		                    <td>${team.teamChangedDate}</td>
-		                    <td>${team.teamRegisteredDate}</td>
-		                    <td>${team.recordId}</td>
 		                </tr>
 		            </c:forEach>
 		        </tbody>
 		    </table>
-			
+			<br><br>
+			<a href="/common/codes/addTeamCodeForm">코드 입력</a>
 			</div>
 			<!-- /.container-fluid -->
 

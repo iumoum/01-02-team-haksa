@@ -22,7 +22,30 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	   <script>
+	       $(document).ready(function() {
+	           $("#keyword").keyup(function() {
+	               var selectBox = $("#selectBox option:selected").val();
+	               var word = $('#keyword').val();
+	               $("#jobPositionTable > tbody").children().hide();
+	               if(selectBox == "code"){
+	                   	var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
+	                   	
+	               }else if(selectBox == "name"){
+						var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");   
+						
+	               }else if(selectBox == "check_a_use"){
+	               		var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "check_a_change"){
+	               		var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
+	               		
+	               }
+	               $(temp).parent().show();
+	           });
+	       });
+	  	</script>
 </head>
 
 <body id="page-top">
@@ -40,19 +63,23 @@
 			
 			<h1>공통코드 관리 > 직위코드 관리</h1>
 			<br><br>
-			<table border="1">
+			<div>
+	            <select id="selectBox">
+	                <option value="code">코드</option>
+	                <option value="name">직위 명</option>
+	                <option value="check_a_use">사용 유무</option>
+	                <option value="check_a_change">변경 유무</option>
+	            </select>
+	            <input type="text" id="keyword" />
+	        </div>
+			<table border="1" id="jobPositionTable">
 				<thead>
 					<tr>
 						<th>직위 코드</th>
 						<th>직위 명 (국문)</th>
 						<th>직위 명 (영문)</th>
-						<th>정렬 번호</th>
 						<th>코드 사용유무</th>
 						<th>코드 변경유무</th>
-						<th>코드 변경사유</th>
-						<th>코드 변경일자</th>
-						<th>코드 등록일자</th>
-						<th>코드 등록자 아이디</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,18 +88,14 @@
 							<td>${row.jobPositionCode}</td>
 							<td>${row.jobPositionNameKorean}</td>
 							<td>${row.jobPositionNameEnglish}</td>
-							<td>${row.jobPositionSortNumber}</td>
 							<td>${row.jobPositionIsUsed}</td>
 							<td>${row.jobPositionIsChanged}</td>
-							<td>${row.jobPositionReasonForChange}</td>
-							<td>${row.jobPositionChangedDate}</td>
-							<td>${row.jobPositionRegisteredDate}</td>
-							<td>${row.recordId}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			
+			<br><br>
+			<a href="/common/codes/addJobPositionCodeForm">코드 입력</a>
 			</div>
 			<!-- /.container-fluid -->
 

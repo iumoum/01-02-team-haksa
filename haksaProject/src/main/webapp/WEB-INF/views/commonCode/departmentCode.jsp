@@ -22,7 +22,42 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	   <script>
+	       $(document).ready(function() {
+	           $("#keyword").keyup(function() {
+	               var selectBox = $("#selectBox option:selected").val();
+	               var word = $('#keyword').val();
+	               $("#deptTable > tbody").children().hide();
+	               if(selectBox == "code"){
+	                   	var temp = $("#deptTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
+	                   	
+	               }else if(selectBox == "name"){
+						var temp = $("#deptTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");    
+						
+	               }else if(selectBox == "agencyName"){
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "orgName"){
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "division"){
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "establishDate"){
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "check_a_use"){
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(11):contains('" + word + "')");
+	               		
+	               }else if(selectBox == "check_a_change"){
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(12):contains('" + word + "')");
+	               		
+	               }
+	               $(temp).parent().show();
+	           });
+	       });
+	  	</script>
 </head>
 
 <body id="page-top">
@@ -40,7 +75,20 @@
 			
 			<h1>공통코드 관리 > 부서코드 관리</h1>
 			<br><br>
-			<table border="1">
+			<div>
+	            <select id="selectBox">
+	                <option value="code">코드</option>
+	                <option value="name">부서 명</option>
+	                <option value="agencyName">소속 기관</option>
+	                <option value="orgName">소속 기구</option>
+	                <option value="division">구분</option>
+	                <option value="establishDate">설치일자</option>
+	                <option value="check_a_use">사용 유무</option>
+	                <option value="check_a_change">변경 유무</option>
+	            </select>
+	            <input type="text" id="keyword" />
+	        </div>
+			<table border="1" id="deptTable">
 		        <thead>
 		            <tr>
 		                <th>부서코드</th>
@@ -50,15 +98,10 @@
 		                <th>부서명(국문)</th>
 		                <th>부서명(영문)</th>
 		                <th>설치일자</th>
-		                <th>정렬번호</th>
 		                <th>대표전화번호</th>
 		                <th>졸업학년</th>
 		                <th>코드 사용유무</th>
 		                <th>코드 변경유무</th>
-		                <th>코드 변경사유</th>
-		                <th>코드 변경일자</th>
-		                <th>시스템 등록일자</th>
-		                <th>시스템 등록자 아이디</th>
 		            </tr>
 		        </thead>
 		        <tbody>
@@ -71,20 +114,16 @@
 		                    <td>${dept.deptNameKorean}</td>
 		                    <td>${dept.deptNameEnglish}</td>
 		                    <td>${dept.deptEstablishDate}</td>
-		                    <td>${dept.deptSortNumber}</td>
 		                    <td>${dept.deptRepPhoneNumber}</td>
 		                    <td>${dept.deptGraduatedGrade}</td>
 		                    <td>${dept.deptIsUsed}</td>
 		                    <td>${dept.deptIsChanged}</td>
-		                    <td>${dept.deptReasonForChange}</td>
-		                    <td>${dept.deptChangedDate}</td>
-		                    <td>${dept.deptRegisteredDate}</td>
-		                    <td>${dept.recordId}</td>
 		                </tr>
 		            </c:forEach>
 		        </tbody>
 		    </table>
-			
+			<br><br>
+			<a href="/common/codes/addDepartmentCodeForm">코드 추가</a>
 			</div>
 			<!-- /.container-fluid -->
 

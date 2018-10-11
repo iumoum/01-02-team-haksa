@@ -54,6 +54,17 @@
 		</li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+				<i class="fas fa-fw fa-folder"></i> <span>강의담당 관리</span>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+				<a class="dropdown-item" href="/lesson/lecture/classByDepartment">학과별반관리</a> 
+				<a class="dropdown-item" href="/lesson/lecture/lectureStatus">강의상황서 관리</a> 
+				<a class="dropdown-item" href="/lesson/lecture/professorChange">강의담당상황교수 변경관리</a>
+				<a class="dropdown-item" href="/lesson/lecture/changedTypeOfCompletion">이수구분변경관리</a> 
+			</div>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
 				<i class="fas fa-fw fa-folder"></i> <span>졸업코드 관리</span>
 			</a>
 			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
