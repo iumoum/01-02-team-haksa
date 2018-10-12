@@ -6,54 +6,82 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-	
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven>
+		<!-- messageConvertert -->
+		<mvc:message-converters>
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
 	<!-- resources폴더를 정적으로 이용가능하게 해주는 빈등록 -->
-	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/resources/**"
+		location="/resources/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
 	<!-- bean : new -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
-	<context:component-scan base-package="com.cafe24.iumium" />
-	
+
+	<context:component-scan
+		base-package="com.cafe24.iumium" />
+
 	<!-- 커넥션 풀 설정 -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="org.mariadb.jdbc.Driver"/>
-        <!-- 
-        	외부에서 작업할 때
-         -->
-        <property name="url" value="jdbc:mariadb://iumium.cafe24.com:3306/iumium?useUnicode=true&amp;characterEncoding=utf8"/>
-        <!-- cafe24에 호스팅 할 때
-        	<property name="url" value="jdbc:mariadb://localhost:3306/iumium?useUnicode=true&amp;characterEncoding=utf8"/> 
-        -->
-        <property name="username" value="iumium"/>
-        <property name="password" value="darkhosoon1!"/>
-    </bean>
-    
-        <!-- mybatis설정 1. SqlSessionFactory -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <!-- mybatis 세션생성시 사용할 dataSource주입 -->
-        <property name="dataSource" ref="dataSource" />
-        <!-- sqlSessionFactory.setDataSource(dataSource); -->
-        <!-- mybatis 세션생성후 쿼리를 실행시킬때 사용할 쿼리위치(메퍼)설정 -->
-        <property name="mapperLocations">
-            <list>
-           		<value>classpath:com/cafe24/iumium/**/dao/*.xml</value>
-            </list>
-        </property>
-    </bean>
-    
-    <!-- mybatis설정 2. SqlSessionTemplate-->
-    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactory" />
-    </bean>
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="org.mariadb.jdbc.Driver" />
+		<!-- 외부에서 작업할 때 -->
+		<property name="url"
+			value="jdbc:mariadb://iumium.cafe24.com:3306/iumium?useUnicode=true&amp;characterEncoding=utf8" />
+		<!-- cafe24에 호스팅 할 때 <property name="url" value="jdbc:mariadb://localhost:3306/iumium?useUnicode=true&amp;characterEncoding=utf8"/> -->
+		<property name="username" value="iumium" />
+		<property name="password" value="darkhosoon1!" />
+	</bean>
+
+	<!-- mybatis설정 1. SqlSessionFactory -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- mybatis 세션생성시 사용할 dataSource주입 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- sqlSessionFactory.setDataSource(dataSource); -->
+		<!-- mybatis 세션생성후 쿼리를 실행시킬때 사용할 쿼리위치(메퍼)설정 -->
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:com/cafe24/iumium/**/dao/*.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- mybatis설정 2. SqlSessionTemplate -->
+	<bean id="sqlSessionTemplate"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
 </beans>
