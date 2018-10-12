@@ -81,6 +81,17 @@
 				<a class="dropdown-item" href="/personnel/generalAffairsManagement/vacation/listVacation">휴가</a>
 			</div>
 		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+				<i class="fas fa-fw fa-folder"></i> <span>학적 관리</span>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+				<a class="dropdown-item" href="/listStudentInfo">학생정보</a>
+				<a class="dropdown-item" href="/listScholarshipBenefit">장학금 수혜내역</a>
+				<a class="dropdown-item" href="/listAdvice">상담</a>
+				<a class="dropdown-item" href="/listClassChange">반 변경</a>
+			</div>
+		</li>
 		
 	</ul>
 </body>

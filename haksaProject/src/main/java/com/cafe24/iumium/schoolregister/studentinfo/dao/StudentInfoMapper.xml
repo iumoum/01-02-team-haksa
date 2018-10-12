@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.iumium.schoolregister.studentinfo.dao.StudentInfoMapper">
+
+	<!-- 학과 조회 쿼리 -->
+	<select id="getDeptCodeList" resultType="com.cafe24.iumium.common.dto.DepartmentCode">
+		SELECT 
+				dept_code as deptCode
+				, dept_name_korean as deptNameKorean
+		FROM haksa_department
+		WHERE dept_for_edu_or_admin = "학과"
+		ORDER BY dept_sort_number ASC
+	</select>
+	
+	<!-- 학년 조회 쿼리 -->
+	<select id="getgradeList" parameterType="com.cafe24.iumium.common.dto.DepartmentCode" resultType="com.cafe24.iumium.common.dto.DepartmentCode">
+		SELECT dept_graduated_grade as deptGraduatedGrade
+		FROM haksa_department
+		WHERE dept_code = #{deptCode}
+	</select>
+	
+	<!-- 반 조회 쿼리 -->
+	<select id="getdepartmentClassList" parameterType="com.cafe24.iumium.common.dto.DepartmentCode" resultType="com.cafe24.iumium.lesson.lecture.dto.ClassByDepartment">
+		SELECT class_by_department_class as classByDepartmentClass
+		FROM haksa_class_by_department
+		WHERE dept_code = #{deptCode} AND class_by_department_grade = #{deptGraduatedGrade}
+	</select>
+	
+	<!-- 학생 조회 쿼리 -->
+	<select id="getStudentInfoList" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+		SELECT
+				haksa_student_info.student_number as studentNumber
+				, ilban_human.human_name as humanName
+				, haksa_department.dept_name_korean as deptNameKorean
+				, haksa_class_by_department.class_by_department_grade as classByDepartmentGrade
+				, haksa_class_by_department.class_by_department_class as classByDepartmentClass
+				, haksa_class_by_department.class_by_department_day_and_night as classByDepartmentDayAndNight
+				, haksa_student_info.student_state as studentState
+		FROM haksa_student_info
+		JOIN ilban_human
+		ON haksa_student_info.student_number = ilban_human.student_teacher_no
+		JOIN haksa_department
+		ON haksa_student_info.dept_code = haksa_department.dept_code
+		JOIN haksa_class_by_department
+		ON haksa_student_info.class_by_department_number = haksa_class_by_department.class_by_department_number
+
+ 		<where>
+ 			<if test="deptCode == '선택' and classByDepartmentGrade == 0 and classByDepartmentDayAndNight == '선택' and studentState == '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber}
+			</if>
+			<if test="deptCode != '선택' and classByDepartmentGrade == 0 and classByDepartmentDayAndNight == '선택' and studentState == '선택' and studentNumber == ''">
+				haksa_student_info.dept_code=#{deptCode}
+			</if>
+			<if test="deptCode != '선택' and classByDepartmentGrade == 0 and classByDepartmentDayAndNight == '선택' and studentState == '선택' and studentNumber != ''">
+				haksa_student_info.dept_code=#{deptCode} and haksa_student_info.student_number=#{studentNumber}
+			</if>
+			<if test="classByDepartmentGrade != 0 and classByDepartmentClass == '선택' and classByDepartmentDayAndNight == '선택' and studentState == '선택' and studentNumber == ''">
+				haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade})
+			</if>
+			<if test="classByDepartmentGrade != 0 and classByDepartmentClass == '선택' and classByDepartmentDayAndNight == '선택' and studentState == '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade})
+			</if>
+			<if test="classByDepartmentClass != '선택' and classByDepartmentDayAndNight == '선택' and studentState == '선택' and studentNumber == ''">
+				haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade} and haksa_class_by_department.class_by_department_class=#{classByDepartmentClass})
+			</if>
+			<if test="classByDepartmentClass != '선택' and classByDepartmentDayAndNight == '선택' and studentState == '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade} and haksa_class_by_department.class_by_department_class=#{classByDepartmentClass})
+			</if>
+			<if test="deptCode == '선택' and classByDepartmentDayAndNight != '선택' and studentState == '선택' and studentNumber == ''">
+				haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="deptCode == '선택' and classByDepartmentDayAndNight != '선택' and studentState == '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="deptCode != '선택' and classByDepartmentGrade == 0 and classByDepartmentDayAndNight != '선택' and studentState == '선택' and studentNumber == ''">
+				haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="deptCode != '선택' and classByDepartmentGrade == 0 and classByDepartmentDayAndNight != '선택' and studentState == '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="classByDepartmentGrade != 0 and classByDepartmentClass == '선택' and classByDepartmentDayAndNight != '선택' and studentState == '선택' and studentNumber == ''">
+				haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade} and haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="classByDepartmentGrade != 0 and classByDepartmentClass == '선택' and classByDepartmentDayAndNight != '선택' and studentState == '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade} and haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="classByDepartmentClass != '선택' and classByDepartmentDayAndNight != '선택' and studentState == '선택' and studentNumber == ''">
+				haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade} and haksa_class_by_department.class_by_department_class=#{classByDepartmentClass} and haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="classByDepartmentClass != '선택' and classByDepartmentDayAndNight != '선택' and studentState == '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade} and haksa_class_by_department.class_by_department_class=#{classByDepartmentClass} and haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="deptCode == '선택' and classByDepartmentDayAndNight == '선택' and studentState != '선택' and studentNumber == ''">
+				haksa_student_info.student_state=#{studentState}
+			</if>
+			<if test="deptCode == '선택' and classByDepartmentDayAndNight == '선택' and studentState != '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.student_state=#{studentState}
+			</if>
+			<if test="deptCode == '선택' and classByDepartmentDayAndNight != '선택' and studentState != '선택' and studentNumber == ''">
+				haksa_student_info.student_state=#{studentState} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="deptCode == '선택' and classByDepartmentDayAndNight != '선택' and studentState != '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.student_state=#{studentState} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="deptCode != '선택' and classByDepartmentGrade == 0 and classByDepartmentDayAndNight == '선택' and studentState != '선택' and studentNumber == ''">
+				haksa_student_info.dept_code=#{deptCode} and haksa_student_info.student_state=#{studentState}
+			</if>
+			<if test="deptCode != '선택' and classByDepartmentGrade == 0 and classByDepartmentDayAndNight == '선택' and studentState != '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.dept_code=#{deptCode} and haksa_student_info.student_state=#{studentState}
+			</if>
+			<if test="deptCode != '선택' and classByDepartmentGrade == 0 and classByDepartmentDayAndNight != '선택' and studentState != '선택' and studentNumber == ''">
+				haksa_student_info.dept_code=#{deptCode} and haksa_student_info.student_state=#{studentState} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="deptCode != '선택' and classByDepartmentGrade == 0 and classByDepartmentDayAndNight != '선택' and studentState != '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.dept_code=#{deptCode} and haksa_student_info.student_state=#{studentState} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="classByDepartmentGrade != 0 and classByDepartmentClass == '선택' and classByDepartmentDayAndNight == '선택' and studentState != '선택' and studentNumber == ''">
+				haksa_student_info.student_state=#{studentState} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade})
+			</if>
+			<if test="classByDepartmentGrade != 0 and classByDepartmentClass == '선택' and classByDepartmentDayAndNight == '선택' and studentState != '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.student_state=#{studentState} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade})
+			</if>
+			<if test="classByDepartmentGrade != 0 and classByDepartmentClass == '선택' and classByDepartmentDayAndNight != '선택' and studentState != '선택' and studentNumber == ''">
+				haksa_student_info.student_state=#{studentState} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade} and haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="classByDepartmentGrade != 0 and classByDepartmentClass == '선택' and classByDepartmentDayAndNight != '선택' and studentState != '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.student_state=#{studentState} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade} and haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="classByDepartmentClass != '선택' and classByDepartmentDayAndNight == '선택' and studentState != '선택' and studentNumber == ''">
+				haksa_student_info.student_state=#{studentState} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade} and haksa_class_by_department.class_by_department_class=#{classByDepartmentClass})
+			</if>
+			<if test="classByDepartmentClass != '선택' and classByDepartmentDayAndNight == '선택' and studentState != '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.student_state=#{studentState} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade} and haksa_class_by_department.class_by_department_class=#{classByDepartmentClass})
+			</if>
+			<if test="classByDepartmentClass != '선택' and classByDepartmentDayAndNight != '선택' and studentState != '선택' and studentNumber == ''">
+				haksa_student_info.student_state=#{studentState} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade} and haksa_class_by_department.class_by_department_class=#{classByDepartmentClass} and haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+			<if test="classByDepartmentClass != '선택' and classByDepartmentDayAndNight != '선택' and studentState != '선택' and studentNumber != ''">
+				haksa_student_info.student_number=#{studentNumber} and haksa_student_info.student_state=#{studentState} and haksa_student_info.class_by_department_number IN (select haksa_class_by_department.class_by_department_number from haksa_class_by_department where haksa_class_by_department.dept_code=#{deptCode} and haksa_class_by_department.class_by_department_grade=#{classByDepartmentGrade} and haksa_class_by_department.class_by_department_class=#{classByDepartmentClass} and haksa_class_by_department.class_by_department_day_and_night=#{classByDepartmentDayAndNight})
+			</if>
+		</where>
+	</select>
+	
+	<!-- 졸업학과 null 체크 -->
+	<select id="getgraduationDepartment" parameterType="String" resultType="int">
+		SELECT
+				ifnull(student_graduation_department, 0)
+		FROM haksa_student_info
+		WHERE haksa_student_info.student_number = #{studentNumber}
+	</select>
+	
+	<!-- 졸업학과가 null일 때 1명의 학생정보 조회 쿼리 -->
+	<select id="getStudentInfoNull" parameterType="String" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+		SELECT
+				haksa_student_info.student_number as studentNumber
+				, haksa_department.dept_name_korean as deptNameKorean
+				, haksa_class_by_department.class_by_department_grade as classByDepartmentGrade
+				, haksa_class_by_department.class_by_department_class as classByDepartmentClass
+				, haksa_class_by_department.class_by_department_day_and_night as classByDepartmentDayAndNight
+				, haksa_student_info.record_id as recordId
+				, haksa_student_info.student_state as studentState
+				, entrance_department.dept_name_korean as studentEntranceDepartment
+				, haksa_student_info.student_entrance_day_and_night as studentEntranceDayAndNight
+				, haksa_student_info.student_graduation_certificate_number as studentGraduationCertificateNumber
+				, haksa_student_info.student_degree_number as studentDegreeNumber
+				, haksa_student_info.student_entrance_date as studentEntranceDate
+				, haksa_student_info.student_graduation_schedule_date as studentGraduationScheduleDate
+				, haksa_student_info.system_registration_date as systemRegistrationDate
+				, haksa_country.country_name_korean as countryNameKorean
+				, ilban_human.human_name_english as humanNameEnglish
+				, ilban_human.human_name as humanName
+				, ilban_human.human_gender as humanGender
+				, ilban_human.human_resident_registration_number as humanResidentRegistrationNumber
+				, ilban_human.human_military_service as humanMilitaryService
+				, ilban_human.human_picture as humanPicture
+				, haksa_student_info.student_graduation_certificate_number as studentGraduationCertificateNumber
+		FROM haksa_student_info
+		JOIN haksa_department
+		ON haksa_student_info.dept_code = haksa_department.dept_code
+		JOIN haksa_department as entrance_department
+		ON haksa_student_info.student_entrance_department = entrance_department.dept_code
+		JOIN haksa_class_by_department
+		ON haksa_student_info.class_by_department_number = haksa_class_by_department.class_by_department_number
+		JOIN ilban_human
+		ON haksa_student_info.student_number = ilban_human.student_teacher_no
+		JOIN haksa_country
+		ON ilban_human.country_code = haksa_country.country_code
+		WHERE haksa_student_info.student_number = #{studentNumber}
+	</select>
+	
+	<!-- 졸업학과가 null이 아닐 때 1명의 학생정보 조회 쿼리 -->
+	<select id="getStudentInfo" parameterType="String" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+		SELECT
+				haksa_student_info.student_number as studentNumber
+				, haksa_department.dept_name_korean as deptNameKorean
+				, haksa_class_by_department.class_by_department_grade as classByDepartmentGrade
+				, haksa_class_by_department.class_by_department_class as classByDepartmentClass
+				, haksa_class_by_department.class_by_department_day_and_night as classByDepartmentDayAndNight
+				, haksa_student_info.record_id as recordId
+				, haksa_student_info.student_state as studentState
+				, entrance_department.dept_name_korean as studentEntranceDepartment
+				, haksa_student_info.student_entrance_day_and_night as studentEntranceDayAndNight
+				, haksa_student_info.student_graduation_certificate_number as studentGraduationCertificateNumber
+				, haksa_student_info.student_degree_number as studentDegreeNumber
+				, haksa_student_info.student_entrance_date as studentEntranceDate
+				, haksa_student_info.student_graduation_schedule_date as studentGraduationScheduleDate
+				, haksa_student_info.system_registration_date as systemRegistrationDate
+				, haksa_country.country_name_korean as countryNameKorean
+				, ilban_human.human_name_english as humanNameEnglish
+				, ilban_human.human_name as humanName
+				, ilban_human.human_gender as humanGender
+				, ilban_human.human_resident_registration_number as humanResidentRegistrationNumber
+				, ilban_human.human_military_service as humanMilitaryService
+				, ilban_human.human_picture as humanPicture
+				, graduation_department.dept_name_korean as studentGraduationDepartment
+		FROM haksa_student_info
+		JOIN haksa_department
+		ON haksa_student_info.dept_code = haksa_department.dept_code
+		JOIN haksa_department as entrance_department
+		ON haksa_student_info.student_entrance_department = entrance_department.dept_code
+		JOIN haksa_class_by_department
+		ON haksa_student_info.class_by_department_number = haksa_class_by_department.class_by_department_number
+		JOIN haksa_department as graduation_department
+		ON haksa_student_info.dept_code = graduation_department.dept_code
+		JOIN ilban_human
+		ON haksa_student_info.student_number = ilban_human.student_teacher_no
+		JOIN haksa_country
+		ON ilban_human.country_code = haksa_country.country_code
+		WHERE haksa_student_info.student_number = #{studentNumber}
+	</select>
+	
+	<!-- 장학금 수혜내역 전체 조회 쿼리 -->
+	<select id="getScholarshipBenefitList" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.ScholarshipBenefit">
+		SELECT
+				scholarship_benefit_number as scholarshipBenefitNumber
+				, student_number as studentNumber
+				, record_id as recordId
+				, scholarship_name as scholarshipName
+				, scholarship as scholarship
+				, scholarship_separation as scholarshipSeparation
+				, scholarship_give_organization as scholarshipGiveOrganization
+				, scholarship_detail as scholarshipDetail
+				, scholarship_file as scholarshipFile
+				, scholarship_give_date as scholarshipGiveDate
+				, system_registration_date as systemRegistrationDate
+		FROM haksa_scholarship_benefit
+		ORDER BY scholarship_benefit_number ASC
+	</select>
+	
+	<!-- 상담 전체 조회 쿼리 -->
+	<select id="getAdviceList" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.Advice">
+		SELECT
+				haksa_advice.advice_history_number as adviceHistoryNumber
+				,student.human_name as studentName
+				,haksa_type_of_counsel.counsel_type_name as counselTypeName
+				,haksa_result_of_counsel.counsel_result_name as counselResultName
+				,haksa_advice.advice_content as adviceContent
+				,haksa_advice.advice_date as adviceDate
+				,appointment_school_personnel.human_name as teacherName
+		FROM haksa_advice
+		JOIN haksa_result_of_counsel
+		ON haksa_advice.counsel_result_code = haksa_result_of_counsel.counsel_result_code
+		JOIN haksa_type_of_counsel
+		ON haksa_result_of_counsel.counsel_type_code = haksa_type_of_counsel.counsel_type_code
+		JOIN ilban_human as student
+		ON haksa_advice.student_number = student.student_teacher_no
+		JOIN ilban_human as appointment_school_personnel
+		ON haksa_advice.appointment_school_personnel_number = appointment_school_personnel.student_teacher_no
+		ORDER BY advice_history_number ASC
+	</select>
+	
+	<!-- 반 변경 전체 조회 쿼리 -->
+	<select id="getClassChangeList" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.ClassChange">
+		SELECT
+				class_change_number as classChangeNumber
+				, record_id as recordId
+				, student_number as studentNumber
+				, class_change_before as classChangeBefore
+				, class_change_after as classChangeAfter
+				, class_change_before_day_and_night as classChangeBeforeDayAndNight
+				, class_change_after_day_and_night as classChangeAfterDayAndNight
+				, class_change_degree_separation as classChangeDegreeSeparation
+				, class_change_reason as classChangeReason
+				, class_change_date as classChangeDate
+				, system_registration_date as systemRegistrationDate
+		FROM haksa_class_change
+		ORDER BY class_change_number ASC
+	</select>
+	
+	<!--  학생 1명의 장학금 수혜내역 조회 쿼리 -->
+	<select id="getScholarshipBenefit" parameterType="String" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.ScholarshipBenefit">
+		SELECT
+				scholarship_benefit_number as scholarshipBenefitNumber
+				, student_number as studentNumber
+				, record_id as recordId
+				, scholarship_name as scholarshipName
+				, scholarship as scholarship
+				, scholarship_separation as scholarshipSeparation
+				, scholarship_give_organization as scholarshipGiveOrganization
+				, scholarship_detail as scholarshipDetail
+				, scholarship_file as scholarshipFile
+				, scholarship_give_date as scholarshipGiveDate
+				, system_registration_date as systemRegistrationDate
+		FROM haksa_scholarship_benefit
+		WHERE student_number = #{studentNumber}
+	</select>
+	
+	<!--  학생 1명의 상담내역 조회 쿼리 -->
+	<select id="getAdvice" parameterType="String" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.Advice">
+		SELECT
+				haksa_advice.advice_history_number as adviceHistoryNumber
+				,student.human_name as studentName
+				,haksa_type_of_counsel.counsel_type_name as counselTypeName
+				,haksa_result_of_counsel.counsel_result_name as counselResultName
+				,haksa_advice.advice_content as adviceContent
+				,haksa_advice.advice_date as adviceDate
+				,appointment_school_personnel.human_name as teacherName
+		FROM haksa_advice
+		JOIN haksa_result_of_counsel
+		ON haksa_advice.counsel_result_code = haksa_result_of_counsel.counsel_result_code
+		JOIN haksa_type_of_counsel
+		ON haksa_result_of_counsel.counsel_type_code = haksa_type_of_counsel.counsel_type_code
+		JOIN ilban_human as student
+		ON haksa_advice.student_number = student.student_teacher_no
+		JOIN ilban_human as appointment_school_personnel
+		ON haksa_advice.appointment_school_personnel_number = appointment_school_personnel.student_teacher_no
+		WHERE student_number = #{studentNumber}
+	</select>
+	
+	<!--  학생 1명의 반 변경 내역 조회 쿼리 -->
+	<select id="getClassChange" parameterType="String" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.ClassChange">
+		SELECT
+				class_change_number as classChangeNumber
+				, record_id as recordId
+				, student_number as studentNumber
+				, class_change_before as classChangeBefore
+				, class_change_after as classChangeAfter
+				, class_change_before_day_and_night as classChangeBeforeDayAndNight
+				, class_change_after_day_and_night as classChangeAfterDayAndNight
+				, class_change_degree_separation as classChangeDegreeSeparation
+				, class_change_reason as classChangeReason
+				, class_change_date as classChangeDate
+				, system_registration_date as systemRegistrationDate
+		FROM haksa_class_change
+		WHERE student_number = #{studentNumber}
+	</select>
+	
+	<!--  학생 1명의 가족사항 조회 쿼리 -->
+	<select id="getFamily" parameterType="String" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.Family">
+		SELECT
+				family_number as familyNumber
+				, student_teacher_no as studentNumber
+				, family_relationship as familyRelationship
+				, family_phone_number as familyPhoneNumber
+				, family_birthday as familyBirthday
+				, family_academic_background as familyAcademicBackground
+				, family_job as familyJob
+				, family_residence as familyResidence
+		FROM ilban_family
+		WHERE student_teacher_no = #{studentNumber}
+	</select>
+	
+	<!--  학생 1명의 신상명세사항 조회 쿼리 -->
+	<select id="getMyProfile" parameterType="String" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.MyProfile">
+		SELECT
+				student_teacher_no as studentNumber
+				, human_phone_number as humanPhoneNumber
+				, human_email as humanEmail
+				, human_address as humanAddress
+				, human_english_address as humanEnglishAddress
+		FROM ilban_myprofile
+		WHERE student_teacher_no = #{studentNumber}
+	</select>
+	
+	<!--  학생 1명의 고등학력사항 조회 쿼리 -->
+	<select id="getHighSchool" parameterType="String" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.HighSchool">
+		SELECT
+				student_teacher_no as studentNumber
+				, highschool_schoolname as highschoolSchoolName
+				, highschool_graduation as highschoolGraduation
+		FROM ilban_highschool
+		WHERE student_teacher_no = #{studentNumber}
+	</select>
+	
+	<!--  국가 코드 조회 쿼리 -->
+	<select id="getCountryCode" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+		SELECT
+				country_code as countryCode
+				, country_name_korean as countryNameKorean
+		FROM haksa_country
+		ORDER BY country_code ASC
+	</select>
+	
+	<!-- 학번 조회 쿼리 -->
+	<select id="getStudentNumber" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+		SELECT
+				student_number as studentNumber
+		FROM haksa_student_info
+		WHERE student_number = #{studentNumber}
+	</select>
+	
+	<!-- 학과별 반 번호 조회 쿼리 -->
+	<select id="getClassByDepartment" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+		SELECT
+				class_by_department_number as classByDepartmentNumber
+		FROM haksa_class_by_department
+		WHERE
+				dept_code = #{deptCode}
+				AND class_by_department_grade = #{classByDepartmentGrade}
+				AND class_by_department_class = #{classByDepartmentClass}
+				AND class_by_department_day_and_night = #{classByDepartmentDayAndNight}
+	</select>
+</mapper>
