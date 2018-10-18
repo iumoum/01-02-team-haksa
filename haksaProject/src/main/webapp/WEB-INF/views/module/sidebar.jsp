@@ -92,6 +92,29 @@
 				<a class="dropdown-item" href="/listClassChange">반 변경</a>
 			</div>
 		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+				<i class="fas fa-fw fa-folder"></i> <span>인사코드 관리</span>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+				<a class="dropdown-item" href="/personnelCode/listPersonnelCommonCode">인사공통 코드</a> 
+				<a class="dropdown-item" href="/personnelCode/listRewardPunishmentCode">상벌 코드</a>
+				<a class="dropdown-item" href="/personnelCode/listTrainingCode">연수 코드</a>
+				<a class="dropdown-item" href="/personnelCode/listCertificateCode">증명서 코드</a>
+				<a class="dropdown-item" href="/personnelCode/listCertificatePurposeCode">증명서용도 코드</a>
+			</div>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+				<i class="fas fa-fw fa-folder"></i> <span>인사임명 관리</span>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+				<a class="dropdown-item" href="/personnelAppoint/listPermanentAppointment">임용 (정규직)</a>
+				<a class="dropdown-item" href="/personnelAppoint/listTemporaryAppointment">임용 (비정규직)</a>
+				<a class="dropdown-item" href="/personnelAppoint/listOtherAppointment">기타임용 (무기계약)</a>
+				<a class="dropdown-item" href="/personnelAppoint/listPromotionProcess">승진처리</a>
+			</div>
+		</li>
 		
 	</ul>
 </body>

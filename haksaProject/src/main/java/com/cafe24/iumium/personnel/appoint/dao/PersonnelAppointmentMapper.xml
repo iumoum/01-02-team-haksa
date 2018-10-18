@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cafe24.iumium.personnel.appoint.dao.PersonnelAppointmentMapper">
+	<!-- 이응빈 -->
+	
+	<!-- 정규직 리스트 조회 쿼리 -->
+	<select id="personnelPermanentAppointmentList" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment">
+		SELECT
+				ilban_appointment.appointment_school_personnel_number as appointmentSchoolPersonnelNumber
+				, ilban_personnel_common.personnel_common_appointment_code_name as personnelCommonAppointmentCodeName
+				, haksa_team.team_name_korean as teamNameKorean
+				, haksa_job_rank.job_rank_name_korean as jobRankNameKorean
+				, haksa_job_type.job_type_name as jobTypeName
+				, haksa_job_group.job_group_name as jobGroupName
+				, ilban_appointment.appointment_appoint_day as appointmentAppointDay
+		FROM ilban_appointment
+		JOIN ilban_personnel_common
+		ON ilban_appointment.personnel_common_appointment_code=ilban_personnel_common.personnel_common_appointment_code
+		JOIN haksa_team
+		ON ilban_appointment.team_code=haksa_team.team_code
+		JOIN haksa_job_rank
+		ON ilban_appointment.job_rank_code=haksa_job_rank.job_rank_code
+		JOIN haksa_job_type
+		ON haksa_job_rank.job_type_code=haksa_job_type.job_type_code
+		JOIN haksa_job_group
+		ON haksa_job_type.job_group_code=haksa_job_group.job_group_code
+		JOIN ilban_appointment_permanent
+		ON ilban_appointment.appointment_school_personnel_number=ilban_appointment_permanent.appointment_school_personnel_number
+	</select>
+	
+	<!-- 발령코드 조회 쿼리 -->
+	<select id="personnelCommonAppointmentCode" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment">
+		SELECT
+				personnel_common_appointment_code as personnelCommonAppointmentCode
+				, personnel_common_appointment_code_name as personnelCommonAppointmentCodeName
+		FROM ilban_personnel_common
+	</select>
+	
+	<!-- 팀코드 조회 쿼리 -->
+	<select id="teamCode" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment">
+		SELECT
+				team_code as teamCode
+				, team_name_korean as teamNameKorean
+		FROM haksa_team
+	</select>
+	
+	<!-- 직급코드 조회 쿼리 -->
+	<select id="haksaJobRank" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment">
+		SELECT
+				job_rank_code as jobRankCode
+				, job_rank_name_korean as jobRankNameKorean
+		FROM haksa_job_rank
+	</select>
+	
+	<!-- 정규직 임용 상세정보 조회 쿼리 -->
+	<select id="detailPermanentAppointment" parameterType="String" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment">
+		SELECT
+				ilban_appointment.appointment_school_personnel_number as appointmentSchoolPersonnelNumber
+				, ilban_personnel_common.personnel_common_appointment_code_name as personnelCommonAppointmentCodeName
+				, haksa_team.team_name_korean as teamNameKorean
+				, haksa_job_rank.job_rank_name_korean as jobRankNameKorean
+				, haksa_job_type.job_type_name as jobTypeName
+				, haksa_job_group.job_group_name as jobGroupName
+				, ilban_appointment.appointment_appoint_day as appointmentAppointDay
+				, ilban_appointment_permanent.appointment_permanent_annual_income as appointmentPermanentAnnualIncome
+				, ilban_appointment_permanent.appointment_permanent_career_division as appointmentPermanentCareerDivision
+				, ilban_appointment_permanent.appointment_permanent_contract_start_term as appointmentPermanentContractStartTerm
+				, ilban_appointment_permanent.appointment_permanent_contract_end_term as appointmentPermanentContractEndTerm
+				, ilban_appointment_permanent.appointment_permanent_appointment_start_term as appointmentPermanentAppointmentStartTerm
+				, ilban_appointment_permanent.appointment_permanent_appointment_end_term as appointmentPermanentAppointmentEndTerm
+				, ilban_appointment_permanent.appointment_permanent_salaryclass as appointmentPermanentSalaryclass
+				, ilban_appointment_permanent.appointment_permanent_salaryclass_promotion as appointmentPermanentSalaryclassPromotion
+				, ilban_appointment_permanent.appointment_permanent_appoint_reason as appointmentPermanentAppointReason
+				, ilban_human.human_name_english as humanNameEnglish
+				, ilban_human.human_name as humanName
+				, ilban_human.human_gender as humanGender
+				, ilban_human.human_resident_registration_number as humanResidentRegistrationNumber
+				, ilban_human.human_military_service as humanMilitaryService
+				, ilban_human.human_picture as humanPicture
+				, haksa_country.country_name_korean as countryNameKorean
+		FROM ilban_appointment
+		JOIN ilban_appointment_permanent
+		ON ilban_appointment.appointment_school_personnel_number=ilban_appointment_permanent.appointment_school_personnel_number
+		JOIN ilban_personnel_common
+		ON ilban_appointment.personnel_common_appointment_code=ilban_personnel_common.personnel_common_appointment_code
+		JOIN haksa_team
+		ON ilban_appointment.team_code=haksa_team.team_code
+		JOIN haksa_job_rank
+		ON ilban_appointment.job_rank_code=haksa_job_rank.job_rank_code
+		JOIN haksa_job_type
+		ON haksa_job_rank.job_type_code=haksa_job_type.job_type_code
+		JOIN haksa_job_group
+		ON haksa_job_type.job_group_code=haksa_job_group.job_group_code
+		JOIN ilban_human
+		ON ilban_appointment.appointment_school_personnel_number=ilban_human.student_teacher_no
+		JOIN haksa_country
+		ON ilban_human.country_code=haksa_country.country_code
+		WHERE ilban_appointment.appointment_school_personnel_number=#{appointmentSchoolPersonnelNumber}
+	</select>
+	
+	<!-- 직위코드 조회 쿼리 -->
+	<select id="jobPositionCode" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic">
+		SELECT
+				job_position_code as jobPositionCode
+				, job_position_name_korean as jobPositionNameKorean
+		FROM haksa_job_position
+	</select>
+	
+	<!-- 비정규직 임용 리스트 조회 쿼리 -->
+	<select id="temporaryAppointmentList" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelTemporaryAppointment">
+		SELECT
+				ilban_appointment.appointment_school_personnel_number as appointmentSchoolPersonnelNumber
+				, ilban_personnel_common.personnel_common_appointment_code_name as personnelCommonAppointmentCodeName
+				, haksa_team.team_name_korean as teamNameKorean
+				, haksa_job_rank.job_rank_name_korean as jobRankNameKorean
+				, haksa_job_type.job_type_name as jobTypeName
+				, haksa_job_group.job_group_name as jobGroupName
+				, ilban_appointment.appointment_appoint_day as appointmentAppointDay
+		FROM ilban_appointment
+		JOIN ilban_personnel_common
+		ON ilban_appointment.personnel_common_appointment_code=ilban_personnel_common.personnel_common_appointment_code
+		JOIN haksa_team
+		ON ilban_appointment.team_code=haksa_team.team_code
+		JOIN haksa_job_rank
+		ON ilban_appointment.job_rank_code=haksa_job_rank.job_rank_code
+		JOIN haksa_job_type
+		ON haksa_job_rank.job_type_code=haksa_job_type.job_type_code
+		JOIN haksa_job_group
+		ON haksa_job_type.job_group_code=haksa_job_group.job_group_code
+		JOIN ilban_appointment_temporary
+		ON ilban_appointment.appointment_school_personnel_number=ilban_appointment_temporary.appointment_school_personnel_number
+	</select>
+	
+	<!-- 비정규직 임용 상세정보 조회 쿼리 -->
+	<select id="detailTemporaryAppointment" parameterType="String" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelTemporaryAppointment">
+		SELECT
+				ilban_appointment.appointment_school_personnel_number as appointmentSchoolPersonnelNumber
+				, ilban_personnel_common.personnel_common_appointment_code_name as personnelCommonAppointmentCodeName
+				, haksa_team.team_name_korean as teamNameKorean
+				, haksa_job_rank.job_rank_name_korean as jobRankNameKorean
+				, haksa_job_type.job_type_name as jobTypeName
+				, haksa_job_group.job_group_name as jobGroupName
+				, ilban_appointment.appointment_appoint_day as appointmentAppointDay
+				, ilban_appointment_temporary.appointment_temporary_career_division as appointmentTemporaryCareerDivision
+				, ilban_appointment_temporary.appointment_temporary_contract_start_term as appointmentTemporaryContractStartTerm
+				, ilban_appointment_temporary.appointment_temporary_contract_end_term as appointmentTemporaryContractEndTerm
+				, ilban_appointment_temporary.appointment_temporary_appointment_start_term as appointmentTemporaryAppointmentStartTerm
+				, ilban_appointment_temporary.appointment_temporary_appointment_end_term as appointmentTemporaryAppointmentEndTerm
+				, ilban_appointment_temporary.appointment_temporary_appoint_reason as appointmentTemporaryAppointReason
+				, ilban_human.human_name_english as humanNameEnglish
+				, ilban_human.human_name as humanName
+				, ilban_human.human_gender as humanGender
+				, ilban_human.human_resident_registration_number as humanResidentRegistrationNumber
+				, ilban_human.human_military_service as humanMilitaryService
+				, ilban_human.human_picture as humanPicture
+				, haksa_country.country_name_korean as countryNameKorean
+		FROM ilban_appointment
+		JOIN ilban_appointment_temporary
+		ON ilban_appointment.appointment_school_personnel_number=ilban_appointment_temporary.appointment_school_personnel_number
+		JOIN ilban_personnel_common
+		ON ilban_appointment.personnel_common_appointment_code=ilban_personnel_common.personnel_common_appointment_code
+		JOIN haksa_team
+		ON ilban_appointment.team_code=haksa_team.team_code
+		JOIN haksa_job_rank
+		ON ilban_appointment.job_rank_code=haksa_job_rank.job_rank_code
+		JOIN haksa_job_type
+		ON haksa_job_rank.job_type_code=haksa_job_type.job_type_code
+		JOIN haksa_job_group
+		ON haksa_job_type.job_group_code=haksa_job_group.job_group_code
+		JOIN ilban_human
+		ON ilban_appointment.appointment_school_personnel_number=ilban_human.student_teacher_no
+		JOIN haksa_country
+		ON ilban_human.country_code=haksa_country.country_code
+		WHERE ilban_appointment.appointment_school_personnel_number=#{appointmentSchoolPersonnelNumber}
+	</select>
+		
+	<!-- 무기계약 임용 리스트 조회 쿼리 -->
+	<select id="appointmentOtherList" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelAppointmentOther">
+		SELECT
+				ilban_appointment.appointment_school_personnel_number as appointmentSchoolPersonnelNumber
+				, ilban_personnel_common.personnel_common_appointment_code_name as personnelCommonAppointmentCodeName
+				, haksa_team.team_name_korean as teamNameKorean
+				, haksa_job_rank.job_rank_name_korean as jobRankNameKorean
+				, haksa_job_type.job_type_name as jobTypeName
+				, haksa_job_group.job_group_name as jobGroupName
+				, ilban_appointment.appointment_appoint_day as appointmentAppointDay
+		FROM ilban_appointment
+		JOIN ilban_personnel_common
+		ON ilban_appointment.personnel_common_appointment_code=ilban_personnel_common.personnel_common_appointment_code
+		JOIN haksa_team
+		ON ilban_appointment.team_code=haksa_team.team_code
+		JOIN haksa_job_rank
+		ON ilban_appointment.job_rank_code=haksa_job_rank.job_rank_code
+		JOIN haksa_job_type
+		ON haksa_job_rank.job_type_code=haksa_job_type.job_type_code
+		JOIN haksa_job_group
+		ON haksa_job_type.job_group_code=haksa_job_group.job_group_code
+		JOIN ilban_other_appointment
+		ON ilban_appointment.appointment_school_personnel_number=ilban_other_appointment.appointment_school_personnel_number
+	</select>
+	
+	<!-- 무기계약 임용 상세정보 조회 쿼리 -->
+	<select id="detailOtherAppointment" parameterType="String" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelAppointmentOther">
+		SELECT
+				ilban_appointment.appointment_school_personnel_number as appointmentSchoolPersonnelNumber
+				, ilban_personnel_common.personnel_common_appointment_code_name as personnelCommonAppointmentCodeName
+				, haksa_team.team_name_korean as teamNameKorean
+				, haksa_job_rank.job_rank_name_korean as jobRankNameKorean
+				, haksa_job_type.job_type_name as jobTypeName
+				, haksa_job_group.job_group_name as jobGroupName
+				, ilban_appointment.appointment_appoint_day as appointmentAppointDay
+				, haksa_job_position.job_position_name_korean as jobPositionCode
+				, ilban_other_appointment.other_appointment_career_division as otherAppointmentCareerDivision
+				, ilban_other_appointment.other_appointment_annual_income as otherAppointmentAnnualIncome
+				, ilban_other_appointment.other_appointment_contract_start_term as otherAppointmentContractStartTerm
+				, ilban_other_appointment.other_appointment_contract_end_term as otherAppointmentContractEndTerm
+				, otherTeam.team_name_korean as otherAppointmentPositionTeam
+				, ilban_other_appointment.other_appointment_salaryclass as otherAppointmentSalaryclass
+				, ilban_other_appointment.other_appointment_salaryclass_promotion as otherAppointmentSalaryclassPromotion
+				, ilban_human.human_name_english as humanNameEnglish
+				, ilban_human.human_name as humanName
+				, ilban_human.human_gender as humanGender
+				, ilban_human.human_resident_registration_number as humanResidentRegistrationNumber
+				, ilban_human.human_military_service as humanMilitaryService
+				, ilban_human.human_picture as humanPicture
+				, haksa_country.country_name_korean as countryNameKorean
+		FROM ilban_appointment
+		JOIN ilban_other_appointment
+		ON ilban_appointment.appointment_school_personnel_number=ilban_other_appointment.appointment_school_personnel_number
+		JOIN ilban_personnel_common
+		ON ilban_appointment.personnel_common_appointment_code=ilban_personnel_common.personnel_common_appointment_code
+		JOIN haksa_team
+		ON ilban_appointment.team_code=haksa_team.team_code
+		JOIN haksa_job_rank
+		ON ilban_appointment.job_rank_code=haksa_job_rank.job_rank_code
+		JOIN haksa_job_type
+		ON haksa_job_rank.job_type_code=haksa_job_type.job_type_code
+		JOIN haksa_job_group
+		ON haksa_job_type.job_group_code=haksa_job_group.job_group_code
+		JOIN ilban_human
+		ON ilban_appointment.appointment_school_personnel_number=ilban_human.student_teacher_no
+		JOIN haksa_country
+		ON ilban_human.country_code=haksa_country.country_code
+		JOIN haksa_team as otherTeam
+		ON otherTeam.team_code=ilban_other_appointment.other_appointment_position_team
+		JOIN haksa_job_position
+		ON haksa_job_position.job_position_code=ilban_other_appointment.job_position_code
+		WHERE ilban_appointment.appointment_school_personnel_number=#{appointmentSchoolPersonnelNumber}
+	</select>
+	
+	<!-- 인사기본사항 상세정보 조회 쿼리 -->
+	<select id="personnelBasic" parameterType="String" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic">
+		SELECT
+				personnel_basic_number as personnelBasicNumber
+				, appointment_school_personnel_number as appointmentSchoolPersonnelNumber
+				, haksa_job_position.job_position_name_korean as personnelBasicAnnualIncomeDivision
+				, personnel_basic_hire_division as personnelBasicHireDivision
+				, personnel_basic_organization as personnelBasicOrganization
+				, personnel_basic_years_month_day as personnelBasicYearsMonthDay
+				, personnel_basic_reassign_check as personnelBasicReassignCheck
+				, personnel_basic_other_official as personnelBasicOtherOfficial
+				, personnel_basic_office_telephone_number as personnelBasicOfficeTelephoneNumber
+				, personnel_basic_retirement_guarantee as personnelBasicRetirementGuarantee
+				, personnel_basic_postposition as personnelBasicPostposition
+				, personnel_basic_lunar_solar_division as personnelBasicLunarSolarDivision
+				, personnel_basic_center_enter_day as personnelBasicCenterEnterDay
+		FROM ilban_personnel_basic
+		JOIN haksa_job_position
+		ON ilban_personnel_basic.personnel_basic_annual_income_division=haksa_job_position.job_position_code
+		WHERE ilban_personnel_basic.appointment_school_personnel_number=#{appointmentSchoolPersonnelNumber}
+	</select>
+	
+	<!-- 경력사항 상세정보 조회 쿼리 -->
+	<select id="career" parameterType="String" resultType="com.cafe24.iumium.personnel.appoint.dto.Career">
+		SELECT
+				career_number as careerNumber
+				, appointment_school_personnel_number as appointmentSchoolPersonnelNumber
+				, career_appointment as careerAppointment
+				, career_appointment_date as careerAppointmentDate
+				, career_classification as careerClassification
+				, career_expiration_date as careerExpirationDate
+				, career_Jikun as careerJikun
+				, career_Jikjong as careerJikjong
+				, career_position as careerPosition
+				, career_fromcontract as careerFromcontract
+				, career_untillcontract as careerUntillcontract
+		FROM ilban_career
+		WHERE appointment_school_personnel_number=#{appointmentSchoolPersonnelNumber}
+	</select>
+	
+	<!-- 보직사항 상세정보 조회 쿼리 -->
+	<select id="position" parameterType="String" resultType="com.cafe24.iumium.personnel.appoint.dto.Position">
+		SELECT
+				ilban_position.position_number as positionNumber
+				, haksa_team.team_name_korean as teamCode
+				, haksa_job_position.job_position_name_korean as jobPositionCode
+				, ilban_position.appointment_school_personnel_number as studentTeacherNo
+				, ilban_position.position_start_of_work as positionStartOfWork
+				, ilban_position.position_end_of_work as positionEndOfWork
+		FROM ilban_position
+		JOIN haksa_team
+		ON ilban_position.team_code=haksa_team.team_code
+		JOIN haksa_job_position
+		ON ilban_position.job_position_code=haksa_job_position.job_position_code
+		WHERE appointment_school_personnel_number=#{studentTeacherNo}
+	</select>
+	
+	<!-- 가족사항 상세정보 조회 쿼리 -->
+	<select id="family" parameterType="String" resultType="com.cafe24.iumium.personnel.appoint.dto.Family">
+		SELECT
+				family_number as familyNumber
+				, student_teacher_no as studentTeacherNo
+				, family_name as familyName
+				, family_relationship as familyRelationship
+				, family_phone_number as familyPhoneNumber
+				, family_birthday as familyBirthday
+				, family_academic_background as familyAcademicBackground
+				, family_job as familyJob
+				, family_residence as familyResidence
+		FROM ilban_family
+		WHERE student_teacher_no=#{studentTeacherNo}
+	</select>
+	
+	<!-- 대학 상세정보 조회 쿼리 -->
+	<select id="education" parameterType="String" resultType="com.cafe24.iumium.personnel.appoint.dto.Education">
+		SELECT
+				student_teacher_no as studentTeacherNo
+				, education_university_schoolname as educationUniversitySchoolname
+				, education_entrance as educationEntrance
+				, education_university_graduation as educationUniversityGraduation
+				, education_major as educationMajor
+				, education_major_category as educationMajorCategory
+				, education_credit as educationCredit
+				, education_credit_point as educationCreditPoint
+		FROM ilban_education
+		WHERE student_teacher_no=#{studentTeacherNo}
+	</select>
+	
+	<!-- 신상명세정보 상세정보 조회 쿼리 -->
+	<select id="myProfile" parameterType="String" resultType="com.cafe24.iumium.personnel.appoint.dto.MyProfile">
+		SELECT
+				student_teacher_no as studentTeacherNo
+				, human_phone_number as humanPhoneNumber
+				, human_email as humanEmail
+				, human_address as humanAddress
+				, human_english_address as humanEnglishAddress
+		FROM ilban_myprofile
+		WHERE student_teacher_no=#{studentTeacherNo}
+	</select>
+	
+	<!-- 고등학력 상세정보 조회 쿼리 -->
+	<select id="highSchool" parameterType="String" resultType="com.cafe24.iumium.personnel.appoint.dto.HighSchool">
+		SELECT
+				student_teacher_no as studentTeacherNo
+				, highschool_schoolname as highSchoolSchoolName
+				, highschool_graduation as highSchoolGraduation
+		FROM ilban_highschool
+		WHERE student_teacher_no=#{studentTeacherNo}
+	</select>
+
+</mapper>

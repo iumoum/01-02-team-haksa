@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cafe24.iumium.personnel.code.dao.PersonnelCodeMapper">
+	<!-- 인사공통코드 리스트 조회 -->
+	<select id="personnelCommonCodeList" resultType="com.cafe24.iumium.personnel.code.dto.PersonnelCommonCode">
+		SELECT 
+		   personnel_common_appointment_code AS personnelCommonAppointmentCode
+		   , personnel_common_appointment_code_name AS personnelCommonAppointmentCodeName
+		   , personnel_common_use_existence_nonexistence AS personnelCommonUseExistenceNonexistence
+		   , personnel_common_registration_date AS personnelCommonRegistrationDate
+		   , personnel_common_modification_date AS personnelCommonModificationDate
+		FROM ilban_personnel_common
+	</select>
+	
+	<!-- 상벌코드 조회 -->
+	<select id="selectRewardPunishmentCode" resultType="com.cafe24.iumium.personnel.code.dto.RewardPunishmentCode">
+		SELECT 
+			reward_punishment_code AS rewardPunishmentCode
+			, reward_punishment_code_name AS rewardPunishmentCodeName
+			, reward_punishment_division AS rewardPunishmentDivision
+			, reward_punishment_use_existence_nonexistence AS rewardPunishmentUseExistenceNonexistence
+			, reward_punishment_registration_date AS rewardPunishmentRegistrationDate
+			, reward_punishment_modification_date AS rewardPunishmentModificationDate
+		FROM ilban_reward_punishment
+	</select>
+	
+	<!-- 연수코드 조회 -->
+	<select id="selectTrainingCode" resultType="com.cafe24.iumium.personnel.code.dto.TrainingCode">
+		SELECT 
+			training_code AS trainingCode
+			, training_code_name AS trainingCodeName
+			, training_home_and_abroad_division AS trainingHomeAndAbroadDivision
+			, training_use_existence_nonexistence AS trainingUseExistenceNonexistence
+			, training_registration_date AS trainingRegistrationDate
+			, training_modification_date AS trainingModificationDate
+		FROM ilban_training
+	</select>
+	
+	<!-- 증명서코드 조회 -->
+	<select id="selectCertificateCode" resultType="com.cafe24.iumium.personnel.code.dto.CertificateCode">
+		SELECT 
+			certificate_code AS certificateCode
+			, certificate_code_name AS certificateCodeName
+			, certificate_personnel_pay_division AS certificatePersonnelPayDivision
+			, certificate_use_existence_nonexistence AS certificateUseExistenceNonexistence
+			, certificate_registration_date AS certificateRegistrationDate
+			, certificate_modification_date AS certificateModificationDate
+		FROM ilban_certificate
+	</select>
+	
+	<!-- 증명서용도코드 조회 -->
+	<select id="selectCertificatePurposeCode" resultType="com.cafe24.iumium.personnel.code.dto.CertificatePurposeCode">
+		SELECT 
+			certificate_purpose_code AS certificatePurposeCode
+			, certificate_purpose_code_name AS certificatePurposeCodeName
+			, certificate_purpose_personnel_pay_division AS certificatePurposePersonnelPayDivision
+			, certificate_purpose_use_existence_nonexistence AS certificatePurposeUseExistenceNonexistence
+			, certificate_purpose_registration_date AS certificatePurposeRegistrationDate
+			, certificate_purpose_modification_date AS certificatePurposeModificationDate
+		FROM ilban_certificate_purpose
+	</select>
+</mapper>
