@@ -14,7 +14,10 @@ public class LectureStatus {
 	private String deptName;
 	private int classByDepartmentGrade;
 	private String roomCode;
+	private int roomFloor;
+	private int roomNumber;
 	private String roomName;
+	private String buildingName;
 	private String appointmentSchoolPersonnelNumber;
 	private String humanName;
 	private String semesterCode;
@@ -133,5 +136,29 @@ public class LectureStatus {
 	}
 	public void setDeptNameKorean(String deptNameKorean) {
 		this.deptName = deptNameKorean;
+	}
+	public String getDeptName() {
+		return deptName;
+	}
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+	public String getBuildingName() {
+		return buildingName;
+	}
+	public void setBuildingName(String buildingName) {
+		this.buildingName = buildingName;
+	}
+	public int getRoomFloor() {
+		return roomFloor;
+	}
+	public void setRoomFloor(int roomFloor) {
+		this.roomFloor = roomFloor;
+	}
+	public int getRoomNumber() {
+		return roomNumber;
+	}
+	public void setRoomNumber(int roomNumber) {
+		this.roomNumber = roomNumber;
 	}
 }

@@ -54,31 +54,10 @@
 		</li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-				<i class="fas fa-fw fa-folder"></i> <span>강의담당 관리</span>
-			</a>
-			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-				<a class="dropdown-item" href="/lesson/lecture/classByDepartment">학과별반관리</a> 
-				<a class="dropdown-item" href="/lesson/lecture/lectureStatus">강의상황서 관리</a> 
-				<a class="dropdown-item" href="/lesson/lecture/professorChange">강의담당상황교수 변경관리</a>
-				<a class="dropdown-item" href="/lesson/lecture/changedTypeOfCompletion">이수구분변경관리</a> 
-			</div>
-		</li>
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
 				<i class="fas fa-fw fa-folder"></i> <span>졸업코드 관리</span>
 			</a>
 			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
 				<a class="dropdown-item" href="#">졸업불가사유 코드</a> 
-			</div>
-		</li>
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-				<i class="fas fa-fw fa-folder"></i> <span>총무 관리</span>
-			</a>
-			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-				<a class="dropdown-item" href="/personnel/generalAffairsManagement/holiday/listHoliday">휴일</a> 
-				<a class="dropdown-item" href="/personnel/generalAffairsManagement/vehicle/listVehicle">차량운행</a>
-				<a class="dropdown-item" href="/personnel/generalAffairsManagement/vacation/listVacation">휴가</a>
 			</div>
 		</li>
 		<li class="nav-item dropdown">
@@ -90,6 +69,28 @@
 				<a class="dropdown-item" href="/listScholarshipBenefit">장학금 수혜내역</a>
 				<a class="dropdown-item" href="/listAdvice">상담</a>
 				<a class="dropdown-item" href="/listClassChange">반 변경</a>
+			</div>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+				<i class="fas fa-fw fa-folder"></i> <span>강의담당 관리</span>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+				<a class="dropdown-item" href="/lesson/lecture/classByDepartment">학과별반관리</a> 
+				<a class="dropdown-item" href="/lesson/lecture/lectureStatus">강의상황서 관리</a> 
+				<a class="dropdown-item" href="/lesson/lecture/professorChange">강의담당상황교수 변경관리</a>
+				<a class="dropdown-item" href="/lesson/lecture/changedTypeOfCompletion">이수구분변경관리</a> 
+			</div>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+				<i class="fas fa-fw fa-folder"></i> <span>시간표 관리</span>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+				<a class="dropdown-item" href="/lesson/schedule/addSchedule">시간표 입력</a>
+				<a class="dropdown-item" href="/lesson/schedule/listSchedule">시간표 검색</a>
+				<a class="dropdown-item" href="/lesson/schedule/listProfessorSchedule">교수시간표 검색</a>
+				<a class="dropdown-item" href="/lesson/schedule/listRoomSchedule">강의실시간표 검색</a>
 			</div>
 		</li>
 		<li class="nav-item dropdown">

@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.iumium.common.dao.CommonCodeMapper">
-	
-	
-	
-	
-	
-	
 <!-- 공통코드 리스트 테이블 mapper -->
-
 
 	<!-- 팀 코드 테이블 -->
 	<select id="selectAllTeamCodes" resultType="com.cafe24.iumium.common.dto.TeamCode">
         SELECT
             t.team_code AS teamCode 
             , t.record_id AS recordId
-            , t.agency_code AS agencyCode
             , a.agency_name_korean AS agencyName
-            , t.org_code AS orgCode
             , o.org_name_korean AS orgName
             , t.dept_code AS deptCode
             , d.dept_name_korean AS deptName
@@ -32,12 +23,12 @@
             , t.team_changed_date AS teamChangedDate
             , t.team_registered_date AS teamRegisteredDate
         FROM haksa_team AS t
-        JOIN haksa_agency AS a
-        ON a.agency_code=t.agency_code
-        JOIN haksa_organization AS o
-        ON o.org_code=t.org_code
         JOIN haksa_department AS d
         ON d.dept_code=t.dept_code
+        JOIN haksa_organization AS o
+        ON o.org_code=d.org_code
+        JOIN haksa_agency AS a
+        ON a.agency_code=o.agency_code
         ORDER BY team_sort_number ASC
     </select>
     
@@ -46,7 +37,6 @@
         SELECT
             d.dept_code AS deptCode 
             , d.record_id AS recordId
-            , d.agency_code AS agencyCode
             , a.agency_name_korean AS agencyName
             , d.org_code AS orgCode
             , o.org_name_korean AS orgName
@@ -63,10 +53,10 @@
             , d.dept_changed_date AS deptChangedDate
             , d.dept_registered_date AS deptRegisteredDate
         FROM haksa_department AS d
-        JOIN haksa_agency AS a
-        ON a.agency_code=d.agency_code
         JOIN haksa_organization AS o
         ON o.org_code=d.org_code
+        JOIN haksa_agency AS a
+        ON a.agency_code=o.agency_code
         ORDER BY dept_sort_number ASC
     </select>
     
@@ -254,7 +244,7 @@
     <!-- 부서 코드, 이름, 기관 코드 테이블 -->
 	<select id="addTeamCodeForm" resultType="com.cafe24.iumium.common.dto.TeamCode">
         SELECT
-            dept_code AS deptCode, dept_name_korean AS deptName, org_code AS orgCode, agency_code AS agencyCode
+            dept_code AS deptCode, dept_name_korean AS deptName, org_code AS orgCode
         FROM haksa_department
     </select>
 	
@@ -263,8 +253,6 @@
         INSERT INTO haksa_team(
         	team_code
        		, record_id
-       		, agency_code
-       		, org_code
        		, dept_code
        		, team_name_korean
        		, team_name_english
@@ -275,8 +263,6 @@
         )VALUES(
         	'${teamCode}'
 			, '${recordId}'
-			, '${agencyCode}'
-			, '${orgCode}'
 			, '${deptCode}'
 			, '${teamNameKorean}'
 			, '${teamNameEnglish}'
@@ -300,7 +286,6 @@
         INSERT INTO haksa_department(
         	dept_code
        		, record_id
-       		, agency_code
        		, org_code
        		, dept_for_edu_or_admin
        		, dept_name_korean
@@ -313,7 +298,6 @@
         )VALUES(
         	'${deptCode}'
 			, '${recordId}'
-			, '${agencyCode}'
 			, '${orgCode}'
 			, '${deptForEduOrAdmin}'
 			, '${deptNameKorean}'
