@@ -356,6 +356,7 @@
 				, family_academic_background as familyAcademicBackground
 				, family_job as familyJob
 				, family_residence as familyResidence
+				, family_name as familyName
 		FROM ilban_family
 		WHERE student_teacher_no = #{studentNumber}
 	</select>
@@ -392,9 +393,9 @@
 	</select>
 	
 	<!-- 학번 조회 쿼리 -->
-	<select id="getStudentNumber" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+	<select id="getStudentNumber" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo" resultType="int">
 		SELECT
-				student_number as studentNumber
+				count(*)
 		FROM haksa_student_info
 		WHERE student_number = #{studentNumber}
 	</select>
@@ -410,4 +411,16 @@
 				AND class_by_department_class = #{classByDepartmentClass}
 				AND class_by_department_day_and_night = #{classByDepartmentDayAndNight}
 	</select>
+	
+	<!-- 학생정보 입력 쿼리 -->
+	<insert id="getinsertStudentInfo" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+		INSERT into haksa_student_info (student_number, dept_code, class_by_department_number, record_id, student_state, student_entrance_department, student_entrance_day_and_night, student_entrance_date, student_graduation_schedule_date, system_registration_date)
+		VALUES (#{studentNumber}, #{deptCode}, #{classByDepartmentNumber}, #{recordId}, "재학", #{deptCode}, #{classByDepartmentDayAndNight}, #{studentEntranceDate}, #{studentGraduationScheduleDate}, now())
+	</insert>
+	
+	<!-- 인적사항 입력 쿼리 -->
+	<insert id="getinsertHuman" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+		INSERT into ilban_human (student_teacher_no, country_code, human_name_english, human_name, human_gender, human_resident_registration_number, human_military_service, human_picture, human_registration_day, human_modification_date)
+		VALUES (#{studentNumber}, #{countryCode}, #{humanNameEnglish}, #{humanName}, #{humanGender}, #{humanResidentRegistrationNumber}, #{humanMilitaryService}, #{humanPicture}, now(), now())
+	</insert>
 </mapper>

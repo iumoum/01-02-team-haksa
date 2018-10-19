@@ -71,51 +71,51 @@ public class StudentInfoController {
 	}
 	
 	// 학생정보 입력 화면
-	@RequestMapping(value = "/insertStudentInfo", method = RequestMethod.GET)
+	@RequestMapping(value = "/addStudentInfo", method = RequestMethod.GET)
 	public String insertStudentInfo() {
-		System.out.println("/insertStudentInfo GET");
-		return "schoolRegister/studentInfo/insertStudentInfo";
+		System.out.println("/addStudentInfo GET");
+		return "schoolRegister/studentInfo/addStudentInfo";
 	}
 	
 	// 상담 입력 화면
-	@RequestMapping(value = "/insertAdvice", method = RequestMethod.GET)
+	@RequestMapping(value = "/addAdvice", method = RequestMethod.GET)
 	public String insertAdvice() {
-		System.out.println("/insertAdvice GET");
-		return "schoolRegister/studentInfo/insertAdvice";
+		System.out.println("/addAdvice GET");
+		return "schoolRegister/studentInfo/addAdvice";
 	}
 	
 	// 반 변경 입력 화면
-	@RequestMapping(value = "/insertClassChange", method = RequestMethod.GET)
+	@RequestMapping(value = "/addClassChange", method = RequestMethod.GET)
 	public String insertClassChange() {
-		System.out.println("/insertClassChange GET");
-		return "schoolRegister/studentInfo/insertClassChange";
+		System.out.println("/addClassChange GET");
+		return "schoolRegister/studentInfo/addClassChange";
 	}
 	
 	// 장학금 수혜 입력 화면
-	@RequestMapping(value = "/insertScholarshipBenefit", method = RequestMethod.GET)
+	@RequestMapping(value = "/addScholarshipBenefit", method = RequestMethod.GET)
 	public String insertScholarshipBenefit() {
 		System.out.println("/insertScholarshipBenefit GET");
-		return "schoolRegister/studentInfo/insertScholarshipBenefit";
+		return "schoolRegister/studentInfo/addScholarshipBenefit";
 	}
 	
 	// 가족사항 입력 화면
-	@RequestMapping(value = "/insertFamily", method = RequestMethod.GET)
+	@RequestMapping(value = "/addFamily", method = RequestMethod.GET)
 	public String insertFamily() {
-		System.out.println("/insertFamily GET");
-		return "schoolRegister/studentInfo/insertFamily";
+		System.out.println("/addFamily GET");
+		return "schoolRegister/studentInfo/addFamily";
 	}
 	
 	// 신상명세정보 입력 화면
-	@RequestMapping(value = "/insertMyProfile", method = RequestMethod.GET)
+	@RequestMapping(value = "/addMyProfile", method = RequestMethod.GET)
 	public String insertMyProfile() {
-		System.out.println("/insertMyProfile GET");
-		return "schoolRegister/studentInfo/insertMyProfile";
+		System.out.println("/addMyProfile GET");
+		return "schoolRegister/studentInfo/addMyProfile";
 	}
 	
 	// 고등학력사항 입력 화면
-	@RequestMapping(value = "/insertHighSchool", method = RequestMethod.GET)
+	@RequestMapping(value = "/addHighSchool", method = RequestMethod.GET)
 	public String insertHighSchool() {
-		System.out.println("/insertHighSchool GET");
-		return "schoolRegister/studentInfo/insertHighSchool";
+		System.out.println("/addHighSchool GET");
+		return "schoolRegister/studentInfo/addHighSchool";
 	}
 }

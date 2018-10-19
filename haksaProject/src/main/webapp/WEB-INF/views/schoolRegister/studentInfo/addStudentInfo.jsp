@@ -23,6 +23,8 @@
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 		<script>
 			$(document).ready(function() {
+				$("#dialog1").hide();
+				$("#dialog2").hide();
 				$("#studentEntranceDate").datepicker({
 					dateFormat: 'yy-mm-dd'
 				});
@@ -102,32 +104,44 @@
 					}
 				})
 				
-				/* $("#studentInfoButton").click(function() {
-					let humanPicture = $("#humanPicture").val();
-					let studentNumber = $("#studentNumber").val();
-					let humanName = $("#humanName").val();
-					let humanResidentRegistrationNumber = $("#humanResidentRegistrationNumber1").val() + "-" + $("#humanResidentRegistrationNumber2").val();
-					let countryCode = $("#countryCode").val();
-					let humanNameEnglish = $("#humanNameEnglish").val();
-					let humanGender = $("#humanGender").val();
-					let humanMilitaryService = $("#humanMilitaryService").val();
-					let deptCode = $("#deptCode").val();
-					let grade = $("#grade").val();
-					let departmentClass = $("#departmentClass").val();
-					let classByDepartmentDayAndNight = $("#classByDepartmentDayAndNight").val();
-					let studentEntranceDate = $("#studentEntranceDate").val();
-					let studentGraduationScheduleDate = $("#studentGraduationScheduleDate").val();
-					
-					$.ajax({
-						url:'/rest/addStudentInfo'
-						, type:'POST'
-						, dataType:'JSON'
-						, data: {humanPicture: humanPicture, studentNumber: studentNumber, humanName: humanName, humanResidentRegistrationNumber: humanResidentRegistrationNumber, countryCode: countryCode, humanNameEnglish: humanNameEnglish, humanGender: humanGender, humanMilitaryService: humanMilitaryService, deptCode: deptCode, classByDepartmentGrade: grade, classByDepartmentClass: departmentClass, classByDepartmentDayAndNight: classByDepartmentDayAndNight, studentEntranceDate: studentEntranceDate, studentGraduationScheduleDate: studentGraduationScheduleDate}
-						, success: function(data){
-							
+				$("#studentInfoButton").click(function() {
+					if($('#humanPicture').val().length < 1 || $('#studentNumber').val().length < 1 || $('#humanName').val().length < 1 || $('#humanResidentRegistrationNumber1').val().length < 6 || $('#humanResidentRegistrationNumber2').val().length < 7 || $('#countryCode').val() === "선택" || $('#humanNameEnglish').val().length < 1 || $('#humanGender').val() === "선택" || $('#humanMilitaryService').val() === "선택" || $('#deptCode').val() === "선택" || $('#grade').val() === "선택" || $('#departmentClass').val() === "선택" || $('#classByDepartmentDayAndNight').val() === "선택" || $('#studentEntranceDate').val().length < 1 || $('#studentGraduationScheduleDate').val().length < 1) {
+						$("#dialog2").dialog();
+					} else {
+						let recordId = "<%= session.getAttribute("userId") %>"
+						let humanPicture = $("#humanPicture").val();
+						let studentNumber = $("#studentNumber").val();
+						let humanName = $("#humanName").val();
+						let humanResidentRegistrationNumber = $("#humanResidentRegistrationNumber1").val() + "-" + $("#humanResidentRegistrationNumber2").val();
+						let countryCode = $("#countryCode").val();
+						let humanNameEnglish = $("#humanNameEnglish").val();
+						let humanGender = $("#humanGender").val();
+						let humanMilitaryService = $("#humanMilitaryService").val();
+						let deptCode = $("#deptCode").val();
+						let grade = $("#grade").val();
+						let departmentClass = $("#departmentClass").val();
+						let classByDepartmentDayAndNight = $("#classByDepartmentDayAndNight").val();
+						let studentEntranceDate = $("#studentEntranceDate").val();
+						let studentGraduationScheduleDate = $("#studentGraduationScheduleDate").val();
+						let request = {
+							recordId: recordId, humanPicture: humanPicture, studentNumber: studentNumber, humanName: humanName, humanResidentRegistrationNumber: humanResidentRegistrationNumber, countryCode: countryCode, humanNameEnglish: humanNameEnglish, humanGender: humanGender, humanMilitaryService: humanMilitaryService, deptCode: deptCode, classByDepartmentGrade: grade, classByDepartmentClass: departmentClass, classByDepartmentDayAndNight: classByDepartmentDayAndNight, studentEntranceDate: studentEntranceDate, studentGraduationScheduleDate: studentGraduationScheduleDate
 						}
-					})
-				}) */
+						$.ajax({
+							url:'/rest/addStudentInfo'
+							, type:'POST'
+							, contentType: 'application/json;charset=UTF-8'
+							, dataType:'JSON'
+							, data: JSON.stringify(request)
+							, success: function(data){
+								if(data === "학번중복") {
+									$("#dialog1").dialog();
+								} else {
+									
+								}
+							}
+						})
+					}
+				})
 			})
 		</script>
 	</head>
@@ -143,7 +157,6 @@
 			<div id="content-wrapper">
 
 				<div class="container-fluid">
-				<!-- 여기에 내용이 담긴다 -->
 					<form id="form">
 						<a href="/listStudentInfo"><input type='button' class="btn btn-info" value='조회'></a>
 						<input type='button' class="btn btn-success" id="studentInfoButton" value='저장'/>
@@ -299,5 +312,11 @@
 		<!-- Demo scripts for this page-->
 		<script src="/resources/js/demo/datatables-demo.js"></script>
 		<script src="/resources/js/demo/chart-area-demo.js"></script>
+		<div id="dialog1" title="학번 중복">
+			<p>중복된 학번입니다.</p>
+		</div>
+		<div id="dialog2" title="다시 입력하여 주세요.">
+			<p>양식이 맞지 않습니다.</p>
+		</div>
 	</body>
 </html>

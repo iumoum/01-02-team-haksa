@@ -35,7 +35,7 @@
 					<h1>학적 관리 > 상담</h1>
 					
 					<form id="form">
-						<a href="/insertAdvice"><input type='button' class="btn btn-info" value='입력'></a>
+						<a href="/addAdvice"><input type='button' class="btn btn-info" value='입력'></a>
 					</form>
 					<br>
 				

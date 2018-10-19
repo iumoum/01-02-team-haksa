@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cafe24.iumium.common.dto.DepartmentCode;
@@ -103,10 +104,11 @@ public class StudentInfoRestController {
 		return studentInfoService.getCountryCode();
 	}
 	
-/*	// 학생정보 입력
-	@RequestMapping(value = "/rest/addStudentInfo", method = RequestMethod.POST)
-	public String addStudentInfo(@RequestBody StudentInfo studentInfo) {
-		System.out.println("/rest/addStudentInfo get");
-		return studentInfoService.getAddStudentInfo(studentInfo);
-	}*/
+	// 학생정보 입력
+	@ResponseBody
+	@RequestMapping(value = "/rest/addStudentInfo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public String insertStudentInfo(@RequestBody StudentInfo studentInfo) {
+		System.out.println("/rest/insertStudentInfo get");
+		return studentInfoService.addStudentInfo(studentInfo);
+	}
 }

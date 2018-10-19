@@ -36,7 +36,7 @@
 					
 					
 					<form id="form">
-						<a href="/insertClassChange"><input type='button' class="btn btn-info" value='입력'></a>
+						<a href="/addClassChange"><input type='button' class="btn btn-info" value='입력'></a>
 					</form>
 					<br>
 				

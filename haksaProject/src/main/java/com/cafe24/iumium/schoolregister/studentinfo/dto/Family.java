@@ -9,7 +9,14 @@ public class Family {
 	private String familyAcademicBackground;	// 가족의 학력
 	private String familyJob;	//가족의 직업
 	private String familyResidence;	// 가족의 주소
+	private String familyName;	// 성명
 	
+	public String getFamilyName() {
+		return familyName;
+	}
+	public void setFamilyName(String familyName) {
+		this.familyName = familyName;
+	}
 	public int getFamilyNumber() {
 		return familyNumber;
 	}

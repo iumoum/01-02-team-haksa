@@ -117,19 +117,25 @@ public class StudentInfoService {
 		System.out.println("국가 코드 불러오기 service");
 		return studentInfoDao.selectCountryCode();
 	}
-	
-/*	// 학생정보 입력
-	public String getAddStudentInfo(StudentInfo studentInfo) {
+
+	// 학생정보 입력
+	public String addStudentInfo(StudentInfo studentInfo) {
 		System.out.println("학생정보 입력 service");
-		StudentInfo studentNumber = studentInfoDao.selectStudentNumber(studentInfo);
+		StudentInfo student = studentInfo;
+		int i  = studentInfoDao.selectStudentNumber(studentInfo); // 중복체크 0이면 중복이 아니고 1이상이면 중복
 		String check = null;
-		if(studentNumber.getStudentNumber() != null) {
+		
+		if(i != 0) {
+			System.out.println("학번이 중복입니다.");
 			check = "학번중복";
 		} else {
 			StudentInfo classByDepartment = studentInfoDao.selectClassByDepartment(studentInfo);
-			classByDepartment.getClassByDepartmentClass();
+			student.setClassByDepartmentNumber(classByDepartment.getClassByDepartmentNumber());
+			studentInfoDao.insertStudentInfo(student);
+			studentInfoDao.insertHuman(student);
+			check = "입력성공";
 		}
 		
 		return check;
-	}*/
+	}
 }

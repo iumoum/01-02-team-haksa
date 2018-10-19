@@ -35,7 +35,7 @@
 					<h1>학적 관리 > 장학금 수혜내역</h1>
 					
 					<form id="form">
-						<a href="/insertScholarshipBenefit"><input type='button' class="btn btn-info" value='입력'></a>
+						<a href="/addScholarshipBenefit"><input type='button' class="btn btn-info" value='입력'></a>
 					</form>
 					<br>
 				

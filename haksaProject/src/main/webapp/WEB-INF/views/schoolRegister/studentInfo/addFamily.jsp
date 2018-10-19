@@ -63,8 +63,8 @@
 							<td><input type="text" class="form-control" name="studentNumber" id="studentNumber" placeholder="학번"></td>
 							<th>가족관계</th>
 							<td><input type="text" class="form-control" name="familyRelationship" id="familyRelationship" placeholder="가족관계"></td>
-							<th>전화번호</th>
-							<td><input type="text" class="form-control" name="familyPhoneNumber" id="familyPhoneNumber" placeholder="전화번호"></td>
+							<th>성명</th>
+							<td><input type="text" class="form-control" name="familyName" id="familyName" placeholder="성명"></td>
 				   		</tr>
 				   		
 				   		<tr>
@@ -79,6 +79,8 @@
 				   		<tr>
 							<th>주소</th>
 							<td><input type="text" class="form-control" name="familyResidence" id="familyResidence" placeholder="주소"></td>
+							<th>전화번호</th>
+							<td><input type="text" class="form-control" name="familyPhoneNumber" id="familyPhoneNumber" placeholder="전화번호"></td>
 				   		</tr>
 		    		</table>
 		    	</div>

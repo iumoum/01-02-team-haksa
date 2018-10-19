@@ -130,7 +130,7 @@
 					<h1>학적 관리 > 학생정보 > 학생 리스트</h1>
 					
 					<form id="form">
-						<a href="/insertStudentInfo"><input type='button' class="btn btn-info" value='학생정보 입력'></a>
+						<a href="/addStudentInfo"><input type='button' class="btn btn-info" value='학생정보 입력'></a>
 					</form>
 					<br>
 			

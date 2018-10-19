@@ -147,8 +147,8 @@ public class StudentInfoDao {
 		return sqlSessionTemplate.selectList(nameSpace + "getCountryCode");
 	}
 	
-/*	// 학번 중복 체크
-	public StudentInfo selectStudentNumber(StudentInfo studentInfo) {
+	// 학번 중복 체크
+	public int selectStudentNumber(StudentInfo studentInfo) {
 		System.out.println("학번 중복체크 Dao");
 		return sqlSessionTemplate.selectOne(nameSpace + "getStudentNumber", studentInfo);
 	}
@@ -157,5 +157,17 @@ public class StudentInfoDao {
 	public StudentInfo selectClassByDepartment(StudentInfo studentInfo) {
 		System.out.println("학과별 반 번호 조회 Dao");
 		return sqlSessionTemplate.selectOne(nameSpace + "getClassByDepartment", studentInfo);
-	}*/
+	}
+	
+	// 학생정보 입력
+	public StudentInfo insertStudentInfo(StudentInfo studentInfo) {
+		System.out.println("학생정보 입력 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getinsertStudentInfo", studentInfo);
+	}
+	
+	// 인적사항 입력
+	public StudentInfo insertHuman(StudentInfo studentInfo) {
+		System.out.println("인적사항 입력 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getinsertHuman", studentInfo);
+	}
 }
