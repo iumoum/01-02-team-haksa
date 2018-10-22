@@ -444,5 +444,39 @@
 				, counsel_result_name as counselResultName
 		FROM haksa_result_of_counsel
 	</select>
+	
+	<!-- 반 변경 번호 조회 쿼리 -->
+	<select id="getClassChangeNumber" resultType="int">
+		SELECT
+				count(class_change_number)
+		FROM haksa_class_change
+	</select>
+	
+	<!-- 반 변경 차수구분 조회 쿼리 -->
+	<select id="getDegreeSeparation" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.ClassChange" resultType="int">
+		SELECT
+				count(student_number)
+		FROM haksa_class_change
+		WHERE student_number=#{studentNumber}
+	</select>
+	
+	<!-- 반 변경 입력 쿼리 -->
+	<insert id="insertClassChange" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.ClassChange">
+		INSERT into haksa_class_change (class_change_number, record_id, student_number, class_change_before, class_change_after, class_change_before_day_and_night, class_change_after_day_and_night, class_change_degree_separation, class_change_reason, class_change_date, system_registration_date)
+		VALUES (#{classChangeNumber}, #{recordId}, #{studentNumber}, #{classChangeBefore}, #{classChangeAfter}, #{classChangeBeforeDayAndNight}, #{classChangeAfterDayAndNight}, #{classChangeDegreeSeparation}, #{classChangeReason}, #{classChangeDate}, now())
+	</insert>
+	
+	<!-- 장학금 번호 조회 쿼리 -->
+	<select id="getScholarshipBenefitNumber" resultType="int">
+		SELECT
+				count(scholarship_benefit_number)
+		FROM haksa_scholarship_benefit
+	</select>
+	
+	<!-- 장학금 입력 쿼리 -->
+	<insert id="insertScholarshipBenefit" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.ScholarshipBenefit">
+		INSERT into haksa_scholarship_benefit (scholarship_benefit_number, record_id, student_number, scholarship_name, scholarship, scholarship_separation, scholarship_give_organization, scholarship_detail, scholarship_file, scholarship_give_date, system_registration_date)
+		VALUES (#{scholarshipBenefitNumber}, #{recordId}, #{studentNumber}, #{scholarshipName}, #{scholarship}, #{scholarshipSeparation}, #{scholarshipGiveOrganization}, #{scholarshipDetail}, #{scholarshipFile}, #{scholarshipGiveDate}, now())
+	</insert>
 
 </mapper>

@@ -188,4 +188,34 @@ public class StudentInfoDao {
 		System.out.println("상담결과코드 Dao");
 		return sqlSessionTemplate.selectList(nameSpace + "getCounselResultCode");
 	}
+	
+	// 반 변경 번호 조회
+	public int selectClassChangeNumber() {
+		System.out.println("반 변경 번호 조회 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getClassChangeNumber");
+	}
+	
+	// 반 변경 차수구분 조회
+	public int selectDegreeSeparation(ClassChange classChange) {
+		System.out.println("반 변경 차수구분 조회 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getDegreeSeparation", classChange);
+	}
+	
+	// 반 변경 입력
+	public int insertClassChange(ClassChange classChange) {
+		System.out.println("반 변경 입력 Dao");
+		return sqlSessionTemplate.insert(nameSpace + "insertClassChange", classChange);
+	}
+	
+	// 장학금 번호 조회
+	public int selectScholarshipBenefitNumber() {
+		System.out.println("장학금 번호 조회 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getScholarshipBenefitNumber");
+	}
+	
+	// 장학금 입력
+	public int insertScholarshipBenefit(ScholarshipBenefit scholarshipBenefit) {
+		System.out.println("장학금 입력 Dao");
+		return sqlSessionTemplate.insert(nameSpace + "insertScholarshipBenefit", scholarshipBenefit);
+	}
 }

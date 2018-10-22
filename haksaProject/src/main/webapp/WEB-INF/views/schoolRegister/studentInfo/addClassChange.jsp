@@ -21,11 +21,46 @@
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="//code.jquery.com/jquery.min.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+		
 		<script>
 			$(document).ready(function() {
+				$("#dialog1").hide();
+				$("#dialog2").hide();
 				$("#classChangeDate").datepicker({
 					dateFormat: 'yy-mm-dd'
 				});
+				
+				$("#addClassChange").click(function() {
+					if($('#studentNumber').val().length < 1 || $('#classChangeBefore').val() === "선택" || $('#classChangeAfter').val() === "선택" || $('#classChangeBeforeDayAndNight').val() === "선택" || $('#classChangeAfterDayAndNight').val() === "선택" || $('#classChangeDate').val().length < 1 || $('#classChangeReason').val().length < 1) {
+						$("#dialog2").dialog();
+					} else {
+						let recordId = "<%= session.getAttribute("userId") %>"
+						let studentNumber = $("#studentNumber").val();
+						let classChangeBefore = $("#classChangeBefore").val();
+						let classChangeAfter = $("#classChangeAfter").val();
+						let classChangeBeforeDayAndNight = $("#classChangeBeforeDayAndNight").val();
+						let classChangeAfterDayAndNight = $("#classChangeAfterDayAndNight").val();
+						let classChangeDate = $("#classChangeDate").val();
+						let classChangeReason = $("#classChangeReason").val();
+						let request = {
+								recordId: recordId, studentNumber: studentNumber, classChangeBefore: classChangeBefore, classChangeAfter: classChangeAfter, classChangeBeforeDayAndNight: classChangeBeforeDayAndNight, classChangeAfterDayAndNight: classChangeAfterDayAndNight, classChangeDate: classChangeDate, classChangeReason: classChangeReason
+						}
+						$.ajax({
+							url:'/rest/addClassChange'
+							, type:'POST'
+							, contentType: 'application/json;charset=UTF-8'
+							, dataType:'JSON'
+							, data: JSON.stringify(request)
+							, success: function(data){
+								if(data === "학번없음") {
+									$("#dialog1").dialog();
+								} else {
+									window.location.href="/listClassChange";
+								}
+							}
+						})
+					}
+				})
 			})
 		</script>
 	</head>
@@ -44,7 +79,7 @@
 				<!-- 여기에 내용이 담긴다 -->
 					<form id="form">
 						<a href="/listClassChange"><input type='button' class="btn btn-info" value='조회'></a>
-						<input type='button' class="btn btn-success" value='저장'/>
+						<input type='button' class="btn btn-success" id="addClassChange" value='저장'/>
 					</form>
 					<br>
 					<table class="table table-bordered">
@@ -79,16 +114,16 @@
 							<td>
 								<select class="form-control" name="classChangeBeforeDayAndNight" id="classChangeBeforeDayAndNight">
 									<option value="선택">선택</option>
-									<option value="A">A</option>
-									<option value="B">B</option>
+									<option value="주">주간</option>
+									<option value="야">야간</option>
 								</select>
 							</td>
 							<th>변경 후 주야</th>
 							<td>
 								<select class="form-control" name="classChangeAfterDayAndNight" id="classChangeAfterDayAndNight">
 									<option value="선택">선택</option>
-									<option value="A">A</option>
-									<option value="B">B</option>
+									<option value="주">주간</option>
+									<option value="야">야간</option>
 								</select>
 							</td>
 							<th>변경일자</th>
@@ -163,5 +198,11 @@
 		<!-- Demo scripts for this page-->
 		<script src="/resources/js/demo/datatables-demo.js"></script>
 		<script src="/resources/js/demo/chart-area-demo.js"></script>
+		<div id="dialog1" title="학번이 존재하지 않습니다.">
+			<p>학번을 다시 확인하여 주세요.</p>
+		</div>
+		<div id="dialog2" title="다시 입력하여 주세요.">
+			<p>양식이 맞지 않습니다.</p>
+		</div>
 	</body>
 </html>

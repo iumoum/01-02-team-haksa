@@ -126,4 +126,20 @@ public class StudentInfoRestController {
 		System.out.println("/rest/counselResultCode get");
 		return studentInfoService.getCounselResultCode();
 	}
+	
+	// 반 변경 입력
+	@ResponseBody
+	@RequestMapping(value = "/rest/addClassChange", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public String insertClassChange(@RequestBody ClassChange classChange) {
+		System.out.println("/rest/addClassChange get");
+		return studentInfoService.addClassChange(classChange);
+	}
+	
+	// 장학금 입력
+	@ResponseBody
+	@RequestMapping(value = "/rest/addScholarshipBenefit", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public String insertScholarshipBenefit(@RequestBody ScholarshipBenefit scholarshipBenefit) {
+		System.out.println("/rest/addScholarshipBenefit get");
+		return studentInfoService.addScholarshipBenefit(scholarshipBenefit);
+	}
 }

@@ -164,4 +164,46 @@ public class StudentInfoService {
 		System.out.println("국가 코드 불러오기 service");
 		return studentInfoDao.selectCounselResultCode();
 	}
+	
+	// 반 변경 입력
+	public String addClassChange(ClassChange classChange) {
+		System.out.println("반 변경 입력 service");
+		StudentInfo studentInfo = new StudentInfo();
+		studentInfo.setStudentNumber(classChange.getStudentNumber()); // 학번 저장
+		int i  = studentInfoDao.selectStudentNumber(studentInfo); // 학번이 있는지 확인하기 위한 변수
+		String check = null; // 중복과 입력이 제대로 되는지 확인하는 변수
+		
+		if(i== 0) {
+			System.out.println("학번이 없습니다.");
+			check = "학번없음";
+		} else {
+			String classChangeNumber = String.valueOf(studentInfoDao.selectClassChangeNumber()+1);
+			classChange.setClassChangeNumber(classChangeNumber);
+			String degreeSeparation = String.valueOf(studentInfoDao.selectDegreeSeparation(classChange)+1);
+			classChange.setClassChangeDegreeSeparation(degreeSeparation);
+			studentInfoDao.insertClassChange(classChange);
+			check = "입력성공";
+		}
+		return check;
+	}
+	
+	// 장학금 입력
+	public String addScholarshipBenefit(ScholarshipBenefit scholarshipBenefit) {
+		System.out.println("장학금 입력 service");
+		StudentInfo studentInfo = new StudentInfo();
+		studentInfo.setStudentNumber(scholarshipBenefit.getStudentNumber()); // 학번 저장
+		int i  = studentInfoDao.selectStudentNumber(studentInfo); // 학번이 있는지 확인하기 위한 변수
+		String check = null; // 중복과 입력이 제대로 되는지 확인하는 변수
+		
+		if(i== 0) {
+			System.out.println("학번이 없습니다.");
+			check = "학번없음";
+		} else {
+			String scholarshipBenefitNumber = String.valueOf(studentInfoDao.selectScholarshipBenefitNumber()+1);
+			scholarshipBenefit.setScholarshipBenefitNumber(scholarshipBenefitNumber);
+			studentInfoDao.insertScholarshipBenefit(scholarshipBenefit);
+			check = "입력성공";
+		}
+		return check;
+	}
 }

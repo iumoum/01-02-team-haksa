@@ -21,11 +21,47 @@
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="//code.jquery.com/jquery.min.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+		
 		<script>
 			$(document).ready(function() {
+				$("#dialog1").hide();
+				$("#dialog2").hide();
 				$("#scholarshipGiveDate").datepicker({
 					dateFormat: 'yy-mm-dd'
 				});
+				
+				$("#addScholarshipBenefit").click(function() {
+					if($('#studentNumber').val().length < 1 || $('#scholarshipName').val().length < 1 || $('#scholarship').val().length < 1 || $('#scholarshipSeparation').val().length < 1 || $('#scholarshipGiveOrganization').val().length < 1 || $('#scholarshipGiveDate').val().length < 1 || $('#scholarshipDetail').val().length < 1 || $('#scholarshipFile').val().length < 1) {
+						$("#dialog2").dialog();
+					} else {
+						let recordId = "<%= session.getAttribute("userId") %>"
+						let studentNumber = $("#studentNumber").val();
+						let scholarshipName = $("#scholarshipName").val();
+						let scholarship = $("#scholarship").val();
+						let scholarshipSeparation = $("#scholarshipSeparation").val();
+						let scholarshipGiveOrganization = $("#scholarshipGiveOrganization").val();
+						let scholarshipGiveDate = $("#scholarshipGiveDate").val();
+						let scholarshipDetail = $("#scholarshipDetail").val();
+						let scholarshipFile = $("#scholarshipFile").val();
+						let request = {
+								recordId: recordId, studentNumber: studentNumber, scholarshipName: scholarshipName, scholarship: scholarship, scholarshipSeparation: scholarshipSeparation, scholarshipGiveOrganization: scholarshipGiveOrganization, scholarshipGiveDate: scholarshipGiveDate, scholarshipDetail: scholarshipDetail, scholarshipFile: scholarshipFile
+						}
+						$.ajax({
+							url:'/rest/addScholarshipBenefit'
+							, type:'POST'
+							, contentType: 'application/json;charset=UTF-8'
+							, dataType:'JSON'
+							, data: JSON.stringify(request)
+							, success: function(data){
+								if(data === "학번없음") {
+									$("#dialog1").dialog();
+								} else {
+									window.location.href="/listScholarshipBenefit";
+								}
+							}
+						})
+					}
+				})
 			})
 		</script>
 	</head>
@@ -44,7 +80,7 @@
 				<!-- 여기에 내용이 담긴다 -->
 					<form id="form">
 						<a href="/listScholarshipBenefit"><input type='button' class="btn btn-info" value='조회'></a>
-						<input type='button' class="btn btn-success" value='저장'/>
+						<input type='button' class="btn btn-success" id="addScholarshipBenefit" value='저장'/>
 					</form>
 					<br>
 					<table class="table table-bordered">
@@ -141,5 +177,11 @@
 		<!-- Demo scripts for this page-->
 		<script src="/resources/js/demo/datatables-demo.js"></script>
 		<script src="/resources/js/demo/chart-area-demo.js"></script>
+		<div id="dialog1" title="학번이 존재하지 않습니다.">
+			<p>학번을 다시 확인하여 주세요.</p>
+		</div>
+		<div id="dialog2" title="다시 입력하여 주세요.">
+			<p>양식이 맞지 않습니다.</p>
+		</div>
 	</body>
 </html>

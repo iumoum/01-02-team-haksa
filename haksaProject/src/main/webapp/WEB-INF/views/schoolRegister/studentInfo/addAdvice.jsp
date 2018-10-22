@@ -24,6 +24,8 @@
 		
 		<script>
 			$(document).ready(function() {
+				$("#dialog1").hide();
+				$("#dialog2").hide();
 				$("#adviceDate").datepicker({
 					dateFormat: 'yy-mm-dd'
 				});
@@ -39,7 +41,7 @@
 					}
 				})
 				
-				$("#studentInfoButton").click(function() {
+				$("#addAdviceButton").click(function() {
 					if($('#studentNumber').val().length < 1 || $('#adviceContent').val().length < 1 || $('#adviceDate').val().length < 1 || $('#counselResultCode').val() === "선택") {
 						$("#dialog2").dialog();
 					} else {
@@ -85,7 +87,7 @@
 				<!-- 여기에 내용이 담긴다 -->
 					<form id="form">
 						<a href="/listAdvice"><input type='button' class="btn btn-info" value='조회'></a>
-						<input type='button' class="btn btn-success" id="studentInfoButton" value='저장'/>
+						<input type='button' class="btn btn-success" id="addAdviceButton" value='저장'/>
 					</form>
 					<br>
 					<table class="table table-bordered">

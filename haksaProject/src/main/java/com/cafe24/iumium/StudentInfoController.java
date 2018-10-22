@@ -100,8 +100,10 @@ public class StudentInfoController {
 	
 	// 가족사항 입력 화면
 	@RequestMapping(value = "/addFamily", method = RequestMethod.GET)
-	public String insertFamily() {
+	public String insertFamily(HttpServletRequest request) {
 		System.out.println("/addFamily GET");
+		String studentNumber = request.getParameter("studentNumber");
+		System.out.println(studentNumber+": 학번");
 		return "schoolRegister/studentInfo/addFamily";
 	}
 	
