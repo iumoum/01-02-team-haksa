@@ -44,7 +44,7 @@
 			, r.room_name AS roomName
 			, l.appointment_school_personnel_number AS appointmentSchoolPersonnelNumber
 			, h.human_name AS humanName
-			, l.semester_code AS semesterCode
+			, c.semester_code AS semesterCode
 			, l.lecture_status_limit_number AS lectureStatusLimitNumber
 			, l.lecture_status_registered_date AS lectureStatusRegisteredDate
 		FROM haksa_lecture_status AS l
@@ -52,7 +52,7 @@
 		ON s.subject_code=l.subject_code
 		JOIN haksa_type_of_completion AS t
 		ON t.type_of_completion_code=l.type_of_completion_code
-		JOIN (select dept.dept_name_korean, class.class_by_department_grade, class.class_by_department_number FROM haksa_class_by_department AS class JOIN haksa_department AS dept ON dept.dept_code=class.dept_code) AS c
+		JOIN (select dept.dept_name_korean, class.class_by_department_grade, class.class_by_department_number, class.semester_code FROM haksa_class_by_department AS class JOIN haksa_department AS dept ON dept.dept_code=class.dept_code) AS c
 		ON c.class_by_department_number=l.class_by_department_number
 		JOIN haksa_room AS r
 		ON r.room_code=l.room_code
