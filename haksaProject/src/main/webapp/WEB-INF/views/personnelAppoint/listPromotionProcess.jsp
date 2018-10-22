@@ -61,42 +61,55 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-				<h1>인사관리 > 임용 리스트</h1>
-				<br>
-					<p id="enrolScoreMain">* 승진 처리 리스트</p>
-					<form id="form">
-						<input type='button' class="btn btn-info" onclick='personnelPromotionList()' value='조회'/>
-						<input type='button' class="btn btn-success" onclick='addPersonnelPromotion()' value='입력'/>
-					</form>
-					<br>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>승진번호</th>
-								<th>교직원번호</th>
-								<th>발령직급</th>
-								<th>발령연봉</th>
-								<th>발령호봉</th>
-								<th>승진일</th>
-								<th>임용일</th>
-								<th>임명사유</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="personnel" items="${promotionList}">
-								<tr>
-									<td>${personnel.promotionNumber}</td>
-									<td>${personnel.appointmentSchoolPersonnelNumber}</td>
-									<td>${personnel.rankCode}</td>
-									<td>${personnel.promotionAppointmentAnnualIncome}</td>
-									<td>${personnel.promotionAppointmentSalaryclass}</td>
-									<td>${personnel.promotionDay}</td>
-									<td>${personnel.promotionAppointmentDay}</td>
-									<td>${personnel.promotionAppointReason}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+									<div class="mail-box">
+						<aside class="lg-side">
+							<div class="inbox-head">
+								<div class="input-append">
+									<input type="text" class="sr-input" placeholder="Tìm kiếm">
+									<button class="btn sr-btn" type="button">
+										<i class="fa fa-search"></i>
+									</button>
+									&ensp; 
+									<input type='button' class="btn sr-btn" onclick='personnelPromotionList()' value='조회'/>
+									&ensp; 
+									<input type='button' class="btn sr-btn" onclick='addPersonnelPromotion()' value='입력'/> 
+									&ensp;
+									<button class="btn sr-btn" type="button">저장</button>
+								</div>
+							</div>
+							<div class="inbox-body">
+								<div class="mail-option">
+									<table class="table table-inbox table-hover">
+										<tbody>
+											<tr class="unread">
+												<td class="view-message  dont-show">승진번호</td>
+												<td>교직원번호</td>
+												<td>발령직급</td>
+												<td>발령연봉</td>
+												<td>발령호봉</td>
+												<td>승진일</td>
+												<th>임용일</th>
+												<td class="view-message  text-left">임명사유</td>
+											</tr>
+	
+											<c:forEach var="personnel" items="${promotionList}">
+												<tr class="">
+													<td>${personnel.promotionNumber}</td>
+													<td>${personnel.appointmentSchoolPersonnelNumber}</td>
+													<td>${personnel.rankCode}</td>
+													<td>${personnel.promotionAppointmentAnnualIncome}</td>
+													<td>${personnel.promotionAppointmentSalaryclass}</td>
+													<td>${personnel.promotionDay}</td>
+													<td>${personnel.promotionAppointmentDay}</td>
+													<td>${personnel.promotionAppointReason}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</aside>
+					</div>
 				</div>
 				<!-- /.container-fluid -->
 	

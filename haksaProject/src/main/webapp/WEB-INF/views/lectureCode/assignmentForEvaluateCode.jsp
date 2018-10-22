@@ -40,32 +40,51 @@
 
 			<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
+				<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">강의별 평가항목 배정번호</td>
+											<td>강의상황서번호</td>
+											<td></td>
+											<td></td>
+											<td>강의평가 항목 코드</td>
+											<td>시스템 등록일자</td>
+											<td class="view-message  text-left">시스템 등록자 아이디</td>
+										</tr>
 
-				<h1>수업코드 관리 > 강의별 평가항목 배정 코드관리</h1>
-				<br>
-				<br>
-				<table border="1">
-					<thead>
-						<tr>
-							<th>강의별 평가항목 배정번호</th>
-							<th>강의상황서번호</th>
-							<th>강의평가 항목 코드</th>
-							<th>시스템 등록일자</th>
-							<th>시스템 등록자 아이디</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="Afec" items="${list}">
-							<tr>
-								<td>${Afec.assignmentForEvaluateNumber}</td>
-								<td>${Afec.lectureStatusNumber}</td>
-								<td>${Afec.questionForEvaluateCode}</td>
-								<td>${Afec.assignmentForEvaluateRegisteredDate}</td>
-								<td>${Afec.recordId}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+										<c:forEach var="Afec" items="${list}">
+											<tr class="">
+												<td class="view-message  dont-show">${Afec.assignmentForEvaluateNumber}</td>
+												<td colspan="3" class="view-message">${Afec.lectureStatusNumber}</td>
+												<td>${Afec.questionForEvaluateCode}</td>
+												<td>${Afec.assignmentForEvaluateRegisteredDate}</td>
+												<td>${Afec.recordId}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>
 			</div>
 			<!-- /.container-fluid -->
 

@@ -25,33 +25,48 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-        <script>
-            $(document).ready(function() {
-                $("#keyword").keyup(function() {
-                    var selectBox = $("#selectBox option:selected").val();
-                    var word = $('#keyword').val();
-                    $("#agencyTable > tbody").children().hide();
-                    if(selectBox == "code"){
-                        var temp = $("#agencyTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
-                        
-                    }else if(selectBox == "name"){
-						var temp = $("#agencyTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");    
-						
-                    }else if(selectBox == "establish_date"){
-                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
-                    	
-                    }else if(selectBox == "check_a_use"){
-                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
-                    	
-                    }else if(selectBox == "check_a_change"){
-                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
-                    	
-                    }
-                    $(temp).parent().show();
-                });
-            });
-       	</script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	type="text/javascript"></script>
+<script>
+	$(document).ready(
+			function() {
+				$("#keyword").keyup(
+						function() {
+							var selectBox = $("#selectBox option:selected")
+									.val();
+							var word = $('#keyword').val();
+							$("#agencyTable > tbody").children().hide();
+							if (selectBox == "code") {
+								var temp = $("#agencyTable > tbody > tr").find(
+										"td:nth-child(1):contains('" + word
+												+ "')");
+
+							} else if (selectBox == "name") {
+								var temp = $("#agencyTable > tbody > tr").find(
+										"td:nth-child(2):contains('" + word
+												+ "')");
+
+							} else if (selectBox == "establish_date") {
+								var temp = $("#agencyTable > tbody > tr").find(
+										"td:nth-child(4):contains('" + word
+												+ "')");
+
+							} else if (selectBox == "check_a_use") {
+								var temp = $("#agencyTable > tbody > tr").find(
+										"td:nth-child(6):contains('" + word
+												+ "')");
+
+							} else if (selectBox == "check_a_change") {
+								var temp = $("#agencyTable > tbody > tr").find(
+										"td:nth-child(7):contains('" + word
+												+ "')");
+
+							}
+							$(temp).parent().show();
+						});
+			});
+</script>
 </head>
 <body id="page-top">
 
@@ -65,43 +80,62 @@
 
 			<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
+				<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">강의평가항목 코드</td>
+											<td>학기 코드</td>
+											<td></td>
+											<td></td>
+											<td>문제 유형</td>
+											<td>강의평가항목 명</td>
+											<td>코드 사용유무</td>
+											<td>코드 변경유무</td>
+											<td>코드 변경사유</td>
+											<td>코드 변경일자</td>
+											<td>시스템 등록일자</td>
+											<td>시스템 등록자 아이디</td>
+										</tr>
 
-				<h1>수업코드 관리 > 강의평가 항목 코드관리</h1>
-				<br> <br>
-				<table border="1">
-					<thead>
-						<tr>
-							<th>강의평가항목 코드</th>
-							<th>학기 코드</th>
-							<th>문제 유형</th>
-							<th>강의평가항목 명</th>
-							<th>코드 사용유무</th>
-							<th>코드 변경유무</th>
-							<th>코드 변경사유</th>
-							<th>코드 변경일자</th>
-							<th>시스템 등록일자</th>
-							<th>시스템 등록자 아이디</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="qfe" items="${list}">
-							<tr>
-								<td>${qfe.questionForEvaluateCode}</td>
-								<td>${qfe.semesterCode}</td>
-								<td>${qfe.questionForEvaluateType}</td>
-								<td>${qfe.questionForEvaluateName}</td>
-								<td>${qfe.questionForEvaluateIsUsed}</td>
-								<td>${qfe.questionForEvaluateIsChanged}</td>
-								<td>${qfe.questionForEvaluateReasonForChange}</td>
-								<td>${qfe.questionForEvaluateChangedDate}</td>
-								<td>${qfe.questionforEvaluateRegisteredDate}</td>
-								<td>${qfe.recordId}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<br><br>
-				<a href="/lecture/codes/addQuestionForEvaluateLectureCodeForm">코드 입력</a>
+										<c:forEach var="qfe" items="${list}">
+											<tr class="">
+												<td class="view-message  dont-show">${qfe.questionForEvaluateCode}</td>
+												<td colspan="3" class="view-message">${qfe.semesterCode}</td>
+												<td>${qfe.questionForEvaluateType}</td>
+												<td>${qfe.questionForEvaluateName}</td>
+												<td>${qfe.questionForEvaluateIsUsed}</td>
+												<td>${qfe.questionForEvaluateIsChanged}</td>
+												<td>${qfe.questionForEvaluateReasonForChange}</td>
+												<td>${qfe.questionForEvaluateChangedDate}</td>
+												<td>${qfe.questionforEvaluateRegisteredDate}</td>
+												<td>${qfe.recordId}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>
+				<a href="/lecture/codes/addQuestionForEvaluateLectureCodeForm">코드입력</a>
 			</div>
 			<!-- /.container-fluid -->
 

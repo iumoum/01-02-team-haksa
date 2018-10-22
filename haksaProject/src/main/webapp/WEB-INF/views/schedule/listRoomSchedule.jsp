@@ -104,40 +104,64 @@
 			
 			<div id="content-wrapper">
 				<div class="container-fluid">
-					년도-학기 : 
-					<select name="yearBox" id="semesterCode">
-						<option value="선택">선택</option>
-					</select>
-					건물 : 
-					<select name="departmentBox" id="buildingCode">
-						<option value="선택">선택</option>
-					</select>
-					강의실 : 
-					<select name="gradeBox" id="roomCode">
-						<option value="선택">선택</option>
-					</select>
-					주야 : 
-					<select name="dayBox" id="dayCode">
-						<option value="선택">선택</option>
-						<option value="주">주</option>
-						<option value="야">야</option>
-					</select>&emsp;
-					<button type="button" id="scheduleSearch">조회</button>
-					
-					<table border="1" id="scheduleTable">
-						<thead>
-							<tr>
-								<th>과목명</th>
-								<th>교수명</th>
-								<th>반</th>
-								<th>요일</th>
-								<th>교시</th>
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
+					<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp; 
+								<span>년도-학기 :</span>&nbsp; 
+								<select class="btn sr-btn" name="yearBox" id="semesterCode">
+									<option value="선택">선택</option>
+								</select> 
+								&ensp; 
+								<span>건물 :</span>&nbsp; 
+								<select class="btn sr-btn" name="departmentBox" id="buildingCode">
+									<option value="0">선택</option>
+								</select> 
+								&ensp; 
+								<span>강의실 :</span>&nbsp; 
+								<select class="btn sr-btn" name="gradeBox" id="roomCode">
+									<option value="선택">선택</option>
+								</select>
+								&ensp; 
+								<span>주야 :</span>&nbsp; 
+								<select class="btn sr-btn" name="dayBox" id="dayCode">
+									<option value="선택">선택</option>
+									<option value="주">주</option>
+									<option value="야">야</option>
+								</select> &ensp;
+								<button type="button" id="scheduleSearch" class="btn sr-btn">조회</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<form action="${pageContext.request.contextPath}/scheduleAdd"
+									method="post">
+									<table class="table table-inbox table-hover">
+										<thead>
+											<tr class="unread">
+												<td class="view-message  dont-show">과목명</td>
+												<td>교수명</td>
+												<td></td>
+												<td></td>
+												<td>반</td>
+												<td>요일</td>
+												<td class="view-message  text-left">교시</td>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</form>
+							</div>
+						</div>
+					</aside>
 				</div>
+			</div>
 				<footer class="sticky-footer">
 					<div class="container my-auto">
 						<div class="copyright text-center my-auto">

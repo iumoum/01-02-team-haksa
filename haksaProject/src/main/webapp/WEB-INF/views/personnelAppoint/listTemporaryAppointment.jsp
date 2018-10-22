@@ -60,40 +60,53 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-					<h1>인사관리 > 임명관리</h1>
-					<br>
-					<p id="enrolScoreMain">* 비정규직 리스트</p>
-					<form id="form">
-						<input type='button' class="btn btn-info" onclick='personnelPermanentAppointmentList()' value='조회'/>
-						<input type='button' class="btn btn-success" onclick='addTemporaryAppointment()' value='입력'/>
-					</form>
-					<br>
-					<table id="table" class="table table-bordered">
-						<thead>
-							<tr>
-								<th>교직원번호</th>
-								<th>발령코드명</th>
-								<th>팀명(국문)</th>
-								<th>직급명(국문)</th>
-								<th>직종명</th>
-								<th>직군명</th>
-								<th>임명일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="personnel" items="${temporaryAppointmentList}">
-								<tr>
-									<td><a href="/personnelAppoint/detailTemporaryAppointment?appointmentSchoolPersonnelNumber=${personnel.appointmentSchoolPersonnelNumber}">${personnel.appointmentSchoolPersonnelNumber}</a></td>
-									<td>${personnel.personnelCommonAppointmentCodeName}</td>
-									<td>${personnel.teamNameKorean}</td>
-									<td>${personnel.jobRankNameKorean}</td>
-									<td>${personnel.jobTypeName}</td>
-									<td>${personnel.jobGroupName}</td>
-									<td>${personnel.appointmentAppointDay}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+					<div class="mail-box">
+						<aside class="lg-side">
+							<div class="inbox-head">
+								<div class="input-append">
+									<input type="text" class="sr-input" placeholder="Tìm kiếm">
+									<button class="btn sr-btn" type="button">
+										<i class="fa fa-search"></i>
+									</button>
+									&ensp; 
+									<input type='button' class="btn sr-btn" onclick='personnelPermanentAppointmentList()' value='조회'/>
+									&ensp; 
+									<input type='button' class="btn sr-btn" onclick='addTemporaryAppointment()' value='입력'/> 
+									&ensp;
+									<button class="btn sr-btn" type="button">저장</button>
+								</div>
+							</div>
+							<div class="inbox-body">
+								<div class="mail-option">
+									<table class="table table-inbox table-hover">
+										<tbody>
+											<tr class="unread">
+												<td class="view-message  dont-show">교직원번호</td>
+												<td>발령코드명</td>
+												<td>팀명(국문)</td>
+												<td>직급명(국문)</td>
+												<td>직종명</td>
+												<td>직군명</td>
+												<td class="view-message  text-left">임명일</td>
+											</tr>
+	
+											<c:forEach var="personnel" items="${temporaryAppointmentList}">
+												<tr class="">
+													<td><a href="/personnelAppoint/detailTemporaryAppointment?appointmentSchoolPersonnelNumber=${personnel.appointmentSchoolPersonnelNumber}">${personnel.appointmentSchoolPersonnelNumber}</a></td>
+													<td>${personnel.personnelCommonAppointmentCodeName}</td>
+													<td>${personnel.teamNameKorean}</td>
+													<td>${personnel.jobRankNameKorean}</td>
+													<td>${personnel.jobTypeName}</td>
+													<td>${personnel.jobGroupName}</td>
+													<td>${personnel.appointmentAppointDay}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</aside>
+					</div>
 				</div>
 				<!-- /.container-fluid -->
 	

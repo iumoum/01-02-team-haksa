@@ -37,40 +37,65 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
-			
-			<h1>강의담당 관리 > 학과별 반 관리</h1>
-			<br><br>
-			<table border="1">
-				<thead>
-					<tr>
-						<th>학과별 반 번호</th>
-						<th>학과 명</th>
-						<th>학기</th>
-						<th>학년</th>
-						<th>반</th>
-						<th>주야</th>
-						<th>과정 구분</th>
-						<th>지도 교수</th>
-						<th>시스템 등록일자</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="row" items="${classesByDepartment}">
-						<tr>
-							<td>${row.classByDepartmentNumber}</td>
-							<td>${row.deptNameKorean}</td>
-							<td>${row.semesterCode}</td>
-							<td>${row.classByDepartmentGrade}</td>
-							<td>${row.classByDepartmentClass}</td>
-							<td>${row.classByDepartmentDayAndNight}</td>
-							<td>${row.classByDepartmentCurriculumDivision}</td>
-							<td>${row.humanName}</td>
-							<td>${row.classByDepartmentRegisteredDate}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			
+			<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp; <select class="btn sr-btn">
+									<option value="code">코드</option>
+									<option value="name">건물명</option>
+									<option value="agencyName">소속 기관</option>
+									<option value="check_a_use">사용유무</option>
+									<option value="check_a_change">변경유무</option>
+								</select> &ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">학과별 반 번호</td>
+											<td>학과 명</td>
+											<td></td>
+											<td></td>
+											<td>학기</td>
+											<td>학년</td>
+											<td>반</td>
+											<td>주야</td>
+											<td>과정 구분</td>
+											<td>지도 교수</td>
+											<td class="view-message  text-left">시스템 등록일자</td>
+										</tr>
+
+										<c:forEach var="row" items="${classesByDepartment}">
+											<tr class="">
+												<td class="view-message  dont-show">${row.classByDepartmentNumber}</td>
+												<td colspan="3" class="view-message">${row.deptNameKorean}</td>
+												<td>${row.semesterCode}</td>
+												<td>${row.classByDepartmentGrade}</td>
+												<td>${row.classByDepartmentClass}</td>
+												<td>${row.classByDepartmentDayAndNight}</td>
+												<td>${row.classByDepartmentCurriculumDivision}</td>
+												<td>${row.humanName}</td>
+												<td class="view-message  text-left">${row.classByDepartmentRegisteredDate}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>
 			</div>
 			<!-- /.container-fluid -->
 

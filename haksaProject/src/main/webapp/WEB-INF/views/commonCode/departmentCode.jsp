@@ -72,58 +72,70 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
-			
-			<h1>공통코드 관리 > 부서코드 관리</h1>
-			<br><br>
-			<div>
-	            <select id="selectBox">
-	                <option value="code">코드</option>
-	                <option value="name">부서 명</option>
-	                <option value="agencyName">소속 기관</option>
-	                <option value="orgName">소속 기구</option>
-	                <option value="division">구분</option>
-	                <option value="establishDate">설치일자</option>
-	                <option value="check_a_use">사용 유무</option>
-	                <option value="check_a_change">변경 유무</option>
-	            </select>
-	            <input type="text" id="keyword" />
-	        </div>
-			<table border="1" id="deptTable">
-		        <thead>
-		            <tr>
-		                <th>부서코드</th>
-		                <th>기관명</th>
-		                <th>기구명</th>
-		                <th>부서학과구분</th>
-		                <th>부서명(국문)</th>
-		                <th>부서명(영문)</th>
-		                <th>설치일자</th>
-		                <th>대표전화번호</th>
-		                <th>졸업학년</th>
-		                <th>코드 사용유무</th>
-		                <th>코드 변경유무</th>
-		            </tr>
-		        </thead>
-		        <tbody>
-		            <c:forEach var="dept" items="${list}">
-		                <tr>
-		                    <td>${dept.deptCode}</td>
-		                    <td>${dept.agencyName}</td>
-		                    <td>${dept.orgName}</td>
-		                    <td>${dept.deptForEduOrAdmin}</td>
-		                    <td>${dept.deptNameKorean}</td>
-		                    <td>${dept.deptNameEnglish}</td>
-		                    <td>${dept.deptEstablishDate}</td>
-		                    <td>${dept.deptRepPhoneNumber}</td>
-		                    <td>${dept.deptGraduatedGrade}</td>
-		                    <td>${dept.deptIsUsed}</td>
-		                    <td>${dept.deptIsChanged}</td>
-		                </tr>
-		            </c:forEach>
-		        </tbody>
-		    </table>
-			<br><br>
-			<a href="/common/codes/addDepartmentCodeForm">코드 추가</a>
+				<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp; <select class="btn sr-btn">
+									<option value="code">코드</option>
+									<option value="name">부서 명</option>
+									<option value="agencyName">소속 기관</option>
+									<option value="orgName">소속 기구</option>
+									<option value="division">구분</option>
+									<option value="establishDate">설치일자</option>
+									<option value="check_a_use">사용 유무</option>
+									<option value="check_a_change">변경 유무</option>
+								</select> &ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">부서코드</td>
+											<td>기관명</td>
+											<td>기구명</td>
+											<td>부서학과구분</td>
+											<td class="view-message  text-left">부서명(국문)</td>
+											<td>부서명(영문)</td>
+											<td>설치일자</td>
+											<td class="view-message  text-left">대표전화번호</td>
+											<td>졸업학년</td>
+											<td>코드 사용유무</td>
+											<td>코드 변경유무</td>
+										</tr>
+
+										<c:forEach var="dept" items="${list}">
+											<tr>
+												<td>${dept.deptCode}</td>
+												<td>${dept.agencyName}</td>
+												<td>${dept.orgName}</td>
+												<td>${dept.deptForEduOrAdmin}</td>
+												<td>${dept.deptNameKorean}</td>
+												<td>${dept.deptNameEnglish}</td>
+												<td>${dept.deptEstablishDate}</td>
+												<td>${dept.deptRepPhoneNumber}</td>
+												<td>${dept.deptGraduatedGrade}</td>
+												<td>${dept.deptIsUsed}</td>
+												<td>${dept.deptIsChanged}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>
 			</div>
 			<!-- /.container-fluid -->
 

@@ -39,33 +39,51 @@
 
 			<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
+							<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">등급</td>
+											<td>시작점수</td>
+											<td></td>
+											<td></td>
+											<td>끝점수</td>
+											<td>평점</td>
+											<td class="view-message  text-left">시스템 등록자 아이디</td>
+										</tr>
 
-				<h1>수업코드 관리 > 성적평가 기준 코드관리</h1>
-				<br>
-				<br>
-				<table border="1">
-					<thead>
-						<tr>
-							<th>등급</th>
-							<th>시작점수</th>
-							<th>끝점수</th>
-							<th>평점</th>
-							<th>시스템 등록자 아이디</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="grade" items="${list}">
-							<tr>
-								<td>${grade.gradingCriteriaRating}</td>
-								<td>${grade.gradingCriteriaStartOfSection}</td>
-								<td>${grade.gradingCriteriaEndOfSection}</td>
-								<td>${grade.gradingCriteriaGrade}</td>
-								<td>${grade.recordId}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<br><br>
+										<c:forEach var="grade" items="${list}">
+											<tr class="">
+												<td class="view-message  dont-show">${grade.gradingCriteriaRating}</td>
+												<td colspan="3" class="view-message">${grade.gradingCriteriaStartOfSection}</td>
+												<td>${grade.gradingCriteriaStartOfSection}</td>
+												<td>${grade.gradingCriteriaGrade}</td>
+												<td>${grade.recordId}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>
 				<a href="/lecture/codes/addGradingCriteriaCodeForm">코드 입력</a>
 			</div>
 			<!-- /.container-fluid -->

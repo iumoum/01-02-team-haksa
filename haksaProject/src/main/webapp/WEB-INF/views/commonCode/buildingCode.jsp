@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,18 +13,23 @@
 <title>건물코드 관리</title>
 
 <!-- Bootstrap core CSS-->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Custom fonts for this template-->
-<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="/resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
 
 <!-- Page level plugin CSS-->
-<link href="/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+<link href="/resources/vendor/datatables/dataTables.bootstrap4.css"
+	rel="stylesheet">
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-        <script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	type="text/javascript"></script>
+<script>
             $(document).ready(function() {
                 $("#keyword").keyup(function() {
                     var selectBox = $("#selectBox option:selected").val();
@@ -53,53 +59,69 @@
 
 <body id="page-top">
 
-	<jsp:include page="/WEB-INF/views/module/nav.jsp"/>
+	<jsp:include page="/WEB-INF/views/module/nav.jsp" />
 
 	<div id="wrapper">
 
-		<jsp:include page="/WEB-INF/views/module/sidebar.jsp"/>
+		<jsp:include page="/WEB-INF/views/module/sidebar.jsp" />
 
 		<div id="content-wrapper">
 
 			<div class="container-fluid">
-			<!-- 여기에 내용이 담긴다 -->
-			
-			<h1>공통코드 관리 > 건물코드 관리</h1>
-			<br><br>
-			<div>
-	            <select id="selectBox">
-	                <option value="code">코드</option>
-	                <option value="name">건물명</option>
-	                <option value="agencyName">소속 기관</option>
-	                <option value="check_a_use">사용유무</option>
-	                <option value="check_a_change">변경유무</option>
-	            </select>
-	            <input type="text" id="keyword" />
-	        </div>
-			<table border="1" id="buildingTable">
-				<thead>
-					<tr>
-						<th>건물 코드</th>
-						<th>건물 명</th>
-						<th>소속 기관 명</th>
-						<th>코드 사용유무</th>
-						<th>코드 변경유무</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="row" items="${buildingCodes}">
-						<tr>
-							<td>${row.buildingCode}</td>
-							<td>${row.buildingName}</td>
-							<td>${row.agencyNameKorean}</td>
-							<td>${row.buildingIsUsed}</td>
-							<td>${row.buildingIsChanged}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<br><br>
-			<a href="/common/codes/addBuildingCodeForm">코드 입력</a>
+				<!-- 여기에 내용이 담긴다 -->
+				<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp; 
+								<select class="btn sr-btn">
+									<option value="code">코드</option>
+									<option value="name">건물명</option>
+									<option value="agencyName">소속 기관</option>
+									<option value="check_a_use">사용유무</option>
+									<option value="check_a_change">변경유무</option>
+								</select> 
+								&ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">건물 코드</td>
+											<td>건물 명</td>
+											<td></td>
+											<td></td>
+											<td>소속 기관 명</td>
+											<td>코드 사용유무</td>
+											<td class="view-message  text-left">코드 변경유무</td>
+										</tr>
+
+										<c:forEach var="row" items="${buildingCodes}">
+											<tr class="">
+												<td class="view-message  dont-show">${row.buildingCode}</td>
+												<td colspan="3" class="view-message">${row.buildingName}</td>
+												<td>${row.agencyNameKorean}</td>
+												<td>${row.buildingIsUsed}</td>
+												<td>${row.buildingIsChanged}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>
 			</div>
 			<!-- /.container-fluid -->
 

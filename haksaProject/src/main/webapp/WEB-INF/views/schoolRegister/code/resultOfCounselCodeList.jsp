@@ -38,39 +38,59 @@
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
 			
-			<h1>학적코드 관리 > 상담결과코드 관리</h1>
-			<br><br>
-			<table border="1">
-				<thead>
-					<tr>
-						<th>상담결과 코드</th>
-						<th>상담구분 명</th>
-						<th>상담결과 명</th>
-						<th>코드 사용유무</th>
-						<th>코드 변경사유</th>
-						<th>코드 변경일자</th>
-						<th>코드 등록일자</th>
-						<th>시스템 등록일자</th>
-						<th>시스템 등록자 아이디</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="row" items="${resultOfCounselCodes}">
-						<tr>
-							<td>${row.counselResultCode}</td>
-							<td>${row.counselTypeName}</td>
-							<td>${row.counselResultName}</td>
-							<td>${row.counselResultIsUsed}</td>
-							<td>${row.counselResultIsChanged}</td>
-							<td>${row.counselResultReasonForChange}</td>
-							<td>${row.counselResultChangedDate}</td>
-							<td>${row.counselResultRegisteredDate}</td>
-							<td>${row.recordId}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			
+				<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">상담결과 코드</td>
+											<td>상담구분 명</td>
+											<td></td>
+											<td></td>
+											<td>상담결과 명</td>
+											<td>코드 사용유무</td>
+											<td>코드 변경사유</td>
+											<td>코드 변경일자</td>
+											<td>코드 등록일자</td>
+											<td>시스템 등록일자</td>
+											<td>시스템 등록자 아이디</td>
+										</tr>
+
+										<c:forEach var="row" items="${resultOfCounselCodes}">
+											<tr class="">
+												<td class="view-message  dont-show">${row.counselResultCode}</td>
+												<td colspan="3" class="view-message">${row.counselTypeName}</td>
+												<td>${row.counselResultName}</td>
+												<td>${row.counselResultIsUsed}</td>
+												<td>${row.counselResultIsChanged}</td>
+												<td>${row.counselResultReasonForChange}</td>
+												<td>${row.counselResultChangedDate}</td>
+												<td>${row.counselResultRegisteredDate}</td>
+												<td>${row.recordId}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>	
 			</div>
 			<!-- /.container-fluid -->
 

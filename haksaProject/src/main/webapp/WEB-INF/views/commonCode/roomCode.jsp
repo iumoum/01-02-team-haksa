@@ -63,49 +63,63 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
-			
-			<h1>공통코드 관리 > 강의실코드 관리</h1>
-			<br><br>
-			<div>
-	            <select id="selectBox">
-	                <option value="code">코드</option>
-	                <option value="buildingName">소속 건물 명</option>
-	                <option value="name">강의실 명</option>
-	                <option value="check_a_use">사용 유무</option>
-	                <option value="check_a_change">변경 유무</option>
-	            </select>
-	            <input type="text" id="keyword" />
-	        </div>
-			<table border="1" id="roomTable">
-				<thead>
-					<tr>
-						<th>강의실 코드</th>
-						<th>소속 건물 명</th>
-						<th>강의실 층</th>
-						<th>호실 번호</th>
-						<th>강의실 명</th>
-						<th>강의실 용도</th>
-						<th>코드 사용유무</th>
-						<th>코드 변경유무</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="row" items="${roomCodes}">
-						<tr>
-							<td>${row.roomCode}</td>
-							<td>${row.buildingName}</td>
-							<td>${row.roomFloor}</td>
-							<td>${row.roomNumber}</td>
-							<td>${row.roomName}</td>
-							<td>${row.roomUsage}</td>
-							<td>${row.roomIsUsed}</td>
-							<td>${row.roomIsChanged}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<br><br>
-			<a href="/common/codes/addRoomCodeForm">코드 입력</a>
+							<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp; <select class="btn sr-btn">
+									<option value="code">코드</option>
+									<option value="buildingName">소속 건물 명</option>
+									<option value="name">강의실 명</option>
+									<option value="check_a_use">사용 유무</option>
+									<option value="check_a_change">변경 유무</option>
+								</select> &ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">강의실 코드</td>
+											<td>소속 건물 명</td>
+											<td></td>
+											<td></td>
+											<td>강의실 층</td>
+											<td>호실 번호</td>
+											<td>강의실 명</td>
+											<td>강의실 용도</td>
+											<td>코드 사용유무</td>
+											<td class="view-message  text-left">코드 변경유무</td>
+										</tr>
+
+										<c:forEach var="row" items="${roomCodes}">
+											<tr class="">
+												<td class="view-message  dont-show">${row.roomCode}</td>
+												<td colspan="3" class="view-message">${row.buildingName}</td>
+												<td>${row.roomFloor}</td>
+												<td>${row.roomNumber}</td>
+												<td>${row.roomName}</td>
+												<td>${row.roomUsage}</td>
+												<td>${row.roomIsUsed}</td>
+												<td>${row.roomIsChanged}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>
 			</div>
 			<!-- /.container-fluid -->
 

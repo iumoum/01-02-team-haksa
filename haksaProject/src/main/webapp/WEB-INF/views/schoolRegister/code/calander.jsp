@@ -37,38 +37,57 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
-			
-			<h1>학적코드 관리 > 학기별 상세일정 관리</h1>
-			<br><br>
-			<table border="1">
-				<thead>
-					<tr>
-						<th>학기별 상세일정 번호</th>
-						<th>학기</th>
-						<th>일정 명</th>
-						<th>일정 내용</th>
-						<th>시작 일자</th>
-						<th>종료 일자</th>
-						<th>시스템 등록일자</th>
-						<th>시스템 등록자 아이디</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="row" items="${calanders}">
-						<tr>
-							<td>${row.calanderNumber}</td>
-							<td>${row.semesterCode}</td>
-							<td>${row.calanderTitle}</td>
-							<td>${row.calanderContent}</td>
-							<td>${row.calanderBeginDate}</td>
-							<td>${row.calanderEndDate}</td>
-							<td>${row.calanderRegisteredDate}</td>
-							<td>${row.recordId}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			
+			<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">학기별 상세일정 번호</td>
+											<td>학기</td>
+											<td></td>
+											<td></td>
+											<td>일정 명</td>
+											<td>일정 내용</td>
+											<td>시작 일자</td>
+											<td>종료 일자</td>
+											<td>시스템 등록일자</td>
+											<td>시스템 등록자 아이디</td>
+										</tr>
+
+										<c:forEach var="row" items="${calanders}">
+											<tr class="">
+												<td class="view-message  dont-show">${row.calanderNumber}</td>
+												<td colspan="3" class="view-message">${row.semesterCode}</td>
+												<td>${row.calanderTitle}</td>
+												<td>${row.calanderContent}</td>
+												<td>${row.calanderBeginDate}</td>
+												<td>${row.calanderEndDate}</td>
+												<td>${row.calanderRegisteredDate}</td>
+												<td>${row.recordId}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>		
 			</div>
 			<!-- /.container-fluid -->
 

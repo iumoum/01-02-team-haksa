@@ -60,42 +60,56 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
-			
-			<h1>공통코드 관리 > 직위코드 관리</h1>
-			<br><br>
-			<div>
-	            <select id="selectBox">
-	                <option value="code">코드</option>
-	                <option value="name">직위 명</option>
-	                <option value="check_a_use">사용 유무</option>
-	                <option value="check_a_change">변경 유무</option>
-	            </select>
-	            <input type="text" id="keyword" />
-	        </div>
-			<table border="1" id="jobPositionTable">
-				<thead>
-					<tr>
-						<th>직위 코드</th>
-						<th>직위 명 (국문)</th>
-						<th>직위 명 (영문)</th>
-						<th>코드 사용유무</th>
-						<th>코드 변경유무</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="row" items="${jobPositionCodes}">
-						<tr>
-							<td>${row.jobPositionCode}</td>
-							<td>${row.jobPositionNameKorean}</td>
-							<td>${row.jobPositionNameEnglish}</td>
-							<td>${row.jobPositionIsUsed}</td>
-							<td>${row.jobPositionIsChanged}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<br><br>
-			<a href="/common/codes/addJobPositionCodeForm">코드 입력</a>
+			<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp; <select class="btn sr-btn">
+									<option value="code">코드</option>
+									<option value="name">직위 명</option>
+									<option value="check_a_use">사용 유무</option>
+									<option value="check_a_change">변경 유무</option>
+								</select> &ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">직위 코드</td>
+											<td>직위 명 (국문)</td>
+											<td></td>
+											<td></td>
+											<td>직위 명 (영문)</td>
+											<td>코드 사용유무</td>
+											<td class="view-message  text-left">코드 변경유무</td>
+										</tr>
+
+										<c:forEach var="row" items="${jobPositionCodes}">
+											<tr class="">
+												<td class="view-message  dont-show">${row.jobPositionCode}</td>
+												<td colspan="3" class="view-message">${row.jobPositionNameKorean}</td>
+												<td>${row.jobPositionNameEnglish}</td>
+												<td>${row.jobPositionIsUsed}</td>
+												<td>${row.jobPositionIsChanged}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>
 			</div>
 			<!-- /.container-fluid -->
 

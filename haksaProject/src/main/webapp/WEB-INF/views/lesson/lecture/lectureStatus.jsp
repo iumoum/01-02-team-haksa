@@ -37,41 +37,67 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
-			
-			<h1>강의담당 관리 > 강의 상황서</h1>
-			<br><br>
-			<table border="1">
-				<thead>
-					<tr>
-						<th>강의 상황서 번호</th>
-						<th>과목</th>
-						<th>이수구분</th>
-						<th>학점</th>
-						<th>이론 시수</th>
-						<th>실습 시수</th>
-						<th>총 시수</th>
-						<th>강의실 명</th>
-						<th>강의교수</th>
-						<th>시스템 등록일자</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="st" items="${list}">
-						<tr>
-							<td>${st.lectureStatusNumber}</td>
-							<td>${st.subjectName}</td>
-							<td>${st.typeOfCompletionName}</td>
-							<td>${st.subjectScoreGraduation}</td>
-							<td>${st.subjectHoursTheory}</td>
-							<td>${st.subjectHoursPractice}</td>
-							<td>${st.subjectHoursTheory+st.subjectHoursPractice}</td>
-							<td>${st.roomName}</td>
-							<td>${st.humanName}</td>
-							<td>${st.lectureStatusRegisteredDate}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+			<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp; <select class="btn sr-btn">
+									<option value="code">코드</option>
+									<option value="name">건물명</option>
+									<option value="agencyName">소속 기관</option>
+									<option value="check_a_use">사용유무</option>
+									<option value="check_a_change">변경유무</option>
+								</select> &ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">강의 상황서 번호</td>
+											<td>과목</td>
+											<td></td>
+											<td></td>
+											<td>이수구분</td>
+											<td>학점</td>
+											<td>이론 시수</td>
+											<td>실습 시수</td>
+											<td>총 시수</td>
+											<td>강의실 명</td>
+											<td >강의교수</td>
+											<td class="view-message  text-left">시스템 등록일자</td>
+										</tr>
+
+										<c:forEach var="st" items="${list}">
+											<tr class="">
+												<td class="view-message  dont-show">${st.lectureStatusNumber}</td>
+												<td colspan="3" class="view-message">${st.subjectName}</td>
+												<td>${st.typeOfCompletionName}</td>
+												<td>${st.subjectScoreGraduation}</td>
+												<td>${st.subjectHoursTheory}</td>
+												<td>${st.subjectHoursPractice}</td>
+												<td>${st.subjectHoursTheory+st.subjectHoursPractice}</td>
+												<td>${st.roomName}</td>
+												<td class="view-message  text-left">${st.humanName}</td>
+												<td class="view-message  text-left">${st.lectureStatusRegisteredDate}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>
 			
 			</div>
 			<!-- /.container-fluid -->

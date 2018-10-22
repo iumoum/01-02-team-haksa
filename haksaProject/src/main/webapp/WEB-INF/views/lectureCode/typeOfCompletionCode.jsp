@@ -38,40 +38,58 @@
 
 			<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
+				<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">이수구분 코드</td>
+											<td>이수구분 명</td>
+											<td></td>
+											<td></td>
+											<td>코드 사용유무</td>
+											<td>코드 변경유무</td>
+											<td>코드 변경사유</td>
+											<td>코드 변경일자</td>
+											<td>시스템 등록일자</td>
+											<td>시스템 등록자 아이디</td>
+										</tr>
 
-				<h1>수업코드 관리 > 이수구분 코드관리</h1>
-				<br>
-				<br>
-				<table border="1">
-		<thead>
-            <tr>
-                <th>이수구분 코드</th>
-                <th>이수구분 명</th>
-                <th>코드 사용유무</th>
-                <th>코드 변경유무</th>
-                <th>코드 변경사유</th>
-                <th>코드 변경일자</th>
-                <th>시스템 등록일자</th>
-                <th>시스템 등록자 아이디</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="toc" items="${list}">
-                <tr>
-                    <td>${toc.typeOfCompletionCode}</td>
-                    <td>${toc.typeOfCompletionName}</td>
-                    <td>${toc.typeOfCompletionIsUsed}</td>
-                    <td>${toc.typeOfCompletionIsChanged}</td>
-                    <td>${toc.typeOfCompletionReasonForChange}</td>
-                    <td>${toc.typeOfCompletionChangedDate}</td>
-                    <td>${toc.typeOfCompletionRegisteredDate}</td>
-                    <td>${toc.recordId}</td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-    <br><br>
-    <a href="/lecture/codes/addTocForm">코드 추가</a>
+										<c:forEach var="toc" items="${list}">
+											<tr class="">
+												<td class="view-message  dont-show">${toc.typeOfCompletionCode}</td>
+												<td colspan="3" class="view-message">${toc.typeOfCompletionName}</td>
+												<td>${toc.typeOfCompletionIsUsed}</td>
+												<td>${toc.typeOfCompletionIsChanged}</td>
+												<td>${toc.typeOfCompletionReasonForChange}</td>
+												<td>${toc.typeOfCompletionChangedDate}</td>
+												<td>${toc.typeOfCompletionRegisteredDate}</td>
+												<td>${toc.recordId}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>
+				<a href="/lecture/codes/addTocForm">코드 추가</a>
 			</div>
 			<!-- /.container-fluid -->
 

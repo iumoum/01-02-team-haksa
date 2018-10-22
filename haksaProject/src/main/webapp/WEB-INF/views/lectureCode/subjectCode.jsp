@@ -38,46 +38,65 @@
 
 			<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
+				<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">과목 코드</td>
+											<td>과목명(국문)</td>
+											<td></td>
+											<td></td>
+											<td>과목명(영문)</td>
+											<td>학점</td>
+											<td>이론시수</td>
+											<td>실습시수</td>
+											<td>코드 사용유무</td>
+											<td>코드 변경유무</td>
+											<td>코드 변경사유</td>
+											<td>코드 변경일자</td>
+											<td>시스템 등록일자</td>
+											<td>시스템 등록자 아이디</td>
+										</tr>
 
-				<h1>수업코드 관리 > 과목 코드 관리</h1>
-				<br> <br>
-				<table border="1">
-					<thead>
-						<tr>
-							<th>과목 코드</th>
-							<th>과목명(국문)</th>
-							<th>과목명(영문)</th>
-							<th>학점</th>
-							<th>이론시수</th>
-							<th>실습시수</th>
-							<th>코드 사용유무</th>
-							<th>코드 변경유무</th>
-							<th>코드 변경사유</th>
-							<th>코드 변경일자</th>
-							<th>시스템 등록일자</th>
-							<th>시스템 등록자 아이디</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="sub" items="${list}">
-							<tr>
-								<td>${sub.subjectCode}</td>
-								<td>${sub.subjectNameKorean}</td>
-								<td>${sub.subjectNameEnglish}</td>
-								<td>${sub.subjectScoreGraduation}</td>
-								<td>${sub.subjectHoursTheory}</td>
-								<td>${sub.subjectHoursPractice}</td>
-								<td>${sub.subjectHoursIsUsed}</td>
-								<td>${sub.subjectHoursIsChanged}</td>
-								<td>${sub.subjectHoursReasonForChange}</td>
-								<td>${sub.subjectHoursChangedDate}</td>
-								<td>${sub.subjectHoursRegisteredDate}</td>
-								<td>${sub.recordId}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<br><br>
+										<c:forEach var="sub" items="${list}">
+											<tr class="">
+												<td class="view-message  dont-show">${sub.subjectCode}</td>
+												<td colspan="3" class="view-message">${sub.subjectNameKorean}</td>
+												<td>${sub.subjectNameEnglish}</td>
+												<td>${sub.subjectScoreGraduation}</td>
+												<td>${sub.subjectHoursTheory}</td>
+												<td>${sub.subjectHoursPractice}</td>
+												<td>${sub.subjectHoursIsUsed}</td>
+												<td>${sub.subjectHoursIsChanged}</td>
+												<td>${sub.subjectHoursReasonForChange}</td>
+												<td>${sub.subjectHoursChangedDate}</td>
+												<td>${sub.subjectHoursRegisteredDate}</td>
+												<td>${sub.recordId}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>
 				<a href="/lecture/codes/addSubjectCodeForm">코드 입력</a>
 			</div>
 			<!-- /.container-fluid -->

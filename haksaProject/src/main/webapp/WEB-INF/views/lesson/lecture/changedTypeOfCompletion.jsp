@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,13 +13,16 @@
 <title>이수구분 변경 관리</title>
 
 <!-- Bootstrap core CSS-->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Custom fonts for this template-->
-<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="/resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
 
 <!-- Page level plugin CSS-->
-<link href="/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+<link href="/resources/vendor/datatables/dataTables.bootstrap4.css"
+	rel="stylesheet">
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
@@ -27,46 +31,71 @@
 
 <body id="page-top">
 
-	<jsp:include page="/WEB-INF/views/module/nav.jsp"/>
+	<jsp:include page="/WEB-INF/views/module/nav.jsp" />
 
 	<div id="wrapper">
 
-		<jsp:include page="/WEB-INF/views/module/sidebar.jsp"/>
+		<jsp:include page="/WEB-INF/views/module/sidebar.jsp" />
 
 		<div id="content-wrapper">
 
 			<div class="container-fluid">
-			<!-- 여기에 내용이 담긴다 -->
-			
-			<h1>강의담당 관리 > 변경된 이수구분 리스트</h1>
-			<br><br>
-			<table border="1">
-				<thead>
-					<tr>
-						<th>이수구분 변경 번호</th>
-						<th>강의 상황서 번호</th>
-						<th>과목</th>
-						<th>변경전 이수구분 명</th>
-						<th>변경후 이수구분 명</th>
-						<th>변경사유</th>
-						<th>변경일자</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="ctoc" items="${list}">
-						<tr>
-							<td>${ctoc.changedTypeOfCompletionNumber}</td>
-							<td>${ctoc.lectureStatusNumber}</td>
-							<td>${ctoc.subjectName}</td>
-							<td>${ctoc.changedTypeOfCompletionNameBefore}</td>
-							<td>${ctoc.changedTypeOfCompletionNameAfter+st.subjectHoursPractice}</td>
-							<td>${ctoc.changedTypeOfCompletionReasonForChange}</td>
-							<td>${ctoc.changedTypeOfCompletionChangedDate}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			
+				<!-- 여기에 내용이 담긴다 -->
+				<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp; <select class="btn sr-btn">
+									<option value="code">코드</option>
+									<option value="name">건물명</option>
+									<option value="agencyName">소속 기관</option>
+									<option value="check_a_use">사용유무</option>
+									<option value="check_a_change">변경유무</option>
+								</select> &ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
+							</div>
+						</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">이수구분 변경 번호</td>
+											<td>강의 상황서 번호</td>
+											<td></td>
+											<td></td>
+											<td>과목</td>
+											<td>변경전 이수구분 명</td>
+											<td>변경후 이수구분 명</td>
+											<td>변경사유</td>
+											<td class="view-message  text-left">변경일자</td>
+										</tr>
+
+										<c:forEach var="ctoc" items="${list}">
+											<tr class="">
+												<td class="view-message  dont-show">${ctoc.changedTypeOfCompletionNumber}</td>
+												<td colspan="3" class="view-message">${ctoc.lectureStatusNumber}</td>
+												<td>${ctoc.subjectName}</td>
+												<td>${ctoc.changedTypeOfCompletionNameBefore}</td>
+												<td>${ctoc.changedTypeOfCompletionNameAfter+st.subjectHoursPractice}</td>
+												<td>${ctoc.changedTypeOfCompletionReasonForChange}</td>
+												<td>${ctoc.changedTypeOfCompletionChangedDate}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
+				</div>
 			</div>
 			<!-- /.container-fluid -->
 
