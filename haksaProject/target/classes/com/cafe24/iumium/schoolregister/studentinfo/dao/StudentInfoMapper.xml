@@ -413,14 +413,36 @@
 	</select>
 	
 	<!-- 학생정보 입력 쿼리 -->
-	<insert id="getinsertStudentInfo" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+	<insert id="insertStudentInfo" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
 		INSERT into haksa_student_info (student_number, dept_code, class_by_department_number, record_id, student_state, student_entrance_department, student_entrance_day_and_night, student_entrance_date, student_graduation_schedule_date, system_registration_date)
 		VALUES (#{studentNumber}, #{deptCode}, #{classByDepartmentNumber}, #{recordId}, "재학", #{deptCode}, #{classByDepartmentDayAndNight}, #{studentEntranceDate}, #{studentGraduationScheduleDate}, now())
 	</insert>
 	
 	<!-- 인적사항 입력 쿼리 -->
-	<insert id="getinsertHuman" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+	<insert id="insertHuman" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
 		INSERT into ilban_human (student_teacher_no, country_code, human_name_english, human_name, human_gender, human_resident_registration_number, human_military_service, human_picture, human_registration_day, human_modification_date)
 		VALUES (#{studentNumber}, #{countryCode}, #{humanNameEnglish}, #{humanName}, #{humanGender}, #{humanResidentRegistrationNumber}, #{humanMilitaryService}, #{humanPicture}, now(), now())
 	</insert>
+	
+	<!-- 상담 번호 조회 쿼리 -->
+	<select id="getAdviceNumber" resultType="int">
+		SELECT
+				count(advice_history_number)
+		FROM haksa_advice
+	</select>
+	
+	<!-- 상담 입력 쿼리 -->
+	<insert id="insertAdvice" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.Advice">
+		INSERT into haksa_advice (advice_history_number, counsel_result_code, appointment_school_personnel_number, student_number, advice_content, advice_date, system_registration_date)
+		VALUES (#{adviceHistoryNumber}, #{counselResultCode}, #{appointmentSchoolPersonnelNumber}, #{studentNumber}, #{adviceContent}, #{adviceDate}, now())
+	</insert>
+	
+	<!-- 상담결과코드 조회 쿼리 -->
+	<select id="getCounselResultCode" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.Advice">
+		SELECT
+				counsel_result_code as counselResultCode
+				, counsel_result_name as counselResultName
+		FROM haksa_result_of_counsel
+	</select>
+
 </mapper>

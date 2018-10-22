@@ -21,11 +21,52 @@
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="//code.jquery.com/jquery.min.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+		
 		<script>
 			$(document).ready(function() {
 				$("#adviceDate").datepicker({
 					dateFormat: 'yy-mm-dd'
 				});
+				
+				$.ajax({
+					url:'/rest/counselResultCode'
+					, type:'GET'
+					, dataType:'JSON'
+					, success: function(data){
+						$(data).each(function(index, item){
+							$('#counselResultCode').append("<option value="+item.counselResultCode+">"+item.counselResultName+"</option>");
+						})
+					}
+				})
+				
+				$("#studentInfoButton").click(function() {
+					if($('#studentNumber').val().length < 1 || $('#adviceContent').val().length < 1 || $('#adviceDate').val().length < 1 || $('#counselResultCode').val() === "선택") {
+						$("#dialog2").dialog();
+					} else {
+						let recordId = "<%= session.getAttribute("userId") %>"
+						let counselResultCode = $("#counselResultCode").val();
+						let studentNumber = $("#studentNumber").val();
+						let adviceContent = $("#adviceContent").val();
+						let adviceDate = $("#adviceDate").val();
+						let request = {
+							appointmentSchoolPersonnelNumber: recordId, counselResultCode: counselResultCode, studentNumber: studentNumber, adviceContent: adviceContent, adviceDate: adviceDate
+						}
+						$.ajax({
+							url:'/rest/addAdvice'
+							, type:'POST'
+							, contentType: 'application/json;charset=UTF-8'
+							, dataType:'JSON'
+							, data: JSON.stringify(request)
+							, success: function(data){
+								if(data === "학번없음") {
+									$("#dialog1").dialog();
+								} else {
+									window.location.href="/listAdvice";
+								}
+							}
+						})
+					}
+				})
 			})
 		</script>
 	</head>
@@ -44,7 +85,7 @@
 				<!-- 여기에 내용이 담긴다 -->
 					<form id="form">
 						<a href="/listAdvice"><input type='button' class="btn btn-info" value='조회'></a>
-						<input type='button' class="btn btn-success" value='저장'/>
+						<input type='button' class="btn btn-success" id="studentInfoButton" value='저장'/>
 					</form>
 					<br>
 					<table class="table table-bordered">
@@ -60,9 +101,6 @@
 							<td>
 								<select class="form-control" name="counselResultCode" id="counselResultCode">
 									<option value="선택">선택</option>
-									<option value="일반">일반</option>
-									<option value="휴학">휴학</option>
-									<option value="복학">복학</option>
 								</select>
 							</td>
 							<th>상담일자</th>
@@ -137,5 +175,11 @@
 		<!-- Demo scripts for this page-->
 		<script src="/resources/js/demo/datatables-demo.js"></script>
 		<script src="/resources/js/demo/chart-area-demo.js"></script>
+		<div id="dialog1" title="학번이 존재하지 않습니다.">
+			<p>학번을 다시 확인하여 주세요.</p>
+		</div>
+		<div id="dialog2" title="다시 입력하여 주세요.">
+			<p>양식이 맞지 않습니다.</p>
+		</div>
 	</body>
 </html>

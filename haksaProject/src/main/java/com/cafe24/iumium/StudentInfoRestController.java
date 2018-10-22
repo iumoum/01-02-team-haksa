@@ -111,4 +111,19 @@ public class StudentInfoRestController {
 		System.out.println("/rest/insertStudentInfo get");
 		return studentInfoService.addStudentInfo(studentInfo);
 	}
+	
+	// 상담 입력
+	@ResponseBody
+	@RequestMapping(value = "/rest/addAdvice", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public String insertAdvice(@RequestBody Advice advice) {
+		System.out.println("/rest/addAdvice get");
+		return studentInfoService.addAdvice(advice);
+	}
+	
+	// 상담결과코드 불러오기
+	@RequestMapping(value = "/rest/counselResultCode", method = RequestMethod.GET)
+	public List<Advice> counselResultCode() {
+		System.out.println("/rest/counselResultCode get");
+		return studentInfoService.getCounselResultCode();
+	}
 }

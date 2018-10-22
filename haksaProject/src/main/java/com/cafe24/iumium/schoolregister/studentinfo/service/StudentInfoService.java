@@ -123,7 +123,7 @@ public class StudentInfoService {
 		System.out.println("학생정보 입력 service");
 		StudentInfo student = studentInfo;
 		int i  = studentInfoDao.selectStudentNumber(studentInfo); // 중복체크 0이면 중복이 아니고 1이상이면 중복
-		String check = null;
+		String check = null; // 중복과 입력이 제대로 되는지 확인하는 변수
 		
 		if(i != 0) {
 			System.out.println("학번이 중복입니다.");
@@ -137,5 +137,31 @@ public class StudentInfoService {
 		}
 		
 		return check;
+	}
+	
+	// 상담 입력
+	public String addAdvice(Advice advice) {
+		System.out.println("상담 입력 service");
+		StudentInfo studentInfo = new StudentInfo();
+		studentInfo.setStudentNumber(advice.getStudentNumber()); // 학번 저장
+		int i  = studentInfoDao.selectStudentNumber(studentInfo); // 학번이 있는지 확인하기 위한 변수
+		String check = null; // 중복과 입력이 제대로 되는지 확인하는 변수
+		
+		if(i == 0) {
+			System.out.println("학번이 없습니다.");
+			check = "학번없음";
+		} else {
+			String adviceNumber = String.valueOf(studentInfoDao.selectAdviceNumber()+1);
+			advice.setAdviceHistoryNumber(adviceNumber);
+			studentInfoDao.insertAdvice(advice);
+			check = "입력성공";
+		}
+		return check;
+	}
+	
+	// 상담결과코드 불러오기
+	public List<Advice> getCounselResultCode() {
+		System.out.println("국가 코드 불러오기 service");
+		return studentInfoDao.selectCounselResultCode();
 	}
 }

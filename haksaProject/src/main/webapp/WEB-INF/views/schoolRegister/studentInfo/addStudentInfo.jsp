@@ -136,7 +136,7 @@
 								if(data === "학번중복") {
 									$("#dialog1").dialog();
 								} else {
-									
+									window.location.href="/listStudentInfo";
 								}
 							}
 						})

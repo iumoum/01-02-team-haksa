@@ -162,12 +162,30 @@ public class StudentInfoDao {
 	// 학생정보 입력
 	public StudentInfo insertStudentInfo(StudentInfo studentInfo) {
 		System.out.println("학생정보 입력 Dao");
-		return sqlSessionTemplate.selectOne(nameSpace + "getinsertStudentInfo", studentInfo);
+		return sqlSessionTemplate.selectOne(nameSpace + "insertStudentInfo", studentInfo);
 	}
 	
 	// 인적사항 입력
 	public StudentInfo insertHuman(StudentInfo studentInfo) {
 		System.out.println("인적사항 입력 Dao");
-		return sqlSessionTemplate.selectOne(nameSpace + "getinsertHuman", studentInfo);
+		return sqlSessionTemplate.selectOne(nameSpace + "insertHuman", studentInfo);
+	}
+	
+	// 상담 번호 조회
+	public int selectAdviceNumber() {
+		System.out.println("상담 번호 조회 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getAdviceNumber");
+	}
+	
+	// 상담 입력
+	public int insertAdvice(Advice advice) {
+		System.out.println("상담 입력 Dao");
+		return sqlSessionTemplate.insert(nameSpace + "insertAdvice", advice);
+	}
+	
+	// 상담결과코드 불러오기
+	public List<Advice> selectCounselResultCode() {
+		System.out.println("상담결과코드 Dao");
+		return sqlSessionTemplate.selectList(nameSpace + "getCounselResultCode");
 	}
 }
