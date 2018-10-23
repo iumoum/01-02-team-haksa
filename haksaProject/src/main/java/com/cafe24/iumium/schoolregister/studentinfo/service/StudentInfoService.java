@@ -206,4 +206,51 @@ public class StudentInfoService {
 		}
 		return check;
 	}
+	
+	// 가족 입력
+	public String addFamily(Family family) {
+		System.out.println("가족 입력 service");
+		String check = null;
+		String familyNumber = String.valueOf(studentInfoDao.selectFamilyNumber()+1);
+		family.setFamilyNumber(familyNumber);
+		int i = studentInfoDao.insertFamily(family);
+		
+		if(i == 0) {
+			check = "입력실패";
+		} else {
+			check = "입력성공";
+		}
+		
+		return check;
+	}
+	
+	// 고등학력사항 입력
+	public String addHighSchool(HighSchool highSchool) {
+		System.out.println("고등학력사항 입력 service");
+		String check = null;
+		int i = studentInfoDao.insertHighSchool(highSchool);
+		
+		if(i == 0) {
+			check = "입력실패";
+		} else {
+			check = "입력성공";
+		}
+		
+		return check;
+	}
+	
+	// 신상명세사항 입력
+	public String addMyProfile(MyProfile myProfile) {
+		System.out.println("신상명세사항 입력 service");
+		String check = null;
+		int i = studentInfoDao.insertMyProfile(myProfile);
+		
+		if(i == 0) {
+			check = "입력실패";
+		} else {
+			check = "입력성공";
+		}
+		
+		return check;
+	}
 }

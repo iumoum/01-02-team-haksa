@@ -218,4 +218,28 @@ public class StudentInfoDao {
 		System.out.println("장학금 입력 Dao");
 		return sqlSessionTemplate.insert(nameSpace + "insertScholarshipBenefit", scholarshipBenefit);
 	}
+	
+	// 가족 번호 조회
+	public int selectFamilyNumber() {
+		System.out.println("가족 번호 조회 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getFamilyNumber");
+	}
+	
+	// 가족 입력
+	public int insertFamily(Family family) {
+		System.out.println("가족 입력 Dao");
+		return sqlSessionTemplate.insert(nameSpace + "insertFamily", family);
+	}
+	
+	// 고등학력사항 입력
+	public int insertHighSchool(HighSchool highSchool) {
+		System.out.println("고등학력사항 입력 Dao");
+		return sqlSessionTemplate.insert(nameSpace + "insertHighSchool", highSchool);
+	}
+	
+	// 신상명세사항 입력
+	public int insertMyProfile(MyProfile myProfile) {
+		System.out.println("신상명세사항 입력 Dao");
+		return sqlSessionTemplate.insert(nameSpace + "insertMyProfile", myProfile);
+	}
 }

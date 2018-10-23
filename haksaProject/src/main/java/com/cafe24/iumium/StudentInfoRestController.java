@@ -142,4 +142,28 @@ public class StudentInfoRestController {
 		System.out.println("/rest/addScholarshipBenefit get");
 		return studentInfoService.addScholarshipBenefit(scholarshipBenefit);
 	}
+	
+	// 가족 입력
+	@ResponseBody
+	@RequestMapping(value = "/rest/addFamily", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public String insertFamily(@RequestBody Family family) {
+		System.out.println("/rest/addFamily get");
+		return studentInfoService.addFamily(family);
+	}
+	
+	// 고등학력사항 입력
+	@ResponseBody
+	@RequestMapping(value = "/rest/addHighSchool", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public String insertHighSchool(@RequestBody HighSchool highSchool) {
+		System.out.println("/rest/addHighSchool get");
+		return studentInfoService.addHighSchool(highSchool);
+	}
+	
+	// 신상명세사항 입력
+	@ResponseBody
+	@RequestMapping(value = "/rest/addMyProfile", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public String insertMyProfile(@RequestBody MyProfile myProfile) {
+		System.out.println("/rest/addMyProfile get");
+		return studentInfoService.addMyProfile(myProfile);
+	}
 }

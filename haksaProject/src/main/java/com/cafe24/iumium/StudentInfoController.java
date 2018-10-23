@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.iumium.schoolregister.studentinfo.dto.Advice;
 import com.cafe24.iumium.schoolregister.studentinfo.dto.ClassChange;
+import com.cafe24.iumium.schoolregister.studentinfo.dto.Family;
+import com.cafe24.iumium.schoolregister.studentinfo.dto.HighSchool;
+import com.cafe24.iumium.schoolregister.studentinfo.dto.MyProfile;
 import com.cafe24.iumium.schoolregister.studentinfo.dto.ScholarshipBenefit;
 import com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo;
 import com.cafe24.iumium.schoolregister.studentinfo.service.StudentInfoService;
@@ -100,24 +103,34 @@ public class StudentInfoController {
 	
 	// 가족사항 입력 화면
 	@RequestMapping(value = "/addFamily", method = RequestMethod.GET)
-	public String insertFamily(HttpServletRequest request) {
+	public String insertFamily(Model model, HttpServletRequest request) {
 		System.out.println("/addFamily GET");
 		String studentNumber = request.getParameter("studentNumber");
-		System.out.println(studentNumber+": 학번");
+		Family familyStudentNumber = new Family();
+		familyStudentNumber.setStudentNumber(studentNumber);
+		model.addAttribute("familyStudentNumber", familyStudentNumber);
 		return "schoolRegister/studentInfo/addFamily";
 	}
 	
 	// 신상명세정보 입력 화면
 	@RequestMapping(value = "/addMyProfile", method = RequestMethod.GET)
-	public String insertMyProfile() {
+	public String insertMyProfile(Model model, HttpServletRequest request) {
 		System.out.println("/addMyProfile GET");
+		String studentNumber = request.getParameter("studentNumber");
+		MyProfile myProfileNumber = new MyProfile();
+		myProfileNumber.setStudentNumber(studentNumber);
+		model.addAttribute("myProfileNumber", myProfileNumber);
 		return "schoolRegister/studentInfo/addMyProfile";
 	}
 	
 	// 고등학력사항 입력 화면
 	@RequestMapping(value = "/addHighSchool", method = RequestMethod.GET)
-	public String insertHighSchool() {
+	public String insertHighSchool(Model model, HttpServletRequest request) {
 		System.out.println("/addHighSchool GET");
+		String studentNumber = request.getParameter("studentNumber");
+		HighSchool highSchoolNumber = new HighSchool();
+		highSchoolNumber.setStudentNumber(studentNumber);
+		model.addAttribute("highSchoolNumber", highSchoolNumber);
 		return "schoolRegister/studentInfo/addHighSchool";
 	}
 }

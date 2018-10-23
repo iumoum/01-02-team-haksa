@@ -278,7 +278,6 @@
 							$('#myProfileHead').append("<th>전화번호</th>");
 							$('#myProfileHead').append("<th>이메일</th>");
 							$('#myProfileHead').append("<th>주소</th>");
-							$('#myProfileHead').append("<th>주소(영문)</th>");
 							$('#myProfileHead').append("</tr>");
 							
 							$(data).each(function(index, item){
@@ -287,7 +286,6 @@
 								$('#myProfile').append("<td>"+item.humanPhoneNumber+"</td>");
 								$('#myProfile').append("<td>"+item.humanEmail+"</td>");
 								$('#myProfile').append("<td>"+item.humanAddress+"</td>");
-								$('#myProfile').append("<td>"+item.humanEnglishAddress+"</td>");
 								$('#myProfile').append("</tr>");
 							})
 						}

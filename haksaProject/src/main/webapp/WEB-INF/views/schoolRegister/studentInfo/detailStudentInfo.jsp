@@ -199,7 +199,6 @@
 							$('#myProfileHead').append("<th>전화번호</th>");
 							$('#myProfileHead').append("<th>이메일</th>");
 							$('#myProfileHead').append("<th>주소</th>");
-							$('#myProfileHead').append("<th>영문 주소</th>");
 							$('#myProfileHead').append("</tr>");
 							
     						$(data).each(function(index, item){
@@ -208,7 +207,6 @@
     							$('#myProfile').append("<td>"+item.humanPhoneNumber+"</td>");
     							$('#myProfile').append("<td>"+item.humanEmail+"</td>");
     							$('#myProfile').append("<td>"+item.humanAddress+"</td>");
-    							$('#myProfile').append("<td>"+item.humanEnglishAddress+"</td>");
     							$('#myProfile').append("</tr>");
     						})
     					}
@@ -259,9 +257,9 @@
 					<h1>학적 관리 > 학생정보 관리 > 학생정보</h1>
 					
 					<form id="form">
-						<a href="/addFamily"><input type='button' class="btn btn-info" value='가족사항 입력'></a>
-						<a href="/addMyProfile"><input type='button' class="btn btn-info" value='신상명세정보 입력'></a>
-						<a href="/addHighSchool"><input type='button' class="btn btn-info" value='고등학력사항 입력'></a>
+						<a href="/addFamily?studentNumber=${studentInfo.studentNumber}"><input type='button' class="btn btn-info" value='가족사항 입력'></a>
+						<a href="/addMyProfile?studentNumber=${studentInfo.studentNumber}"><input type='button' class="btn btn-info" value='신상명세정보 입력'></a>
+						<a href="/addHighSchool?studentNumber=${studentInfo.studentNumber}"><input type='button' class="btn btn-info" value='고등학력사항 입력'></a>
 					</form>
 					<br>
 					

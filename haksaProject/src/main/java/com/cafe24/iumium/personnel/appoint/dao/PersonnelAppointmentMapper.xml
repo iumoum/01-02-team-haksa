@@ -346,7 +346,6 @@
 				, human_phone_number as humanPhoneNumber
 				, human_email as humanEmail
 				, human_address as humanAddress
-				, human_english_address as humanEnglishAddress
 		FROM ilban_myprofile
 		WHERE student_teacher_no=#{studentTeacherNo}
 	</select>

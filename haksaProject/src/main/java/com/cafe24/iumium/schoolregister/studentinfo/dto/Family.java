@@ -1,7 +1,7 @@
 package com.cafe24.iumium.schoolregister.studentinfo.dto;
 
 public class Family {
-	private int familyNumber;	// 가족사항번호
+	private String familyNumber;	// 가족사항번호
 	private String studentNumber;	// 학번
 	private String familyRelationship;	// 가족관계
 	private String familyPhoneNumber;	//가족의 전화번호
@@ -10,17 +10,24 @@ public class Family {
 	private String familyJob;	//가족의 직업
 	private String familyResidence;	// 가족의 주소
 	private String familyName;	// 성명
+	private String recordId;	// 시스템 등록자 아이디
 	
+	public String getRecordId() {
+		return recordId;
+	}
+	public void setRecordId(String recordId) {
+		this.recordId = recordId;
+	}
 	public String getFamilyName() {
 		return familyName;
 	}
 	public void setFamilyName(String familyName) {
 		this.familyName = familyName;
 	}
-	public int getFamilyNumber() {
+	public String getFamilyNumber() {
 		return familyNumber;
 	}
-	public void setFamilyNumber(int familyNumber) {
+	public void setFamilyNumber(String familyNumber) {
 		this.familyNumber = familyNumber;
 	}
 	public String getStudentNumber() {

@@ -5,8 +5,14 @@ public class MyProfile {
 	private String humanPhoneNumber;	// 전화번호
 	private String humanEmail;	// 이메일
 	private String humanAddress;	// 주소
-	private String humanEnglishAddress;	// 영문 주소
+	private String recordId;	// 시스템 등록자 아이디
 	
+	public String getRecordId() {
+		return recordId;
+	}
+	public void setRecordId(String recordId) {
+		this.recordId = recordId;
+	}
 	public String getStudentNumber() {
 		return studentNumber;
 	}
@@ -30,11 +36,5 @@ public class MyProfile {
 	}
 	public void setHumanAddress(String humanAddress) {
 		this.humanAddress = humanAddress;
-	}
-	public String getHumanEnglishAddress() {
-		return humanEnglishAddress;
-	}
-	public void setHumanEnglishAddress(String humanEnglishAddress) {
-		this.humanEnglishAddress = humanEnglishAddress;
 	}
 }

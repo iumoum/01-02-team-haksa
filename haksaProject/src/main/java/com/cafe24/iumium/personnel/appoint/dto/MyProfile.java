@@ -8,7 +8,6 @@ public class MyProfile {
 	private String humanPhoneNumber;	// 전화번호
 	private String humanEmail;	// 이메일
 	private String humanAddress;	// 주소
-	private String humanEnglishAddress;	// 영문주소
 	private String humanRegistrationDay;	// 시스템등록일자
 	private String humanModificationDate;	// 최종수정일자
 	
@@ -41,12 +40,6 @@ public class MyProfile {
 	}
 	public void setHumanAddress(String humanAddress) {
 		this.humanAddress = humanAddress;
-	}
-	public String getHumanEnglishAddress() {
-		return humanEnglishAddress;
-	}
-	public void setHumanEnglishAddress(String humanEnglishAddress) {
-		this.humanEnglishAddress = humanEnglishAddress;
 	}
 	public String getHumanRegistrationDay() {
 		return humanRegistrationDay;
