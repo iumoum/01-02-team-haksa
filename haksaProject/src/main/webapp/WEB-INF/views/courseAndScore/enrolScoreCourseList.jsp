@@ -10,6 +10,9 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>수강신청 및 정정</title><!-- Bootstrap core CSS-->
+
+<script src="/resources/vendor/jquery/jquery.min.js"></script>
+
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom fonts for this template-->
@@ -21,7 +24,36 @@
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 
-
+<script>
+	$(document).ready(()=>{
+		
+		var = 
+		
+		$('#insertScore').click(()=>{
+			alert('수강신청 페이지로 이동합니다.');
+			
+			$.ajax({
+		        url:"/courseAndScore/enrolScore",
+		        type:'POST',
+		        data: allData,
+		        success:(data)=>{
+		            
+		           
+		        },
+		        error:(jqXHR, textStatus, errorThrown)=>{
+		            
+		        }
+		    });
+		});
+		
+	});
+</script>
+<style>
+	#enrolScoreCourseListMain{
+		text-align : left;
+		font-weight: bold;
+	}
+</style>
 </head>
 
 <body id="page-top">
@@ -36,14 +68,44 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
+			<form>
+				<table class="table table-bordered">
+					<thead align="center">
+						<tr align="right">
+							<td scope="col" colspan="10">
+								<p id = "enrolScoreCourseListMain">담당과목성적등록</p>
+								<br><br>
+							</td>
+					    </tr>
+						<tr>
+							<th>년도</th>
+							<th>학기</th>
+							<th>강의상황서 번호</th>
+							<th>과목명</th>
+							<th>학점</th>
+							<th>입력 확정</th>
+							<th>공개 여부</th>
+						</tr>
+					</thead>
+					
+					<tbody align="center">
+						<c:forEach var="row" items="${insertScore}">
+							<tr>
+								<td>${row.insertScoreSchoolYear }</td>
+								<td>${row.insertScoreSemester }</td>
+								<td>${row.lectureStatusNumber }</td>
+								<td><a id="insertScore" href="/courseAndScore/enrolScore?subject=${row.insertScoreCourseName}">${row.insertScoreCourseName}</a></td>
+								<td>${row.insertScoreCourseCredit }</td>
+								<td>${row.insertScoreFixScore }</td>
+								<td>${row.insertScoreOpenScore }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</form>
 			
 			</div>
 			<!-- /.container-fluid -->
-			
-			
-			
-			
-			
 			
 			<!-- Sticky Footer -->
 			<footer class="sticky-footer">

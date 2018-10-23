@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.iumium.courseandscore.dao.CourseAndScoreMapper">
 
-	<!-- 세션 학번 -> 학과별반번호 조회 -->
-	<select id="inquireStudentDept" parameterType="String" resultType="com.cafe24.iumium.courseandscore.dto.EnrolCourse">
+	<!-- 1. 세션 학번 -> 학과별반번호 조회 -->
+	<select id="inquireClassByDepartmentNumber" parameterType="String" resultType="com.cafe24.iumium.courseandscore.dto.EnrolCourse">
 		SELECT 
 			class_by_department_number as classByDepartmentNumber
 			
@@ -11,7 +11,7 @@
 		WHERE student_number= #{id}
 	</select>
 	
-	<!-- 학생의 학과별반번호 -> 강의상황서 내용 조회 -->
+	<!-- 1-1 학생의 학과별반번호 -> 강의상황서 내용 조회 -->
 	<select id="inquireLectureStatus" parameterType="int" resultType="com.cafe24.iumium.courseandscore.dto.EnrolCourse">
 		SELECT 
 			haksa_lecture_status.lecture_status_number as lectureStatusNumber
@@ -25,8 +25,7 @@
 			,haksa_room.room_name as enrolCourseClassroom
 			,substring(haksa_semester.semester_code,1,4) as enrolCourseYear
 			,substring(haksa_semester.semester_code,6,1) as enrolCourseSemester
-			,haksa_lecture_status.lecture_status_limit_number
-			,haksa_lecture_status.lecture_status_limit_number as enrolCourseCourseRetakeNumber
+			,haksa_lecture_status.lecture_status_limit_number as lectureStatusLimitNumber
 			
 			
 		FROM haksa_lecture_status
@@ -45,29 +44,366 @@
 		and (haksa_type_of_completion.type_of_completion_code = haksa_lecture_status.type_of_completion_code)
 		and (haksa_class_by_department.class_by_department_number = haksa_lecture_status.class_by_department_number)
 		and (haksa_room.room_code = haksa_lecture_status.room_code)
-		and (haksa_semester.semester_code = haksa_lecture_status.semester_code)
+		and (haksa_class_by_department.semester_code = haksa_semester.semester_code)
 		and (haksa_department.dept_code = haksa_class_by_department.dept_code)
 		and (ilban_human.student_teacher_no = haksa_lecture_status.appointment_school_personnel_number)
 		
 	</select>
-	
-	<!-- 학번이 일치하는 학생의 수강신청 테이블 내의 레코드 조회 -->
-	<select id="inquireSearchLectureById" parameterType="String" resultType="com.cafe24.iumium.courseandscore.dto.EnrolCourse">
+	<!-- 2. 관리자의 학과별반번호 -> 강의상황서 내용 조회 -->
+	<select id="inquireLectureStatusByAdmin" resultType="com.cafe24.iumium.courseandscore.dto.EnrolCourse">
 		SELECT 
-				enrol_course_no as enrolCourseNo
-				, enrol_course_course_name as enrolCourseCourseName
-				, enrol_course_completion_division as enrolCourseCompletionDivision
-				, enrol_course_course_credit as enrolCourseCourseCredit
-				, enrol_course_dept_name as enrolCourseDeptName
-				, enrol_course_school_year as enrolCourseSchoolYear
-				, enrol_course_class as enrolCourseClass
-				, enrol_course_prof_name as enrolCourseProfName
-				, enrol_course_classroom as enrolCourseClassroom
-				, enrol_course_year as enrolCourseYear
-				, enrol_course_semester as enrolCourseSemester
-	
-	FROM haksa_enrol_course
-	
-	WHERE enrol_course_student_number = #{id}
+			haksa_lecture_status.lecture_status_number as lectureStatusNumber
+			,haksa_subject.subject_name_korean as enrolCourseCourseName
+			,haksa_department.dept_name_korean as enrolCourseDeptName
+			,haksa_type_of_completion.type_of_completion_name as enrolCourseCompletionDivision
+			,haksa_subject.subject_score_graduation as enrolCourseCourseCredit
+			,haksa_class_by_department.class_by_department_grade as enrolCourseSchoolYear
+			,haksa_class_by_department.class_by_department_class as enrolCourseClass
+			,ilban_human.human_name as enrolCourseProfName
+			,haksa_room.room_name as enrolCourseClassroom
+			,substring(haksa_semester.semester_code,1,4) as enrolCourseYear
+			,substring(haksa_semester.semester_code,6,1) as enrolCourseSemester
+			,haksa_lecture_status.lecture_status_limit_number as enrolCourseCourseRetakeNumber
+			
+			
+		FROM haksa_lecture_status
+		
+		INNER JOIN 
+			haksa_subject 
+			,haksa_type_of_completion 
+			,haksa_class_by_department 
+			,haksa_room
+			,haksa_semester
+			,haksa_department
+			,ilban_human
+		
+		WHERE
+		
+		(haksa_subject.subject_code = haksa_lecture_status.subject_code) 
+		and (haksa_type_of_completion.type_of_completion_code = haksa_lecture_status.type_of_completion_code)
+		and (haksa_class_by_department.class_by_department_number = haksa_lecture_status.class_by_department_number)
+		and (haksa_room.room_code = haksa_lecture_status.room_code)
+		and (haksa_semester.semester_code = haksa_class_by_department.semester_code)
+		and (haksa_department.dept_code = haksa_class_by_department.dept_code)
+		and (ilban_human.student_teacher_no = haksa_lecture_status.appointment_school_personnel_number)
 	</select>
+	
+	<!-- 조건과 입력값이 일치하는 학생의 수강신청 테이블 내의 레코드 조회 -->
+	<select id="inquireSearchLectureById" parameterType="String" resultType="com.cafe24.iumium.courseandscore.dto.EnrolCourse">
+	SELECT
+		enrol_course_no as enrolCourseNo
+		, enrol_course_course_name as enrolCourseCourseName
+		, enrol_course_completion_division as enrolCourseCompletionDivision
+		, enrol_course_course_credit as enrolCourseCourseCredit
+		, enrol_course_dept_name as enrolCourseDeptName
+		, enrol_course_school_year as enrolCourseSchoolYear
+		, enrol_course_class as enrolCourseClass
+		, enrol_course_prof_name as enrolCourseProfName
+		, enrol_course_classroom as enrolCourseClassroom
+		, enrol_course_year as enrolCourseYear
+		, enrol_course_semester as enrolCourseSemester
+		, enrol_course_course_retake_number as enrolCourseCourseRetakeNumber
+
+	FROM haksa_enrol_course
+
+		<where> 
+			<if test="array[0].equals('year')">
+				enrol_course_year = #{array[1]}
+			</if>
+			
+			<if test="array[0].equals('dept')">
+				enrol_course_dept_name = #{array[1]}
+			</if>
+			
+			<if test="array[0].equals('grade')">
+				enrol_course_year = #{array[1]}
+			</if>
+			
+			<if test="array[0].equals('studentnumber')">
+				enrol_course_student_number = #{array[1]}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 4 세션 교수 아이디로 담당 과목코드 조회 -->
+	<select id="inquireEnrolScoreCourseCode" parameterType="String" resultType="com.cafe24.iumium.courseandscore.dto.InsertScore">
+		SELECT 
+			haksa_subject.subject_code AS enrolSubjectNo
+			,haksa_subject.subject_name_korean AS insertScoreCourseName
+			,SUBSTRING(haksa_semester.semester_code,1,4) AS insertScoreSchoolYear
+			,SUBSTRING(haksa_semester.semester_code,6,1) AS insertScoreSemester
+			,haksa_lecture_status.lecture_status_number AS lectureStatusNumber
+			,haksa_subject.subject_score_graduation AS insertScoreCourseCredit
+
+		FROM haksa_lecture_status
+		
+		INNER JOIN 
+			haksa_subject
+			,haksa_semester
+			,haksa_class_by_department
+			
+		WHERE haksa_lecture_status.appointment_school_personnel_number = 1234
+		
+		AND haksa_class_by_department.class_by_department_number = haksa_lecture_status.class_by_department_number
+		AND haksa_semester.semester_code = haksa_class_by_department.semester_code
+		AND haksa_subject.subject_code = haksa_lecture_status.subject_code
+	</select>
+	
+	<!-- 4-1 세션 관리자 아이디로 모든 과목코드 조회 -->
+	<select id="inquireEnrolScoreCourseCodeByAdmin" resultType="com.cafe24.iumium.courseandscore.dto.InsertScore">
+		SELECT 
+			haksa_subject.subject_code AS enrolSubjectNo
+			,haksa_subject.subject_name_korean AS insertScoreCourseName
+			,SUBSTRING(haksa_semester.semester_code,1,4) AS insertScoreSchoolYear
+			,SUBSTRING(haksa_semester.semester_code,6,1) AS insertScoreSemester
+			,haksa_lecture_status.lecture_status_number AS lectureStatusNumber
+			,haksa_subject.subject_score_graduation AS insertScoreCourseCredit
+
+		FROM haksa_lecture_status
+		
+		INNER JOIN 
+			haksa_subject
+			,haksa_semester
+			,haksa_class_by_department
+			
+		WHERE haksa_subject.subject_code = haksa_lecture_status.subject_code
+		
+		AND haksa_class_by_department.class_by_department_number = haksa_lecture_status.class_by_department_number
+		AND haksa_semester.semester_code = haksa_class_by_department.semester_code
+	</select>
+	
+	<!-- 교과명으로 수강신청내역,성적입력 테이블 조인 후 모든 정보 조회 -->
+	<!-- 			, haksa_enrol_course.lecture_status_number AS lectureStatusNumber
+	AND haksa_lecture_status.lecture_status_number = haksa_enrol_course.lecture_status_number
+				, haksa_insert_score.insert_score_fix_score AS
+				, haksa_insert_score.insert_score_open_score AS
+				,haksa_lecture_status
+	이 쿼리 적용해야됨
+	 -->
+	<select id="inquireEnrolScoreStudentNum" parameterType="String" resultType="com.cafe24.iumium.courseandscore.dto.EnrolCourse">
+		SELECT 
+			haksa_enrol_course.enrol_course_no AS enrolCourseNo
+			, haksa_enrol_course.enrol_course_student_number AS enrolCourseStudentNumber
+			, haksa_enrol_course.enrol_course_course_name AS enrolCourseCourseName
+			, haksa_enrol_course.enrol_course_completion_division AS enrolCourseCompletionDivision
+			, haksa_enrol_course.enrol_course_course_credit AS enrolCourseCourseCredit
+			, haksa_enrol_course.enrol_course_dept_name AS enrolCourseDeptName
+			, haksa_enrol_course.enrol_course_school_year AS enrolCourseSchoolYear
+			, haksa_enrol_course.enrol_course_class AS enrolCourseClass
+			, haksa_enrol_course.enrol_course_prof_name AS enrolCourseProfName
+			, haksa_enrol_course.enrol_course_classroom AS enrolCourseClassroom
+			, haksa_enrol_course.enrol_course_year AS enrolCourseYear
+			, haksa_enrol_course.enrol_course_semester AS enrolCourseSemester
+			, haksa_enrol_course.enrol_course_course_retake_number AS enrolCourseCourseRetakeNumber
+			, ilban_human.human_name AS enrolCoursestudentName
+			
+		FROM haksa_enrol_course
+		
+		INNER JOIN 
+			ilban_human
+			,haksa_insert_score
+
+			
+		WHERE haksa_enrol_course.enrol_course_course_name = #{subjectName}
+		
+		AND ilban_human.student_teacher_no = haksa_enrol_course.enrol_course_student_number
+		AND haksa_insert_score.enrol_course_no = haksa_enrol_course.enrol_course_no
+		
+	</select>
+	
+	<!-- 반을 입력받아서 해당하는 반의 학생들을 성적입력 테이블에서 조회하고 성적순으로 정렬하여 반환한다 -->
+	<select id="inquireEnrolScoreCourseByClass" parameterType="String" resultType="com.cafe24.iumium.courseandscore.dto.EnrolCourse">
+		SELECT 
+			haksa_enrol_course.enrol_course_student_number AS enrolCourseStudentNumber
+			,ROUND(SUM(haksa_insert_score.insert_score_total_score)/((22.2222222222222)*COUNT(*)),2) AS insertScoreTotalAverageScore			
+			,ilban_human.human_name AS enrolCoursestudentName
+			,haksa_enrol_course.enrol_course_completion_division AS enrolCourseCompletionDivision
+
+		FROM haksa_insert_score
+			
+		INNER JOIN haksa_enrol_course , ilban_human
+					
+		WHERE haksa_insert_score.enrol_course_no 
+		
+		IN 
+		(
+			SELECT haksa_enrol_course.enrol_course_no
+			
+			FROM haksa_enrol_course
+			
+			WHERE haksa_enrol_course.enrol_course_student_number 
+		
+			IN 
+			(
+				SELECT haksa_student_info.student_number
+				
+				FROM haksa_student_info
+				
+				WHERE haksa_student_info.class_by_department_number 
+				
+				IN 
+				(
+					SELECT haksa_class_by_department.class_by_department_number
+					
+					FROM haksa_class_by_department
+					
+					WHERE haksa_class_by_department.class_by_department_class = #{ClassName}
+				)
+			)
+		)
+				
+		AND haksa_enrol_course.enrol_course_no = haksa_insert_score.enrol_course_no
+				
+		AND haksa_enrol_course.enrol_course_student_number = ilban_human.student_teacher_no
+				
+		GROUP BY haksa_enrol_course.enrol_course_student_number
+		
+	</select>
+	
+	<!-- 학과명을 입력받아서 해당하는 학과의 학생들을 성적입력 테이블에서 조회하고 성적순으로 정렬하여 반환한다 -->
+	<select id="inquireprintScoreCourseByDept" parameterType="String" resultType="com.cafe24.iumium.courseandscore.dto.EnrolCourse">
+		SELECT 
+			haksa_enrol_course.enrol_course_student_number AS enrolCourseStudentNumber
+			,ROUND(SUM(haksa_insert_score.insert_score_total_score)/((22.2222222222222)*COUNT(*)),2) AS insertScoreTotalAverageScore
+			,ilban_human.human_name AS enrolCoursestudentName
+			,haksa_enrol_course.enrol_course_completion_division AS enrolCourseCompletionDivision
+						
+		FROM haksa_insert_score
+		
+		INNER JOIN haksa_enrol_course , ilban_human
+		
+		
+		WHERE haksa_insert_score.enrol_course_no 
+		
+		IN 
+		(
+		SELECT haksa_enrol_course.enrol_course_no
+		
+		FROM haksa_enrol_course
+		
+		WHERE haksa_enrol_course.enrol_course_student_number 
+		
+		IN 
+		(
+		SELECT haksa_student_info.student_number
+		
+		FROM haksa_student_info
+		
+		WHERE haksa_student_info.dept_code IN (
+		
+		SELECT haksa_department.dept_code
+		
+		FROM haksa_department
+		
+		WHERE haksa_department.dept_name_korean = #{DeptName}
+		)
+		)
+		)		
+		
+		AND haksa_enrol_course.enrol_course_no = haksa_insert_score.enrol_course_no
+		
+		AND haksa_enrol_course.enrol_course_student_number = ilban_human.student_teacher_no
+		
+		GROUP BY haksa_enrol_course.enrol_course_student_number
+	</select>
+	
+	<insert id="insertEnrolCourse" parameterType="java.util.HashMap">
+		INSERT INTO haksa_enrol_course
+			(enrol_course_no
+			, record_id
+			, enrol_course_student_number
+			, enrol_course_course_name
+			, enrol_course_completion_division
+			, enrol_course_course_credit
+			, enrol_course_dept_name
+			, enrol_course_school_year
+			, enrol_course_class
+			, enrol_course_prof_name
+			, enrol_course_classroom
+			, enrol_course_year
+			, enrol_course_semester
+			, enrol_course_course_retake_number
+			, enrol_course_date)
+		VALUES (
+			(SELECT MAX(enrol_course_no) FROM haksa_enrol_course a)+1
+			,'${id}'
+			,'${id}'
+			,'${enrolCourseCourseName}'
+			,'${enrolCourseCompletionDivision}'
+			,'${enrolCourseCourseCredit}'
+			,'${enrolCourseDeptName}'
+			,'${enrolCourseSchoolYear}'
+			,'${enrolCourseClass}'
+			,'${enrolCourseProfName}'
+			,'${enrolCourseClassroom}'
+			,'${enrolCourseYear}'
+			,'${enrolCourseSemester}'
+			,0
+			,substring(now(),1,10)
+			)
+	</insert>
+	
+	<!-- 세션 아이디 입력 받아서 수강신청 내역 조회 -->
+	<select id="inquireEnrolCourseList" parameterType="String" resultType="com.cafe24.iumium.courseandscore.dto.EnrolCourse">
+		SELECT 
+			enrol_course_no AS enrolCourseNo
+			, enrol_course_student_number AS enrolCourseStudentNumber
+			, enrol_course_course_name AS enrolCourseCourseName
+			, enrol_course_completion_division AS enrolCourseCompletionDivision
+			, enrol_course_course_credit AS enrolCourseCourseCredit
+			, enrol_course_dept_name AS enrolCourseDeptName
+			, enrol_course_school_year AS enrolCourseSchoolYear
+			, enrol_course_class AS enrolCourseClass
+			, enrol_course_prof_name AS enrolCourseProfName
+			, enrol_course_classroom AS enrolCourseClassroom
+			, enrol_course_year AS enrolCourseYear
+			, enrol_course_semester AS enrolCourseSemester
+			, enrol_course_course_retake_number AS enrolCourseCourseRetakeNumber
+			, enrol_course_date AS enrolCourseDate
+		
+		FROM haksa_enrol_course
+		WHERE enrol_course_student_number = #{id}
+	</select>
+	
+	<!-- 수강신청 내역 번호를 입력 받아서 수강신청 내역 삭제 -->
+	
+	<delete id="removeEnrolCourse" parameterType="java.util.HashMap">
+		DELETE 
+		FROM haksa_enrol_course 
+		WHERE enrol_course_no = '${"arr[0]"}'
+	</delete>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

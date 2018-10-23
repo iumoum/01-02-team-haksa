@@ -95,6 +95,25 @@
 		</li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+				<i class="fas fa-fw fa-folder"></i> <span>수강신청</span>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+				<a class="dropdown-item" href="/courseAndScore/enrolCourse">수강신청</a>
+				<a class="dropdown-item" href="/courseAndScore/searchCourse">수강과목 조회</a>
+			</div>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+				<i class="fas fa-fw fa-folder"></i> <span>성적입력</span>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+				<a class="dropdown-item" href="/courseAndScore/enrolScoreCourseList">담당과목성적등록</a>
+				<a class="dropdown-item" href="/courseAndScore/printScoreRankInDept">학과 석차 조회</a>
+				<a class="dropdown-item" href="/courseAndScore/printScoreRankInClass">반 석차 조회</a>
+			</div>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
 				<i class="fas fa-fw fa-folder"></i> <span>인사코드 관리</span>
 			</a>
 			<div class="dropdown-menu" aria-labelledby="pagesDropdown">

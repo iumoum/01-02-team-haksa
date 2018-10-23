@@ -20,7 +20,12 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-
+<style>
+	#enrolScoreMain{
+		text-align : left;
+		font-weight: bold;
+	}
+</style>
 
 </head>
 
@@ -36,14 +41,74 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
+			<table class="table table-bordered">
+					<tr align="right">
+						<td scope="col" colspan="10">
+							<p id = "enrolScoreMain">담당과목성적등록</p>
+							<button type="button" class="btn btn-info" onclick="history.go(-1);">이전화면</button>
+							<button type="button" class="btn btn-info">성적공개</button>
+							<button type="button" class="btn btn-success">성적입력확정</button>
+						</td>
+				    </tr>
+					<tr>
+						<td scope="col" colspan="10"></td>
+				    </tr>
+				    <tr>
+				    	<th colspan="10"><br>성적입력</th>
+				    </tr>
+					    <tr>
+					    	<th>과목명</th>
+					    	<td>${enrolCourse[0].enrolCourseCourseName}</td>
+					    	<th>확정여부</th>
+					    	<td></td>
+					    	<th>공개여부</th>
+					    	<td></td>
+					    	<th>학점</th>
+					    	<td>${enrolCourse[0].enrolCourseCourseCredit}</td>
+					    </tr>
+					    <tr>
+					    	<th>최대 수강 인원</th>
+					    	<td></td>
+					    	<th>총 수강 인원</th>
+					    	<td></td>
+					    </tr>
+				    <tr>
+				    	<th colspan="10"><br>성적,등급,점수입력</th>
+				    </tr>
+				    <tr>
+				    	<th>번호</th>
+				    	<th>학번</th>
+				    	<th>성명</th>
+				    	<th>이수구분</th>
+				    	<th>출석점수</th>
+				    	<th>중간점수</th>
+				    	<th>기말점수</th>
+				    	<th>제출물점수</th>
+				    	<th>총점</th>
+				    	<th>재수강횟수</th>
+				    </tr>
+				    <c:forEach var="row" items="${enrolCourse}">
+					    <tr>
+					    	<td>${row.enrolCourseNo }</td>
+					    	<td>${row.enrolCourseStudentNumber }</td>
+					    	<td>${row.enrolCoursestudentName }</td>
+					    	<td>${row.enrolCourseCompletionDivision }</td>
+					    	<td><input id="attendancePoint" type="text"></td>
+					    	<td><input id="midPoint" type="text"></td>
+					    	<td><input id="finalPoint" type="text"></td>
+					    	<td><input id="reportPoint" type="text"></td>
+					    	<td><input id="totalPoint" type="text"></td>
+					    	<td>${row.enrolCourseCourseRetakeNumber }</td>
+					    </tr>
+				    </c:forEach>
+				    <tr>
+				    	<td colspan="10" align="right"><button type="button" id="totalPointCal" class="btn btn-success">총점계산</button></td>
+				    </tr>
+			</table>
+			
 			
 			</div>
 			<!-- /.container-fluid -->
-			
-			
-			
-			
-			
 			
 			<!-- Sticky Footer -->
 			<footer class="sticky-footer">

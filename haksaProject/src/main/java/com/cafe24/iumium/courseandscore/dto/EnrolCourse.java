@@ -20,9 +20,12 @@ public class EnrolCourse {
 	private int classByDepartmentNumber;
 	private String enrolCourseNo;
 	private String enrolCourseStudentNumber;
+	private String enrolCoursestudentName;
 	private String enrolCourseCourseName;
 	private String enrolCourseCompletionDivision;
 	private int enrolCourseCourseCredit;
+	private int rank;
+	private double insertScoreTotalAverageScore;
 	private String enrolCourseDeptName;
 	private int enrolCourseSchoolYear;
 	private String enrolCourseClass;
@@ -31,6 +34,7 @@ public class EnrolCourse {
 	private int enrolCourseYear;
 	private int enrolCourseSemester;
 	private int enrolCourseCourseRetakeNumber;
+	private int lectureStatusLimitNumber;
 	private String enrolCourseDate;
 	
 	
@@ -58,6 +62,13 @@ public class EnrolCourse {
 	public void setEnrolCourseStudentNumber(String enrolCourseStudentNumber) {
 		this.enrolCourseStudentNumber = enrolCourseStudentNumber;
 	}
+	
+	public String getEnrolCoursestudentName() {
+		return enrolCoursestudentName;
+	}
+	public void setEnrolCoursestudentName(String enrolCoursestudentName) {
+		this.enrolCoursestudentName = enrolCoursestudentName;
+	}
 	public String getEnrolCourseCourseName() {
 		return enrolCourseCourseName;
 	}
@@ -75,6 +86,18 @@ public class EnrolCourse {
 	}
 	public void setEnrolCourseCourseCredit(int enrolCourseCourseCredit) {
 		this.enrolCourseCourseCredit = enrolCourseCourseCredit;
+	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+	public double getInsertScoreTotalAverageScore() {
+		return insertScoreTotalAverageScore;
+	}
+	public void setInsertScoreTotalAverageScore(double insertScoreTotalAverageScore) {
+		this.insertScoreTotalAverageScore = insertScoreTotalAverageScore;
 	}
 	public String getEnrolCourseDeptName() {
 		return enrolCourseDeptName;
@@ -123,6 +146,12 @@ public class EnrolCourse {
 	}
 	public void setEnrolCourseCourseRetakeNumber(int enrolCourseCourseRetakeNumber) {
 		this.enrolCourseCourseRetakeNumber = enrolCourseCourseRetakeNumber;
+	}
+	public int getLectureStatusLimitNumber() {
+		return lectureStatusLimitNumber;
+	}
+	public void setLectureStatusLimitNumber(int lectureStatusLimitNumber) {
+		this.lectureStatusLimitNumber = lectureStatusLimitNumber;
 	}
 	public String getEnrolCourseDate() {
 		return enrolCourseDate;
