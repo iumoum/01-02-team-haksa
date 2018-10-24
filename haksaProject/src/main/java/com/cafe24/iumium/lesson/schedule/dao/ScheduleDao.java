@@ -62,18 +62,8 @@ public class ScheduleDao {
 		return sqlSessionTemplate.selectList(NS+"getRoomScheduleList", search);
 	}
 	
-	/*// 학과별반 조회 쿼리문 실행
-	public ClassByDepartment classByDepartmentSearchList(Search search) {
-		return sqlSessionTemplate.selectOne(NS+"getClassByDepartmentList", search);
+	// 교수강의과목조회 실행
+	public List<LectureStatus> professorSubjectList(Search search) {
+		return sqlSessionTemplate.selectList(NS+"getProfessorSubjectList", search);
 	}
-	
-	// 강의상황서 조회 쿼리문 실행
-	public List<LectureStatus> lectureStatusSearchList(ClassByDepartment classByDepartment) {
-		return sqlSessionTemplate.selectList(NS+"getLectureStatusList", classByDepartment);
-	}
-	
-	// 과목, 강의실, 교수님이름 조회 쿼리문 실행
-	public LectureStatus lectureStatusSearchNameList(LectureStatus ls) {
-		return sqlSessionTemplate.selectOne(NS+"getLectureStatusNameList", ls);
-	}*/
 }

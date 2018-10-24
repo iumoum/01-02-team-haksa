@@ -91,6 +91,16 @@
 				<a class="dropdown-item" href="/lesson/schedule/listSchedule">시간표 검색</a>
 				<a class="dropdown-item" href="/lesson/schedule/listProfessorSchedule">교수시간표 검색</a>
 				<a class="dropdown-item" href="/lesson/schedule/listRoomSchedule">강의실시간표 검색</a>
+				<a class="dropdown-item" href="/lesson/schedule/listProfessorSubject">교수강의과목조회</a>
+			</div>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+				<i class="fas fa-fw fa-folder"></i> <span>출석부 관리</span>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
+				<a class="dropdown-item" href="/lesson/attendance/addAttendance">출석부 입력</a>
+				<a class="dropdown-item" href="/lesson/attendance/listAttendance">강의 출결조회 리스트</a>
 			</div>
 		</li>
 		<li class="nav-item dropdown">

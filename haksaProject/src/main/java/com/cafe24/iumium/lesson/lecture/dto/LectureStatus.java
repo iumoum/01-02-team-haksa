@@ -13,6 +13,8 @@ public class LectureStatus {
 	private String classByDepartmentNumber;
 	private String deptName;
 	private int classByDepartmentGrade;
+	private String classByDepartmentClass;
+	private String classByDepartmentDayAndNight;
 	private String roomCode;
 	private int roomFloor;
 	private int roomNumber;
@@ -23,6 +25,7 @@ public class LectureStatus {
 	private String semesterCode;
 	private int lectureStatusLimitNumber;
 	private String lectureStatusRegisteredDate;
+	
 	public String getLectureStatusNumber() {
 		return lectureStatusNumber;
 	}
@@ -83,11 +86,29 @@ public class LectureStatus {
 	public void setClassByDepartmentNumber(String classByDepartmentNumber) {
 		this.classByDepartmentNumber = classByDepartmentNumber;
 	}
+	public String getDeptName() {
+		return deptName;
+	}
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
 	public int getClassByDepartmentGrade() {
 		return classByDepartmentGrade;
 	}
 	public void setClassByDepartmentGrade(int classByDepartmentGrade) {
 		this.classByDepartmentGrade = classByDepartmentGrade;
+	}
+	public String getClassByDepartmentClass() {
+		return classByDepartmentClass;
+	}
+	public void setClassByDepartmentClass(String classByDepartmentClass) {
+		this.classByDepartmentClass = classByDepartmentClass;
+	}
+	public String getClassByDepartmentDayAndNight() {
+		return classByDepartmentDayAndNight;
+	}
+	public void setClassByDepartmentDayAndNight(String classByDepartmentDayAndNight) {
+		this.classByDepartmentDayAndNight = classByDepartmentDayAndNight;
 	}
 	public String getRoomCode() {
 		return roomCode;
@@ -95,11 +116,29 @@ public class LectureStatus {
 	public void setRoomCode(String roomCode) {
 		this.roomCode = roomCode;
 	}
+	public int getRoomFloor() {
+		return roomFloor;
+	}
+	public void setRoomFloor(int roomFloor) {
+		this.roomFloor = roomFloor;
+	}
+	public int getRoomNumber() {
+		return roomNumber;
+	}
+	public void setRoomNumber(int roomNumber) {
+		this.roomNumber = roomNumber;
+	}
 	public String getRoomName() {
 		return roomName;
 	}
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
+	}
+	public String getBuildingName() {
+		return buildingName;
+	}
+	public void setBuildingName(String buildingName) {
+		this.buildingName = buildingName;
 	}
 	public String getAppointmentSchoolPersonnelNumber() {
 		return appointmentSchoolPersonnelNumber;
@@ -130,35 +169,5 @@ public class LectureStatus {
 	}
 	public void setLectureStatusRegisteredDate(String lectureStatusRegisteredDate) {
 		this.lectureStatusRegisteredDate = lectureStatusRegisteredDate;
-	}
-	public String getDeptNameKorean() {
-		return deptName;
-	}
-	public void setDeptNameKorean(String deptNameKorean) {
-		this.deptName = deptNameKorean;
-	}
-	public String getDeptName() {
-		return deptName;
-	}
-	public void setDeptName(String deptName) {
-		this.deptName = deptName;
-	}
-	public String getBuildingName() {
-		return buildingName;
-	}
-	public void setBuildingName(String buildingName) {
-		this.buildingName = buildingName;
-	}
-	public int getRoomFloor() {
-		return roomFloor;
-	}
-	public void setRoomFloor(int roomFloor) {
-		this.roomFloor = roomFloor;
-	}
-	public int getRoomNumber() {
-		return roomNumber;
-	}
-	public void setRoomNumber(int roomNumber) {
-		this.roomNumber = roomNumber;
 	}
 }

@@ -10,6 +10,8 @@ public class Search {
 	private String buildingCode;
 	private String dayCode;
 	private String professorNumber;
+	private String subjectCode;
+	private String prelectDate;
 	
 	public String getSemesterCode() {
 		return semesterCode;
@@ -35,6 +37,18 @@ public class Search {
 	public void setClassesCode(String classesCode) {
 		this.classesCode = classesCode;
 	}
+	public String getRoomCode() {
+		return roomCode;
+	}
+	public void setRoomCode(String roomCode) {
+		this.roomCode = roomCode;
+	}
+	public String getBuildingCode() {
+		return buildingCode;
+	}
+	public void setBuildingCode(String buildingCode) {
+		this.buildingCode = buildingCode;
+	}
 	public String getDayCode() {
 		return dayCode;
 	}
@@ -47,16 +61,16 @@ public class Search {
 	public void setProfessorNumber(String professorNumber) {
 		this.professorNumber = professorNumber;
 	}
-	public String getRoomCode() {
-		return roomCode;
+	public String getSubjectCode() {
+		return subjectCode;
 	}
-	public void setRoomCode(String roomCode) {
-		this.roomCode = roomCode;
+	public void setSubjectCode(String subjectCode) {
+		this.subjectCode = subjectCode;
 	}
-	public String getBuildingCode() {
-		return buildingCode;
+	public String getPrelectDate() {
+		return prelectDate;
 	}
-	public void setBuildingCode(String buildingCode) {
-		this.buildingCode = buildingCode;
+	public void setPrelectDate(String prelectDate) {
+		this.prelectDate = prelectDate;
 	}
 }

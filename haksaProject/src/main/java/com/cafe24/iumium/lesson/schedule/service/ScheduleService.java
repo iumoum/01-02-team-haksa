@@ -63,32 +63,8 @@ public class ScheduleService {
 		return scheduleDao.roomScheduleList(search);
 	}
 	
-	// 과목, 강의실, 교수님이름 조회
-/*	public List<LectureStatus> scheduleSearch(Search search) {
-		
-		// 학과별반번호 검색 결과
-		ClassByDepartment classByDepartment = scheduleDao.classByDepartmentSearchList(search);
-		System.out.println(classByDepartment.getClassByDepartmentNumber() + " <-- 학과별반번호");
-		
-		// 강의상황서 검색 결과
-		List<LectureStatus> lecture = scheduleDao.lectureStatusSearchList(classByDepartment);
-		
-		for(LectureStatus ls : lecture) {
-			System.out.println(ls.getSubjectCode()+" <--과목코드");
-			System.out.println(ls.getRoomCode()+" <--룸코드");
-			System.out.println(ls.getAppointmentSchoolPersonnelNumber()+" <--교직원번호");
-			System.out.println(ls.getLectureStatusNumber()+" <--강의상황서 번호");
-			
-			// 과목, 강의실, 교수님이름 검색 결과
-			LectureStatus lectureName = scheduleDao.lectureStatusSearchNameList(ls);
-			System.out.println(lectureName.getSubjectName()+" <--과목이름");
-			System.out.println(lectureName.getBuildingName()+" <--건물명");
-			System.out.println(lectureName.getRoomFloor()+" <--층");
-			System.out.println(lectureName.getRoomName()+" <--강의실이름");
-			System.out.println(lectureName.getHumanName()+" <--교수님");
-			lecture.add(lectureName);
-		}
-		System.out.println(lecture.size() + " <-- 사이즈는 몇4");
-		return lecture;
-	}*/
+	// 교수강의과목조회
+	public List<LectureStatus> professorSubjectSearch(Search search) {
+		return scheduleDao.professorSubjectList(search);
+	}
 }

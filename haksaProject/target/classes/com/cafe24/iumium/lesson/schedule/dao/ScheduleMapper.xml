@@ -125,35 +125,25 @@
 		and haksa_class_by_department.class_by_department_day_and_night=#{dayCode}
     </select>
     
-    <!-- 학과별 반 검색 쿼리문 -->
-    <!-- <select id="getClassByDepartmentList" parameterType="com.cafe24.iumium.lesson.schedule.dto.Search" resultType="com.cafe24.iumium.lesson.lecture.dto.ClassByDepartment">
-        select class_by_department_number as classByDepartmentNumber
-        from haksa_class_by_department 
-        where semester_code=#{semesterCode}
-        and dept_code=(select dept_code from haksa_department where dept_name_korean=#{departmentCode}) 
-        and class_by_department_grade=#{gradeCode}
-        and class_by_department_class=#{classesCode}
-        and class_by_department_day_and_night=#{dayCode}
-    </select> -->
-    
-    <!-- 강의상황서 검색 쿼리문 -->
-    <!-- <select id="getLectureStatusList" parameterType="com.cafe24.iumium.lesson.lecture.dto.ClassByDepartment" resultType="com.cafe24.iumium.lesson.lecture.dto.LectureStatus">
-        select lecture_status_number as lectureStatusNumber,
-        subject_code as subjectCode, 
-        room_code as roomCode, 
-        appointment_school_personnel_number as appointmentSchoolPersonnelNumber
-        from haksa_lecture_status 
-        where class_by_department_number=#{classByDepartmentNumber}
-    </select> -->
-    
-	<!-- 과목, 건물명, 층, 강의실, 교수님이름 검색 쿼리문 -->
-    <!-- <select id="getLectureStatusNameList" parameterType="com.cafe24.iumium.lesson.lecture.dto.LectureStatus" resultType="com.cafe24.iumium.lesson.lecture.dto.LectureStatus">
-        select subject_name_korean as subjectName, building_name as buildingName, room_floor as roomFloor, room_name as roomName, human_name as humanName
-        from haksa_subject, haksa_building, haksa_room, ilban_human 
-        where haksa_subject.subject_code=#{subjectCode} 
-        and haksa_building.building_code=(select building_code from haksa_room where room_code=#{roomCode})
-        and haksa_room.room_code=#{roomCode}
-        and ilban_human.student_teacher_no=#{appointmentSchoolPersonnelNumber}
-    </select> -->
-    
+    <!-- 교수강의과목조회 쿼리문 -->
+    <select id="getProfessorSubjectList" parameterType="com.cafe24.iumium.lesson.schedule.dto.Search" resultType="com.cafe24.iumium.lesson.lecture.dto.LectureStatus">
+    	select haksa_subject.subject_name_korean as subjectName,
+		haksa_department.dept_name_korean as deptName,
+		haksa_class_by_department.class_by_department_grade as classByDepartmentGrade,
+		haksa_class_by_department.class_by_department_class as classByDepartmentClass,
+		haksa_class_by_department.class_by_department_day_and_night as classByDepartmentDayAndNight,
+		haksa_type_of_completion.type_of_completion_name as typeOfCompletionName,
+		haksa_subject.subject_score_graduation as subjectScoreGraduation,
+		haksa_subject.subject_hours_theory as subjectHoursTheory,
+		haksa_subject.subject_hours_practice as subjectHoursPractice
+		
+		from haksa_lecture_status join haksa_subject on haksa_subject.subject_code=haksa_lecture_status.subject_code
+		join haksa_class_by_department on haksa_class_by_department.class_by_department_number=haksa_lecture_status.class_by_department_number
+		join haksa_department on haksa_department.dept_code=haksa_class_by_department.dept_code
+		join haksa_type_of_completion on haksa_type_of_completion.type_of_completion_code=haksa_lecture_status.type_of_completion_code
+		
+		where haksa_class_by_department.semester_code=#{semesterCode}
+		and haksa_department.dept_name_korean=#{departmentCode}
+		and haksa_lecture_status.appointment_school_personnel_number=#{professorNumber}
+    </select>
 </mapper>

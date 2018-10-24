@@ -56,6 +56,13 @@ public class ScheduleController {
 		return "schedule/listRoomSchedule";
 	}
 	
+	// 교수강의과목조회 페이지
+	@RequestMapping(value="/lesson/schedule/listProfessorSubject", method=RequestMethod.GET)
+	public String professorSubjectList() {
+		System.out.println("교수강의과목조회 페이지");
+		return "schedule/listProfessorSubject";
+	}
+	
 	// 교수명 조회
 	@RequestMapping(value="/rest/schedule/professorName", method=RequestMethod.GET, produces = "application/text; charset=utf8")
 	public @ResponseBody String professorName(@RequestParam(value="professorNumber", required=true) String professorNumber) {
@@ -131,5 +138,12 @@ public class ScheduleController {
 	public @ResponseBody List<Schedule> professorScheduleList(Search search) {
 		System.out.println("강의실 시간표 조회");
 		return scheduleService.roomScheduleSearch(search);
+	}
+	
+	// 교수강의과목조회
+	@RequestMapping(value="/rest/schedule/professorSubject", method=RequestMethod.POST)
+	public @ResponseBody List<LectureStatus> professorSubjectList(Search search) {
+		System.out.println("교수강의과목조회");
+		return scheduleService.professorSubjectSearch(search);
 	}
 }

@@ -15,7 +15,93 @@
 		<link href="/resources/css/sb-admin.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript">
-			
+			$(document).ready(function(){
+				// 학기 조회
+				$.ajax({
+					url:'/rest/schedule/semester'
+					, type:'GET'
+					, dataType:'JSON'
+					, success:function(data){
+						$(data).each(function(index, item){
+							$('#semesterCode').append("<option value="+item.semesterCode+">"+item.semesterCode+"</option>");
+						})
+					}
+				})
+				
+				// 학과 조회
+				$("#semesterCode").change(function(){
+					let code = $('#semesterCode option:selected').val();
+					console.log(code);
+					if(code != '선택') {
+						$.ajax({
+							url:'/rest/schedule/department'
+							, type:'GET'
+							, dataType:'JSON'
+							, data: {semesterCode:code}
+							, success: function(data){
+								$('#departmentCode').empty();
+								$('#departmentCode').append("<option value='선택'>선택</option>");
+								$(data).each(function(index, item){
+									$('#departmentCode').append("<option value="+item.deptNameKorean+">"+item.deptNameKorean+"</option>");
+								})
+							}
+						})
+					} else {
+						$('#departmentCode').empty();
+						$('#departmentCode').append("<option value='선택'>선택</option>");
+					}
+				})
+				
+				// 교직원번호로 교수 이름 검색
+				$('#professorSearch').click(function(){
+					let professorNumber = $('#professorNumber').val();
+					
+					$.ajax({
+						url:'/rest/schedule/professorName'
+						, type:'GET'
+						, data: {professorNumber:professorNumber}
+						, success:function(data){
+							console.log('success');
+							console.log(data)
+							$('#professorName').val(data);
+						}
+					})
+				})
+				
+				// 교수강의과목조회
+				$('#subjectSearch').click(function(){
+					let semesterCode = $('#semesterCode option:selected').val();
+					let departmentCode = $('#departmentCode option:selected').val();
+					let professorNumber = $('#professorNumber').val();
+					
+					if("선택" != semesterCode && "선택" != departmentCode && null != professorNumber){
+						$.ajax({
+							url:'/rest/schedule/professorSubject'
+							, type:'POST'
+							, async:false
+							, dataType:'JSON'
+							, data: {semesterCode:semesterCode, departmentCode:departmentCode, professorNumber:professorNumber}
+							, success: function(data){
+								console.log("success");
+				                $(data).each(function(index, item){
+				                	totalNumber = (item.subjectHoursTheory+item.subjectHoursPractice);
+				                	$('#subjectTable > tbody').append('<tr>');
+				                	$('#subjectTable > tbody').append('<td>'+item.subjectName+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+item.deptName+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+item.classByDepartmentGrade+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+item.classByDepartmentDayAndNight+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+item.classByDepartmentClass+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+item.typeOfCompletionName+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+item.subjectScoreGraduation+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+totalNumber+'</td>');
+				                	$('#subjectTable > tbody').append('</tr>');
+				                })
+							}
+						})
+					}
+					$(this).attr('disabled',true);
+				})
+			});
 		</script>
 	</head>
 	<body id="page-top">
@@ -26,7 +112,7 @@
 			
 			<div id="content-wrapper">
 				<div class="container-fluid">
-				년도-학기 : 
+					년도-학기 : 
 					<select name="yearBox" id="semesterCode">
 						<option value="선택">선택</option>
 					</select>
@@ -34,21 +120,28 @@
 					<select name="departmentBox" id="departmentCode">
 						<option value="선택">선택</option>
 					</select>
-					학년 : 
-					<select name="gradeBox" id="gradeCode">
-						<option value="선택">선택</option>
-					</select>
-					반 : 
-					<select name="classBox" id="classCode">
-						<option value="선택">선택</option>
-					</select>
-					주야 : 
-					<select name="dayBox" id="dayCode">
-						<option value="선택">선택</option>
-						<option value="주">주</option>
-						<option value="야">야</option>
-					</select>&emsp;
-					<button type="button" id="click">조회</button>
+					교수 : 
+					<input type="text" id="professorNumber">
+					<button type="button" id="professorSearch">이미지태그</button>
+					<input type="text" id="professorName" readonly>&emsp;
+					<button type="button" id="subjectSearch">조회</button>
+					
+					<table border="1" id="subjectTable">
+						<thead>
+							<tr>
+								<th>과목</th>
+								<th>학과</th>
+								<th>학년</th>
+								<th>주야</th>
+								<th>반</th>
+								<th>이수구분</th>
+								<th>학점</th>
+								<th>총시수</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
 				</div>
 				<footer class="sticky-footer">
 					<div class="container my-auto">
