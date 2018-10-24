@@ -25,6 +25,33 @@
 			$(document).ready(function() {
 				$("#dialog1").hide();
 				$("#dialog2").hide();
+				$("#dialog3").hide();
+				
+				// 학번 숫자만
+				$("#studentNumber").on("keyup", function() {
+				    $(this).val($(this).val().replace(/[^0-9]/g,""));
+				});
+				
+				// 주민번호 앞자리 숫자만
+				$("#humanResidentRegistrationNumber1").on("keyup", function() {
+				    $(this).val($(this).val().replace(/[^0-9]/g,""));
+				});
+				
+				// 주민번호 뒷자리 숫자만
+				$("#humanResidentRegistrationNumber2").on("keyup", function() {
+				    $(this).val($(this).val().replace(/[^0-9]/g,""));
+				});
+				
+				// 영문 성명 영어만
+				$("#humanNameEnglish").on("keyup", function() {
+					$(this).val($(this).val().replace(/[^a-zA-Z]/gi,""));
+				});
+				
+				// 한글 성명 한글만
+				$("#humanName").on("keyup", function() {
+					$(this).val($(this).val().replace(/[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\'"\\]/g,""));
+				});
+				
 				$("#studentEntranceDate").datepicker({
 					dateFormat: 'yy-mm-dd'
 				});
@@ -105,8 +132,12 @@
 				})
 				
 				$("#studentInfoButton").click(function() {
+					let date_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
+					
 					if($('#humanPicture').val().length < 1 || $('#studentNumber').val().length < 1 || $('#humanName').val().length < 1 || $('#humanResidentRegistrationNumber1').val().length < 6 || $('#humanResidentRegistrationNumber2').val().length < 7 || $('#countryCode').val() === "선택" || $('#humanNameEnglish').val().length < 1 || $('#humanGender').val() === "선택" || $('#humanMilitaryService').val() === "선택" || $('#deptCode').val() === "선택" || $('#grade').val() === "선택" || $('#departmentClass').val() === "선택" || $('#classByDepartmentDayAndNight').val() === "선택" || $('#studentEntranceDate').val().length < 1 || $('#studentGraduationScheduleDate').val().length < 1) {
 						$("#dialog2").dialog();
+					} else if(!date_pattern.test($("#studentEntranceDate").val()) || !date_pattern.test($("#studentGraduationScheduleDate").val())) {
+						$("#dialog3").dialog();
 					} else {
 						let recordId = "<%= session.getAttribute("userId") %>"
 						let humanPicture = $("#humanPicture").val();
@@ -246,7 +277,7 @@
 							<th>입학일자</th>
 							<td><input type="text" class="form-control" name="studentEntranceDate" id="studentEntranceDate" placeholder="입학일자"></td>
 							<th>졸업예정일자</th>
-							<td><input type="text" class="form-control" name="studentGraduationScheduleDate" id="studentGraduationScheduleDate" placeholder="졸업예정일자"></td>
+							<td colspan="3"><input type="text" class="form-control" name="studentGraduationScheduleDate" id="studentGraduationScheduleDate" placeholder="졸업예정일자"></td>
 				   		</tr>
 		    		</table>
 		    	</div>
@@ -317,6 +348,9 @@
 		</div>
 		<div id="dialog2" title="다시 입력하여 주세요.">
 			<p>양식이 맞지 않습니다.</p>
+		</div>
+		<div id="dialog3" title="다시 입력하여 주세요.">
+			<p>날짜 형식이 맞지 않습니다.</p>
 		</div>
 	</body>
 </html>

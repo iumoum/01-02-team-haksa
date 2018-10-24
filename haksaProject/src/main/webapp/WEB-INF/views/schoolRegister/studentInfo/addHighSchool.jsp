@@ -27,6 +27,11 @@
 			$(document).ready(function() {
 				$("#dialog2").hide();
 				
+				// 학교명 한글만 입력되게
+				$("#highSchoolSchoolName").on("keyup", function() {
+					$(this).val($(this).val().replace(/[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\'"\\]/g,""));
+				});
+				
 				$("#highSchoolGraduation").datepicker({
 					dateFormat: 'yy-mm-dd'
 				});
@@ -36,9 +41,12 @@
 				});
 				
 				$("#addHighSchool").click(function() {
+					let date_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
 					
 					if($('#highSchoolSchoolName').val().length < 1 || $('#highSchoolGraduation').val().length < 1) {
 						$("#dialog2").dialog();
+					} else if(!date_pattern.test($("#highSchoolGraduation").val())) {
+						$("#dialog3").dialog();
 					} else {
 						let studentNumber = ${highSchoolNumber.studentNumber};
 						let recordId = "<%= session.getAttribute("userId") %>"
@@ -161,6 +169,9 @@
 		<script src="/resources/js/demo/chart-area-demo.js"></script>
 		<div id="dialog2" title="다시 입력하여 주세요.">
 			<p>양식이 맞지 않습니다.</p>
+		</div>
+		<div id="dialog3" title="다시 입력하여 주세요.">
+			<p>날짜 형식이 맞지 않습니다.</p>
 		</div>
 	</body>
 </html>

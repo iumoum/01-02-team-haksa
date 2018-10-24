@@ -131,8 +131,12 @@ public class StudentInfoService {
 		} else {
 			StudentInfo classByDepartment = studentInfoDao.selectClassByDepartment(studentInfo);
 			student.setClassByDepartmentNumber(classByDepartment.getClassByDepartmentNumber());
-			studentInfoDao.insertStudentInfo(student);
-			studentInfoDao.insertHuman(student);
+			studentInfoDao.insertStudentInfo(student); // 학생정보 입력
+			studentInfoDao.insertHuman(student); // 인적사항 입력
+			String password = student.getHumanResidentRegistrationNumber().substring(0, 6); // 주민번호 앞자리 6자리를 잘라서 퍄스워드로 사용
+			student.setHumanResidentRegistrationNumber(password);
+			studentInfoDao.insertAccountManagement(student); // 로그인 테이블 입력
+			
 			check = "입력성공";
 		}
 		

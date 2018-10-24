@@ -68,6 +68,32 @@
 			    })
 			    
 				$("#dialog2").hide();
+				$("#dialog3").hide();
+				
+				// 가족관계 한글만 입력되게
+				$("#familyRelationship").on("keyup", function() {
+					$(this).val($(this).val().replace(/[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\'"\\]/g,""));
+				});
+				
+				// 가족 성명 한글만 입력되게
+				$("#familyName").on("keyup", function() {
+					$(this).val($(this).val().replace(/[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\'"\\]/g,""));
+				});
+				
+				// 전화번호 숫자만 입력되게
+				$("#familyPhoneNumber").on("keyup", function() {
+				    $(this).val($(this).val().replace(/[^0-9]/g,""));
+				});
+				
+				// 학력 한글만 입력되게
+				$("#familyAcademicBackground").on("keyup", function() {
+					$(this).val($(this).val().replace(/[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\'"\\]/g,""));
+				});
+				
+				// 직업 한글만 입력되게
+				$("#familyJob").on("keyup", function() {
+					$(this).val($(this).val().replace(/[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\'"\\]/g,""));
+				});
 				
 				$("#familyBirthday").datepicker({
 					dateFormat: 'yy-mm-dd'
@@ -78,10 +104,13 @@
 				});
 				
 				$("#addFamily").click(function() {
+					let date_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
 					let familyResidence = $(sample6_address).val() + " " + $(sample6_address2).val();
 					
 					if($('#familyRelationship').val().length < 1 || $('#familyName').val().length < 1 || $('#familyPhoneNumber').val().length < 1 || $('#familyBirthday').val().length < 1 || $('#familyAcademicBackground').val().length < 1 || $('#familyJob').val().length < 1 || $('#sample6_address').val().length < 1 || $('#sample6_address2').val().length < 1) {
 						$("#dialog2").dialog();
+					} else if(!date_pattern.test($("#familyBirthday").val())) {
+						$("#dialog3").dialog();
 					} else {
 						let studentNumber = ${familyStudentNumber.studentNumber};
 						let recordId = "<%= session.getAttribute("userId") %>"
@@ -156,7 +185,7 @@
 				   		
 				   		<tr>
 				   			<td><input type="button" id="sample6_execDaumPostcode" value="우편번호 찾기"></td>
-				   			<td colspan="2"><input type="text" class="form-control" id="sample6_address" placeholder="주소"></td>
+				   			<td colspan="3"><input type="text" class="form-control" id="sample6_address" placeholder="주소"></td>
 				   			<td colspan="2"><input type="text" class="form-control" id="sample6_address2" placeholder="상세주소"></td>
 				   		</tr>
 		    		</table>
@@ -225,6 +254,9 @@
 		<script src="/resources/js/demo/chart-area-demo.js"></script>
 		<div id="dialog2" title="다시 입력하여 주세요.">
 			<p>양식이 맞지 않습니다.</p>
+		</div>
+		<div id="dialog3" title="다시 입력하여 주세요.">
+			<p>날짜 형식이 맞지 않습니다.</p>
 		</div>
 	</body>
 </html>

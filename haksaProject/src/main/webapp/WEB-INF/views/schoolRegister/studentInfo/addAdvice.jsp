@@ -26,6 +26,18 @@
 			$(document).ready(function() {
 				$("#dialog1").hide();
 				$("#dialog2").hide();
+				$("#dialog3").hide();
+				
+				// 학번 숫자만 입력되게
+				$("#studentNumber").on("keyup", function() {
+				    $(this).val($(this).val().replace(/[^0-9]/g,""));
+				});
+				
+				// 상담내용 한글만 입력되게
+				$("#adviceContent").on("keyup", function() {
+					$(this).val($(this).val().replace(/[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\'"\\]/g,""));
+				});
+				
 				$("#adviceDate").datepicker({
 					dateFormat: 'yy-mm-dd'
 				});
@@ -42,8 +54,12 @@
 				})
 				
 				$("#addAdviceButton").click(function() {
+					let date_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
+					
 					if($('#studentNumber').val().length < 1 || $('#adviceContent').val().length < 1 || $('#adviceDate').val().length < 1 || $('#counselResultCode').val() === "선택") {
 						$("#dialog2").dialog();
+					} else if(!date_pattern.test($("#adviceDate").val())) {
+						$("#dialog3").dialog();
 					} else {
 						let recordId = "<%= session.getAttribute("userId") %>"
 						let counselResultCode = $("#counselResultCode").val();
@@ -111,7 +127,7 @@
 				   		
 				   		<tr>
 							<th>상담내용</th>
-							<td><textarea class="form-control" rows="4" cols="50" id="adviceContent" name="adviceContent"></textarea></td>
+							<td colspan="6"><textarea class="form-control" rows="4" cols="50" id="adviceContent" name="adviceContent"></textarea></td>
 				   		</tr>
 		    		</table>
 		    	</div>
@@ -182,6 +198,9 @@
 		</div>
 		<div id="dialog2" title="다시 입력하여 주세요.">
 			<p>양식이 맞지 않습니다.</p>
+		</div>
+		<div id="dialog3" title="다시 입력하여 주세요.">
+			<p>날짜 형식이 맞지 않습니다.</p>
 		</div>
 	</body>
 </html>

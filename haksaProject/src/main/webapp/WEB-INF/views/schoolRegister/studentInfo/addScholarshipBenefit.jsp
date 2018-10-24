@@ -26,13 +26,51 @@
 			$(document).ready(function() {
 				$("#dialog1").hide();
 				$("#dialog2").hide();
+				$("#dialog3").hide();
+				
+				// 학번 숫자만 입력되게
+				$("#studentNumber").on("keyup", function() {
+				    $(this).val($(this).val().replace(/[^0-9]/g,""));
+				});
+				
+				// 장학명 한글만 입력되게
+				$("#scholarshipName").on("keyup", function() {
+					$(this).val($(this).val().replace(/[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\'"\\]/g,""));
+				});
+				
+				// 장학금액 숫자만 입력되게
+				$("#scholarship").on("keyup", function() {
+				    $(this).val($(this).val().replace(/[^0-9]/g,""));
+				});
+				
+				// 장학금(구분) 한글과 괄호만 입력되게
+				$("#scholarshipSeparation").on("keyup", function() {
+					$(this).val($(this).val().replace(/[a-z0-9]|[ \[\]{}<>?|`~!@#$%^&*-_+=,.;:\'"\\]/g,""));
+				});
+				
+				// 수여기관 한글만 입력되게
+				$("#scholarshipGiveOrganization").on("keyup", function() {
+					$(this).val($(this).val().replace(/[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\'"\\]/g,""));
+				});
+				
+				// 상세내용 한글만 입력되게
+				$("#scholarshipDetail").on("keyup", function() {
+					$(this).val($(this).val().replace(/[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\'"\\]/g,""));
+				});
+				
+				// 날짜
 				$("#scholarshipGiveDate").datepicker({
 					dateFormat: 'yy-mm-dd'
 				});
 				
+				// 입력
 				$("#addScholarshipBenefit").click(function() {
+					let date_pattern = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
+					
 					if($('#studentNumber').val().length < 1 || $('#scholarshipName').val().length < 1 || $('#scholarship').val().length < 1 || $('#scholarshipSeparation').val().length < 1 || $('#scholarshipGiveOrganization').val().length < 1 || $('#scholarshipGiveDate').val().length < 1 || $('#scholarshipDetail').val().length < 1 || $('#scholarshipFile').val().length < 1) {
 						$("#dialog2").dialog();
+					} else if(!date_pattern.test($("#scholarshipGiveDate").val())) {
+						$("#dialog3").dialog();
 					} else {
 						let recordId = "<%= session.getAttribute("userId") %>"
 						let studentNumber = $("#studentNumber").val();
@@ -109,7 +147,7 @@
 				   		
 				   		<tr>
 							<th>상세내용</th>
-							<td><input type="text" class="form-control" name="scholarshipDetail" id="scholarshipDetail"></td>
+							<td colspan="3"><input type="text" class="form-control" name="scholarshipDetail" id="scholarshipDetail"></td>
 							<th>첨부파일</th>
 							<td><input type="file" class="form-control" name="scholarshipFile" id="scholarshipFile"></td>
 				   		</tr>
@@ -182,6 +220,9 @@
 		</div>
 		<div id="dialog2" title="다시 입력하여 주세요.">
 			<p>양식이 맞지 않습니다.</p>
+		</div>
+		<div id="dialog3" title="다시 입력하여 주세요.">
+			<p>날짜 형식이 맞지 않습니다.</p>
 		</div>
 	</body>
 </html>

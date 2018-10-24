@@ -423,6 +423,12 @@
 		VALUES (#{studentNumber}, #{countryCode}, #{humanNameEnglish}, #{humanName}, #{humanGender}, #{humanResidentRegistrationNumber}, #{humanMilitaryService}, #{humanPicture}, now(), now())
 	</insert>
 	
+	<!-- 로그인 테이블 입력 쿼리 -->
+	<insert id="insertAccountManagement" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+		INSERT into account_management (record_id, password, level, system_record_date)
+		VALUES (#{studentNumber}, #{humanResidentRegistrationNumber}, "student", now())
+	</insert>
+	
 	<!-- 상담 번호 조회 쿼리 -->
 	<select id="getAdviceNumber" resultType="int">
 		SELECT
@@ -502,5 +508,4 @@
 		INSERT into ilban_myprofile (student_teacher_no, record_id, human_phone_number, human_email, human_address, human_registration_day, human__modification_date)
 		VALUES (#{studentNumber}, #{recordId}, #{humanPhoneNumber}, #{humanEmail}, #{humanAddress}, now(), now())
 	</insert>
-
 </mapper>

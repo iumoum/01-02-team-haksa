@@ -69,6 +69,11 @@
 				
 				$("#dialog2").hide();
 				
+				// 전화번호 숫자만 입력되게
+				$("#humanPhoneNumber").on("keyup", function() {
+				    $(this).val($(this).val().replace(/[^0-9]/g,""));
+				});
+				
 				$("#classChangeDate").datepicker({
 					dateFormat: 'yy-mm-dd'
 				});

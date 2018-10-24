@@ -171,6 +171,12 @@ public class StudentInfoDao {
 		return sqlSessionTemplate.selectOne(nameSpace + "insertHuman", studentInfo);
 	}
 	
+	// 로그인 테이블 입력
+	public StudentInfo insertAccountManagement(StudentInfo studentInfo) {
+		System.out.println("로그인 테이블 입력 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "insertAccountManagement", studentInfo);
+	}
+	
 	// 상담 번호 조회
 	public int selectAdviceNumber() {
 		System.out.println("상담 번호 조회 Dao");
