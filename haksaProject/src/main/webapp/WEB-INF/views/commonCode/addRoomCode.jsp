@@ -41,9 +41,9 @@
 			<br><br>
 			
 			<form action="${pageContext.request.contextPath}/common/codes/addRoomCodeAction" method="POST"> 
-				<table>
+				<table class="table table-bordered">
 					<tr>
-						<td>강의실코드 :</td><td><input type="text" name="roomCode"></td>
+						<td>강의실코드 :</td><td><input type="text" name="roomCode" class="form-control"></td>
 					</tr>
 					<tr>
 						<td>건물코드 :</td>
@@ -57,19 +57,19 @@
 						</td>
 					</tr>
 					<tr>
-						<td>호실번호 :</td><td><input type="text" name="roomNumber"></td>
+						<td>호실번호 :</td><td><input type="text" name="roomNumber" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>호실명 :</td><td><input type="text" name="roomName"></td>
+						<td>호실명 :</td><td><input type="text" name="roomName" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>층 : </td><td><input type="text" name="roomFloor"></td>
+						<td>층 : </td><td><input type="text" name="roomFloor" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>실용도 :</td><td><input type="text" name="roomUsage"></td>
+						<td>실용도 :</td><td><input type="text" name="roomUsage" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" id="btn" value="코드 입력">
+				<input type="submit" id="btn" value="코드 입력" class="btn btn-info">
 			</form>
 			</div>
 			

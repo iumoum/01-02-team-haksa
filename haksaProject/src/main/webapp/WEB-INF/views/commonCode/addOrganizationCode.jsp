@@ -41,7 +41,7 @@
 			<br><br>
 			
 			<form id="fsm" action="${pageContext.request.contextPath}/common/codes/addOrganizationCodeAction" method="POST"> 
-				<table>
+				<table class="table table-bordered">
 					<tr>
 						<td>기구코드 :</td><td><input type="text" name="orgCode"></td>
 					</tr>
@@ -57,19 +57,19 @@
 						</td>
 					</tr>
 					<tr>
-						<td>기구명(국문) :</td><td><input type="text" name="orgNameKorean"></td>
+						<td>기구명(국문) :</td><td><input type="text" name="orgNameKorean" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>기구명(영문) :</td><td><input type="text" name="orgNameEnglish"></td>
+						<td>기구명(영문) :</td><td><input type="text" name="orgNameEnglish" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>설치일자 : </td><td><input type="date" name="orgEstablishDate"></td>
+						<td>설치일자 : </td><td><input type="date" name="orgEstablishDate" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>정렬번호 :</td><td><input type="text" name="orgSortNumber"></td>
+						<td>정렬번호 :</td><td><input type="text" name="orgSortNumber" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" id="btn" value="코드 입력">
+				<input type="submit" id="btn" value="코드 입력" class="btn btn-info">
 			</form>
 			</div>
 			

@@ -42,20 +42,20 @@
 			<br><br>
 			
 			<form action="${pageContext.request.contextPath}/lecture/codes/addGradingCriteriaCodeAction" method="POST"> 
-				<table>
+				<table class="table table-striped table-bordered">
 					<tr>
-						<td>등급 :</td><td><input type="text" name="gradingCriteriaRating"></td>
+						<td>등급 :</td><td><input type="text" name="gradingCriteriaRating" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>시작점수 :</td><td><input type="text" name="gradingCriteriaStartOfSection"></td>
+						<td>시작점수 :</td><td><input type="text" name="gradingCriteriaStartOfSection" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>끝점수 :</td><td><input type="text" name="gradingCriteriaEndOfSection"></tr>
+						<td>끝점수 :</td><td><input type="text" name="gradingCriteriaEndOfSection" class="form-control"></tr>
 					<tr>
-						<td>평점 : </td><td><input type="text" name="gradingCriteriaGrade"></td>
+						<td>평점 : </td><td><input type="text" name="gradingCriteriaGrade" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" value="입력">
+				<input type="submit" value="입력" class="btn btn-info">
 			</form>
 			</div>
 			<!-- /.container-fluid -->

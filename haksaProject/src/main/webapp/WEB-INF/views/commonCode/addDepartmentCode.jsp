@@ -42,13 +42,13 @@
 			<br><br>
 			
 			<form action="${pageContext.request.contextPath}/common/codes/addDepartmentCodeAction" method="POST"> 
-				<table>
+				<table class="table table-bordered">
 					<tr>
-						<td>부서코드 :</td><td><input type="text" name="deptCode"></td>
+						<td>부서코드 :</td><td><input type="text" name="deptCode"  class="form-control"></td>
 					</tr>
 					<tr>
 						<td>기구명 :</td><td>
-							<select name="orgCode">
+							<select name="orgCode"  class="form-control">
 								<option>선택</option>
 								<c:forEach var="ocna" items="${list}">
 									<option value="${ocna.orgCode}:${ocna.agencyCode}">${ocna.orgName}</option>
@@ -58,33 +58,33 @@
 					</tr>
 					<tr>
 						<td>부서학과구분 :</td><td>
-							<select name="deptForEduOrAdmin">
-								<option>선택</option>
+							<select name="deptForEduOrAdmin"  class="form-control">
+								<option>선택</option> 
 								<option value="부서">부서</option>
 								<option value="학과">학과</option>
 							</select>
 					</td>
 					</tr>
 					<tr>
-						<td>부서명(국문) : </td><td><input type="text" name="deptNameKorean"></td>
+						<td>부서명(국문) : </td><td><input type="text" name="deptNameKorean"  class="form-control"></td>
 					</tr>
 					<tr>
-						<td>부서명(영문) :</td><td><input type="text" name="deptNameEnglish"></td>
+						<td>부서명(영문) :</td><td><input type="text" name="deptNameEnglish"  class="form-control"></td>
 					</tr>
 					<tr>
-						<td>설치일자 :</td><td><input type="date" name="deptEstablishDate"></td>
+						<td>설치일자 :</td><td><input type="date" name="deptEstablishDate"  class="form-control"></td>
 					</tr>
 					<tr>
-						<td>정렬번호 :</td><td><input type="text" name="deptSortNumber"></td>
+						<td>정렬번호 :</td><td><input type="text" name="deptSortNumber"  class="form-control"></td>
 					</tr>
 					<tr>
-						<td>대표전화번호 :</td><td><input type="text" name="deptRepPhoneNumber"></td>
+						<td>대표전화번호 :</td><td><input type="text" name="deptRepPhoneNumber"  class="form-control"></td>
 					</tr>
 					<tr>
-						<td>졸업학년 :</td><td><input type="text" name="deptGraduatedGrade"></td>
+						<td>졸업학년 :</td><td><input type="text" name="deptGraduatedGrade"  class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" value="입력">
+				<input type="submit" value="입력" class="btn btn-info">
 			</form>
 			</div>
 			<!-- /.container-fluid -->

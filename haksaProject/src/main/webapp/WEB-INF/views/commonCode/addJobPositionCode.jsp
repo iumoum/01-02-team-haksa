@@ -42,21 +42,21 @@
 			<br><br>
 			
 			<form action="${pageContext.request.contextPath}/common/codes/addJobPositionCodeAction" method="POST"> 
-				<table>
+				<table class="table table-bordered">
 					<tr>
-						<td>직위코드 :</td><td><input type="text" name="jobPositionCode"></td>
+						<td>직위코드 :</td><td><input type="text" name="jobPositionCode" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>직위명(국문) :</td><td><input type="text" name="jobPositionNameKorean"></td>
+						<td>직위명(국문) :</td><td><input type="text" name="jobPositionNameKorean" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>직위명(영문) :</td><td><input type="text" name="jobPositionNameEnglish"></td>
+						<td>직위명(영문) :</td><td><input type="text" name="jobPositionNameEnglish" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>직위순서 : </td><td><input type="text" name="jobPositionSortNumber"></td>
+						<td>직위순서 : </td><td><input type="text" name="jobPositionSortNumber" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" value="입력">
+				<input type="submit" value="입력" class="btn btn-info">
 			</form>
 			</div>
 			<!-- /.container-fluid -->

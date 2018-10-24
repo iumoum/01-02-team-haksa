@@ -42,9 +42,9 @@
 			<br><br>
 			
 			<form action="${pageContext.request.contextPath}/common/codes/addTeamCodeAction" method="POST"> 
-				<table>
+				<table class="table table-bordered">
 					<tr>
-						<td>팀코드 :</td><td><input type="text" name="teamCode"></td>
+						<td>팀코드 :</td><td><input type="text" name="teamCode" class="form-control"></td>
 					</tr>
 					<tr>
 						<td>부서코드 :</td><td>
@@ -57,22 +57,22 @@
 						</td>
 					</tr>
 					<tr>
-						<td>팀명(국문) :</td><td><input type="text" name="teamNameKorean"></td>
+						<td>팀명(국문) :</td><td><input type="text" name="teamNameKorean" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>팀명(영문) : </td><td><input type="text" name="teamNameEnglish"></td>
+						<td>팀명(영문) : </td><td><input type="text" name="teamNameEnglish" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>설치일자 :</td><td><input type="date" name="teamEstablishDate"></td>
+						<td>설치일자 :</td><td><input type="date" name="teamEstablishDate" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>정렬번호 :</td><td><input type="text" name="teamSortNumber"></td>
+						<td>정렬번호 :</td><td><input type="text" name="teamSortNumber" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>대표전화번호 :</td><td><input type="text" name="teamRepPhoneNumber"></td>
+						<td>대표전화번호 :</td><td><input type="text" name="teamRepPhoneNumber" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" value="입력">
+				<input type="submit" value="입력" class="btn btn-info">
 			</form>
 			</div>
 			<!-- /.container-fluid -->

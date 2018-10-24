@@ -41,9 +41,9 @@
 			<br><br>
 			
 			<form id="fsm" action="${pageContext.request.contextPath}/common/codes/addBuildingCodeAction" method="POST"> 
-				<table>
+				<table class="table table-striped table-bordered">
 					<tr>
-						<td>건물코드 :</td><td><input type="text" name="buildingCode"></td>
+						<td>건물코드 :</td><td><input type="text" name="buildingCode" class="form-control"></td>
 					</tr>
 					<tr>
 						<td>기관코드 :</td>
@@ -57,13 +57,13 @@
 						</td>
 					</tr>
 					<tr>
-						<td>건물명 :</td><td><input type="text" name="buildingName"></td>
+						<td>건물명 :</td><td><input type="text" name="buildingName" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>정렬번호 :</td><td><input type="text" name="buildingSortNumber"></td>
+						<td>정렬번호 :</td><td><input type="text" name="buildingSortNumber" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" value="코드 입력">
+				<input type="submit" value="코드 입력" class="btn btn-info">
 			</form>
 			</div>
 			

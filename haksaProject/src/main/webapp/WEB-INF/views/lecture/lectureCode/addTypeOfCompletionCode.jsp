@@ -42,15 +42,15 @@
 			<br><br>
 			
 			<form action="${pageContext.request.contextPath}/lecture/codes/addTocAction" method="POST"> 
-				<table>
+				<table class="table table-striped table-bordered">
 					<tr>
-						<td>이수구분코드 :</td><td><input type="text" name="typeOfCompletionCode"></td>
+						<td>이수구분코드 :</td><td><input type="text" name="typeOfCompletionCode" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>이수구분 명 :</td><td><input type="text" name="typeOfCompletionName"></td>
+						<td>이수구분 명 :</td><td><input type="text" name="typeOfCompletionName" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" value="입력">
+				<input type="submit" value="입력" class="btn btn-info">
 			</form>
 			</div>
 			<!-- /.container-fluid -->

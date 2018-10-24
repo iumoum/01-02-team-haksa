@@ -42,15 +42,15 @@
 			<br><br>
 			
 			<form action="${pageContext.request.contextPath}/common/codes/addCountryCodeAction" method="POST"> 
-				<table>
+				<table class="table table-bordered">
 					<tr>
-						<td>국가코드 :</td><td><input type="text" name="countryCode"></td>
+						<td>국가코드 :</td><td><input type="text" name="countryCode" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>국가명(국문) :</td><td><input type="text" name="countryNameKorean"></td>
+						<td>국가명(국문) :</td><td><input type="text" name="countryNameKorean" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" value="입력">
+				<input type="submit" value="입력"  class="btn btn-info">
 			</form>
 			</div>
 			<!-- /.container-fluid -->

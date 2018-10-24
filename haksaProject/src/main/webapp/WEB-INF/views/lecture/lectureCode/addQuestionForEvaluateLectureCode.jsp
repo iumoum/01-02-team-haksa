@@ -42,13 +42,13 @@
 			<br><br>
 			
 			<form action="${pageContext.request.contextPath}/lecture/codes/addQuestionForEvaluateLectureCodeAction" method="POST"> 
-				<table>
+				<table class="table table-striped table-bordered">
 					<tr>
-						<td>강의평가 항목코드 :</td><td><input type="text" name="questionForEvaluateCode"></td>
+						<td>강의평가 항목코드 :</td><td><input type="text" name="questionForEvaluateCode" class="form-control"></td>
 					</tr>
 					<tr>
 						<td>학기 :</td><td>
-							<select name="semesterCode">
+							<select name="semesterCode" class="form-control">
 								<option>선택</option>
 								<c:forEach var="semester" items="${list}">
 									<option value="${semester.semesterCode}">${semester.semesterCode}</option>
@@ -57,17 +57,17 @@
 						</td>
 					</tr>
 					<tr>
-						<td>문제유형 :</td><td><select name="questionForEvaluateType">
+						<td>문제유형 :</td><td><select name="questionForEvaluateType" class="form-control">
 							<option>선택</option>
 							<option value="객관식">객관식</option>
 							<option value="주관식">주관식</option>
 						</select></td>
 					</tr>
 					<tr>
-						<td>강의평가 항목명 : </td><td><input type="text" name="questionForEvaluateName"></td>
+						<td>강의평가 항목명 : </td><td><input type="text" name="questionForEvaluateName" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" value="입력">
+				<input type="submit" value="입력" class="btn btn-info">
 			</form>
 			</div>
 			<!-- /.container-fluid -->

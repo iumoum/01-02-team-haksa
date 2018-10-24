@@ -42,24 +42,24 @@
 			<br><br>
 			
 			<form action="${pageContext.request.contextPath}/common/codes/addAgencyCodeAction" method="POST"> 
-				<table>
+				<table class="table table-bordered">
 					<tr>
-						<td>기관코드 :</td><td><input type="text" name="agencyCode"></td>
+						<td>기관코드 :</td><td><input type="text" name="agencyCode" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>기관명(국문) :</td><td><input type="text" name="agencyNameKorean"></td>
+						<td>기관명(국문) :</td><td><input type="text" name="agencyNameKorean" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>기관명(영문) :</td><td><input type="text" name="agencyNameEnglish"></td>
+						<td>기관명(영문) :</td><td><input type="text" name="agencyNameEnglish" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>설치일자 : </td><td><input type="date" name="agencyEstablishDate"></td>
+						<td>설치일자 : </td><td><input type="date" name="agencyEstablishDate" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>정렬번호 :</td><td><input type="text" name="agencySortNumber"></td>
+						<td>정렬번호 :</td><td><input type="text" name="agencySortNumber" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" value="입력">
+				<input type="submit" value="입력" class="btn btn-info">
 			</form>
 			</div>
 			<!-- /.container-fluid -->

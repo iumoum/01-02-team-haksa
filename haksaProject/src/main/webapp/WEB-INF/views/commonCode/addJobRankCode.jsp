@@ -42,13 +42,13 @@
 			<br><br>
 			
 			<form action="${pageContext.request.contextPath}/common/codes/addJobRankCodeAction" method="POST"> 
-				<table>
+				<table class="table table-bordered">
 					<tr>
-						<td>직급코드 :</td><td><input type="text" name="jobRankCode"></td>
+						<td>직급코드 :</td><td><input type="text" name="jobRankCode" class="form-control"></td>
 					</tr>
 					<tr>
 						<td>직종명 :</td><td>
-							<select name="jobTypeCode">
+							<select name="jobTypeCode" class="form-control">
 								<option>선택</option>
 								<c:forEach var="row" items="${list}">
 									<option value="${row.jobGroupCode}:${row.jobTypeCode}">${row.jobTypeName}</option>
@@ -57,16 +57,16 @@
 						</td>
 					</tr>
 					<tr>
-						<td>직급명(국문) :</td><td><input type="text" name="jobRankNameKorean"></td>
+						<td>직급명(국문) :</td><td><input type="text" name="jobRankNameKorean" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>직급명(영문) :</td><td><input type="text" name="jobRankNameEnglish"></td>
+						<td>직급명(영문) :</td><td><input type="text" name="jobRankNameEnglish" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>승진소요최저연수 :</td><td><input type="text" name="jobRankMinPromotionRequired"></td>
+						<td>승진소요최저연수 :</td><td><input type="text" name="jobRankMinPromotionRequired" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" value="입력">
+				<input type="submit" value="입력" class="btn btn-info">
 			</form>
 			</div>
 			<!-- /.container-fluid -->

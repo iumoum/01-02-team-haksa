@@ -42,15 +42,15 @@
 			<br><br>
 			
 			<form action="${pageContext.request.contextPath}/common/codes/addJobGroupCodeAction" method="POST"> 
-				<table>
+				<table class="table table-bordered">
 					<tr>
-						<td>직군코드 :</td><td><input type="text" name="jobGroupCode"></td>
+						<td>직군코드 :</td><td><input type="text" name="jobGroupCode"  class="form-control"></td>
 					</tr>
 					<tr>
-						<td>직군명 :</td><td><input type="text" name="jobGroupName"></td>
+						<td>직군명 :</td><td><input type="text" name="jobGroupName"  class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" value="입력">
+				<input type="submit" value="입력" class="btn btn-info">
 			</form>
 			</div>
 			<!-- /.container-fluid -->

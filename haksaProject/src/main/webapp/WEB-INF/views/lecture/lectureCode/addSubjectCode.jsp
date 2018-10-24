@@ -42,27 +42,27 @@
 			<br><br>
 			
 			<form action="${pageContext.request.contextPath}/lecture/codes/addSubjectCodeAction" method="POST"> 
-				<table>
+				<table class="table table-striped table-bordered">
 					<tr>
-						<td>과목코드 :</td><td><input type="text" name="subjectCode"></td>
+						<td>과목코드 :</td><td><input type="text" name="subjectCode" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>과목 명(국문) :</td><td><input type="text" name="subjectNameKorean"></td>
+						<td>과목 명(국문) :</td><td><input type="text" name="subjectNameKorean" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>과목 명(영문) :</td><td><input type="text" name="subjectNameEnglish"></td>
+						<td>과목 명(영문) :</td><td><input type="text" name="subjectNameEnglish" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>학점 :</td><td><input type="text" name="subjectScoreGraduation"></td>
+						<td>학점 :</td><td><input type="text" name="subjectScoreGraduation" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>이론시수 :</td><td><input type="text" name="subjectHoursTheory"></td>
+						<td>이론시수 :</td><td><input type="text" name="subjectHoursTheory" class="form-control"></td>
 					</tr>
 					<tr>
-						<td>실습시수 :</td><td><input type="text" name="subjectHoursPractice"></td>
+						<td>실습시수 :</td><td><input type="text" name="subjectHoursPractice" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" value="입력">
+				<input type="submit" value="입력" class="btn btn-info">
 			</form>
 			</div>
 			<!-- /.container-fluid -->

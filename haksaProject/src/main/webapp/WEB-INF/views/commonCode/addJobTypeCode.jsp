@@ -41,14 +41,14 @@
 			<br><br>
 			
 			<form id="fsm" action="${pageContext.request.contextPath}/common/codes/addJobTypeCodeAction" method="POST"> 
-				<table>
+				<table class="table table-bordered">
 					<tr>
-						<td>직종코드 :</td><td><input type="text" name="jobTypeCode"></td>
+						<td>직종코드 :</td><td><input type="text" name="jobTypeCode" class="form-control"></td>
 					</tr>
 					<tr>
 						<td>직군명 :</td>
 						<td>
-							<select name="jobGroupCode">
+							<select name="jobGroupCode" class="form-control">
 								<option>입력해주세요</option>
 								<c:forEach var="row" items="${list}">
 									<option value="${row.jobGroupCode}">${row.jobGroupName}</option>
@@ -57,10 +57,10 @@
 						</td>
 					</tr>
 					<tr>
-						<td>직종명 :</td><td><input type="text" name="jobTypeName"></td>
+						<td>직종명 :</td><td><input type="text" name="jobTypeName" class="form-control"></td>
 					</tr>
 				</table><br>
-				<input type="submit" id="btn" value="코드 입력">
+				<input type="submit" id="btn" value="코드 입력" class="btn btn-info">
 			</form>
 			</div>
 			
