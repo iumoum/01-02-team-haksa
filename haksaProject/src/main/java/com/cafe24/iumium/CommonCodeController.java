@@ -39,7 +39,7 @@ public class CommonCodeController {
 	        //객체 내부에 기관 코드 리스트 저장
 	        model.addAttribute("list", list);
 	        
-	        return "commonCode/agencyCode";
+	        return "commonCode/listAgencyCode";
 	    }
 		
 		// 기구코드 관리
@@ -50,7 +50,7 @@ public class CommonCodeController {
 	        //객체 내부에 기구 코드 리스트 저장
 	        model.addAttribute("list", list);
 	        
-	        return "commonCode/organizationCode";
+	        return "commonCode/listOrganizationCode";
 	    }
 		
 		// 부서코드 관리
@@ -61,7 +61,7 @@ public class CommonCodeController {
 	        //객체 내부에 부서 코드 리스트 저장
 	        model.addAttribute("list", list);
 	        
-	        return "commonCode/departmentCode";
+	        return "commonCode/listDepartmentCode";
 	    }
 		
 		// 팀코드 관리
@@ -72,7 +72,7 @@ public class CommonCodeController {
 	        //객체 내부에 팀 코드 리스트 저장
 	        model.addAttribute("list", list);
 	        
-	        return "commonCode/teamCode";
+	        return "commonCode/listTeamCode";
 	    }
 		
 		// 직군코드 관리
@@ -83,7 +83,7 @@ public class CommonCodeController {
 			// 직군 코드 model 객체 내부에 저장
 			model.addAttribute("jobGroupCodes", jobGroupCodes);
 			
-			return "commonCode/jobGroupCode";
+			return "commonCode/listJobGroupCode";
 		}
 		
 		// 직종코드 관리
@@ -94,7 +94,7 @@ public class CommonCodeController {
 			// 직종 코드 model 객체 내부에 저장
 			model.addAttribute("jobTypeCodes", jobTypeCodes);
 			
-			return "commonCode/jobTypeCode";
+			return "commonCode/listJobTypeCode";
 		}
 		
 		// 직급코드 관리
@@ -105,7 +105,7 @@ public class CommonCodeController {
 			// 직급 코드 model 객체 내부에 저장
 			model.addAttribute("jobRankCodes", JobRankCodes);
 			
-			return "commonCode/jobRankCode";
+			return "commonCode/listJobRankCode";
 		}
 		
 		// 직위코드 관리
@@ -116,7 +116,7 @@ public class CommonCodeController {
 			// 직위 코드 model 객체 내부에 저장
 			model.addAttribute("jobPositionCodes", jobPositionCodes);
 			
-			return "commonCode/jobPositionCode";
+			return "commonCode/listJobPositionCode";
 		}
 		
 		// 건물코드 관리
@@ -127,7 +127,7 @@ public class CommonCodeController {
 			// 건물 코드 model 객체 내부에 저장
 			model.addAttribute("buildingCodes", buildingCodes);
 			
-			return "commonCode/buildingCode";
+			return "commonCode/listBuildingCode";
 		}
 		
 		// 강의실코드 관리
@@ -138,7 +138,7 @@ public class CommonCodeController {
 			// 강의실 코드 model 객체 내부에 저장
 			model.addAttribute("roomCodes", roomCodes);
 			
-			return "commonCode/roomCode";
+			return "commonCode/listRoomCode";
 		}
 		
 		// 국가코드 관리
@@ -148,7 +148,7 @@ public class CommonCodeController {
 			
 			model.addAttribute("countryCodes", countryCodes);
 			
-			return "commonCode/countryCode";
+			return "commonCode/listCountryCode";
 		}
 		
 		
@@ -160,7 +160,7 @@ public class CommonCodeController {
 		// 기관코드 입력 폼 이동 관리
 		@RequestMapping(value="/common/codes/addAgencyCodeForm", method = RequestMethod.GET)
 	    public String AddAgencyCodeForm(Model model) {
-			return "commonCode/form/addAgencyCodeForm";
+			return "commonCode/addAgencyCode";
 	    }
 		
 		// 기관코드 입력 처리 관리
@@ -179,7 +179,7 @@ public class CommonCodeController {
 	        //객체 내부에 뽑아온 기관 코드, 이름 리스트 저장.
 	        model.addAttribute("list", list);
 	        
-	        return "commonCode/form/addOrganizationCodeForm";
+	        return "commonCode/addOrganizationCode";
 	    }
 		
 		// 기구코드 입력 처리 관리
@@ -198,7 +198,7 @@ public class CommonCodeController {
 	        //객체 내부에 뽑아온 기구코드, 기구명, 기관코드 리스트에 저장.
 	        model.addAttribute("list", list);
 	        
-	        return "commonCode/form/addDepartmentCodeForm";
+	        return "commonCode/addDepartmentCode";
 	    }
 		
 		// 부서코드 입력 처리 관리
@@ -217,7 +217,7 @@ public class CommonCodeController {
 	        //객체 내부에 뽑아온 부서코드, 부서명, 기구코드, 기관코드 리스트에 저장.
 	        model.addAttribute("list", list);
 	        
-	        return "commonCode/form/addTeamCodeForm";
+	        return "commonCode/addTeamCode";
 	    }
 		
 		// 팀 코드 입력 처리 관리
@@ -233,7 +233,7 @@ public class CommonCodeController {
 		@RequestMapping(value="/common/codes/addJobGroupForm", method=RequestMethod.GET)
 		public String addJobGroubCodesForm(Model model) {
 			
-			return "commonCode/form/addJobGroupCodeForm";
+			return "commonCode/addJobGroupCode";
 		}
 		
 		// 직군코드 입력 처리 관리
@@ -253,7 +253,7 @@ public class CommonCodeController {
 			// 직종 코드 model 객체 내부에 저장
 			model.addAttribute("list", jobTypeCodes);
 			
-			return "commonCode/form/addJobTypeCodeForm";
+			return "commonCode/addJobTypeCode";
 		}
 		
 		// 직종코드 입력 처리 관리
@@ -273,7 +273,7 @@ public class CommonCodeController {
 			// 직급 코드 model 객체 내부에 저장
 			model.addAttribute("list", JobRankCodes);
 			
-			return "commonCode/form/addJobRankCodeForm";
+			return "commonCode/addJobRankCode";
 		}
 		
 		// 직급코드 입력 폼 이동 관리
@@ -289,7 +289,7 @@ public class CommonCodeController {
 		@RequestMapping(value="/common/codes/addJobPositionCodeForm", method=RequestMethod.GET)
 		public String addJobPositionCodesForm(Model model) {
 			
-			return "commonCode/form/addJobPositionCodeForm";
+			return "commonCode/addJobPositionCode";
 		}
 		
 		// 직위코드 입력 처리 관리
@@ -308,7 +308,7 @@ public class CommonCodeController {
 			// 건물 코드 model 객체 내부에 저장
 			model.addAttribute("list", buildingCodes);
 			
-			return "commonCode/form/addBuildingCodeForm";
+			return "commonCode/addBuildingCode";
 		}
 		
 		// 건물코드 입력 처리 관리
@@ -328,7 +328,7 @@ public class CommonCodeController {
 			// 강의실 코드 model 객체 내부에 저장
 			model.addAttribute("list", roomCodes);
 			
-			return "commonCode/form/addRoomCodeForm";
+			return "commonCode/addRoomCode";
 		}
 		
 		// 강의실코드 입력 처리 관리
@@ -344,7 +344,7 @@ public class CommonCodeController {
 		@RequestMapping(value="/common/codes/addCountryCodeForm", method=RequestMethod.GET)
 		public String addCountryCodesForm(Model model) {
 			
-			return "commonCode/form/addCountryCodeForm";
+			return "commonCode/addCountryCode";
 		}
 		
 		// 국가코드 입력 처리 관리

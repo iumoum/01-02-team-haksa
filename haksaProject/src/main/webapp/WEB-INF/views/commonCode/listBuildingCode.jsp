@@ -53,6 +53,10 @@
                     }
                     $(temp).parent().show();
                 });
+                
+                $('#addBuilding').click(function(){
+					window.location.href="/common/codes/addBuildingCodeForm";
+				});
             });
        	</script>
 </head>
@@ -86,7 +90,7 @@
 									<option value="check_a_change">변경유무</option>
 								</select>
 								&ensp;
-								<button class="btn btn-info" type="button">입력</button>
+								<button class="btn btn-info" type="button" id="addBuilding">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">

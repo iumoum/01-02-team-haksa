@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>성적평가 기준 코드관리</title>
+<title>이수구분 코드관리</title>
 
 <!-- Bootstrap core CSS-->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
@@ -25,7 +25,15 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	type="text/javascript"></script>
+<script>
+	$(document).ready(function() {
+		$('#addTypeOfCompletion').click(function(){
+			window.location.href="/lecture/codes/addTocForm";
+		});
+	});
+</script>
 </head>
 <body id="page-top">
 
@@ -39,7 +47,7 @@
 
 			<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-							<div class="mail-box">
+				<div class="mail-box">
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
@@ -48,7 +56,7 @@
 									<i class="fa fa-search"></i>
 								</button>
 								&ensp;
-								<button class="btn btn-info" type="button">입력</button>
+								<button class="btn btn-info" type="button" id="addTypeOfCompletion">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">
@@ -56,22 +64,28 @@
 								<table class="table table-inbox table-hover">
 									<tbody>
 										<tr class="unread">
-											<td class="view-message  dont-show">등급</td>
-											<td>시작점수</td>
+											<td class="view-message  dont-show">이수구분 코드</td>
+											<td>이수구분 명</td>
 											<td></td>
 											<td></td>
-											<td>끝점수</td>
-											<td>평점</td>
-											<td class="view-message  text-left">시스템 등록자 아이디</td>
+											<td>코드 사용유무</td>
+											<td>코드 변경유무</td>
+											<td>코드 변경사유</td>
+											<td>코드 변경일자</td>
+											<td>시스템 등록일자</td>
+											<td>시스템 등록자 아이디</td>
 										</tr>
 
-										<c:forEach var="grade" items="${list}">
+										<c:forEach var="toc" items="${list}">
 											<tr class="">
-												<td class="view-message  dont-show">${grade.gradingCriteriaRating}</td>
-												<td colspan="3" class="view-message">${grade.gradingCriteriaStartOfSection}</td>
-												<td>${grade.gradingCriteriaStartOfSection}</td>
-												<td>${grade.gradingCriteriaGrade}</td>
-												<td>${grade.recordId}</td>
+												<td class="view-message  dont-show">${toc.typeOfCompletionCode}</td>
+												<td colspan="3" class="view-message">${toc.typeOfCompletionName}</td>
+												<td>${toc.typeOfCompletionIsUsed}</td>
+												<td>${toc.typeOfCompletionIsChanged}</td>
+												<td>${toc.typeOfCompletionReasonForChange}</td>
+												<td>${toc.typeOfCompletionChangedDate}</td>
+												<td>${toc.typeOfCompletionRegisteredDate}</td>
+												<td>${toc.recordId}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

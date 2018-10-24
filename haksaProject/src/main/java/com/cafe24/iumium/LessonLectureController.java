@@ -26,7 +26,7 @@ public class LessonLectureController {
 		List<ClassByDepartment> classesByDepartment = lessonLectureService.selectAllClassesByDepartment();
 		model.addAttribute("classesByDepartment", classesByDepartment);
 
-		return "lesson/lecture/classByDepartment";
+		return "lecture/lesson/listClassByDepartment";
 	}
 
 	// 강의 상황서 리스트 조회
@@ -36,7 +36,7 @@ public class LessonLectureController {
 		List<LectureStatus> LectureStatus = lessonLectureService.selectAllLectureStatus();
 		model.addAttribute("list", LectureStatus);
 
-		return "lesson/lecture/lectureStatus";
+		return "lecture/lesson/listLectureStatus";
 	}
 
 	// 변경된 강의담당 상황교수 리스트 조회
@@ -46,7 +46,7 @@ public class LessonLectureController {
 		List<ProfessorChange> professorChange = lessonLectureService.selectAllProfessorChange();
 		model.addAttribute("list", professorChange);
 
-		return "lesson/lecture/professorChange";
+		return "lecture/lesson/listProfessorChange";
 	}
 
 	// 변경된 이수구분 리스트 조회
@@ -56,6 +56,6 @@ public class LessonLectureController {
 		List<ChangedTypeOfCompletion> changedTypeOfCompletion = lessonLectureService.selectAllChangedTypeOfCompletion();
 		model.addAttribute("list", changedTypeOfCompletion);
 
-		return "lesson/lecture/changedTypeOfCompletion";
+		return "lecture/lesson/listChangedTypeOfCompletion";
 	}
 }

@@ -25,14 +25,14 @@ public class AttendanceController {
 	@RequestMapping(value="/lesson/attendance/addAttendance", method=RequestMethod.GET)
 	public String addAttendance() {
 		System.out.println("출석부 입력 폼");
-		return "attendance/addAttendance";
+		return "lecture/attendance/addAttendance";
 	}
 	
 	// 강의 출결조회 리스트
 	@RequestMapping(value="/lesson/attendance/listAttendance", method=RequestMethod.GET)
 	public String listAttendance() {
 		System.out.println("강의 출결조회 리스트");
-		return "attendance/listAttendance";
+		return "lecture/attendance/listAttendance";
 	}
 	
 	// 과목 조회

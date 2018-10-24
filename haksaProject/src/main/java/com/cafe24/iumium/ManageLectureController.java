@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.iumium.manage.lecture.dto.AssignmentForEvaluateCode;
 import com.cafe24.iumium.manage.lecture.dto.GradingCriteriaCode;
@@ -33,7 +32,7 @@ public class ManageLectureController {
     public String tocList(Model model) {
         List<TypeOfCompletionCode> list = lectureCodeService.selectManageLectureTocList();
         model.addAttribute("list", list);
-        return "lectureCode/typeOfCompletionCode";
+        return "lecture/lectureCode/listTypeOfCompletionCode";
     }
     
     //과목 코드 관리
@@ -41,7 +40,7 @@ public class ManageLectureController {
     public String subjectList(Model model) {
         List<SubjectCode> list = lectureCodeService.selectManageLectureSubjectList();
         model.addAttribute("list", list);
-        return "lectureCode/subjectCode";
+        return "lecture/lectureCode/listSubjectCode";
     }
     
     //강의평가 항목 코드 관리
@@ -49,7 +48,7 @@ public class ManageLectureController {
     public String questionForEvaluateLectureList(Model model) {
         List<QuestionForEvaluateLectureCode> list = lectureCodeService.selectManageLectureQfelList();
         model.addAttribute("list", list);
-        return "lectureCode/questionForEvaluateLectureCode";
+        return "lecture/lectureCode/listQuestionForEvaluateLectureCode";
     }
     
     //강의별 평가항목 배정 코드 관리
@@ -57,7 +56,7 @@ public class ManageLectureController {
     public String assignmentForEvaluateList(Model model) {
         List<AssignmentForEvaluateCode> list = lectureCodeService.selectManageLectureAfeList();
         model.addAttribute("list", list);
-        return "lectureCode/assignmentForEvaluateCode";
+        return "lecture/lectureCode/listAssignmentForEvaluateCode";
     }
     
     //성적평가 기준 코드 관리
@@ -65,7 +64,7 @@ public class ManageLectureController {
     public String gradingCriteriaList(Model model) {
         List<GradingCriteriaCode> list = lectureCodeService.selectManageLectureGccList();
         model.addAttribute("list", list);
-        return "lectureCode/gradingCriteriaCode";
+        return "lecture/lectureCode/listGradingCriteriaCode";
     }
     
     
@@ -75,7 +74,7 @@ public class ManageLectureController {
     @RequestMapping(value="/lecture/codes/addTocForm", method = RequestMethod.GET)
     public String addtocForm(Model model) {
     	
-        return "lectureCode/form/addTypeOfCompletionCodeForm";
+        return "lecture/lectureCode/addTypeOfCompletionCode";
     }
     
     //이수구분 코드 입력 처리 관리
@@ -91,7 +90,7 @@ public class ManageLectureController {
     @RequestMapping(value="/lecture/codes/addSubjectCodeForm", method = RequestMethod.GET)
     public String addSubjectCodeForm(Model model) {
     	
-        return "lectureCode/form/addSubjectCodeForm";
+        return "lecture/lectureCode/addSubjectCode";
     }
     
     //과목구분 코드 입력 처리 관리
@@ -108,7 +107,7 @@ public class ManageLectureController {
     public String addQuestionForEvaluateLectureCodeForm(Model model) {
     	List<QuestionForEvaluateLectureCode> list = lectureCodeService.addQuestionForEvaluateLectureCodeForm();
         model.addAttribute("list", list);
-        return "lectureCode/form/addQuestionForEvaluateLectureCodeForm";
+        return "lecture/lectureCode/addQuestionForEvaluateLectureCode";
     }
     
     //강의평가 항목 코드 입력 처리 관리
@@ -123,7 +122,7 @@ public class ManageLectureController {
   	//성적평가 기준 코드 입력 폼 이동 관리
     @RequestMapping(value="/lecture/codes/addGradingCriteriaCodeForm", method = RequestMethod.GET)
     public String addGradingCriteriaCodeForm(Model model) {
-        return "lectureCode/form/addGradingCriteriaCodeForm";
+        return "lecture/lectureCode/addGradingCriteriaCode";
     }
     
     //성적평가 기준 코드 입력 처리 관리

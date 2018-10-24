@@ -25,7 +25,7 @@ public class PersonnelCodeController {
 	@RequestMapping(value="/personnelCode/addPersonnelCommonCode", method = RequestMethod.GET)
 	public String insertPersonnelCommonCode() {
 		System.out.println("인사입력페이지 호출");
-		return "personnelCode/addPersonnelCommonCode";	
+		return "personnel/personnelCode/addPersonnelCommonCode";	
 	}
 	
 	// 인사공통코드 리스트 페이지 데이터 호출
@@ -34,14 +34,14 @@ public class PersonnelCodeController {
 		System.out.println("인사공통코드 리스트 service");
 		List<PersonnelCommonCode> personnelCommonCodeList = PersonnelCodeService.selectPersonnelCommonCodeList();
 		model.addAttribute("PersonnelCommonCode", personnelCommonCodeList);
-		return "personnelCode/listPersonnelCommonCode";
+		return "personnel/personnelCode/listPersonnelCommonCode";
 	}
 	
 	// 상벌코드 입력 페이지 호출
 	@RequestMapping(value="/personnelCode/addRewardPunishment", method = RequestMethod.GET)
 	public String addRewardPunishment() {
 		System.out.println("상벌 입력 페이지 호출");
-		return "personnelCode/addRewardPunishment";	
+		return "personnel/personnelCode/addRewardPunishment";	
 	}
 	
 	// 상벌코드 리스트 페이지 호출
@@ -50,14 +50,14 @@ public class PersonnelCodeController {
 		System.out.println("상벌리스트 페이지 호출");
 		List<RewardPunishmentCode> rewardPunishmentList = PersonnelCodeService.getrewardPunishmentCode();
 		model.addAttribute("rewardPunishmentCodeList", rewardPunishmentList);
-		return "personnelCode/listRewardPunishmentCode";	
+		return "personnel/personnelCode/listRewardPunishmentCode";	
 	}
 	
 	// 연수코드 입력 페이지 호출
 	@RequestMapping(value="/personnelCode/addTraining", method = RequestMethod.GET)
 	public String addTraining() {
 		System.out.println("연수 입력 페이지 호출");
-		return "personnelCode/addTraining";	
+		return "personnel/personnelCode/addTraining";	
 	}
 	
 	// 연수코드 리스트 페이지 호출
@@ -66,14 +66,14 @@ public class PersonnelCodeController {
 		System.out.println("연수코드 리스트 페이지 호출");
 		List<TrainingCode> trainingList = PersonnelCodeService.getTrainingCodeList();
 		model.addAttribute("getTrainingList", trainingList);
-		return "personnelCode/listTrainingCode";	
+		return "personnel/personnelCode/listTrainingCode";	
 	}
 	
 	// 증명서코드 입력 페이지 호출
 	@RequestMapping(value="/personnelCode/addCertificate", method = RequestMethod.GET)
 	public String addCertificate() {
 		System.out.println("증명서코드 입력 페이지 호출");
-		return "personnelCode/addCertificate";	
+		return "personnel/personnelCode/addCertificate";	
 	}
 	
 	// 증명서코드 리스트 페이지 호출
@@ -82,14 +82,14 @@ public class PersonnelCodeController {
 		System.out.println("증명서코드 리스트 페이지 호출");
 		List<CertificateCode> certificateList = PersonnelCodeService.getCertificateCodeList();
 		model.addAttribute("getCertificateList", certificateList);
-		return "personnelCode/listCertificateCode";	
+		return "personnel/personnelCode/listCertificateCode";	
 	}
 	
 	// 증명서용도코드 입력 페이지 호출
 	@RequestMapping(value="/personnelCode/addCertificatePurpose", method = RequestMethod.GET)
 	public String addPCertificatePurpose() {
 		System.out.println("증명서용도코드 입력 페이지 호출");
-		return "personnelCode/addCertificatePurpose";	
+		return "personnel/personnelCode/addCertificatePurpose";	
 	}
 	
 	// 증명서용도코드 리스트 페이지 호출
@@ -98,6 +98,6 @@ public class PersonnelCodeController {
 		System.out.println("증명서용도코드 리스트 페이지 호출");
 		List<CertificatePurposeCode> certificatePurposeList = PersonnelCodeService.getCertificatePurposeCodeList();
 		model.addAttribute("getCertificatePurposeList", certificatePurposeList);
-		return "personnelCode/listCertificatePurposeCode";	
+		return "personnel/personnelCode/listCertificatePurposeCode";	
 	}
 }

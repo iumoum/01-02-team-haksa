@@ -32,35 +32,35 @@ public class ScheduleController {
 	@RequestMapping(value="/lesson/schedule/addSchedule", method=RequestMethod.GET)
 	public String addSchedule() {
 		System.out.println("시간표 입력 폼");
-		return "schedule/addSchedule";
+		return "lecture/schedule/addSchedule";
 	}
 	
 	// 시간표 리스트 페이지
 	@RequestMapping(value="/lesson/schedule/listSchedule", method=RequestMethod.GET)
 	public String ScheduleList() {
 		System.out.println("시간표 리스트 페이지");
-		return "schedule/listSchedult";
+		return "lecture/schedule/listSchedult";
 	}
 	
 	// 교수시간표 리스트 페이지
 	@RequestMapping(value="/lesson/schedule/listProfessorSchedule", method=RequestMethod.GET)
 	public String professorScheduleList() {
 		System.out.println("교수시간표 리스트 페이지");
-		return "schedule/listProfessorSchedule";
+		return "lecture/schedule/listProfessorSchedule";
 	}
 	
 	// 강의실시간표 리스트 페이지
 	@RequestMapping(value="/lesson/schedule/listRoomSchedule", method=RequestMethod.GET)
 	public String roomScheduleList() {
 		System.out.println("강의실시간표 리스트 페이지");
-		return "schedule/listRoomSchedule";
+		return "lecture/schedule/listRoomSchedule";
 	}
 	
 	// 교수강의과목조회 페이지
 	@RequestMapping(value="/lesson/schedule/listProfessorSubject", method=RequestMethod.GET)
 	public String professorSubjectList() {
 		System.out.println("교수강의과목조회 페이지");
-		return "schedule/listProfessorSubject";
+		return "lecture/schedule/listProfessorSubject";
 	}
 	
 	// 교수명 조회

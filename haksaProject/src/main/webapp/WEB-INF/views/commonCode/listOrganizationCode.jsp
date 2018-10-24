@@ -50,6 +50,10 @@
 	               }
 	               $(temp).parent().show();
 	           });
+	           
+	           $('#addOrganization').click(function(){
+					window.location.href="/common/codes/addOrganizationCodeForm";
+				});
 	       });
 	  	</script>
 </head>
@@ -83,7 +87,7 @@
 									<option value="check_a_change">변경 유무</option>
 								</select>
 								&ensp;
-								<button class="btn btn-info" type="button">입력</button>
+								<button class="btn btn-info" type="button" id="addOrganization">입력</button>
 
 							</div>
 						</div>

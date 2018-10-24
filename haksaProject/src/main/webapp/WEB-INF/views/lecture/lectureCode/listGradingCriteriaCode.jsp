@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>강의 담당교수 변경관리</title>
+<title>성적평가 기준 코드관리</title>
 
 <!-- Bootstrap core CSS-->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
@@ -26,9 +25,16 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+	type="text/javascript"></script>
+<script>
+	$(document).ready(function() {
+		$('#addGradingCriteria').click(function(){
+			window.location.href="/lecture/codes/addGradingCriteriaCodeForm";
+		});
+	});
+</script>
 </head>
-
 <body id="page-top">
 
 	<jsp:include page="/WEB-INF/views/module/nav.jsp" />
@@ -41,7 +47,7 @@
 
 			<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-				<div class="mail-box">
+							<div class="mail-box">
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
@@ -49,15 +55,8 @@
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; <select class="btn btn-info">
-									<option value="code">코드</option>
-									<option value="name">건물명</option>
-									<option value="agencyName">소속 기관</option>
-									<option value="check_a_use">사용유무</option>
-									<option value="check_a_change">변경유무</option>
-								</select>
 								&ensp;
-								<button class="btn btn-info" type="button">입력</button>
+								<button class="btn btn-info" type="button" id="addGradingCriteria">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">
@@ -65,30 +64,22 @@
 								<table class="table table-inbox table-hover">
 									<tbody>
 										<tr class="unread">
-											<td class="view-message  dont-show">강의담당교수, 시간강사 변경번호</td>
-											<td>과목</td>
+											<td class="view-message  dont-show">등급</td>
+											<td>시작점수</td>
 											<td></td>
 											<td></td>
-											<td>이수구분</td>
-											<td>학점</td>
-											<td>총시수</td>
-											<td>변경 전 교수, 강사 명</td>
-											<td>변경 후 교수, 강사 명</td>
-											<td>변경사유</td>
-											<td class="view-message  text-left">변경일자</td>
+											<td>끝점수</td>
+											<td>평점</td>
+											<td class="view-message  text-left">시스템 등록자 아이디</td>
 										</tr>
 
-										<c:forEach var="pc" items="${list}">
+										<c:forEach var="grade" items="${list}">
 											<tr class="">
-												<td class="view-message  dont-show">${pc.professorChangeNumber}</td>
-												<td colspan="3" class="view-message">${pc.subjectName}</td>
-												<td>${pc.typeOfCompletionName}</td>
-												<td>${pc.subjectScoreGraduation}</td>
-												<td>${pc.subjectHoursTheory+pc.subjectHoursPractice}</td>
-												<td>${pc.humanName}</td>
-												<td>${pc.professorChangeName}</td>
-												<td>${pc.professorChangeReasonForChange}</td>
-												<td class="view-message  text-left">${pc.professorChangeChangedDate}</td>
+												<td class="view-message  dont-show">${grade.gradingCriteriaRating}</td>
+												<td colspan="3" class="view-message">${grade.gradingCriteriaStartOfSection}</td>
+												<td>${grade.gradingCriteriaStartOfSection}</td>
+												<td>${grade.gradingCriteriaGrade}</td>
+												<td>${grade.recordId}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -98,20 +89,19 @@
 					</aside>
 				</div>
 			</div>
-		</div>
-		<!-- /.container-fluid -->
+			<!-- /.container-fluid -->
 
-		<!-- Sticky Footer -->
-		<footer class="sticky-footer">
-			<div class="container my-auto">
-				<div class="copyright text-center my-auto">
-					<span>Copyright © Haksa 2018</span>
+			<!-- Sticky Footer -->
+			<footer class="sticky-footer">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright © Haksa 2018</span>
+					</div>
 				</div>
-			</div>
-		</footer>
+			</footer>
 
-	</div>
-	<!-- /.content-wrapper -->
+		</div>
+		<!-- /.content-wrapper -->
 
 	</div>
 	<!-- /#wrapper -->
@@ -162,6 +152,5 @@
 	<!-- Demo scripts for this page-->
 	<script src="/resources/js/demo/datatables-demo.js"></script>
 	<script src="/resources/js/demo/chart-area-demo.js"></script>
-
 </body>
 </html>

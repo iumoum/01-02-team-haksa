@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>팀코드 관리</title>
+<title>부서코드 관리</title>
 
 <!-- Bootstrap core CSS-->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,34 +28,38 @@
 	           $("#keyword").keyup(function() {
 	               var selectBox = $("#selectBox option:selected").val();
 	               var word = $('#keyword').val();
-	               $("#teamTable > tbody").children().hide();
+	               $("#deptTable > tbody").children().hide();
 	               if(selectBox == "code"){
-	                   	var temp = $("#teamTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
+	                   	var temp = $("#deptTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
 	                   	
 	               }else if(selectBox == "name"){
-						var temp = $("#teamTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");     
+						var temp = $("#deptTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");    
 						
 	               }else if(selectBox == "agencyName"){
-	               		var temp = $("#teamTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "orgName"){
-	               		var temp = $("#teamTable > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
 	               		
-	               }else if(selectBox == "deptName"){
-	               		var temp = $("#teamTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
+	               }else if(selectBox == "division"){
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "establishDate"){
-	               		var temp = $("#teamTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "check_a_use"){
-	               		var temp = $("#teamTable > tbody > tr").find("td:nth-child(10):contains('" + word + "')");
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(11):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "check_a_change"){
-	               		var temp = $("#teamTable > tbody > tr").find("td:nth-child(11):contains('" + word + "')");
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(12):contains('" + word + "')");
 	               		
 	               }
 	               $(temp).parent().show();
 	           });
+	           
+	           $('#addDepartment').click(function(){
+					window.location.href="/common/codes/addDepartmentCodeForm";
+				});
 	       });
 	  	</script>
 </head>
@@ -72,7 +76,7 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
-			<div class="mail-box">
+				<div class="mail-box">
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
@@ -80,19 +84,18 @@
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; 
-								<select class="btn btn-info">
+								&ensp; <select class="btn btn-info">
 									<option value="code">코드</option>
-									<option value="name">팀 명</option>
+									<option value="name">부서 명</option>
 									<option value="agencyName">소속 기관</option>
 									<option value="orgName">소속 기구</option>
-									<option value="deptName">소속 부서</option>
+									<option value="division">구분</option>
 									<option value="establishDate">설치일자</option>
 									<option value="check_a_use">사용 유무</option>
 									<option value="check_a_change">변경 유무</option>
 								</select>
 								&ensp;
-								<button class="btn btn-info" type="button">입력</button>
+								<button class="btn btn-info" type="button" id="addDepartment">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">
@@ -100,32 +103,32 @@
 								<table class="table table-inbox table-hover">
 									<tbody>
 										<tr class="unread">
-											<td class="view-message  dont-show">팀코드</td>
+											<td class="view-message  dont-show">부서코드</td>
 											<td>기관명</td>
-											<td></td>
-											<td></td>
 											<td>기구명</td>
-											<td>부서명</td>
-											<td>팀명(국문)</td>
-											<td>팀명(영문)</td>
+											<td>부서학과구분</td>
+											<td class="view-message  text-left">부서명(국문)</td>
+											<td>부서명(영문)</td>
 											<td>설치일자</td>
-											<td>대표전화번호</td>
+											<td class="view-message  text-left">대표전화번호</td>
+											<td>졸업학년</td>
 											<td>코드 사용유무</td>
-											<td class="view-message  text-left">코드 변경유무</td>
+											<td>코드 변경유무</td>
 										</tr>
 
-										<c:forEach var="team" items="${list}">
-											<tr class="">
-												<td class="view-message  dont-show">${team.teamCode}</td>
-												<td colspan="3" class="view-message">${team.agencyName}</td>
-												<td>${team.orgName}</td>
-												<td>${team.deptName}</td>
-												<td>${team.teamNameKorean}</td>
-												<td>${team.teamNameEnglish}</td>
-												<td>${team.teamEstablishDate}</td>
-												<td>${team.teamRepPhoneNumber}</td>
-												<td>${team.teamIsUsed}</td>
-												<td>${team.teamIsChanged}</td>
+										<c:forEach var="dept" items="${list}">
+											<tr>
+												<td>${dept.deptCode}</td>
+												<td>${dept.agencyName}</td>
+												<td>${dept.orgName}</td>
+												<td>${dept.deptForEduOrAdmin}</td>
+												<td>${dept.deptNameKorean}</td>
+												<td>${dept.deptNameEnglish}</td>
+												<td>${dept.deptEstablishDate}</td>
+												<td>${dept.deptRepPhoneNumber}</td>
+												<td>${dept.deptGraduatedGrade}</td>
+												<td>${dept.deptIsUsed}</td>
+												<td>${dept.deptIsChanged}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

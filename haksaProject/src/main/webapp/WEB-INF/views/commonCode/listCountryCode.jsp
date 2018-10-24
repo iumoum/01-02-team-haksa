@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>강의실코드 관리</title>
+<title>국가코드 관리</title>
 
 <!-- Bootstrap core CSS-->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,25 +28,26 @@
 	           $("#keyword").keyup(function() {
 	               var selectBox = $("#selectBox option:selected").val();
 	               var word = $('#keyword').val();
-	               $("#roomTable > tbody").children().hide();
+	               $("#countryTable > tbody").children().hide();
 	               if(selectBox == "code"){
-	                   	var temp = $("#roomTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
+	                   	var temp = $("#countryTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
 	                   	
 	               }else if(selectBox == "name"){
-						var temp = $("#roomTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");  
+						var temp = $("#countryTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");     
 						
-	               }else if(selectBox == "buildingName"){
-	               		var temp = $("#roomTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
-	               		
 	               }else if(selectBox == "check_a_use"){
-	               		var temp = $("#roomTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
+	               		var temp = $("#countryTable > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "check_a_change"){
-	               		var temp = $("#roomTable > tbody > tr").find("td:nth-child(8):contains('" + word + "')");
+	               		var temp = $("#countryTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
 	               		
 	               }
 	               $(temp).parent().show();
 	           });
+	           
+	           $('#addCountry').click(function(){
+					window.location.href="/common/codes/addCountryCodeForm";
+				});
 	       });
 	  	</script>
 </head>
@@ -63,7 +64,7 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
-							<div class="mail-box">
+			<div class="mail-box">
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
@@ -73,13 +74,13 @@
 								</button>
 								&ensp; <select class="btn btn-info">
 									<option value="code">코드</option>
-									<option value="buildingName">소속 건물 명</option>
-									<option value="name">강의실 명</option>
+									<option value="name">국가 명</option>
 									<option value="check_a_use">사용 유무</option>
 									<option value="check_a_change">변경 유무</option>
-								</select>
+								</select> 
 								&ensp;
-								<button class="btn btn-info" type="button">입력</button>
+								<button class="btn btn-info" type="button" id="addCountry">입력</button>
+
 							</div>
 						</div>
 						<div class="inbox-body">
@@ -87,28 +88,20 @@
 								<table class="table table-inbox table-hover">
 									<tbody>
 										<tr class="unread">
-											<td class="view-message  dont-show">강의실 코드</td>
-											<td>소속 건물 명</td>
+											<td class="view-message  dont-show">국가 코드</td>
+											<td>국가 명</td>
 											<td></td>
 											<td></td>
-											<td>강의실 층</td>
-											<td>호실 번호</td>
-											<td>강의실 명</td>
-											<td>강의실 용도</td>
 											<td>코드 사용유무</td>
 											<td class="view-message  text-left">코드 변경유무</td>
 										</tr>
 
-										<c:forEach var="row" items="${roomCodes}">
+										<c:forEach var="row" items="${countryCodes}">
 											<tr class="">
-												<td class="view-message  dont-show">${row.roomCode}</td>
-												<td colspan="3" class="view-message">${row.buildingName}</td>
-												<td>${row.roomFloor}</td>
-												<td>${row.roomNumber}</td>
-												<td>${row.roomName}</td>
-												<td>${row.roomUsage}</td>
-												<td>${row.roomIsUsed}</td>
-												<td>${row.roomIsChanged}</td>
+												<td class="view-message  dont-show">${row.countryCode}</td>
+												<td colspan="3" class="view-message">${row.countryNameKorean}</td>
+												<td>${row.countryIsUsed}</td>
+												<td>${row.countryIsChanged}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>수강신청 및 정정</title><!-- Bootstrap core CSS-->
+<title>반 석차조회 리스트</title><!-- Bootstrap core CSS-->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom fonts for this template-->
@@ -20,9 +20,8 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-
 <style>
-	.printScoreRankInDeptMain{
+	.printScoreRankInClassMain{
 		text-align : left;
 		font-weight: bold;
 	}
@@ -47,24 +46,24 @@
 		    			
 		    			<div class="widget-header">
 							<i class="icon-th-list"></i>
-							<h3>학과 석차 조회 리스트</h3>
+							<h3>반 석차조회 리스트</h3>
 						</div> <!-- /widget-header -->
 		    			<div class="widget-content">
-							<form action="/courseAndScore/printScoreRankInDept" method="post">
+							<form action="/courseAndScore/printScoreRankInClass" method="post">
 								<table class="table table-striped table-bordered">								
 									<thead>
 										<tr align="right">
 											<td scope="col" colspan="10">
-												<p class = "printScoreRankInDeptMain"> 반 입력 : 
-													<select name="DeptName">
-														<option value="골프경영학과">골프경영학과</option>
-														<option value="컴퓨터정보과">컴퓨터정보과</option>
+												<p class = "printScoreRankInClassMain"> 반 입력 : 
+													<select name="ClassName">
+														<option value="A">A</option>
+														<option value="B">B</option>
 													</select>
 												</p>
 												<button type="button" class="btn btn-info">이전화면</button>
 												<button type="submit" class="btn btn-info">조회하기</button>
 											</td>
-									    </tr>
+										</tr>
 									</thead>
 								</table>
 							</form>
@@ -74,19 +73,19 @@
 		    			<!-- 학과 석차 조회 -->
 						<div class="widget-header">
 							<i class="icon-th-list"></i>
-							<h3>학과 석차 조회</h3>
+							<h3>반 석차 조회</h3>
 						</div> <!-- /widget-header -->
 						
 						<div class="widget-content">
-							<form action="/courseAndScore/printScoreRankInDept" method="post">
+							<form action="/courseAndScore/printScoreRankInClass" method="post">
 								<table class="table table-striped table-bordered">								
 									<thead>
 										<tr>
 											<th>석차</th>
-									    	<th>학번</th>
-									    	<th>평점</th>
-									    	<th>성명</th>
-									    	<th>이수구분</th>
+											<th>학번</th>
+											<th>평점</th>
+											<th>성명</th>
+											<th>이수구분</th>
 										</tr>
 									</thead>
 									<tbody align="center">

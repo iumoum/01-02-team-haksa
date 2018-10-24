@@ -59,7 +59,7 @@ public class CourseAndScoreController {
 		model.addAttribute("enrolCourseList", enrolCourseList);
 		model.addAttribute("id", id);
 		
-		return "courseAndScore/enrolCourse";
+		return "lecture/courseAndScore/addEnrolCourse";
 	}
 	/*
 	 * 1-1 선택된 과목의 행 정보를 모두 전달하는 배열 값을 받아서 수강신청 테이블에 입력
@@ -159,7 +159,7 @@ public class CourseAndScoreController {
 		List<EnrolCourse> enrolCourse = courseAndScoreService.searchEnrolCourse(array);
 		
 		mv.addObject("enrolCourse", enrolCourse);
-		mv.setViewName("/courseAndScore/searchCourse");
+		mv.setViewName("/lecture/courseAndScore/listSearchCourse");
 
 		return mv;
 	}
@@ -188,7 +188,7 @@ public class CourseAndScoreController {
 		model.addAttribute("insertScore", insertScore);
 		model.addAttribute("id", id);
 		
-		return "courseAndScore/enrolScoreCourseList";
+		return "lecture/courseAndScore/listEnrolScoreCourse";
 	}
 	
 	/*
@@ -208,7 +208,7 @@ public class CourseAndScoreController {
 		//model.addAttribute("EnrolCourse",EnrolCourse);
 		model.addAttribute("enrolCourse", enrolCourse);
 		
-		return "/courseAndScore/enrolScore";
+		return "/lecture/courseAndScore/addEnrolScore";
 	}
 	
 	/*
@@ -230,7 +230,7 @@ public class CourseAndScoreController {
 		model.addAttribute("enrolCourse", enrolCourse);
 		
 		
-		return "courseAndScore/printScoreRankInClass";
+		return "lecture/courseAndScore/listScoreRankInClass";
 	}
 	/*
 	 * 6.학과별 석차 조회 서비스 메소드 호출
@@ -248,7 +248,7 @@ public class CourseAndScoreController {
 		
 		model.addAttribute("enrolCourse", enrolCourse);
 		
-		return "courseAndScore/printScoreRankInDept";
+		return "lecture/courseAndScore/listScoreRankInDept";
 	}
 	
 }

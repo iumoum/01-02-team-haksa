@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,58 +9,38 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>국가코드 관리</title>
+<title>강의 담당교수 변경관리</title>
 
 <!-- Bootstrap core CSS-->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Custom fonts for this template-->
-<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="/resources/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
 
 <!-- Page level plugin CSS-->
-<link href="/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+<link href="/resources/vendor/datatables/dataTables.bootstrap4.css"
+	rel="stylesheet">
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-	   <script>
-	       $(document).ready(function() {
-	           $("#keyword").keyup(function() {
-	               var selectBox = $("#selectBox option:selected").val();
-	               var word = $('#keyword').val();
-	               $("#countryTable > tbody").children().hide();
-	               if(selectBox == "code"){
-	                   	var temp = $("#countryTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
-	                   	
-	               }else if(selectBox == "name"){
-						var temp = $("#countryTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");     
-						
-	               }else if(selectBox == "check_a_use"){
-	               		var temp = $("#countryTable > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
-	               		
-	               }else if(selectBox == "check_a_change"){
-	               		var temp = $("#countryTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
-	               		
-	               }
-	               $(temp).parent().show();
-	           });
-	       });
-	  	</script>
+
 </head>
 
 <body id="page-top">
 
-	<jsp:include page="/WEB-INF/views/module/nav.jsp"/>
+	<jsp:include page="/WEB-INF/views/module/nav.jsp" />
 
 	<div id="wrapper">
 
-		<jsp:include page="/WEB-INF/views/module/sidebar.jsp"/>
+		<jsp:include page="/WEB-INF/views/module/sidebar.jsp" />
 
 		<div id="content-wrapper">
 
 			<div class="container-fluid">
-			<!-- 여기에 내용이 담긴다 -->
-			<div class="mail-box">
+				<!-- 여기에 내용이 담긴다 -->
+				<div class="mail-box">
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
@@ -70,13 +50,13 @@
 								</button>
 								&ensp; <select class="btn btn-info">
 									<option value="code">코드</option>
-									<option value="name">국가 명</option>
-									<option value="check_a_use">사용 유무</option>
-									<option value="check_a_change">변경 유무</option>
-								</select> 
+									<option value="name">건물명</option>
+									<option value="agencyName">소속 기관</option>
+									<option value="check_a_use">사용유무</option>
+									<option value="check_a_change">변경유무</option>
+								</select>
 								&ensp;
 								<button class="btn btn-info" type="button">입력</button>
-
 							</div>
 						</div>
 						<div class="inbox-body">
@@ -84,20 +64,30 @@
 								<table class="table table-inbox table-hover">
 									<tbody>
 										<tr class="unread">
-											<td class="view-message  dont-show">국가 코드</td>
-											<td>국가 명</td>
+											<td class="view-message  dont-show">강의담당교수, 시간강사 변경번호</td>
+											<td>과목</td>
 											<td></td>
 											<td></td>
-											<td>코드 사용유무</td>
-											<td class="view-message  text-left">코드 변경유무</td>
+											<td>이수구분</td>
+											<td>학점</td>
+											<td>총시수</td>
+											<td>변경 전 교수, 강사 명</td>
+											<td>변경 후 교수, 강사 명</td>
+											<td>변경사유</td>
+											<td class="view-message  text-left">변경일자</td>
 										</tr>
 
-										<c:forEach var="row" items="${countryCodes}">
+										<c:forEach var="pc" items="${list}">
 											<tr class="">
-												<td class="view-message  dont-show">${row.countryCode}</td>
-												<td colspan="3" class="view-message">${row.countryNameKorean}</td>
-												<td>${row.countryIsUsed}</td>
-												<td>${row.countryIsChanged}</td>
+												<td class="view-message  dont-show">${pc.professorChangeNumber}</td>
+												<td colspan="3" class="view-message">${pc.subjectName}</td>
+												<td>${pc.typeOfCompletionName}</td>
+												<td>${pc.subjectScoreGraduation}</td>
+												<td>${pc.subjectHoursTheory+pc.subjectHoursPractice}</td>
+												<td>${pc.humanName}</td>
+												<td>${pc.professorChangeName}</td>
+												<td>${pc.professorChangeReasonForChange}</td>
+												<td class="view-message  text-left">${pc.professorChangeChangedDate}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -107,21 +97,20 @@
 					</aside>
 				</div>
 			</div>
-			<!-- /.container-fluid -->
-
-			<!-- Sticky Footer -->
-			<footer class="sticky-footer">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright © Haksa 2018</span>
-					</div>
-				</div>
-			</footer>
-
 		</div>
-		<!-- /.content-wrapper -->
+		<!-- /.container-fluid -->
+
+		<!-- Sticky Footer -->
+		<footer class="sticky-footer">
+			<div class="container my-auto">
+				<div class="copyright text-center my-auto">
+					<span>Copyright © Haksa 2018</span>
+				</div>
+			</div>
+		</footer>
 
 	</div>
+	<!-- /.content-wrapper -->
 	<!-- /#wrapper -->
 
 	<!-- Scroll to Top Button-->

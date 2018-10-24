@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>직군코드 관리</title>
+<title>과목 코드 관리</title>
 
 <!-- Bootstrap core CSS-->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
@@ -26,49 +25,24 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+
+<style>
+	.inbox-body {
+	width:1520px;
+	white-space:nowrap;
+	overflow-x:scroll;
+	}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
 	type="text/javascript"></script>
 <script>
-	$(document).ready(
-			function() {
-				$("#keyword").keyup(
-						function() {
-							var selectBox = $("#selectBox option:selected")
-									.val();
-							var word = $('#keyword').val();
-							$("#jobGroupTable > tbody").children().hide();
-							if (selectBox == "code") {
-								var temp = $("#jobGroupTable > tbody > tr")
-										.find(
-												"td:nth-child(1):contains('"
-														+ word + "')");
-
-							} else if (selectBox == "name") {
-								var temp = $("#jobGroupTable > tbody > tr")
-										.find(
-												"td:nth-child(2):contains('"
-														+ word + "')");
-
-							} else if (selectBox == "check_a_use") {
-								var temp = $("#jobGroupTable > tbody > tr")
-										.find(
-												"td:nth-child(3):contains('"
-														+ word + "')");
-
-							} else if (selectBox == "check_a_change") {
-								var temp = $("#jobGroupTable > tbody > tr")
-										.find(
-												"td:nth-child(4):contains('"
-														+ word + "')");
-
-							}
-							$(temp).parent().show();
-						});
-			});
+	$(document).ready(function() {
+		$('#addSubject').click(function(){
+			window.location.href="/lecture/codes/addSubjectCodeForm";
+		});
+	});
 </script>
 </head>
-
 <body id="page-top">
 
 	<jsp:include page="/WEB-INF/views/module/nav.jsp" />
@@ -89,14 +63,8 @@
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; <select class="btn btn-info">
-									<option value="code">코드</option>
-									<option value="name">직군 명</option>
-									<option value="check_a_use">사용 유무</option>
-									<option value="check_a_change">변경 유무</option>
-								</select>
 								&ensp;
-								<button class="btn btn-info" type="button">입력</button>
+								<button class="btn btn-info" type="button" id="addSubject">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">
@@ -104,20 +72,36 @@
 								<table class="table table-inbox table-hover">
 									<tbody>
 										<tr class="unread">
-											<td class="view-message  dont-show">직군 코드</td>
-											<td>직군 명</td>
+											<td class="view-message  dont-show">과목 코드</td>
+											<td>과목명(국문)</td>
 											<td></td>
 											<td></td>
+											<td>과목명(영문)</td>
+											<td>학점</td>
+											<td>이론시수</td>
+											<td>실습시수</td>
 											<td>코드 사용유무</td>
-											<td class="view-message  text-left">코드 변경유무</td>
+											<td>코드 변경유무</td>
+											<td>코드 변경사유</td>
+											<td>코드 변경일자</td>
+											<td>시스템 등록일자</td>
+											<td>시스템 등록자 아이디</td>
 										</tr>
 
-										<c:forEach var="row" items="${jobGroupCodes}">
+										<c:forEach var="sub" items="${list}">
 											<tr class="">
-												<td class="view-message  dont-show">${row.jobGroupCode}</td>
-												<td colspan="3" class="view-message">${row.jobGroupName}</td>
-												<td>${row.jobGroupIsUsed}</td>
-												<td>${row.jobGroupIsChanged}</td>
+												<td class="view-message  dont-show">${sub.subjectCode}</td>
+												<td colspan="3" class="view-message">${sub.subjectNameKorean}</td>
+												<td>${sub.subjectNameEnglish}</td>
+												<td>${sub.subjectScoreGraduation}</td>
+												<td>${sub.subjectHoursTheory}</td>
+												<td>${sub.subjectHoursPractice}</td>
+												<td>${sub.subjectHoursIsUsed}</td>
+												<td>${sub.subjectHoursIsChanged}</td>
+												<td>${sub.subjectHoursReasonForChange}</td>
+												<td>${sub.subjectHoursChangedDate}</td>
+												<td>${sub.subjectHoursRegisteredDate}</td>
+												<td>${sub.recordId}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -190,6 +174,5 @@
 	<!-- Demo scripts for this page-->
 	<script src="/resources/js/demo/datatables-demo.js"></script>
 	<script src="/resources/js/demo/chart-area-demo.js"></script>
-
 </body>
 </html>

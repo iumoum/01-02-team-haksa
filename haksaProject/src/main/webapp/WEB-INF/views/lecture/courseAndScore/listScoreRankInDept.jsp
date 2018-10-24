@@ -9,10 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>수강신청 및 정정</title><!-- Bootstrap core CSS-->
-
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
-
+<title>학과 석차 조회 리스트</title><!-- Bootstrap core CSS-->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom fonts for this template-->
@@ -24,36 +21,13 @@
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
 
-<script>
-	$(document).ready(()=>{
-		
-		var = 
-		
-		$('#insertScore').click(()=>{
-			alert('수강신청 페이지로 이동합니다.');
-			
-			$.ajax({
-		        url:"/courseAndScore/enrolScore",
-		        type:'POST',
-		        data: allData,
-		        success:(data)=>{
-		            
-		           
-		        },
-		        error:(jqXHR, textStatus, errorThrown)=>{
-		            
-		        }
-		    });
-		});
-		
-	});
-</script>
 <style>
-	#enrolScoreCourseListMain{
+	.printScoreRankInDeptMain{
 		text-align : left;
 		font-weight: bold;
 	}
 </style>
+
 </head>
 
 <body id="page-top">
@@ -70,43 +44,67 @@
 			<!-- 여기에 내용이 담긴다 -->
 				<div class="span7">   
 					<div class="widget stacked widget-table action-table">
-		    				
+		    			
+		    			<div class="widget-header">
+							<i class="icon-th-list"></i>
+							<h3>학과 석차 조회 리스트</h3>
+						</div> <!-- /widget-header -->
+		    			<div class="widget-content">
+							<form action="/courseAndScore/printScoreRankInDept" method="post">
+								<table class="table table-striped table-bordered">								
+									<thead>
+										<tr align="right">
+											<td scope="col" colspan="10">
+												<p class = "printScoreRankInDeptMain"> 반 입력 : 
+													<select name="DeptName">
+														<option value="골프경영학과">골프경영학과</option>
+														<option value="컴퓨터정보과">컴퓨터정보과</option>
+													</select>
+												</p>
+												<button type="button" class="btn btn-info">이전화면</button>
+												<button type="submit" class="btn btn-info">조회하기</button>
+											</td>
+									    </tr>
+									</thead>
+								</table>
+							</form>
+						</div> <!-- /widget-content -->
+		    			<br><br>
+		    			
+		    			<!-- 학과 석차 조회 -->
 						<div class="widget-header">
 							<i class="icon-th-list"></i>
-							<h3>담당과목 성적등록</h3>
+							<h3>학과 석차 조회</h3>
 						</div> <!-- /widget-header -->
 						
 						<div class="widget-content">
-							
-							<table class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th>년도</th>
-										<th>학기</th>
-										<th>강의상황서 번호</th>
-										<th>과목명</th>
-										<th>학점</th>
-										<th>입력 확정</th>
-										<th>공개 여부</th>
-									</tr>
-								</thead>
-								<tbody align="center">
-									<c:forEach var="row" items="${insertScore}">
+							<form action="/courseAndScore/printScoreRankInDept" method="post">
+								<table class="table table-striped table-bordered">								
+									<thead>
 										<tr>
-											<td>${row.insertScoreSchoolYear }</td>
-											<td>${row.insertScoreSemester }</td>
-											<td>${row.lectureStatusNumber }</td>
-											<td><a id="insertScore" href="/courseAndScore/enrolScore?subject=${row.insertScoreCourseName}">${row.insertScoreCourseName}</a>&nbsp;<img src="/resources/images/gif1.gif">&nbsp;click!</td>
-											<td>${row.insertScoreCourseCredit }</td>
-											<td>${row.insertScoreFixScore }</td>
-											<td>${row.insertScoreOpenScore }</td>
+											<th>석차</th>
+									    	<th>학번</th>
+									    	<th>평점</th>
+									    	<th>성명</th>
+									    	<th>이수구분</th>
 										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+									</thead>
+									<tbody align="center">
+										 <c:forEach var="row" items="${enrolCourse}" varStatus="status">
+										    <tr>
+										    	<td>${status.count }</td>
+										    	<td>${row.enrolCourseStudentNumber }</td>
+										    	<td>${row.insertScoreTotalAverageScore }</td>
+										    	<td>${row.enrolCoursestudentName }</td>
+										    	<td>${row.enrolCourseCompletionDivision}</td>
+										    </tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</form>
 						</div> <!-- /widget-content -->
 					</div> <!-- /widget -->
-	            </div>	
+	            </div>
 			</div>
 			<!-- /.container-fluid -->
 			

@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>직급코드 관리</title>
+<title>직위코드 관리</title>
 
 <!-- Bootstrap core CSS-->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,28 +28,26 @@
 	           $("#keyword").keyup(function() {
 	               var selectBox = $("#selectBox option:selected").val();
 	               var word = $('#keyword').val();
-	               $("#jobRankTable > tbody").children().hide();
+	               $("#jobPositionTable > tbody").children().hide();
 	               if(selectBox == "code"){
-	                   	var temp = $("#jobRankTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
+	                   	var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
 	                   	
 	               }else if(selectBox == "name"){
-						var temp = $("#jobRankTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");    
+						var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");   
 						
-	               }else if(selectBox == "jobGroupName"){
-	               		var temp = $("#jobRankTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
-	               		
-	               }else if(selectBox == "jobTypeName"){
-	               		var temp = $("#jobRankTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");
-	               		
 	               }else if(selectBox == "check_a_use"){
-	               		var temp = $("#jobRankTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
+	               		var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "check_a_change"){
-	               		var temp = $("#jobRankTable > tbody > tr").find("td:nth-child(8):contains('" + word + "')");
+	               		var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
 	               		
 	               }
 	               $(temp).parent().show();
 	           });
+	           
+	           $('#addJobPosition').click(function(){
+					window.location.href="/common/codes/addJobPositionCodeForm";
+				});
 	       });
 	  	</script>
 </head>
@@ -74,16 +72,15 @@
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; <select class="btn btn-info">
+								&ensp; 
+								<select class="btn btn-info">
 									<option value="code">코드</option>
-									<option value="name">직급 명</option>
-									<option value="jobGroupName">소속 직군</option>
-									<option value="jobTypeName">소속 직종</option>
+									<option value="name">직위 명</option>
 									<option value="check_a_use">사용 유무</option>
 									<option value="check_a_change">변경 유무</option>
 								</select>
 								&ensp;
-								<button class="btn btn-info" type="button">입력</button>
+								<button class="btn btn-info" type="button" id="addJobPosition">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">
@@ -91,28 +88,22 @@
 								<table class="table table-inbox table-hover">
 									<tbody>
 										<tr class="unread">
-											<td class="view-message  dont-show">직급 코드</td>
-											<td>직급 명 (국문)</td>
+											<td class="view-message  dont-show">직위 코드</td>
+											<td>직위 명 (국문)</td>
 											<td></td>
 											<td></td>
-											<td>직급 명 (영문)</td>
-											<td>소속 직군 명</td>
-											<td>소속 직종 명</td>
-											<td>승진소요연수</td>
+											<td>직위 명 (영문)</td>
 											<td>코드 사용유무</td>
 											<td class="view-message  text-left">코드 변경유무</td>
 										</tr>
 
-										<c:forEach var="row" items="${jobRankCodes}">
+										<c:forEach var="row" items="${jobPositionCodes}">
 											<tr class="">
-												<td class="view-message  dont-show">${row.jobRankCode}</td>
-												<td colspan="3" class="view-message">${row.jobRankNameKorean}</td>
-												<td>${row.jobRankNameEnglish}</td>
-												<td>${row.jobGroupName}</td>
-												<td>${row.jobTypeName}</td>
-												<td>${row.jobRankMinPromotionRequired}</td>
-												<td>${row.jobRankIsUsed}</td>
-												<td>${row.jobRankIsChanged}</td>
+												<td class="view-message  dont-show">${row.jobPositionCode}</td>
+												<td colspan="3" class="view-message">${row.jobPositionNameKorean}</td>
+												<td>${row.jobPositionNameEnglish}</td>
+												<td>${row.jobPositionIsUsed}</td>
+												<td>${row.jobPositionIsChanged}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

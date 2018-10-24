@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>수강신청 및 정정</title><!-- Bootstrap core CSS-->
+<title>수강신청</title><!-- Bootstrap core CSS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>부서코드 관리</title>
+<title>강의실코드 관리</title>
 
 <!-- Bootstrap core CSS-->
 <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,34 +28,29 @@
 	           $("#keyword").keyup(function() {
 	               var selectBox = $("#selectBox option:selected").val();
 	               var word = $('#keyword').val();
-	               $("#deptTable > tbody").children().hide();
+	               $("#roomTable > tbody").children().hide();
 	               if(selectBox == "code"){
-	                   	var temp = $("#deptTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
+	                   	var temp = $("#roomTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
 	                   	
 	               }else if(selectBox == "name"){
-						var temp = $("#deptTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");    
+						var temp = $("#roomTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");  
 						
-	               }else if(selectBox == "agencyName"){
-	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
-	               		
-	               }else if(selectBox == "orgName"){
-	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
-	               		
-	               }else if(selectBox == "division"){
-	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
-	               		
-	               }else if(selectBox == "establishDate"){
-	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
+	               }else if(selectBox == "buildingName"){
+	               		var temp = $("#roomTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "check_a_use"){
-	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(11):contains('" + word + "')");
+	               		var temp = $("#roomTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "check_a_change"){
-	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(12):contains('" + word + "')");
+	               		var temp = $("#roomTable > tbody > tr").find("td:nth-child(8):contains('" + word + "')");
 	               		
 	               }
 	               $(temp).parent().show();
 	           });
+	           
+	           $('#addRoom').click(function(){
+					window.location.href="/common/codes/addRoomCodeForm";
+				});
 	       });
 	  	</script>
 </head>
@@ -72,7 +67,7 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
-				<div class="mail-box">
+							<div class="mail-box">
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
@@ -82,16 +77,13 @@
 								</button>
 								&ensp; <select class="btn btn-info">
 									<option value="code">코드</option>
-									<option value="name">부서 명</option>
-									<option value="agencyName">소속 기관</option>
-									<option value="orgName">소속 기구</option>
-									<option value="division">구분</option>
-									<option value="establishDate">설치일자</option>
+									<option value="buildingName">소속 건물 명</option>
+									<option value="name">강의실 명</option>
 									<option value="check_a_use">사용 유무</option>
 									<option value="check_a_change">변경 유무</option>
 								</select>
 								&ensp;
-								<button class="btn btn-info" type="button">입력</button>
+								<button class="btn btn-info" type="button" id="addRoom">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">
@@ -99,32 +91,28 @@
 								<table class="table table-inbox table-hover">
 									<tbody>
 										<tr class="unread">
-											<td class="view-message  dont-show">부서코드</td>
-											<td>기관명</td>
-											<td>기구명</td>
-											<td>부서학과구분</td>
-											<td class="view-message  text-left">부서명(국문)</td>
-											<td>부서명(영문)</td>
-											<td>설치일자</td>
-											<td class="view-message  text-left">대표전화번호</td>
-											<td>졸업학년</td>
+											<td class="view-message  dont-show">강의실 코드</td>
+											<td>소속 건물 명</td>
+											<td></td>
+											<td></td>
+											<td>강의실 층</td>
+											<td>호실 번호</td>
+											<td>강의실 명</td>
+											<td>강의실 용도</td>
 											<td>코드 사용유무</td>
-											<td>코드 변경유무</td>
+											<td class="view-message  text-left">코드 변경유무</td>
 										</tr>
 
-										<c:forEach var="dept" items="${list}">
-											<tr>
-												<td>${dept.deptCode}</td>
-												<td>${dept.agencyName}</td>
-												<td>${dept.orgName}</td>
-												<td>${dept.deptForEduOrAdmin}</td>
-												<td>${dept.deptNameKorean}</td>
-												<td>${dept.deptNameEnglish}</td>
-												<td>${dept.deptEstablishDate}</td>
-												<td>${dept.deptRepPhoneNumber}</td>
-												<td>${dept.deptGraduatedGrade}</td>
-												<td>${dept.deptIsUsed}</td>
-												<td>${dept.deptIsChanged}</td>
+										<c:forEach var="row" items="${roomCodes}">
+											<tr class="">
+												<td class="view-message  dont-show">${row.roomCode}</td>
+												<td colspan="3" class="view-message">${row.buildingName}</td>
+												<td>${row.roomFloor}</td>
+												<td>${row.roomNumber}</td>
+												<td>${row.roomName}</td>
+												<td>${row.roomUsage}</td>
+												<td>${row.roomIsUsed}</td>
+												<td>${row.roomIsChanged}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
