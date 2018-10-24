@@ -68,42 +68,45 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
-			<form>
-				<table class="table table-bordered">
-					<thead align="center">
-						<tr align="right">
-							<td scope="col" colspan="10">
-								<p id = "enrolScoreCourseListMain">담당과목성적등록</p>
-								<br><br>
-							</td>
-					    </tr>
-						<tr>
-							<th>년도</th>
-							<th>학기</th>
-							<th>강의상황서 번호</th>
-							<th>과목명</th>
-							<th>학점</th>
-							<th>입력 확정</th>
-							<th>공개 여부</th>
-						</tr>
-					</thead>
-					
-					<tbody align="center">
-						<c:forEach var="row" items="${insertScore}">
-							<tr>
-								<td>${row.insertScoreSchoolYear }</td>
-								<td>${row.insertScoreSemester }</td>
-								<td>${row.lectureStatusNumber }</td>
-								<td><a id="insertScore" href="/courseAndScore/enrolScore?subject=${row.insertScoreCourseName}">${row.insertScoreCourseName}</a></td>
-								<td>${row.insertScoreCourseCredit }</td>
-								<td>${row.insertScoreFixScore }</td>
-								<td>${row.insertScoreOpenScore }</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</form>
-			
+				<div class="span7">   
+					<div class="widget stacked widget-table action-table">
+		    				
+						<div class="widget-header">
+							<i class="icon-th-list"></i>
+							<h3>담당과목 성적등록</h3>
+						</div> <!-- /widget-header -->
+						
+						<div class="widget-content">
+							
+							<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>년도</th>
+										<th>학기</th>
+										<th>강의상황서 번호</th>
+										<th>과목명</th>
+										<th>학점</th>
+										<th>입력 확정</th>
+										<th>공개 여부</th>
+									</tr>
+								</thead>
+								<tbody align="center">
+									<c:forEach var="row" items="${insertScore}">
+										<tr>
+											<td>${row.insertScoreSchoolYear }</td>
+											<td>${row.insertScoreSemester }</td>
+											<td>${row.lectureStatusNumber }</td>
+											<td><a id="insertScore" href="/courseAndScore/enrolScore?subject=${row.insertScoreCourseName}">${row.insertScoreCourseName}</a>&nbsp;<img src="/resources/images/gif1.gif">&nbsp;click!</td>
+											<td>${row.insertScoreCourseCredit }</td>
+											<td>${row.insertScoreFixScore }</td>
+											<td>${row.insertScoreOpenScore }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div> <!-- /widget-content -->
+					</div> <!-- /widget -->
+	            </div>	
 			</div>
 			<!-- /.container-fluid -->
 			

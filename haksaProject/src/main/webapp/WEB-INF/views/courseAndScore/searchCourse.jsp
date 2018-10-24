@@ -47,8 +47,75 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
+			<div class="span7">   
+				<div class="widget stacked widget-table action-table">		
+		    		
+		    		<!-- 학과 석차 조회 -->
+					<div class="widget-header">
+						<i class="icon-th-list"></i>
+						<h3>수강신청내역</h3>
+					</div> <!-- /widget-header -->
+					
+					<div class="widget-content">
+						<form action="searchCourse" method="post">
+							<table class="table table-striped table-bordered">								
+								<thead>
+									<tr>
+										<td scope="col" colspan="11">
+											<div class="col-xs-2" >
+												<span>
+													<select class="btn btn-info" id ="condition" name="option">
+														<option value="year">년도</option>
+														<option value="dept">학과</option>
+														<option value="grade">학년</option>
+														<option value="studentnumber">학번</option>
+													</select>
+												</span>
+												&ensp;
+												<input id="optionName" type="text" name="value" placeholder="" style="height:35px;">
+											</div> 
+											<p id="searchCourseButton" ><button type="submit" class="btn btn-info">수강신청내역조회</button></p>
+										</td>
+									</tr>
+									<tr class="read">
+										<th>과목명</th>
+										<th>이수구분</th>
+										<th>학점</th>
+										<th>학과명</th>
+										<th>학년</th>
+										<th>반</th>
+										<th>교수명</th>
+										<th>강의실명</th>
+										<th>년도</th>
+										<th>학기</th>
+										<th>재수강횟수</th>
+									</tr>
+								</thead>
+								<tbody align="center">
+									<c:forEach var="row" items="${enrolCourse}">
+										<tr>
+											<td>${row.enrolCourseCourseName}</td>
+											<td>${row.enrolCourseCompletionDivision}</td>
+											<td>${row.enrolCourseCourseCredit}</td>
+											<td>${row.enrolCourseDeptName}</td>
+											<td>${row.enrolCourseSchoolYear}</td>
+											<td>${row.enrolCourseClass}</td>
+											<td>${row.enrolCourseProfName}</td>
+											<td>${row.enrolCourseClassroom}</td>
+											<td>${row.enrolCourseYear}</td>
+											<td>${row.enrolCourseSemester}</td>
+											<td>${row.enrolCourseCourseRetakeNumber}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</form>
+					</div> <!-- /widget-content -->
+				</div> <!-- /widget -->
+	        </div>
 			
-			<form action="searchCourse" method="post">
+			
+			<!--<form action="searchCourse" method="post">
 				<table class="table table-bordered">
 					<tr align="right">
 						<td scope="col" colspan="10">
@@ -58,17 +125,17 @@
 				    </tr>
 					<tr>
 						<td>
-							
-							<div class="col-xs-2">
+							<div class="col-xs-2" >
 								<span>
-									<select class="form-control" id ="condition" name="option">
+									<select class="btn btn-info" id ="condition" name="option">
 										<option value="year">년도</option>
 										<option value="dept">학과</option>
 										<option value="grade">학년</option>
 										<option value="studentnumber">학번</option>
 									</select>
 								</span>
-								<input id ="optionName" type="text" name="value">
+								&ensp;
+								<input id="optionName" type="text" name="value" placeholder="" style="height:35px;">
 							</div> 
 							<p id="searchCourseButton" ><button type="submit" class="btn btn-info">수강신청내역조회</button></p>
 						</td>
@@ -77,39 +144,39 @@
 			</form>
 			<br>
 			<table class="table table-bordered">
-					<thead align="center">
+				<thead align="center">
+					<tr class="read">
+						<th>과목명</th>
+						<th>이수구분</th>
+						<th>학점</th>
+						<th>학과명</th>
+						<th>학년</th>
+						<th>반</th>
+						<th>교수명</th>
+						<th>강의실명</th>
+						<th>년도</th>
+						<th>학기</th>
+						<th>재수강횟수</th>
+					</tr>
+				</thead>
+				<tbody align="center">
+					<c:forEach var="row" items="${enrolCourse}">
 						<tr>
-							<th>과목명</th>
-							<th>이수구분</th>
-							<th>학점</th>
-							<th>학과명</th>
-							<th>학년</th>
-							<th>반</th>
-							<th>교수명</th>
-							<th>강의실명</th>
-							<th>년도</th>
-							<th>학기</th>
-							<th>재수강횟수</th>
+							<td>${row.enrolCourseCourseName}</td>
+							<td>${row.enrolCourseCompletionDivision}</td>
+							<td>${row.enrolCourseCourseCredit}</td>
+							<td>${row.enrolCourseDeptName}</td>
+							<td>${row.enrolCourseSchoolYear}</td>
+							<td>${row.enrolCourseClass}</td>
+							<td>${row.enrolCourseProfName}</td>
+							<td>${row.enrolCourseClassroom}</td>
+							<td>${row.enrolCourseYear}</td>
+							<td>${row.enrolCourseSemester}</td>
+							<td>${row.enrolCourseCourseRetakeNumber}</td>
 						</tr>
-					</thead>
-					<tbody align="center">
-						<c:forEach var="row" items="${enrolCourse}">
-							<tr>
-								<td>${row.enrolCourseCourseName}</td>
-								<td>${row.enrolCourseCompletionDivision}</td>
-								<td>${row.enrolCourseCourseCredit}</td>
-								<td>${row.enrolCourseDeptName}</td>
-								<td>${row.enrolCourseSchoolYear}</td>
-								<td>${row.enrolCourseClass}</td>
-								<td>${row.enrolCourseProfName}</td>
-								<td>${row.enrolCourseClassroom}</td>
-								<td>${row.enrolCourseYear}</td>
-								<td>${row.enrolCourseSemester}</td>
-								<td>${row.enrolCourseCourseRetakeNumber}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+					</c:forEach>
+				</tbody>
+			</table>   -->
 			
 			</div>
 			<!-- /.container-fluid -->

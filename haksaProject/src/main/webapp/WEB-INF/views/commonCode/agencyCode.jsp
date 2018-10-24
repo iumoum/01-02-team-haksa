@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -26,35 +25,35 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-	type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
-            $(document).ready(function() {
-                $("#keyword").keyup(function() {
-                    var selectBox = $("#selectBox option:selected").val();
-                    var word = $('#keyword').val();
-                    $("#agencyTable > tbody").children().hide();
-                    if(selectBox == "code"){
-                        var temp = $("#agencyTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
-                        
-                    }else if(selectBox == "name"){
-						var temp = $("#agencyTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");    
-						
-                    }else if(selectBox == "establish_date"){
-                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
-                    	
-                    }else if(selectBox == "check_a_use"){
-                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
-                    	
-                    }else if(selectBox == "check_a_change"){
-                    	var temp = $("#agencyTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
-                    	
-                    }
-                    $(temp).parent().show();
-                });
-            });
-       	</script>
+	$(document).ready(
+			function() {
+				$("#keyword").keyup(
+						function() {
+							var selectBox = $("#selectBox option:selected")
+									.val();
+							var word = $('#keyword').val();
+							$("#agencyTable > tbody").children().hide();
+							if (selectBox == "code") {
+								var temp = $("#agencyTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
+							} else if (selectBox == "name") {
+								var temp = $("#agencyTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+							} else if (selectBox == "establish_date") {
+								var temp = $("#agencyTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
+							} else if (selectBox == "check_a_use") {
+								var temp = $("#agencyTable > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
+							} else if (selectBox == "check_a_change") {
+								var temp = $("#agencyTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
+							}
+							$(temp).parent().show();
+				});
+				
+				$('#addAgency').click(function(){
+					window.location.href="/common/codes/addAgencyCodeForm";
+				});
+			});
+</script>
 
 </head>
 
@@ -74,12 +73,12 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<input type="text" class="sr-input" placeholder="">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
 								&ensp;
-								<select class="btn sr-btn">
+								<select class="btn btn-info">
 									<option value="code">코드</option>
 									<option value="name">기관명</option>
 									<option value="establish_date">설치일자</option>
@@ -87,11 +86,7 @@
 									<option value="check_a_change">변경유무</option>
 								</select>
 								&ensp;
-								<button class="btn sr-btn" type="button">조회</button>
-								&ensp;
-								<button class="btn sr-btn" type="button">입력</button>
-								&ensp;
-								<button class="btn sr-btn" type="button">저장</button>
+								<button class="btn btn-info" type="button" id="addAgency" >입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">

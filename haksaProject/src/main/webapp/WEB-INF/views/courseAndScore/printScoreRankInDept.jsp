@@ -42,46 +42,69 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
-				<form action="/courseAndScore/printScoreRankInDept" method="post">
-					<table class="table table-bordered">
-						<tr align="right">
-							<td scope="col" colspan="10">
-								<p class = "printScoreRankInDeptMain">학과 석차조회 리스트 </p>
-								<p class = "printScoreRankInDeptMain"> 반 입력 : 
-									<select name="DeptName">
-										<option value="골프경영학과">골프경영학과</option>
-										<option value="컴퓨터정보과">컴퓨터정보과</option>
-									</select>
-								</p>
-								<button type="button" class="btn btn-info">이전화면</button>
-								<button type="submit" class="btn btn-info">조회하기</button>
-							</td>
-					    </tr>
-						<tr>
-							<td scope="col" colspan="10"></td>
-					    </tr>
-					    <tr>
-					    	<th colspan="10"><br>학과 석차 조회</th>
-					    </tr>
-					    <tr>
-					    	<th>석차</th>
-					    	<th>학번</th>
-					    	<th>평점</th>
-					    	<th>성명</th>
-					    	<th>이수구분</th>
-					    </tr>
-					    <c:forEach var="row" items="${enrolCourse}" varStatus="status">
-						    <tr>
-						    	<td>${status.count }</td>
-						    	<td>${row.enrolCourseStudentNumber }</td>
-						    	<td>${row.insertScoreTotalAverageScore }</td>
-						    	<td>${row.enrolCoursestudentName }</td>
-						    	<td>${row.enrolCourseCompletionDivision}</td>
-						    </tr>
-						</c:forEach>
-					</table>
-				</form>
-			
+				<div class="span7">   
+					<div class="widget stacked widget-table action-table">
+		    			
+		    			<div class="widget-header">
+							<i class="icon-th-list"></i>
+							<h3>학과 석차 조회 리스트</h3>
+						</div> <!-- /widget-header -->
+		    			<div class="widget-content">
+							<form action="/courseAndScore/printScoreRankInDept" method="post">
+								<table class="table table-striped table-bordered">								
+									<thead>
+										<tr align="right">
+											<td scope="col" colspan="10">
+												<p class = "printScoreRankInDeptMain"> 반 입력 : 
+													<select name="DeptName">
+														<option value="골프경영학과">골프경영학과</option>
+														<option value="컴퓨터정보과">컴퓨터정보과</option>
+													</select>
+												</p>
+												<button type="button" class="btn btn-info">이전화면</button>
+												<button type="submit" class="btn btn-info">조회하기</button>
+											</td>
+									    </tr>
+									</thead>
+								</table>
+							</form>
+						</div> <!-- /widget-content -->
+		    			<br><br>
+		    			
+		    			<!-- 학과 석차 조회 -->
+						<div class="widget-header">
+							<i class="icon-th-list"></i>
+							<h3>학과 석차 조회</h3>
+						</div> <!-- /widget-header -->
+						
+						<div class="widget-content">
+							<form action="/courseAndScore/printScoreRankInDept" method="post">
+								<table class="table table-striped table-bordered">								
+									<thead>
+										<tr>
+											<th>석차</th>
+									    	<th>학번</th>
+									    	<th>평점</th>
+									    	<th>성명</th>
+									    	<th>이수구분</th>
+										</tr>
+									</thead>
+									<tbody align="center">
+										 <c:forEach var="row" items="${enrolCourse}" varStatus="status">
+										    <tr>
+										    	<td>${status.count }</td>
+										    	<td>${row.enrolCourseStudentNumber }</td>
+										    	<td>${row.insertScoreTotalAverageScore }</td>
+										    	<td>${row.enrolCoursestudentName }</td>
+										    	<td>${row.enrolCourseCompletionDivision}</td>
+										    </tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</form>
+						</div> <!-- /widget-content -->
+					</div> <!-- /widget -->
+	            </div>
 			</div>
 			<!-- /.container-fluid -->
 			

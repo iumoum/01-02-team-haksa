@@ -193,51 +193,77 @@
 				
 				<div id="content-wrapper">
 					<div class="container-fluid">
-						년도-학기 : 
-						<select name="yearBox" id="semesterCode">
-							<option value="선택">선택</option>
-						</select>
-						학과 : 
-						<select name="departmentBox" id="departmentCode">
-							<option value="선택">선택</option>
-						</select>
-						학년 : 
-						<select name="gradeBox" id="gradeCode">
-							<option value="선택">선택</option>
-						</select>
-						반 : 
-						<select name="classBox" id="classCode">
-							<option value="선택">선택</option>
-						</select>
-						과목 : 
-						<select name="subjectBox" id="subjectCode">
-							<option value="선택">선택</option>
-						</select>
-						강의일자 : 
-						<select name="lectureDateBox" id="lectureDateCode">
-							<option value="선택">선택</option>
-						</select>
-						<button type="button" id="attendance">조회</button>
-						
-						<form action="#">
-							<table border="1" id="attendanceTable">
-								<thead>
-									<tr>
-										<th>학과</th>
-										<th>학년</th>
-										<th>학번</th>
-										<th>이름</th>
-										<th>상태</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-							<button type="button">저장</button>
-						</form>
+						<div class="mail-box">
+							<aside class="lg-side">
+								<div class="inbox-head">
+									<div class="input-append">
+										&ensp; 
+										년도-학기 : 
+										<select name="yearBox" id="semesterCode" class="btn btn-info">
+											<option value="선택">선택</option>
+										</select> 
+										&ensp;
+										학과 : 
+										<select name="departmentBox" id="departmentCode" class="btn btn-info">
+											<option value="선택">선택</option>
+										</select>
+										&ensp;
+										학년 : 
+										<select name="gradeBox" id="gradeCode" class="btn btn-info">
+											<option value="선택">선택</option>
+										</select>
+										&ensp;
+										반 : 
+										<select name="classBox" id="classCode" class="btn btn-info">
+											<option value="선택">선택</option>
+										</select> 
+										&ensp;
+										과목 : 
+										<select name="subjectBox" id="subjectCode" class="btn btn-info">
+											<option value="선택">선택</option>
+										</select>
+										&ensp;
+										강의일자 : 
+										<select name="lectureDateBox" id="lectureDateCode" class="btn btn-info">
+											<option value="선택">선택</option>
+										</select>
+										&emsp;
+										<button type="button" id="attendance" class="btn btn-info">조회</button>
+										&emsp;
+										<button type="button" class="btn btn-info">저장</button>
+									</div>
+								</div>
+								<div class="inbox-body">
+									<div class="mail-option">
+										<form action="#" method="post">
+											<table class="table table-inbox table-hover" id="attendanceTable">
+												<thead>
+													<tr class="unread">
+														<td class="view-message  dont-show">학과</td>
+														<td>학년</td>
+														<td>학번</td>	
+														<td>이름</td>	
+														<td class="view-message  text-left">상태</td>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</form>
+									</div>
+								</div>
+							</aside>
+						</div>
+						<footer class="sticky-footer">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span>Copyright © Haksa 2018</span>
+						</div>
 					</div>
-				</div>
+				</footer>
 			</div>
+		</div>
+	</div>
 		<!-- Scroll to Top Button-->
 		<a class="scroll-to-top rounded" href="#page-top"> <i
 			class="fas fa-angle-up"></i>

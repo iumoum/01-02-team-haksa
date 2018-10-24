@@ -42,22 +42,18 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<input type="text" class="sr-input" placeholder="">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
 								&ensp;
-								<button class="btn sr-btn" type="button">조회</button>
-								&ensp;
-								<button class="btn sr-btn" type="button">입력</button>
-								&ensp;
-								<button class="btn sr-btn" type="button">저장</button>
+								<button class="btn btn-info" type="button">입력</button>		
 							</div>
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
 								<table class="table table-inbox table-hover">
-									<tbody>
+									<tody>
 										<tr class="unread">
 											<td class="view-message  dont-show">상담결과 코드</td>
 											<td>상담구분 명</td>

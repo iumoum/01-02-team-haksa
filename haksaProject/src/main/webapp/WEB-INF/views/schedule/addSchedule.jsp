@@ -5,21 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>시간표 입력</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <!-- Bootstrap core CSS-->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 <!-- Custom fonts for this template-->
-<link href="/resources/vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" type="text/css">
+<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
 <!-- Page level plugin CSS-->
-<link href="/resources/vendor/datatables/dataTables.bootstrap4.css"
-	rel="stylesheet">
+<link href="/resources/vendor/datatables/dataTables.bootstrap4.css"rel="stylesheet">
+
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 		$(document).ready(function(){
 			
@@ -156,38 +158,38 @@
 								</button>
 								&ensp; 
 								<span>년도-학기 :</span>&nbsp; 
-								<select class="btn sr-btn"
+								<select class="btn btn-info"
 									name="yearBox" id="semesterCode">
 									<option value="선택">선택</option>
 								</select>
 								&ensp; 
 								<span>학과 :</span>&nbsp; 
-								<select class="btn sr-btn"
+								<select class="btn btn-info"
 									name="departmentBox" id="departmentCode">
 									<option value="0">선택</option>
 								</select>
 								&ensp; 
 								<span>학년 :</span>&nbsp; 
-								<select class="btn sr-btn"
+								<select class="btn btn-info"
 									name="gradeBox" id="gradeCode">
 									<option value="선택">선택</option>
 								</select> 
 								&ensp; 
 								<span>반 :</span>&nbsp;
-								 <select class="btn sr-btn"
+								 <select class="btn btn-info"
 									name="classBox" id="classCode">
 									<option value="선택">선택</option>
 								</select> 
 								&ensp;
 								<span>주야 :</span>&nbsp; 
-								<select class="btn sr-btn"
+								<select class="btn btn-info"
 									name="dayBox" id="dayCode">
 									<option value="선택">선택</option>
 									<option value="주">주</option>
 									<option value="야">야</option>
 								</select>
 								&ensp;
-								<button type="button" id="" class="btn sr-btn">저장</button>
+								<button type="button" id="" class="btn btn-info">저장</button>
 							</div>
 						</div>
 						<div class="inbox-body">

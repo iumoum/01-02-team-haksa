@@ -25,9 +25,16 @@
 
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
 	type="text/javascript"></script>
+	
+<style>
+	.inbox-body {
+	width:1500px;
+	white-space:nowrap;
+	overflow-x:scroll;
+	}
+</style>
 <script>
 	$(document).ready(
 			function() {
@@ -84,16 +91,12 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<input type="text" class="sr-input" placeholder="">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
 								&ensp;
-								<button class="btn sr-btn" type="button">조회</button>
-								&ensp;
-								<button class="btn sr-btn" type="button">입력</button>
-								&ensp;
-								<button class="btn sr-btn" type="button">저장</button>
+								<button class="btn btn-info" type="button">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">
@@ -135,7 +138,6 @@
 						</div>
 					</aside>
 				</div>
-				<a href="/lecture/codes/addQuestionForEvaluateLectureCodeForm">코드입력</a>
 			</div>
 			<!-- /.container-fluid -->
 

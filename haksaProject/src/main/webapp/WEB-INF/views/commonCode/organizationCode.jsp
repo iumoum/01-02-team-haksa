@@ -70,23 +70,21 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<input type="text" class="sr-input" placeholder="">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; <select class="btn sr-btn">
+								&ensp; <select class="btn btn-info">
 									<option value="code">코드</option>
 									<option value="name">기구 명</option>
 									<option value="agencyName">소속 기관</option>
 									<option value="establishDate">설치 일자</option>
 									<option value="check_a_use">사용 유무</option>
 									<option value="check_a_change">변경 유무</option>
-								</select> &ensp;
-								<button class="btn sr-btn" type="button">조회</button>
+								</select>
 								&ensp;
-								<button class="btn sr-btn" type="button">입력</button>
-								&ensp;
-								<button class="btn sr-btn" type="button">저장</button>
+								<button class="btn btn-info" type="button">입력</button>
+
 							</div>
 						</div>
 						<div class="inbox-body">

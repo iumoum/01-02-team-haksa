@@ -18,262 +18,124 @@
 	rel="stylesheet">
 <!-- Custom styles for this template-->
 <link href="/resources/css/sb-admin.css" rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(
+		function() {
+		// 학기 조회
+		$.ajax({
+			url : '/rest/schedule/semester',
+			type : 'GET',
+			dataType : 'JSON',
+			success : function(data) {
+			$(data).each(function(index, item) {
+				$('#semesterCode').append("<option value="+item.semesterCode+">"+ item.semesterCode+ "</option>");})
+					}
+				})
+				// 학과 조회
+			$("#semesterCode").change(function() {
+				let code = $('#semesterCode option:selected').val();
+				console.log(code);
+				if (code != '선택') {
+				$.ajax({
+					url : '/rest/schedule/department',
+					type : 'GET',
+					dataType : 'JSON',
+					data : {semesterCode : code},
+					success : function(data) {
+						$('#departmentCode').empty();
+						$('#departmentCode').append("<option value='선택'>선택</option>");
+						$(data).each(function(index,item) {
+						$('#departmentCode').append("<option value="+item.deptNameKorean+">"+ item.deptNameKorean+ "</option>");
+							})
+						}
+					})
+				} else {
+					$('#departmentCode').empty();
+					$('#departmentCode').append("<option value='선택'>선택</option>");
+				}
+			})
+			// 학년 조회
+			$('#departmentCode').change(function() {
+				let code = $('#departmentCode option:selected').val();
+				if (code != '선택') {
+					$.ajax({
+						url : '/rest/schedule/grade',
+						type : 'GET',
+						dataType : 'JSON',
+						data : {departmentCode : code},
+						success : function(data) {
+							$('#gradeCode').empty();
+							$('#gradeCode').append("<option value='선택'>선택</option>");
+							$(data).each(function(index,item) {
+							$('#gradeCode').append("<option value="+item.classByDepartmentGrade+">"+ item.classByDepartmentGrade+ "</option>");
+							})
+						}
+					})
+				} else {
+					$('#gradeCode').empty();
+					$('#gradeCode').append("<option value='선택'>선택</option>");
+				}
+			})
+			// 반 조회
+			$('#gradeCode').change(function() {
+				let code = $('#gradeCode option:selected').val();
+				if (code != '선택') {
+					$.ajax({
+						url : '/rest/schedule/class',
+						type : 'GET',
+						dataType : 'JSON',
+						data : {gradeCode : code},
+						success : function(data) {
+						$('#classCode').empty();
+						$('#classCode').append("<option value='선택'>선택</option>");
+						$(data).each(function(index,item) {
+						$('#classCode').append("<option value="+item.classByDepartmentClass+">"+ item.classByDepartmentClass+ "</option>");
+					})
+				}
+			})
+				} else {
+					$('#classCode').empty();
+					$('#classCode').append("<option value='선택'>선택</option>");
+				}
+			})
 
-						// 학기 조회
-						$.ajax({
-							url : '/rest/schedule/semester',
-							type : 'GET',
-							dataType : 'JSON',
-							success : function(data) {
-								$(data).each(
-										function(index, item) {
-											$('#semesterCode').append(
-													"<option value="+item.semesterCode+">"
-															+ item.semesterCode
-															+ "</option>");
-										})
-							}
-						})
-
-						// 학과 조회
-						$("#semesterCode")
-								.change(
-										function() {
-											let code = $(
-													'#semesterCode option:selected')
-													.val();
-											console.log(code);
-											if (code != '선택') {
-												$
-														.ajax({
-															url : '/rest/schedule/department',
-															type : 'GET',
-															dataType : 'JSON',
-															data : {
-																semesterCode : code
-															},
-															success : function(
-																	data) {
-																$(
-																		'#departmentCode')
-																		.empty();
-																$(
-																		'#departmentCode')
-																		.append(
-																				"<option value='선택'>선택</option>");
-																$(data)
-																		.each(
-																				function(
-																						index,
-																						item) {
-																					$(
-																							'#departmentCode')
-																							.append(
-																									"<option value="+item.deptNameKorean+">"
-																											+ item.deptNameKorean
-																											+ "</option>");
-																				})
-															}
-														})
-											} else {
-												$('#departmentCode').empty();
-												$('#departmentCode')
-														.append(
-																"<option value='선택'>선택</option>");
-											}
-										})
-
-						// 학년 조회
-						$('#departmentCode')
-								.change(
-										function() {
-											let code = $(
-													'#departmentCode option:selected')
-													.val();
-											if (code != '선택') {
-												$
-														.ajax({
-															url : '/rest/schedule/grade',
-															type : 'GET',
-															dataType : 'JSON',
-															data : {
-																departmentCode : code
-															},
-															success : function(
-																	data) {
-																$('#gradeCode')
-																		.empty();
-																$('#gradeCode')
-																		.append(
-																				"<option value='선택'>선택</option>");
-																$(data)
-																		.each(
-																				function(
-																						index,
-																						item) {
-																					$(
-																							'#gradeCode')
-																							.append(
-																									"<option value="+item.classByDepartmentGrade+">"
-																											+ item.classByDepartmentGrade
-																											+ "</option>");
-																				})
-															}
-														})
-											} else {
-												$('#gradeCode').empty();
-												$('#gradeCode')
-														.append(
-																"<option value='선택'>선택</option>");
-											}
-										})
-
-						// 반 조회
-						$('#gradeCode')
-								.change(
-										function() {
-											let code = $(
-													'#gradeCode option:selected')
-													.val();
-											if (code != '선택') {
-												$
-														.ajax({
-															url : '/rest/schedule/class',
-															type : 'GET',
-															dataType : 'JSON',
-															data : {
-																gradeCode : code
-															},
-															success : function(
-																	data) {
-																$('#classCode')
-																		.empty();
-																$('#classCode')
-																		.append(
-																				"<option value='선택'>선택</option>");
-																$(data)
-																		.each(
-																				function(
-																						index,
-																						item) {
-																					$(
-																							'#classCode')
-																							.append(
-																									"<option value="+item.classByDepartmentClass+">"
-																											+ item.classByDepartmentClass
-																											+ "</option>");
-																				})
-															}
-														})
-											} else {
-												$('#classCode').empty();
-												$('#classCode')
-														.append(
-																"<option value='선택'>선택</option>");
-											}
-										})
-
-						// 검색결과로 강의 조회
-						$("#click")
-								.click(
-										function() {
-											let semesterCode = $(
-													'#semesterCode option:selected')
-													.val();
-											let departmentCode = $(
-													'#departmentCode option:selected')
-													.val();
-											let gradeCode = $(
-													'#gradeCode option:selected')
-													.val();
-											let classesCode = $(
-													'#classCode option:selected')
-													.val();
-											let dayCode = $(
-													'#dayCode option:selected')
-													.val();
-
-											if ("선택" != semesterCode
-													&& "선택" != departmentCode
-													&& "선택" != gradeCode
-													&& "선택" != classCode
-													&& "선택" != dayCode) {
-												$
-														.ajax({
-															url : '/rest/schedule/scheduleStateList',
-															type : 'POST',
-															dataType : 'JSON',
-															data : {
-																semesterCode : semesterCode,
-																departmentCode : departmentCode,
-																gradeCode : gradeCode,
-																classesCode : classesCode,
-																dayCode : dayCode
-															},
-															success : function(
-																	data) {
-																console
-																		.log("success");
-																$(data)
-																		.each(
-																				function(
-																						index,
-																						item) {
-																					$(
-																							'#scheduleTable > tbody')
-																							.append(
-																									'<tr>');
-																					$(
-																							'#scheduleTable > tbody')
-																							.append(
-																									'<td>'
-																											+ item.subjectName
-																											+ '</td>');
-																					$(
-																							'#scheduleTable > tbody')
-																							.append(
-																									'<td>'
-																											+ item.humanName
-																											+ '</td>');
-																					$(
-																							'#scheduleTable > tbody')
-																							.append(
-																									'<td>'
-																											+ item.buildingName
-																											+ item.roomFloor
-																											+ "층"
-																											+ item.roomNumber
-																											+ "호"
-																											+ '</td>');
-																					$(
-																							'#scheduleTable > tbody')
-																							.append(
-																									'<td>'
-																											+ item.day
-																											+ '</td>');
-																					$(
-																							'#scheduleTable > tbody')
-																							.append(
-																									'<td>'
-																											+ item.period
-																											+ '</td>');
-																					$(
-																							'#scheduleTable > tbody')
-																							.append(
-																									'</tr>');
-																				})
-															}
-														})
-											}
-											$(this).attr('disabled', true);
-										});
-					});
+			// 검색결과로 강의 조회
+			$("#click").click(function() {
+				let semesterCode = $('#semesterCode option:selected').val();
+				let departmentCode = $('#departmentCode option:selected').val();
+				let gradeCode = $('#gradeCode option:selected').val();
+				let classesCode = $('#classCode option:selected').val();
+				let dayCode = $('#dayCode option:selected').val();
+				if ("선택" != semesterCode && "선택" != departmentCode 
+						&& "선택" != gradeCode && "선택" != classCode && "선택" != dayCode) {
+					$.ajax({
+						url : '/rest/schedule/scheduleStateList',
+						type : 'POST',
+						dataType : 'JSON',
+						data : {semesterCode : semesterCode
+							, departmentCode : departmentCode
+							, gradeCode : gradeCode
+							, classesCode : classesCode
+							, dayCode : dayCode},
+						success : function(data) {
+							console.log("success");
+							$(data).each(function(index,item) {
+							$('#scheduleTable > tbody').append('<tr>');
+							$('#scheduleTable > tbody').append('<td>'+ item.subjectName+ '</td>');
+							$('#scheduleTable > tbody').append('<td>'+ item.humanName+ '</td>');
+							$('#scheduleTable > tbody').append('<td>'+ item.buildingName+ item.roomFloor+ "층"+ item.roomNumber+ "호"+ '</td>');
+							$('#scheduleTable > tbody').append('<td>'+ item.day+ '</td>');
+							$('#scheduleTable > tbody').append('<td>'+ item.period+ '</td>');
+							$('#scheduleTable > tbody').append('</tr>');
+							
+							})
+						}
+					})
+				}
+				$(this).attr('disabled', true);
+			});
+		});
 </script>
 </head>
 <body id="page-top">
@@ -288,43 +150,29 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<input type="text" class="sr-input" placeholder="">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; 
-								<span>년도-학기 :</span>&nbsp; 
-								<select class="btn sr-btn"
+								&ensp; <span>년도-학기 :</span>&nbsp; <select class="btn btn-info"
 									name="yearBox" id="semesterCode">
 									<option value="선택">선택</option>
-								</select> &ensp; 
-								
-								<span>학과 :</span>&nbsp; 
-								<select class="btn sr-btn"
+								</select> &ensp; <span>학과 :</span>&nbsp; <select class="btn btn-info"
 									name="departmentBox" id="departmentCode">
 									<option value="0">선택</option>
-								</select> &ensp; 
-								
-								<span>학년 :</span>&nbsp; 
-								<select class="btn sr-btn"
+								</select> &ensp; <span>학년 :</span>&nbsp; <select class="btn btn-info"
 									name="gradeBox" id="gradeCode">
 									<option value="선택">선택</option>
-								</select> &ensp; 
-								
-								<span>반 :</span>&nbsp; 
-								<select class="btn sr-btn"
+								</select> &ensp; <span>반 :</span>&nbsp; <select class="btn btn-info"
 									name="classBox" id="classCode">
 									<option value="선택">선택</option>
-								</select> &ensp; 
-								
-								<span>주야 :</span>&nbsp; 
-								<select class="btn sr-btn"
+								</select> &ensp; <span>주야 :</span>&nbsp; <select class="btn btn-info"
 									name="dayBox" id="dayCode">
 									<option value="선택">선택</option>
 									<option value="주">주</option>
 									<option value="야">야</option>
 								</select> &ensp;
-								<button type="button" id="click" class="btn sr-btn">조회</button>
+								<button type="button" id="click" class="btn btn-info">조회</button>
 							</div>
 						</div>
 						<div class="inbox-body">

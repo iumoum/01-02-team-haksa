@@ -44,16 +44,12 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<input type="text" class="sr-input" placeholder="">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
 								&ensp;
-								<button class="btn sr-btn" type="button">조회</button>
-								&ensp;
-								<button class="btn sr-btn" type="button">입력</button>
-								&ensp;
-								<button class="btn sr-btn" type="button">저장</button>
+								<button class="btn btn-info" type="button">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">
