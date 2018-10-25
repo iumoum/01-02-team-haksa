@@ -359,5 +359,50 @@
 		FROM ilban_highschool
 		WHERE student_teacher_no=#{studentTeacherNo}
 	</select>
-
+	
+	<!-- 송원민 -->
+	
+	<!-- 경력사항 카운트 조회 쿼리 -->
+	<select id="selectCareerNumber" resultType="int">
+		SELECT count(career_number) 
+		FROM ilban_career
+	</select>
+	
+	<!-- 경력사항 저장 쿼리 -->
+	<insert id="insertCareer" parameterType="com.cafe24.iumium.personnel.appoint.dto.Career">
+		INSERT INTO 
+		ilban_career (
+			career_number
+			, record_id
+			, appointment_school_personnel_number
+			, career_appointment
+			, career_appointment_date
+			, career_classification
+			, career_expiration_date
+			, career_Jikun
+			, career_Jikjong
+			, career_position
+			, career_fromcontract
+			, career_untillcontract
+			, human_registration_day
+			, human_modification_date
+			)
+			
+		VALUES (
+			#{careerNumber}
+			, #{recordId}
+			, #{appointmentSchoolPersonnelNumber}
+			, #{careerAppointment}
+			, #{careerAppointmentDate}
+			, #{careerClassification}
+			, #{careerExpirationDate}
+			, #{careerJikun}
+			, #{careerJikjong}
+			, #{careerPosition}
+			, #{careerFromcontract}
+			, #{careerUntillcontract}
+			, now()
+			, now()
+		)		
+	</insert>
 </mapper>

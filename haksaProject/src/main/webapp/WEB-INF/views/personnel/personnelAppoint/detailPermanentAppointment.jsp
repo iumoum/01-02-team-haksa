@@ -43,7 +43,7 @@
 			    window.location.href="/personnelAppoint/addPersonnelBasic";
 			}
 			function addCareer(){
-			    window.location.href="/personnelAppoint/addCareer";
+			    window.location.href="/personnelAppoint/addCareer?permanentAppointmentSchoolPersonnelNumber="+${detailPermanentAppointment.appointmentSchoolPersonnelNumber};
 			}
 			function addPosition(){
 			    window.location.href="/personnelAppoint/addPosition";

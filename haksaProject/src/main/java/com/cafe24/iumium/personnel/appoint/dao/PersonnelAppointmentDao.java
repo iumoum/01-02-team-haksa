@@ -92,9 +92,9 @@ public class PersonnelAppointmentDao {
 	}
 	
 	// 경력사항 상세정보 dao
-	public Career getCareer(String number) {
+	public List<Career> getCareer(String number) {
 		System.out.println("경력사항 상세정보 dao");
-		return sqlSessionTemplate.selectOne(NS+"career", number);
+		return sqlSessionTemplate.selectList(NS+"career", number);
 	}
 	
 	// 보직사항 상세정보 dao
@@ -125,5 +125,18 @@ public class PersonnelAppointmentDao {
 	public HighSchool getHighSchool(String number) {
 		System.out.println("고등학력 상세정보 dao");
 		return sqlSessionTemplate.selectOne(NS+"highSchool", number);
+	}
+	
+	// 송원민
+	// 경력사항 저장 dao
+	public int insertCareer(Career career) {
+		System.out.println("경력사항 저장 dao");
+		return sqlSessionTemplate.insert(NS+"insertCareer", career);
+	}
+	
+	// 경력사항 번호 조회 dao
+	public int selectCareerNumber() {
+		System.out.println("경력사항 저장 dao");
+		return sqlSessionTemplate.selectOne(NS+"selectCareerNumber");
 	}
 }

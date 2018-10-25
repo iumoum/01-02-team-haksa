@@ -4,6 +4,7 @@ package com.cafe24.iumium.personnel.appoint.dto;
 
 public class Career {
 	private String careerNumber;	// 경력사항 번호
+	private String recordId; // 등록자아이디
 	private String appointmentSchoolPersonnelNumber;	// 교직원번호
 	private String careerAppointment;	// 발령구분
 	private String careerAppointmentDate;	// 임명일
@@ -22,6 +23,12 @@ public class Career {
 	}
 	public void setCareerNumber(String careerNumber) {
 		this.careerNumber = careerNumber;
+	}
+	public String getRecordId() {
+		return recordId;
+	}
+	public void setRecordId(String recordId) {
+		this.recordId = recordId;
 	}
 	public String getAppointmentSchoolPersonnelNumber() {
 		return appointmentSchoolPersonnelNumber;

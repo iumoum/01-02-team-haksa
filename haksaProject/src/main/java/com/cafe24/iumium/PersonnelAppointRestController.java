@@ -61,7 +61,7 @@ public class PersonnelAppointRestController {
 	
 	// 경력사항 상세정보 호출
 	@RequestMapping(value="/rest/career", method = RequestMethod.GET)
-	public Career career(String number) {
+	public List<Career> career(String number) {
 		System.out.println("/rest/career GET 방식");
 		return personnelAppointmentService.getCareer(number);
 	}

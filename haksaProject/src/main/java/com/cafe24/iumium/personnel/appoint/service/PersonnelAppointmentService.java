@@ -92,7 +92,7 @@ public class PersonnelAppointmentService {
 	}
 	
 	// 경력사항 상세정보 Service
-	public Career getCareer(String number) {
+	public List<Career> getCareer(String number) {
 		System.out.println("경력사항 상세정보 Service");
 		return personnelAppointmentDao.getCareer(number);
 	}
@@ -125,5 +125,14 @@ public class PersonnelAppointmentService {
 	public HighSchool getHighSchool(String number) {
 		System.out.println("고등학력 상세정보 Service");
 		return personnelAppointmentDao.getHighSchool(number);
+	}
+	
+	// 송원민
+	// 경력사항 저장 Service
+	public int insertCareer(Career career) {
+		System.out.println("경력사항 저장 Service");
+		String careerNumber = String.valueOf(personnelAppointmentDao.selectCareerNumber()+1);
+		career.setCareerNumber(careerNumber);
+		return personnelAppointmentDao.insertCareer(career);
 	}
 }

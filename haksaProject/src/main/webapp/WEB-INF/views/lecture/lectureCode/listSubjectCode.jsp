@@ -28,7 +28,7 @@
 
 <style>
 	.inbox-body {
-	width:1520px;
+	width:1320px;
 	white-space:nowrap;
 	overflow-x:scroll;
 	}

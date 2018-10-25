@@ -42,6 +42,7 @@
 				window.history.back();
 			}
 		</script>
+		
 	</head>
 	
 	<body id="page-top">
@@ -56,54 +57,67 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-					<form id="form">
-						<input type="button" class="btn btn-info" onclick="goBack()" value="뒤로가기"/>
-						<input type="button" class="btn btn-primary" id="savePersonnelPromotion" value="저장"/>
+					<form action="${pageContext.request.contextPath}/personnelAppoint/saveCareer" method="post">
+						<input type="button" class="btn btn-info" id="form" onclick="goBack()" value="뒤로가기"/>
+						<input type="submit" class="btn btn-primary" id="form" value="저장"/>
+						
+						<br>
+						<table class="table table-bordered">
+							<tr>
+								<td scope="col" colspan="10">
+									<p id="enrolScoreMain">* 교직원 경력사항</p>
+								</td>
+							</tr>
+							<tr>
+								<c:choose>
+									<c:when test="${permanentAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="permanentAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${permanentAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+									<c:when test="${temporaryAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="temporaryAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${temporaryAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+									<c:when test="${otherAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="otherAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${otherAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+								</c:choose>
+								<th>발령구분</th>
+								<td><input type="text" class="form-control" name="careerAppointment" id="careerAppointment" placeholder="발령구분"></td>
+								<th>임명일</th>
+								<td><input type="date" class="form-control" name="careerAppointmentDate" id="careerAppointmentDate"></td>
+							</tr>
+							
+							<tr>
+								<th>경력구분</th>
+								<td>
+									<select class="form-control" name="careerClassification" id="careerClassification">
+										<option value="선택">선택</option>
+										<option value="신입">신입</option>
+										<option value="경력">경력</option>
+									</select>
+								</td>
+								<th>만료일</th>
+								<td><input type="date" class="form-control" name="careerExpirationDate" id="careerExpirationDate"></td>
+								<th>직군</th>
+								<td><input type="text" class="form-control" name="careerJikun" id="careerJikun" placeholder="직군"></td>
+							</tr>
+							<tr>
+								<th>직종</th>
+								<td><input type="text" class="form-control" name="careerJikjong" id="careerJikjong" placeholder="직종"></td>
+								<th>직급</th>
+								<td><input type="text" class="form-control" name="careerPosition" id="careerPosition" placeholder="직급"></td>
+								<th>이전계약부터</th>
+								<td><input type="date" class="form-control" name="careerFromcontract" id="careerFromcontract"></td>
+							</tr>
+							
+							<tr>
+								<th>이전계약까지</th>
+								<td><input type="date" class="form-control" name="careerUntillcontract" id="careerUntillcontract"></td>
+							</tr>
+						</table>
 					</form>
-					<br>
-					<table class="table table-bordered">
-						<tr>
-							<td scope="col" colspan="10">
-								<p id="enrolScoreMain">* 교직원 경력사항</p>
-							</td>
-						</tr>
-						<tr>
-							<th>교직원번호</th>
-							<td><input type="text" class="form-control" name="appointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" placeholder="교직원번호"></td>
-							<th>발령구분</th>
-							<td><input type="text" class="form-control" name="careerAppointment" id="careerAppointment" placeholder="발령구분"></td>
-							<th>임명일</th>
-							<td><input type="date" class="form-control" name="careerAppointmentDate" id="careerAppointmentDate"></td>
-						</tr>
-						
-						<tr>
-							<th>경력구분</th>
-							<td>
-								<select class="form-control" id="careerClassification">
-									<option value="선택">선택</option>
-									<option value="신입">신입</option>
-									<option value="경력">경력</option>
-								</select>
-							</td>
-							<th>만료일</th>
-							<td><input type="date" class="form-control" name="careerExpirationDate" id="careerExpirationDate"></td>
-							<th>직군</th>
-							<td><input type="text" class="form-control" name="careerJikun" id="careerJikun" placeholder="직군"></td>
-						</tr>
-						<tr>
-							<th>직종</th>
-							<td><input type="text" class="form-control" name="careerJikjong" id="careerJikjong" placeholder="직종"></td>
-							<th>직급</th>
-							<td><input type="text" class="form-control" name="careerPosition" id="careerPosition" placeholder="직급"></td>
-							<th>이전계약부터</th>
-							<td><input type="date" class="form-control" name="careerFromcontract" id="careerFromcontract"></td>
-						</tr>
-						
-						<tr>
-							<th>이전계약까지</th>
-							<td><input type="date" class="form-control" name="careerUntillcontract" id="careerUntillcontract"></td>
-						</tr>
-					</table>
 				</div>
 				<!-- /.container-fluid -->
 	
