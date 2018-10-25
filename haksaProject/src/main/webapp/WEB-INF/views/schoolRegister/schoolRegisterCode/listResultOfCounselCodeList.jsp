@@ -3,25 +3,24 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<title>상담결과코드 관리</title>
-
-<!-- Bootstrap core CSS-->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom fonts for this template-->
-<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
-<!-- Page level plugin CSS-->
-<link href="/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-
-<!-- Custom styles for this template-->
-<link href="/resources/css/sb-admin.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>상담결과코드 관리</title>
+	
+	<!-- Bootstrap core CSS-->
+	<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Custom fonts for this template-->
+	<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	
+	<!-- Page level plugin CSS-->
+	<link href="/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+	
+	<!-- Custom styles for this template-->
+	<link href="/resources/css/sb-admin.css" rel="stylesheet">
 
 </head>
 
@@ -53,7 +52,7 @@
 						<div class="inbox-body">
 							<div class="mail-option">
 								<table class="table table-inbox table-hover">
-									<tody>
+									<tbody>
 										<tr class="unread">
 											<td class="view-message  dont-show">상담결과 코드</td>
 											<td>상담구분 명</td>

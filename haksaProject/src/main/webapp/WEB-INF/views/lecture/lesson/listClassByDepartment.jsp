@@ -3,25 +3,34 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<title>학과별 반 관리</title>
+	
+	<!-- Bootstrap core CSS-->
+	<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Custom fonts for this template-->
+	<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	
+	<!-- Page level plugin CSS-->
+	<link href="/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+	
+	<!-- Custom styles for this template-->
+	<link href="/resources/css/sb-admin.css" rel="stylesheet">
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<title>학과별 반 관리</title>
-
-<!-- Bootstrap core CSS-->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom fonts for this template-->
-<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
-<!-- Page level plugin CSS-->
-<link href="/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-
-<!-- Custom styles for this template-->
-<link href="/resources/css/sb-admin.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		
+	<script>
+		$(document).ready(function(){
+			$('#addButton').click(function(){
+				window.location.href="/lesson/lecture/addClassByDepartment";
+			})
+		})
+	</script>
 
 </head>
 
@@ -53,7 +62,7 @@
 									<option value="check_a_change">변경유무</option>
 								</select>
 								&ensp;
-								<button class="btn btn-info" type="button">입력</button>
+								<button class="btn btn-info" type="button" id="addButton">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">

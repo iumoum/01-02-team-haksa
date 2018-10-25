@@ -28,12 +28,24 @@ public class SchoolRegisterCodeController {
 		return "schoolRegister/schoolRegisterCode/listSemesterCode";
 	}
 	
+	// 학기코드 입력 화면
+	@RequestMapping(value="/schoolRegister/codes/addSemesterCode")
+	public String semesterCode() {
+		return "schoolRegister/schoolRegisterCode/addSemesterCode";
+	}
+	
 	// 학기별 상세일정 리스트 조회
 	@RequestMapping(value="/schoolRegister/codes/calander", method = RequestMethod.GET)
 	public String getAllCalanders(Model model) {
 		List<Calander> calanders = schoolRegisterCodeService.selectAllCalanders();
 		model.addAttribute("calanders", calanders);
 		return "schoolRegister/schoolRegisterCode/listCalander";
+	}
+	
+	// 학기별 상세일정 입력 화면
+	@RequestMapping(value="/schoolRegister/codes/addCalander", method = RequestMethod.GET)
+	public String calander() {
+		return "schoolRegister/schoolRegisterCode/addCalander";
 	}
 	
 	// 학적변동사유코드 리스트 조회
@@ -44,12 +56,24 @@ public class SchoolRegisterCodeController {
 		return "schoolRegister/schoolRegisterCode/listReasonForChangeSchoolRegister";
 	}
 	
+	// 학적변동사유코드 입력 화면
+	@RequestMapping(value="/schoolRegister/codes/addReasonForChangeSchoolRegister", method = RequestMethod.GET)
+	public String reasonsForChangeSchoolRegister() {
+		return "schoolRegister/schoolRegisterCode/addReasonForChangeSchoolRegister";
+	}
+	
 	// 상담구분코드 리스트 조회
 	@RequestMapping(value="/schoolRegister/codes/typeOfCounsel", method = RequestMethod.GET)
 	public String getAllTypeOfCounselCodes(Model model) {
 		List<TypeOfCounselCode> typeOfCounselCodes = schoolRegisterCodeService.selectAllTypeOfCounselCodes();
 		model.addAttribute("typeOfCounselCodes", typeOfCounselCodes);
 		return "schoolRegister/schoolRegisterCode/listTypeOfCounselCode";
+	}
+	
+	// 상담구분코드 입력 화면
+	@RequestMapping(value="/schoolRegister/codes/addTypeOfCounsel", method = RequestMethod.GET)
+	public String typeOfCounselCode() {
+		return "schoolRegister/schoolRegisterCode/addTypeOfCounselCode";
 	}
 	
 	// 상담결과코드 리스트 조회

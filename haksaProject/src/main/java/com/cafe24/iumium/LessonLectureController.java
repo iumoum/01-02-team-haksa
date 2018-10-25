@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cafe24.iumium.lesson.lecture.dto.ChangedTypeOfCompletion;
 import com.cafe24.iumium.lesson.lecture.dto.ClassByDepartment;
@@ -28,6 +29,12 @@ public class LessonLectureController {
 
 		return "lecture/lesson/listClassByDepartment";
 	}
+	
+	// 학과별 반 입력 화면
+	@RequestMapping(value = "/lesson/lecture/addClassByDepartment", method = RequestMethod.GET)
+	public String classByDepartment() {
+		return "lecture/lesson/addClassByDepartment";
+	}
 
 	// 강의 상황서 리스트 조회
 	@RequestMapping(value = "/lesson/lecture/lectureStatus", method = RequestMethod.GET)
@@ -37,6 +44,12 @@ public class LessonLectureController {
 		model.addAttribute("list", LectureStatus);
 
 		return "lecture/lesson/listLectureStatus";
+	}
+	
+	// 강의 상황서 입력 화면
+	@RequestMapping(value = "/lesson/lecture/addLectureStatus", method = RequestMethod.GET)
+	public String lectureStatus() {
+		return "lecture/lesson/addLectureStatus";
 	}
 
 	// 변경된 강의담당 상황교수 리스트 조회
@@ -57,5 +70,23 @@ public class LessonLectureController {
 		model.addAttribute("list", changedTypeOfCompletion);
 
 		return "lecture/lesson/listChangedTypeOfCompletion";
+	}
+	
+	// 과목코드 리스트 조회
+	@RequestMapping(value = "/rest/subjectCode", method = RequestMethod.GET)
+	public @ResponseBody List<LectureStatus> subjectCode() {
+		return lessonLectureService.selectAllSubjectCode();
+	}
+	
+	// 강의실 리스트 조회
+	@RequestMapping(value = "/rest/roomCode", method = RequestMethod.GET)
+	public @ResponseBody List<LectureStatus> roomCode() {
+		return lessonLectureService.selectAllRoomCode();
+	}
+	
+	// 이수구분 리스트 조회
+	@RequestMapping(value = "/rest/typeOfCompletionCode", method = RequestMethod.GET)
+	public @ResponseBody List<LectureStatus> typeOfCompletionCode() {
+		return lessonLectureService.selectAllTypeOfCompletionCode();
 	}
 }

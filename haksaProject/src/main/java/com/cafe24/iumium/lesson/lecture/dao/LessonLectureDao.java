@@ -38,4 +38,19 @@ public class LessonLectureDao {
 		public List<ChangedTypeOfCompletion> selectAllChangedTypeOfCompletion(){
 			return sqlSessionTemplate.selectList(nameSpace + "selectAllChangedTypeOfCompletion");
 		}
+		
+		// 과목코드 리스트 조회
+		public List<LectureStatus> selectAllSubjectCode() {
+			return sqlSessionTemplate.selectList(nameSpace+"selectAllSubjectCode");
+		}
+		
+		// 강의실 리스트 조회
+		public List<LectureStatus> selectAllRoomCode() {
+			return sqlSessionTemplate.selectList(nameSpace+"selectAllRoomCode");
+		}
+		
+		// 이수구분 리스트 조회
+		public List<LectureStatus> selectAllTypeOfCompletionCode() {
+			return sqlSessionTemplate.selectList(nameSpace+"selectAllTypeOfCompletionCode");
+		}
 }

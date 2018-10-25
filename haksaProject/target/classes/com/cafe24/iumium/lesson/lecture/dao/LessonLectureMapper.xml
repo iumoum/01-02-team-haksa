@@ -116,4 +116,29 @@
 		ON s.lecture_status_number=c.lecture_status_number
 	</select>
 	
+	<!-- 과목 코드 테이블 -->
+	<select id="selectAllSubjectCode" resultType="com.cafe24.iumium.lesson.lecture.dto.LectureStatus">
+		select
+			subject_code AS subjectCode
+			, subject_name_korean AS subjectName
+		FROM haksa_subject
+	</select>
+	
+	<!-- 강의실 코드 테이블 -->
+	<select id="selectAllRoomCode" resultType="com.cafe24.iumium.lesson.lecture.dto.LectureStatus">
+		select
+			room_code AS roomCode
+			, room_number AS roomNumber
+		FROM haksa_room
+		WHERE room_usage = "강의"
+	</select>
+	
+	<!-- 이수구분 코드 테이블 -->
+	<select id="selectAllTypeOfCompletionCode" resultType="com.cafe24.iumium.lesson.lecture.dto.LectureStatus">
+		select
+			type_of_completion_code AS typeOfCompletionCode
+			, type_of_completion_name AS typeOfCompletionName
+		FROM haksa_type_of_completion
+	</select>
+	
 </mapper>

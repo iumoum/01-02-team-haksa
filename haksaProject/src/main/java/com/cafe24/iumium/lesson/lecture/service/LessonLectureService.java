@@ -37,4 +37,19 @@ public class LessonLectureService {
 	public List<ChangedTypeOfCompletion> selectAllChangedTypeOfCompletion(){
 		return lessonLectureDao.selectAllChangedTypeOfCompletion();
 	}
+	
+	// 과목코드 리스트 조회
+	public List<LectureStatus> selectAllSubjectCode(){
+		return lessonLectureDao.selectAllSubjectCode();
+	}
+	
+	// 강의실 리스트 조회
+	public List<LectureStatus> selectAllRoomCode(){
+		return lessonLectureDao.selectAllRoomCode();
+	}
+	
+	// 이수구분 리스트 조회
+	public List<LectureStatus> selectAllTypeOfCompletionCode(){
+		return lessonLectureDao.selectAllTypeOfCompletionCode();
+	}
 }
