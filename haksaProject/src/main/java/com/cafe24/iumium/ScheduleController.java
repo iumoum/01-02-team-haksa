@@ -112,10 +112,10 @@ public class ScheduleController {
 		return scheduleService.classSearch(gradeCode);
 	}
 	
-	// 과목, 교실, 교수님이름 조회
+	// 과목, 교실, 교수님이름 조회(시간표 폼에서 조회)
 	@RequestMapping(value="/rest/schedule/scheduleFormList", method=RequestMethod.POST)
 	public @ResponseBody List<LectureStatus> scheduleFormList(Search search) {
-		System.out.println("과목, 교실, 교수님이름 조회");
+		System.out.println("과목, 교실, 교수님이름 조회(시간표 폼에서 조회)");
 		return scheduleService.scheduleSearch(search);
 	}
 	

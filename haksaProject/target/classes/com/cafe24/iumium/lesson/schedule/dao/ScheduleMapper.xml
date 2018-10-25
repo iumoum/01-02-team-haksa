@@ -39,7 +39,7 @@
 		from haksa_room where building_code=#{buildingCode}
     </select>
     
-    <!-- 과목, 강의실, 교수님이름 조회 쿼리문 -->
+    <!-- 과목, 강의실, 교수님이름 조회 쿼리문(시간표 폼에서 조회) -->
     <select id="getLectureStatusList" parameterType="com.cafe24.iumium.lesson.schedule.dto.Search" resultType="com.cafe24.iumium.lesson.lecture.dto.LectureStatus">
     	select haksa_subject.subject_name_korean as subjectName,
     	haksa_room.room_floor as roomFloor,

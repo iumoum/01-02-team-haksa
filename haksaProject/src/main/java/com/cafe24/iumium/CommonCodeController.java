@@ -33,7 +33,7 @@ public class CommonCodeController {
 	
 		// 기관코드 관리
 		@RequestMapping(value="/common/codes/agency", method = RequestMethod.GET)
-	    public String AgencyList(Model model) {
+	    public String agencyCodeList(Model model) {
 	        List<AgencyCode> list = commonCodeService.selectAllAgencyCodes();
 	        
 	        //객체 내부에 기관 코드 리스트 저장
@@ -44,7 +44,7 @@ public class CommonCodeController {
 		
 		// 기구코드 관리
 		@RequestMapping(value="/common/codes/organization", method = RequestMethod.GET)
-	    public String OrgList(Model model) {
+	    public String orgCodeList(Model model) {
 	        List<OrganizationCode> list = commonCodeService.selectAllOrganizationCodes();
 	       
 	        //객체 내부에 기구 코드 리스트 저장
@@ -55,7 +55,7 @@ public class CommonCodeController {
 		
 		// 부서코드 관리
 		@RequestMapping(value="/common/codes/department", method = RequestMethod.GET)
-	    public String DeptList(Model model) {
+	    public String deptCodeList(Model model) {
 	        List<DepartmentCode> list = commonCodeService.selectAllDepartmentCodes();
 	       
 	        //객체 내부에 부서 코드 리스트 저장
@@ -66,7 +66,7 @@ public class CommonCodeController {
 		
 		// 팀코드 관리
 		@RequestMapping(value="/common/codes/teamCode", method = RequestMethod.GET)
-	    public String TeamList(Model model) {
+	    public String teamCodeList(Model model) {
 	        List<TeamCode> list = commonCodeService.selectAllTeamCodes();
 	        
 	        //객체 내부에 팀 코드 리스트 저장
@@ -77,7 +77,7 @@ public class CommonCodeController {
 		
 		// 직군코드 관리
 		@RequestMapping(value="/common/codes/jobGroup", method=RequestMethod.GET)
-		public String getAllJobGroubCodes(Model model) {
+		public String jobGroubCodeList(Model model) {
 			List<JobGroupCode> jobGroupCodes = commonCodeService.selectAllJobGroupCodes();
 			
 			// 직군 코드 model 객체 내부에 저장
@@ -88,7 +88,7 @@ public class CommonCodeController {
 		
 		// 직종코드 관리
 		@RequestMapping(value="/common/codes/jobType", method=RequestMethod.GET)
-		public String getAllJobTypeCodes(Model model) {
+		public String jobTypeCodeList(Model model) {
 			List<JobTypeCode> jobTypeCodes = commonCodeService.selectAllJobTypeCodes();
 			
 			// 직종 코드 model 객체 내부에 저장
@@ -99,7 +99,7 @@ public class CommonCodeController {
 		
 		// 직급코드 관리
 		@RequestMapping(value="/common/codes/jobRank", method=RequestMethod.GET)
-		public String getAllJobRankCodes(Model model) {
+		public String jobRankCodeList(Model model) {
 			List<JobRankCode> JobRankCodes = commonCodeService.selectAllJobRankCodes();
 			
 			// 직급 코드 model 객체 내부에 저장
@@ -110,7 +110,7 @@ public class CommonCodeController {
 		
 		// 직위코드 관리
 		@RequestMapping(value="/common/codes/jobPosition", method=RequestMethod.GET)
-		public String getAllJobPositionCodes(Model model) {
+		public String jobPositionCodeList(Model model) {
 			List<JobPositionCode> jobPositionCodes = commonCodeService.selectAllJobPositionCodes();
 			
 			// 직위 코드 model 객체 내부에 저장
@@ -121,7 +121,7 @@ public class CommonCodeController {
 		
 		// 건물코드 관리
 		@RequestMapping(value="/common/codes/building", method=RequestMethod.GET)
-		public String getAllBuildingCodes(Model model) {
+		public String buildingCodeList(Model model) {
 			List<BuildingCode> buildingCodes = commonCodeService.selectAllBuildingCodes();
 			
 			// 건물 코드 model 객체 내부에 저장
@@ -132,7 +132,7 @@ public class CommonCodeController {
 		
 		// 강의실코드 관리
 		@RequestMapping(value="/common/codes/room", method=RequestMethod.GET)
-		public String getAllRoomCodes(Model model) {
+		public String roomCodeList(Model model) {
 			List<RoomCode> roomCodes = commonCodeService.selectAllRoomCodes();
 			
 			// 강의실 코드 model 객체 내부에 저장
@@ -143,7 +143,7 @@ public class CommonCodeController {
 		
 		// 국가코드 관리
 		@RequestMapping(value="/common/codes/country", method=RequestMethod.GET)
-		public String getAllCountryCodes(Model model) {
+		public String countryCodeList(Model model) {
 			List<CountryCode> countryCodes = commonCodeService.selectAllCountryCodes();
 			
 			model.addAttribute("countryCodes", countryCodes);

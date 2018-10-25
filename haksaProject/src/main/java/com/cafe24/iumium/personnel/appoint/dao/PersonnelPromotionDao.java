@@ -16,8 +16,9 @@ private final String NS = "com.cafe24.iumium.personnel.appoint.dao.PersonnelProm
 	@Autowired
     private SqlSessionTemplate sqlSessionTemplate;
 	
+	// 승진 입력 처리
 	public int savePersonnelPromotion(PersonnelPromotion personnelPromotion) {
-		System.out.println("dao호출");
+		System.out.println("승진 입력 dao호출");
 		return sqlSessionTemplate.insert(NS+"addPersonnelPromotion", personnelPromotion);
 	}
 	

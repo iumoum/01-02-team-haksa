@@ -42,7 +42,7 @@ public class ScheduleDao {
 		return sqlSessionTemplate.selectList(NS+"getroomList", buildingCode);
 	}
 	
-	// 과목, 강의실, 교수님이름 조회 쿼리문 실행
+	// 과목, 강의실, 교수님이름 조회 쿼리문 실행(시간표 폼에서 조회)
 	public List<LectureStatus> lectureStatusSearchList(Search search) {
 		return sqlSessionTemplate.selectList(NS+"getLectureStatusList", search);
 	}

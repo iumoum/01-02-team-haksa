@@ -43,7 +43,7 @@ public class ScheduleService {
 		return scheduleDao.roomSearchList(buildingCode);
 	}
 	
-	// 과목, 강의실, 교수님이름 조회
+	// 과목, 강의실, 교수님이름 조회(시간표 폼에서 조회)
 	public List<LectureStatus> scheduleSearch(Search search) {
 		return scheduleDao.lectureStatusSearchList(search);
 	}

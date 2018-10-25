@@ -39,7 +39,7 @@ public class SchoolRegisterCodeDao {
 		return sqlSessionTemplate.selectList(nameSpace + "selectAllTypeOfCounselCodes");
 	}
 	
-	// 상담구분코드 리스트 조회
+	// 상담결과코드 리스트 조회
 	public List<ResultOfCounselCode> selectAllResultOfCounselCodes(){
 		return sqlSessionTemplate.selectList(nameSpace + "selectAllResultOfCounselCodes");
 	}

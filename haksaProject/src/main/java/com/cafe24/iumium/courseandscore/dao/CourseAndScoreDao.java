@@ -70,16 +70,7 @@ public class CourseAndScoreDao {
 		return sqlSessionTemplate.selectList(nameSpace + "inquireEnrolScoreStudentNum", subjectName);
 	}
 	
-	// 6. 학번 리스트로 성적 입력 할 학생 정보 조회
-	
-	public List<InsertScore> inquireEnrolScoreCourse(List<EnrolCourse> enrolCourse) {
-		System.out.println("CourseAndScoreDao - inquireEnrolScoreCourse()");
-		List<InsertScore> insertScore = sqlSessionTemplate.selectList(nameSpace + "inquireEnrolScoreCourse", enrolCourse);
-		
-		return insertScore; 
-	}
-	
-	// 7. 입력받은 반의 값으로 성적입력테이블에서 반이 일치하는 학생들의 평균 총점을 조회한다.
+	// 6. 입력받은 반의 값으로 성적입력테이블에서 반이 일치하는 학생들의 평균 총점을 조회한다.
 	public List<EnrolCourse> inquireEnrolScoreCourseByClass(String ClassName) {
 		System.out.println("CourseAndScoreDao - inquireEnrolScoreCourseByClass()");
 		List<EnrolCourse> enrolCourse = sqlSessionTemplate.selectList(nameSpace + "inquireEnrolScoreCourseByClass", ClassName);
@@ -90,20 +81,20 @@ public class CourseAndScoreDao {
 		
 		return enrolCourse;
 	}
-	// 8. 입력받은 학과의 값으로 성적입력테이블에서 반이 일치하는 학생들의 평균 총점을 조회한다.
+	// 7. 입력받은 학과의 값으로 성적입력테이블에서 반이 일치하는 학생들의 평균 총점을 조회한다.
 	public List<EnrolCourse> inquireprintScoreCourseByDept(String DeptName) {
 		System.out.println("CourseAndScoreDao - inquireprintScoreCourseByDept()");
 		List<EnrolCourse> enrolCourse = sqlSessionTemplate.selectList(nameSpace + "inquireprintScoreCourseByDept", DeptName);
 		
 		return enrolCourse;
 	}
-	// 9. 입력받은 데이터를 차례로 수강신청내역 테이블에 입력한다.
+	// 8. 입력받은 데이터를 차례로 수강신청내역 테이블에 입력한다.
 	public int insertEnrolCourse(Map<String, String> enrolCourse) {
 		System.out.println("CourseAndScoreDao - insertEnrolCourse() id 호출 = " + enrolCourse.get("id"));
 		return sqlSessionTemplate.insert(nameSpace + "insertEnrolCourse",enrolCourse);
 	}
 	
-	// 9-1. 입력받은 수강신청내역 번호를 입력하여 수강신청 내역을 삭제한다.
+	// 8-1. 입력받은 수강신청내역 번호를 입력하여 수강신청 내역을 삭제한다.
 	public int removeEnrolCourse(Map<String,String> lectureStatusNumberArr) {
 		System.out.println("CourseAndScoreDao - removeEnrolCourse() = " + lectureStatusNumberArr.get("arr[0]"));
 		return sqlSessionTemplate.delete(nameSpace + "removeEnrolCourse",lectureStatusNumberArr);

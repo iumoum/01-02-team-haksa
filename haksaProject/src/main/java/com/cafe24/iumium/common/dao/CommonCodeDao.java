@@ -65,17 +65,17 @@ public class CommonCodeDao {
 		return sqlSessionTemplate.selectList(nameSpace + "selectAllCountryCodes");
 	}
 	
-	//기관 코드 리스트 조회
+	// 기관 코드 리스트 조회
 	public List<AgencyCode> selectAllAgencyCodes() {
         return sqlSessionTemplate.selectList(nameSpace+"selectAllAgencyCodes");
     }
 	
-	//기구 코드 리스트 조회
+	// 기구 코드 리스트 조회
 	public List<OrganizationCode> selectAllOrganizationCodes() {
         return sqlSessionTemplate.selectList(nameSpace+"selectAllOrganizationCodes");
     }
 	
-	//부서 코드 리스트 조회
+	// 부서 코드 리스트 조회
 	public List<DepartmentCode> selectAllDepartmentCodes() {
         return sqlSessionTemplate.selectList(nameSpace+"selectAllDepartmentCodes");
     }
@@ -95,7 +95,7 @@ public class CommonCodeDao {
 		return sqlSessionTemplate.insert(nameSpace + "addJobTypeCodesAction", jobTypeCode);
 	}
 	
-	//팀 코드 리스트 조회
+	// 팀 코드 리스트 조회
 	public List<TeamCode> selectAllTeamCodes() {
         return sqlSessionTemplate.selectList(nameSpace+"selectAllTeamCodes");
     }
@@ -161,12 +161,12 @@ public class CommonCodeDao {
         return sqlSessionTemplate.insert(nameSpace+"AddOrgCodeAction", orgCode);
     }
 	
-	// 기구코드, 이름, 기관 코드 히스트 조회
+	// 기구코드, 이름, 기관 코드 리스트 조회
 	public List<DepartmentCode> selectAllOrgName() {
         return sqlSessionTemplate.selectList(nameSpace+"selectAllOrgName");
     }
 	
-	// 기구 코드 추가
+	// 부서 코드 추가
 	public int addDeptCodeAction(DepartmentCode deptCode) {
         return sqlSessionTemplate.insert(nameSpace+"addDeptCodeAction", deptCode);
     }
