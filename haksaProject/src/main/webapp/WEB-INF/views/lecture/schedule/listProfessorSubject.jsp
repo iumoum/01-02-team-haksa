@@ -15,7 +15,93 @@
 		<link href="/resources/css/sb-admin.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript">
-			
+			$(document).ready(function(){
+				// 학기 조회
+				$.ajax({
+					url:'/rest/schedule/semester'
+					, type:'GET'
+					, dataType:'JSON'
+					, success:function(data){
+						$(data).each(function(index, item){
+							$('#semesterCode').append("<option value="+item.semesterCode+">"+item.semesterCode+"</option>");
+						})
+					}
+				})
+				
+				// 학과 조회
+				$("#semesterCode").change(function(){
+					let code = $('#semesterCode option:selected').val();
+					console.log(code);
+					if(code != '선택') {
+						$.ajax({
+							url:'/rest/schedule/department'
+							, type:'GET'
+							, dataType:'JSON'
+							, data: {semesterCode:code}
+							, success: function(data){
+								$('#departmentCode').empty();
+								$('#departmentCode').append("<option value='선택'>선택</option>");
+								$(data).each(function(index, item){
+									$('#departmentCode').append("<option value="+item.deptNameKorean+">"+item.deptNameKorean+"</option>");
+								})
+							}
+						})
+					} else {
+						$('#departmentCode').empty();
+						$('#departmentCode').append("<option value='선택'>선택</option>");
+					}
+				})
+				
+				// 교직원번호로 교수 이름 검색
+				$('#professorSearch').click(function(){
+					let professorNumber = $('#professorNumber').val();
+					
+					$.ajax({
+						url:'/rest/schedule/professorName'
+						, type:'GET'
+						, data: {professorNumber:professorNumber}
+						, success:function(data){
+							console.log('success');
+							console.log(data)
+							$('#professorName').val(data);
+						}
+					})
+				})
+				
+				// 교수강의과목조회
+				$('#subjectSearch').click(function(){
+					let semesterCode = $('#semesterCode option:selected').val();
+					let departmentCode = $('#departmentCode option:selected').val();
+					let professorNumber = $('#professorNumber').val();
+					
+					if("선택" != semesterCode && "선택" != departmentCode && null != professorNumber){
+						$.ajax({
+							url:'/rest/schedule/professorSubject'
+							, type:'POST'
+							, async:false
+							, dataType:'JSON'
+							, data: {semesterCode:semesterCode, departmentCode:departmentCode, professorNumber:professorNumber}
+							, success: function(data){
+								console.log("success");
+				                $(data).each(function(index, item){
+				                	totalNumber = (item.subjectHoursTheory+item.subjectHoursPractice);
+				                	$('#subjectTable > tbody').append('<tr>');
+				                	$('#subjectTable > tbody').append('<td>'+item.subjectName+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+item.deptName+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+item.classByDepartmentGrade+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+item.classByDepartmentDayAndNight+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+item.classByDepartmentClass+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+item.typeOfCompletionName+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+item.subjectScoreGraduation+'</td>');
+				                	$('#subjectTable > tbody').append('<td>'+totalNumber+'</td>');
+				                	$('#subjectTable > tbody').append('</tr>');
+				                })
+							}
+						})
+					}
+					$(this).attr('disabled',true);
+				})
+			});
 		</script>
 	</head>
 	<body id="page-top">
@@ -35,56 +121,43 @@
 										<i class="fa fa-search"></i>
 									</button>
 									&ensp; 
-									년도-학기 : 
+									<span>년도-학기 :</span>&nbsp; 
 									<select name="yearBox" id="semesterCode" class="btn btn-info">
 										<option value="선택">선택</option>
 									</select> 
 									&ensp;
-									학과 : 
+									<span>학과 :</span>&nbsp; 
 									<select name="departmentBox" id="departmentCode" class="btn btn-info">
 										<option value="선택">선택</option>
 									</select>
 									&ensp;
-									학년 : 
-									<select name="gradeBox" id="gradeCode" class="btn btn-info">
-										<option value="선택">선택</option>
-									</select>
+									<span>교수 :</span>&nbsp; 
+									<input type="text" id="professorNumber">
+									&ensp;&ensp;
+									<button type="button" id="professorSearch" class="btn btn-info">이미지태그</button>
 									&ensp;
-									반 : 
-									<select name="classBox" id="classCode" class="btn btn-info">
-										<option value="선택">선택</option>
-									</select> 
-									&ensp;
-									주야 : 
-									<select name="dayBox" id="dayCode" class="btn btn-info">
-										<option value="선택">선택</option>
-										<option value="주">주</option>
-										<option value="야">야</option>
-									</select>
-									&emsp;
-									<button type="button" id="click" class="btn btn-info">조회</button>
+									<input type="text" id="professorName" readonly>&emsp;
+									<button type="button" id="subjectSearch" class="btn btn-info">조회</button>
 								</div>
 							</div>
 							<div class="inbox-body">
 								<div class="mail-option">
-									<form action="${pageContext.request.contextPath}/scheduleAdd"
-										method="post">
-										<table class="table table-inbox table-hover">
-											<thead>
-												<tr class="unread">
-													<td class="view-message  dont-show">과목명</td>
-													<td>담당교수</td>
-													<td></td>
-													<td></td>
-													<td>강의실</td>
-													<td>요일</td>
-													<td class="view-message  text-left">교시</td>
-												</tr>
-											</thead>
-											<tbody>
-											</tbody>
-										</table>
-									</form>
+									<table class="table table-inbox table-hover" id="subjectTable">
+										<thead>
+											<tr class="unread">
+												<td class="view-message  dont-show">과목</td>
+												<td>학과</td>
+												<td>학년</td>
+												<td>주야</td>
+												<td>반</td>
+												<td>이수구분</td>
+												<td>학점</td>
+												<td class="view-message  text-left">총시수</td>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</aside>

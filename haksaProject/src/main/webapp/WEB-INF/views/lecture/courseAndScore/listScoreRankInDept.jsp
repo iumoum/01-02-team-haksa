@@ -57,7 +57,7 @@
 											<td scope="col" colspan="10">
 												<p class = "printScoreRankInDeptMain"> 학과 입력 : 
 													<select name="DeptName">
-														<option value="골프경영학과">골프경영학과</option>
+														<option value="국어국문학과">국어국문학과</option>
 														<option value="컴퓨터정보과">컴퓨터정보과</option>
 													</select>
 												</p>

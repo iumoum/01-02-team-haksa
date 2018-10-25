@@ -108,7 +108,7 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<input type="text" class="sr-input" placeholder="">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
@@ -141,13 +141,11 @@
 							<div class="mail-option">
 								<form action="${pageContext.request.contextPath}/scheduleAdd"
 									method="post">
-									<table class="table table-inbox table-hover">
+									<table class="table table-inbox table-hover" id="scheduleTable">
 										<thead>
 											<tr class="unread">
 												<td class="view-message  dont-show">과목명</td>
 												<td>교수명</td>
-												<td></td>
-												<td></td>
 												<td>반</td>
 												<td>요일</td>
 												<td class="view-message  text-left">교시</td>

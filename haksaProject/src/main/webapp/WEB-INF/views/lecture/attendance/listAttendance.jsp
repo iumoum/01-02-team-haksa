@@ -245,8 +245,6 @@
 													<tr class="unread">
 														<td class="view-message  dont-show">학번</td>
 														<td>이름</td>
-														<td></td>
-														<td></td>
 														<td>강의교수</td>	
 														<td class="view-message  text-left">상태</td>
 													</tr>

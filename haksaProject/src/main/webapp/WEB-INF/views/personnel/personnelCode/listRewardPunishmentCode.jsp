@@ -61,9 +61,7 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-				<h1>인사관리 > 상벌코드 관리</h1>
-				<br>
-					<p id="enrolScoreMain">* 상벌코드 관리 리스트</p>
+					<p id="enrolScoreMain">* 상벌코드 관리</p>
 					<form id="form">
 						<input type='button' class="btn btn-info" onclick='rewardPunishmentList()' value='조회'/>
 						<input type='button' class="btn btn-success" onclick='addRewardPunishmentCode()' value='입력'/>

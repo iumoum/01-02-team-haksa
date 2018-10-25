@@ -64,9 +64,7 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-					<h1>인사관리 > 인사공통코드</h1>
-					<br>
-					<p id="enrolScoreMain">* 인사공통코드 리스트</p>
+					<p id="enrolScoreMain">* 인사공통코드</p>
 				<form id="form">
 					<input type='button' class="btn btn-info" name='a' onclick='personnelCommonCodeList()' value='조회'/>
 					<input type='button' class="btn btn-success" onclick='addPersonnelCommonCode()' value='입력'/>

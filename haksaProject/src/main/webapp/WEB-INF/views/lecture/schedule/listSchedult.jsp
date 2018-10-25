@@ -179,13 +179,11 @@
 							<div class="mail-option">
 								<form action="${pageContext.request.contextPath}/scheduleAdd"
 									method="post">
-									<table class="table table-inbox table-hover">
+									<table class="table table-inbox table-hover" id="scheduleTable">
 										<thead>
 											<tr class="unread">
 												<td class="view-message  dont-show">과목명</td>
 												<td>담당교수</td>
-												<td></td>
-												<td></td>
 												<td>강의실</td>
 												<td>요일</td>
 												<td class="view-message  text-left">교시</td>

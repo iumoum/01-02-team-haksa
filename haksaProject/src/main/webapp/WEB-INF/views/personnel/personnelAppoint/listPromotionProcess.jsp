@@ -65,7 +65,7 @@
 						<aside class="lg-side">
 							<div class="inbox-head">
 								<div class="input-append">
-									<input type="text" class="sr-input" placeholder="Tìm kiếm">
+									<input type="text" class="sr-input" placeholder="">
 									<button class="btn sr-btn" type="button">
 										<i class="fa fa-search"></i>
 									</button>
