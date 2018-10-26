@@ -80,4 +80,14 @@
 		FROM haksa_result_of_counsel rc
 		INNER JOIN haksa_type_of_counsel tc
 	</select>
+	
+	<!-- 졸업불가 사유코드 테이블 -->
+	<select id="selectAllReasonForCantGraduateCodes" resultType="com.cafe24.iumium.schoolregister.code.dto.ReasonForCantGraduate">
+		select reason_for_cant_graduate_code as reasonForCantGraduateCode, 
+		reason_for_cant_graduate_name as reasonForCantGraduateName, 
+		reason_for_cant_graduate_is_used as reasonForCantGraduateIsUsed, 
+		reason_for_cant_graduate_is_changed as reasonForCantGraduateIsChanged, 
+		reason_for_cant_graduate_registered_date as reasonForCantGraduateRegisteredDate
+		from haksa_reason_for_cant_graduate
+	</select>
 </mapper>

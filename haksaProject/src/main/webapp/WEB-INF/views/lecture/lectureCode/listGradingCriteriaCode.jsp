@@ -70,7 +70,6 @@
 											<td></td>
 											<td>끝점수</td>
 											<td>평점</td>
-											<td class="view-message  text-left">시스템 등록자 아이디</td>
 										</tr>
 
 										<c:forEach var="grade" items="${list}">
@@ -79,7 +78,6 @@
 												<td colspan="3" class="view-message">${grade.gradingCriteriaStartOfSection}</td>
 												<td>${grade.gradingCriteriaStartOfSection}</td>
 												<td>${grade.gradingCriteriaGrade}</td>
-												<td>${grade.recordId}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

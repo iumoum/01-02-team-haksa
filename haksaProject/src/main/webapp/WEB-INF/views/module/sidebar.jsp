@@ -37,6 +37,7 @@
 				<a class="dropdown-item" href="/schoolRegister/codes/reasonForChangeSchoolRegister">학적변동사유 코드</a>
 				<a class="dropdown-item" href="/schoolRegister/codes/typeOfCounsel">상담구분 코드</a> 
 				<a class="dropdown-item" href="/schoolRegister/codes/resultOfCounsel">상담결과 코드</a>
+				<a class="dropdown-item" href="/schoolRegister/codes/reasonForCantGraduate">졸업불가 사유코드</a>
 				<div class="dropdown-divider"></div>
 			</div>
 		</li>
@@ -50,14 +51,6 @@
 				<a class="dropdown-item" href="/lecture/codes/Qfel">강의평가항목 코드</a>
 				<a class="dropdown-item" href="/lecture/codes/Afe">평가항목 배정 코드</a>
 				<a class="dropdown-item" href="/lecture/codes/Gc">성적평가기준 코드</a> 
-			</div>
-		</li>
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-				<i class="fas fa-fw fa-folder"></i> <span>졸업코드 관리</span>
-			</a>
-			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-				<a class="dropdown-item" href="#">졸업불가사유 코드</a> 
 			</div>
 		</li>
 		<li class="nav-item dropdown">

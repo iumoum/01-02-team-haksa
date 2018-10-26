@@ -70,10 +70,7 @@
 											<td>변동사유 명 (영문)</td>
 											<td>코드 사용유무</td>
 											<td>코드 변경유무</td>
-											<td>코드 변경사유</td>
-											<td>코드 변경일자</td>
 											<td>시스템 등록일자</td>
-											<td>시스템 등록자 아이디</td>
 										</tr>
 
 										<c:forEach var="row" items="${reasonsForChangeSchoolRegister}">
@@ -83,10 +80,7 @@
 												<td>${row.reasonForChangeEnglish}</td>
 												<td>${row.reasonForChangeIsUsed}</td>
 												<td>${row.reasonForChangeIsChanged}</td>
-												<td>${row.reasonForChangeReasonForChange}</td>
-												<td>${row.reasonForChangeChangedDate}</td>
 												<td>${row.reasonForChangeRegisteredDate}</td>
-												<td>${row.recordId}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

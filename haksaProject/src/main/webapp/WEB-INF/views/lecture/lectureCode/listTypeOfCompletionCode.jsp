@@ -70,10 +70,7 @@
 											<td></td>
 											<td>코드 사용유무</td>
 											<td>코드 변경유무</td>
-											<td>코드 변경사유</td>
-											<td>코드 변경일자</td>
 											<td>시스템 등록일자</td>
-											<td>시스템 등록자 아이디</td>
 										</tr>
 
 										<c:forEach var="toc" items="${list}">
@@ -82,10 +79,7 @@
 												<td colspan="3" class="view-message">${toc.typeOfCompletionName}</td>
 												<td>${toc.typeOfCompletionIsUsed}</td>
 												<td>${toc.typeOfCompletionIsChanged}</td>
-												<td>${toc.typeOfCompletionReasonForChange}</td>
-												<td>${toc.typeOfCompletionChangedDate}</td>
 												<td>${toc.typeOfCompletionRegisteredDate}</td>
-												<td>${toc.recordId}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

@@ -116,10 +116,7 @@
 											<td>강의평가항목 명</td>
 											<td>코드 사용유무</td>
 											<td>코드 변경유무</td>
-											<td>코드 변경사유</td>
-											<td>코드 변경일자</td>
 											<td>시스템 등록일자</td>
-											<td>시스템 등록자 아이디</td>
 										</tr>
 
 										<c:forEach var="qfe" items="${list}">
@@ -130,10 +127,7 @@
 												<td>${qfe.questionForEvaluateName}</td>
 												<td>${qfe.questionForEvaluateIsUsed}</td>
 												<td>${qfe.questionForEvaluateIsChanged}</td>
-												<td>${qfe.questionForEvaluateReasonForChange}</td>
-												<td>${qfe.questionForEvaluateChangedDate}</td>
 												<td>${qfe.questionforEvaluateRegisteredDate}</td>
-												<td>${qfe.recordId}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

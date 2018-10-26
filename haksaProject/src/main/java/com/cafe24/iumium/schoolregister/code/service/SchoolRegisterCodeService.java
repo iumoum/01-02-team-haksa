@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe24.iumium.schoolregister.code.dao.SchoolRegisterCodeDao;
 import com.cafe24.iumium.schoolregister.code.dto.Calander;
+import com.cafe24.iumium.schoolregister.code.dto.ReasonForCantGraduate;
 import com.cafe24.iumium.schoolregister.code.dto.ReasonForChangeSchoolRegister;
 import com.cafe24.iumium.schoolregister.code.dto.ResultOfCounselCode;
 import com.cafe24.iumium.schoolregister.code.dto.SemesterCode;
@@ -40,8 +41,13 @@ public class SchoolRegisterCodeService {
 		return schoolRegisterCodeDao.selectAllTypeOfCounselCodes();
 	}
 	
-	// 상담구분코드 리스트 조회
+	// 상담결과코드 리스트 조회
 	public List<ResultOfCounselCode> selectAllResultOfCounselCodes(){
 		return schoolRegisterCodeDao.selectAllResultOfCounselCodes();
+	}
+	
+	// 졸업불가사유코드 리스트 조회
+	public List<ReasonForCantGraduate> selectAllReasonForCantGraduateCodes(){
+		return schoolRegisterCodeDao.selectAllReasonForCantGraduateCodes();
 	}
 }

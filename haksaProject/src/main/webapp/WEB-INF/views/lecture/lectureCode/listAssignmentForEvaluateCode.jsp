@@ -63,7 +63,6 @@
 											<td></td>
 											<td>강의평가 항목 코드</td>
 											<td>시스템 등록일자</td>
-											<td class="view-message  text-left">시스템 등록자 아이디</td>
 										</tr>
 
 										<c:forEach var="Afec" items="${list}">
@@ -72,7 +71,6 @@
 												<td colspan="3" class="view-message">${Afec.lectureStatusNumber}</td>
 												<td>${Afec.questionForEvaluateCode}</td>
 												<td>${Afec.assignmentForEvaluateRegisteredDate}</td>
-												<td>${Afec.recordId}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

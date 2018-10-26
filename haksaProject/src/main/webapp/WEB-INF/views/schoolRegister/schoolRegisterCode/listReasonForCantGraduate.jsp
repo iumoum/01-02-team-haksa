@@ -8,7 +8,7 @@
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-	<title>학기별 상세일정 관리</title>
+	<title>졸업불가 사유코드 관리</title>
 	
 	<!-- Bootstrap core CSS-->
 	<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
 	<script>
 		$(document).ready(function(){
 			$('#addButton').click(function(){
-				window.location.href="/schoolRegister/codes/addCalander";
+				window.location.href="/schoolRegister/codes/addReasonForCantGraduate";
 			})
 		})
 	</script>
@@ -63,26 +63,22 @@
 								<table class="table table-inbox table-hover">
 									<tbody>
 										<tr class="unread">
-											<td class="view-message  dont-show">학기별 상세일정 번호</td>
-											<td>학기</td>
+											<td class="view-message  dont-show">졸업불가 사유코드</td>
+											<td>졸업불가 사유</td>
 											<td></td>
 											<td></td>
-											<td>일정 명</td>
-											<td>일정 내용</td>
-											<td>시작 일자</td>
-											<td>종료 일자</td>
-											<td>시스템 등록일자</td>
+											<td>코드 사용유무</td>
+											<td>코드 변경유무</td>
+											<td class="view-message  text-left">코드 등록일자</td>
 										</tr>
 
-										<c:forEach var="row" items="${calanders}">
+										<c:forEach var="row" items="${reasonForCantGraduateCodes}">
 											<tr class="">
-												<td class="view-message  dont-show">${row.calanderNumber}</td>
-												<td colspan="3" class="view-message">${row.semesterCode}</td>
-												<td>${row.calanderTitle}</td>
-												<td>${row.calanderContent}</td>
-												<td>${row.calanderBeginDate}</td>
-												<td>${row.calanderEndDate}</td>
-												<td>${row.calanderRegisteredDate}</td>
+												<td class="view-message  dont-show">${row.reasonForCantGraduateCode}</td>
+												<td colspan="3" class="view-message">${row.reasonForCantGraduateName}</td>
+												<td>${row.reasonForCantGraduateIsUsed}</td>
+												<td>${row.reasonForCantGraduateIsChanged}</td>
+												<td>${row.reasonForCantGraduateRegisteredDate}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

@@ -69,11 +69,8 @@
 											<td></td>
 											<td>종료 일자</td>
 											<td>코드 사용유무</td>
-											<td>코드 변경유무</td>
-											<td>코드 변경사유</td>
 											<td>코드 변경일자</td>
 											<td>코드 등록일자</td>
-											<td class="view-message  text-left">코드 등록자 아이디</td>
 										</tr>
 
 										<c:forEach var="row" items="${semesterCodes}">
@@ -83,10 +80,7 @@
 												<td>${row.semesterEndDate}</td>
 												<td>${row.semesterIsUsed}</td>
 												<td>${row.semesterIsChanged}</td>
-												<td>${row.semesterReasonForChange}</td>
-												<td>${row.semesterChangedDate}</td>
 												<td>${row.semesterRegisteredDate}</td>
-												<td>${row.recordId}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

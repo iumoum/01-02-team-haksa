@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.iumium.schoolregister.code.dto.Calander;
+import com.cafe24.iumium.schoolregister.code.dto.ReasonForCantGraduate;
 import com.cafe24.iumium.schoolregister.code.dto.ReasonForChangeSchoolRegister;
 import com.cafe24.iumium.schoolregister.code.dto.ResultOfCounselCode;
 import com.cafe24.iumium.schoolregister.code.dto.SemesterCode;
@@ -81,6 +82,20 @@ public class SchoolRegisterCodeController {
 	public String getAllResultOfCounselCodes(Model model) {
 		List<ResultOfCounselCode> resultOfCounselCodes = schoolRegisterCodeService.selectAllResultOfCounselCodes();
 		model.addAttribute("resultOfCounselCodes", resultOfCounselCodes);
-		return "schoolRegister/schoolRegisterCode/listResultOfCounselCodeList";
+		return "schoolRegister/schoolRegisterCode/listResultOfCounselCode";
+	}
+	
+	// 졸업불가사유코드 입력 화면
+	@RequestMapping(value="/schoolRegister/codes/addReasonForCantGraduate", method = RequestMethod.GET)
+	public String reasonForCantGraduateCode() {
+		return "schoolRegister/schoolRegisterCode/addReasonForCantGraduate";
+	}
+	
+	// 졸업불가사유코드 리스트 조회
+	@RequestMapping(value="/schoolRegister/codes/reasonForCantGraduate", method = RequestMethod.GET)
+	public String getAllReasonForCantGraduateCodes(Model model) {
+		List<ReasonForCantGraduate> reasonForCantGraduateCodes = schoolRegisterCodeService.selectAllReasonForCantGraduateCodes();
+		model.addAttribute("reasonForCantGraduateCodes", reasonForCantGraduateCodes);
+		return "schoolRegister/schoolRegisterCode/listReasonForCantGraduate";
 	}
 }

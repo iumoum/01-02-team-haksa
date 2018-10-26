@@ -61,10 +61,7 @@
 											<td>상담결과 명</td>
 											<td>코드 사용유무</td>
 											<td>코드 변경사유</td>
-											<td>코드 변경일자</td>
-											<td>코드 등록일자</td>
 											<td>시스템 등록일자</td>
-											<td>시스템 등록자 아이디</td>
 										</tr>
 
 										<c:forEach var="row" items="${resultOfCounselCodes}">
@@ -74,10 +71,7 @@
 												<td>${row.counselResultName}</td>
 												<td>${row.counselResultIsUsed}</td>
 												<td>${row.counselResultIsChanged}</td>
-												<td>${row.counselResultReasonForChange}</td>
-												<td>${row.counselResultChangedDate}</td>
 												<td>${row.counselResultRegisteredDate}</td>
-												<td>${row.recordId}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

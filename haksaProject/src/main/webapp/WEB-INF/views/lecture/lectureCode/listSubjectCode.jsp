@@ -82,10 +82,7 @@
 											<td>실습시수</td>
 											<td>코드 사용유무</td>
 											<td>코드 변경유무</td>
-											<td>코드 변경사유</td>
-											<td>코드 변경일자</td>
 											<td>시스템 등록일자</td>
-											<td>시스템 등록자 아이디</td>
 										</tr>
 
 										<c:forEach var="sub" items="${list}">
@@ -98,10 +95,7 @@
 												<td>${sub.subjectHoursPractice}</td>
 												<td>${sub.subjectHoursIsUsed}</td>
 												<td>${sub.subjectHoursIsChanged}</td>
-												<td>${sub.subjectHoursReasonForChange}</td>
-												<td>${sub.subjectHoursChangedDate}</td>
 												<td>${sub.subjectHoursRegisteredDate}</td>
-												<td>${sub.recordId}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

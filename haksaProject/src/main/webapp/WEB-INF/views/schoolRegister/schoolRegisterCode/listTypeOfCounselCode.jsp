@@ -70,10 +70,7 @@
 											<td></td>
 											<td>코드 변경유무</td>
 											<td>코드 변경사유</td>
-											<td>코드 변경일자</td>
-											<td>코드 등록일자</td>
 											<td>시스템 등록일자</td>
-											<td>시스템 등록자 아이디</td>
 										</tr>
 
 										<c:forEach var="row" items="${typeOfCounselCodes}">
@@ -82,10 +79,7 @@
 												<td colspan="3" class="view-message">${row.counselTypeName}</td>
 												<td>${row.counselTypeIsUsed}</td>
 												<td>${row.counselTypeIsChanged}</td>
-												<td>${row.counselTypeReasonForChange}</td>
-												<td>${row.counselTypeChangedDate}</td>
 												<td>${row.counselTypeRegisteredDate}</td>
-												<td>${row.recordId}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

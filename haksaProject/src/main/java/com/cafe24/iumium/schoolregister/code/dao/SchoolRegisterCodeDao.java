@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.iumium.schoolregister.code.dto.Calander;
+import com.cafe24.iumium.schoolregister.code.dto.ReasonForCantGraduate;
 import com.cafe24.iumium.schoolregister.code.dto.ReasonForChangeSchoolRegister;
 import com.cafe24.iumium.schoolregister.code.dto.ResultOfCounselCode;
 import com.cafe24.iumium.schoolregister.code.dto.SemesterCode;
@@ -42,5 +43,10 @@ public class SchoolRegisterCodeDao {
 	// 상담결과코드 리스트 조회
 	public List<ResultOfCounselCode> selectAllResultOfCounselCodes(){
 		return sqlSessionTemplate.selectList(nameSpace + "selectAllResultOfCounselCodes");
+	}
+	
+	// 졸업불가사유코드 리스트 조회
+	public List<ReasonForCantGraduate> selectAllReasonForCantGraduateCodes(){
+		return sqlSessionTemplate.selectList(nameSpace + "selectAllReasonForCantGraduateCodes");
 	}
 }
