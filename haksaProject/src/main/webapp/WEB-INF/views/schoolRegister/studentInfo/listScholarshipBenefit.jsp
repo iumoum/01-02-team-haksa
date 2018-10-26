@@ -26,6 +26,16 @@
 			$('#addScholarshipBenefit').click(function(){
 				window.location.href="/addScholarshipBenefit";
 			})
+			
+			$("#keyword").keyup(function() {
+	            var selectBox = $("#selectBox option:selected").val();
+	            var word = $('#keyword').val();
+	            $("#studentTable > tbody").children().hide();
+	            if(selectBox == "studentNumber"){
+	                var temp = $("#studentTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+	            }
+	            $(temp).parent().show();
+	        });
 		})
 	</script>
 </head>
@@ -46,18 +56,21 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="학번">
+								<input type="text" class="sr-input" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
+								<select class="btn btn-info" id="selectBox">
+									<option value="studentNumber">학번</option>
+								</select>
 								&ensp;
 								<button class="btn sr-btn" type="button" id="addScholarshipBenefit">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="studentTable">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">장학금수혜번호</td>
 											<td>학번</td>
@@ -71,7 +84,8 @@
 											<td>첨부파일</td>
 											<td class="view-message  text-left">지급일자</td>
 										</tr>
-
+									</thead>
+									<tbody>
 										<c:forEach var="scholarshipBenefit"
 											items="${scholarshipBenefit}">
 											<tr class="">
