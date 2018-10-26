@@ -18,6 +18,7 @@ import com.cafe24.iumium.schoolregister.studentinfo.dto.HighSchool;
 import com.cafe24.iumium.schoolregister.studentinfo.dto.MyProfile;
 import com.cafe24.iumium.schoolregister.studentinfo.dto.ScholarshipBenefit;
 import com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo;
+import com.cafe24.iumium.schoolregister.studentinfo.dto.StudentState;
 import com.cafe24.iumium.schoolregister.studentinfo.service.StudentInfoService;
 
 
@@ -165,5 +166,12 @@ public class StudentInfoRestController {
 	public String insertMyProfile(@RequestBody MyProfile myProfile) {
 		System.out.println("/rest/addMyProfile get");
 		return studentInfoService.addMyProfile(myProfile);
+	}
+	
+	// 학생상태 불러오기
+	@RequestMapping(value = "/rest/studentState", method = RequestMethod.GET)
+	public List<StudentState> studentState() {
+		System.out.println("/rest/studentState get");
+		return studentInfoService.getStudentState();
 	}
 }

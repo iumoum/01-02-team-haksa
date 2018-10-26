@@ -248,4 +248,34 @@ public class StudentInfoDao {
 		System.out.println("신상명세사항 입력 Dao");
 		return sqlSessionTemplate.insert(nameSpace + "insertMyProfile", myProfile);
 	}
+	
+	// 2016년도 재학생 불러오기
+	public int selectEnrolledStudent2016() {
+		System.out.println("2016 재학생 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getEnrolledStudent2016");
+	}
+	
+	// 2017년도 재학생 불러오기
+	public int selectEnrolledStudent2017() {
+		System.out.println("2017 재학생 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getEnrolledStudent2017");
+	}
+	
+	// 2017년도 신입생 불러오기
+	public int selectFreshman2017() {
+		System.out.println("2017 신입생 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getFreshman2017");
+	}
+	
+	// 2018년도 재학생 불러오기
+	public int selectEnrolledStudent2018() {
+		System.out.println("2018 재학생 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getEnrolledStudent2018");
+	}
+	
+	// 2018년도 신입생 불러오기
+	public int selectFreshman2018() {
+		System.out.println("2018 신입생 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getFreshman2018");
+	}
 }

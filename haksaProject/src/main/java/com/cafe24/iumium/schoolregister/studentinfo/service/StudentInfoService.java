@@ -1,5 +1,6 @@
 package com.cafe24.iumium.schoolregister.studentinfo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.cafe24.iumium.schoolregister.studentinfo.dto.HighSchool;
 import com.cafe24.iumium.schoolregister.studentinfo.dto.MyProfile;
 import com.cafe24.iumium.schoolregister.studentinfo.dto.ScholarshipBenefit;
 import com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo;
+import com.cafe24.iumium.schoolregister.studentinfo.dto.StudentState;
 
 @Service
 @Transactional
@@ -256,5 +258,29 @@ public class StudentInfoService {
 		}
 		
 		return check;
+	}
+	
+	// 학생상태 불러오기
+	public List<StudentState> getStudentState() {
+		System.out.println("학생상태 불러오기 service");
+		List<StudentState> studentState = new ArrayList<StudentState>();
+		StudentState studentState2016 = new StudentState();
+		StudentState studentState2017 = new StudentState();
+		StudentState studentState2018 = new StudentState();
+		
+		studentState2016.setEnrolledStudent(studentInfoDao.selectEnrolledStudent2016()); // 2016년도 재학생 저장
+		studentState2016.setFreshman(studentInfoDao.selectEnrolledStudent2016()); // 2016년도 신입생 저장
+		
+		studentState2017.setEnrolledStudent(studentInfoDao.selectEnrolledStudent2017()); // 2017년도 재학생 저장
+		studentState2017.setFreshman(studentInfoDao.selectFreshman2017()); // 2017년도 신입생 저장
+		
+		studentState2018.setEnrolledStudent(studentInfoDao.selectEnrolledStudent2018()); // 2018년도 재학생 저장
+		studentState2018.setFreshman(studentInfoDao.selectFreshman2018()); // 2018년도 신입생 저장
+		
+		studentState.add(0, studentState2016);
+		studentState.add(1, studentState2017);
+		studentState.add(2, studentState2018);
+		
+		return studentState;
 	}
 }

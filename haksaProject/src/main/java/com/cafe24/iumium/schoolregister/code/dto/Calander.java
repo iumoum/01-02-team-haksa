@@ -9,7 +9,14 @@ public class Calander {
 	private String calanderTitle;
 	private String calanderContent;
 	private String calanderRegisteredDate;
+	private String month; // 월을 저장하기 위한 변수
 	
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
 	public String getCalanderNumber() {
 		return calanderNumber;
 	}

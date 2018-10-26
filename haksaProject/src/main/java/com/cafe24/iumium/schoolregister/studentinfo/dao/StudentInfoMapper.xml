@@ -508,4 +508,44 @@
 		INSERT into ilban_myprofile (student_teacher_no, record_id, human_phone_number, human_email, human_address, human_registration_day, human__modification_date)
 		VALUES (#{studentNumber}, #{recordId}, #{humanPhoneNumber}, #{humanEmail}, #{humanAddress}, now(), now())
 	</insert>
+	
+	<!-- 2016년도 학생 조회 쿼리 -->
+	<select id="getEnrolledStudent2016" resultType="int">
+		SELECT
+				count(student_number)
+		FROM haksa_student_info
+		WHERE student_state = "재학" AND DATE(student_entrance_date) BETWEEN '2016-01-01' AND '2016-12-31'
+	</select>
+	
+	<!-- 2017년도 재학생 조회 쿼리 -->
+	<select id="getEnrolledStudent2017" resultType="int">
+		SELECT
+				count(student_number)
+		FROM haksa_student_info
+		WHERE student_state = "재학" AND DATE(student_entrance_date) BETWEEN '2016-01-01' AND '2017-12-31'
+	</select>
+	
+	<!-- 2017년도 신입생 조회 쿼리 -->
+	<select id="getFreshman2017" resultType="int">
+		SELECT
+				count(student_number)
+		FROM haksa_student_info
+		WHERE student_state = "재학" AND DATE(student_entrance_date) BETWEEN '2017-01-01' AND '2017-12-31'
+	</select>
+	
+	<!-- 2018년도 재학생 조회 쿼리 -->
+	<select id="getEnrolledStudent2018" resultType="int">
+		SELECT
+				count(student_number)
+		FROM haksa_student_info
+		WHERE student_state = "재학" AND DATE(student_entrance_date) BETWEEN '2016-01-01' AND '2018-12-31'
+	</select>
+	
+	<!-- 2018년도 신입생 조회 쿼리 -->
+	<select id="getFreshman2018" resultType="int">
+		SELECT
+				count(student_number)
+		FROM haksa_student_info
+		WHERE student_state = "재학" AND DATE(student_entrance_date) BETWEEN '2018-01-01' AND '2018-12-31'
+	</select>
 </mapper>
