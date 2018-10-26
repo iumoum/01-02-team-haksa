@@ -32,11 +32,11 @@
 	               if(selectBox == "code"){
 	                   	var temp = $("#roomTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
 	                   	
-	               }else if(selectBox == "name"){
-						var temp = $("#roomTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");  
-						
 	               }else if(selectBox == "buildingName"){
-	               		var temp = $("#roomTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+						var temp = $("#roomTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");  
+						
+	               }else if(selectBox == "name"){
+	               		var temp = $("#roomTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "check_a_use"){
 	               		var temp = $("#roomTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
@@ -71,11 +71,11 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; <select class="btn btn-info">
+								&ensp; <select class="btn btn-info" id="selectBox">
 									<option value="code">코드</option>
 									<option value="buildingName">소속 건물 명</option>
 									<option value="name">강의실 명</option>
@@ -88,8 +88,8 @@
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="roomTable">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">강의실 코드</td>
 											<td>소속 건물 명</td>
@@ -102,7 +102,8 @@
 											<td>코드 사용유무</td>
 											<td class="view-message  text-left">코드 변경유무</td>
 										</tr>
-
+									</thead>
+									<tbody>
 										<c:forEach var="row" items="${roomCodes}">
 											<tr class="">
 												<td class="view-message  dont-show">${row.roomCode}</td>

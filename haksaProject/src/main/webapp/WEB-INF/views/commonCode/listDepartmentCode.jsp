@@ -32,26 +32,26 @@
 	               if(selectBox == "code"){
 	                   	var temp = $("#deptTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
 	                   	
-	               }else if(selectBox == "name"){
-						var temp = $("#deptTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");    
-						
 	               }else if(selectBox == "agencyName"){
-	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
-	               		
+						var temp = $("#deptTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");    
+						
 	               }else if(selectBox == "orgName"){
 	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "division"){
 	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
 	               		
+	               }else if(selectBox == "name"){
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");
+	               		
 	               }else if(selectBox == "establishDate"){
 	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "check_a_use"){
-	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(11):contains('" + word + "')");
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(10):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "check_a_change"){
-	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(12):contains('" + word + "')");
+	               		var temp = $("#deptTable > tbody > tr").find("td:nth-child(11):contains('" + word + "')");
 	               		
 	               }
 	               $(temp).parent().show();
@@ -80,16 +80,16 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; <select class="btn btn-info">
+								&ensp; <select class="btn btn-info" id="selectBox">
 									<option value="code">코드</option>
-									<option value="name">부서 명</option>
 									<option value="agencyName">소속 기관</option>
 									<option value="orgName">소속 기구</option>
-									<option value="division">구분</option>
+									<option value="division">부서학과구분</option>
+									<option value="name">부서 명</option>
 									<option value="establishDate">설치일자</option>
 									<option value="check_a_use">사용 유무</option>
 									<option value="check_a_change">변경 유무</option>
@@ -100,8 +100,8 @@
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="deptTable">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">부서코드</td>
 											<td>기관명</td>
@@ -115,7 +115,8 @@
 											<td>코드 사용유무</td>
 											<td>코드 변경유무</td>
 										</tr>
-
+									</thead>
+									<tbody>
 										<c:forEach var="dept" items="${list}">
 											<tr>
 												<td>${dept.deptCode}</td>

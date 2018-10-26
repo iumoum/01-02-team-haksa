@@ -29,6 +29,24 @@
 			$('#addButton').click(function(){
 				window.location.href="/schoolRegister/codes/addCalander";
 			})
+			
+			// 학기별 상세일정 검색
+			$("#keyword").keyup(function() {
+                var selectBox = $("#selectBox option:selected").val();
+                var word = $('#keyword').val();
+                $("#calanderCode > tbody").children().hide();
+                if(selectBox == "semester"){
+                    var temp = $("#calanderCode > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+                } else if(selectBox == "calander"){
+                    var temp = $("#calanderCode > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
+                } else if(selectBox == "startDate"){
+                    var temp = $("#calanderCode > tbody > tr").find("td:nth-child(5):contains('" + word + "')");
+                } else if(selectBox == "endDate"){
+                    var temp = $("#calanderCode > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
+                }
+                $(temp).parent().show();
+            });
+
 		})
 	</script>
 
@@ -50,18 +68,25 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
+								&ensp;
+								<select class="btn btn-info" id="selectBox">
+									<option value="semester">학기</option>
+									<option value="calander">일정명</option>
+									<option value="startDate">시작일자</option>
+									<option value="endDate">종료일자</option>
+								</select>
 								&ensp;
 								<button class="btn btn-info" type="button" id="addButton">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="calanderCode">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">학기별 상세일정 번호</td>
 											<td>학기</td>
@@ -73,7 +98,8 @@
 											<td>종료 일자</td>
 											<td>시스템 등록일자</td>
 										</tr>
-
+									</thead>
+									<tbody>
 										<c:forEach var="row" items="${calanders}">
 											<tr class="">
 												<td class="view-message  dont-show">${row.calanderNumber}</td>

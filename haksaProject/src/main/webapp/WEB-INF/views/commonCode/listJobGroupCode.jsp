@@ -34,33 +34,20 @@
 			function() {
 				$("#keyword").keyup(
 						function() {
-							var selectBox = $("#selectBox option:selected")
-									.val();
+							var selectBox = $("#selectBox option:selected").val();
 							var word = $('#keyword').val();
 							$("#jobGroupTable > tbody").children().hide();
 							if (selectBox == "code") {
-								var temp = $("#jobGroupTable > tbody > tr")
-										.find(
-												"td:nth-child(1):contains('"
-														+ word + "')");
+								var temp = $("#jobGroupTable > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
 
 							} else if (selectBox == "name") {
-								var temp = $("#jobGroupTable > tbody > tr")
-										.find(
-												"td:nth-child(2):contains('"
-														+ word + "')");
+								var temp = $("#jobGroupTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
 
 							} else if (selectBox == "check_a_use") {
-								var temp = $("#jobGroupTable > tbody > tr")
-										.find(
-												"td:nth-child(3):contains('"
-														+ word + "')");
+								var temp = $("#jobGroupTable > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
 
 							} else if (selectBox == "check_a_change") {
-								var temp = $("#jobGroupTable > tbody > tr")
-										.find(
-												"td:nth-child(4):contains('"
-														+ word + "')");
+								var temp = $("#jobGroupTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
 
 							}
 							$(temp).parent().show();
@@ -89,11 +76,11 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; <select class="btn btn-info">
+								&ensp; <select class="btn btn-info" id="keyword">
 									<option value="code">코드</option>
 									<option value="name">직군 명</option>
 									<option value="check_a_use">사용 유무</option>
@@ -105,8 +92,8 @@
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="jobGroupTable">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">직군 코드</td>
 											<td>직군 명</td>
@@ -115,7 +102,8 @@
 											<td>코드 사용유무</td>
 											<td class="view-message  text-left">코드 변경유무</td>
 										</tr>
-
+									</thead>
+									<tbody>
 										<c:forEach var="row" items="${jobGroupCodes}">
 											<tr class="">
 												<td class="view-message  dont-show">${row.jobGroupCode}</td>

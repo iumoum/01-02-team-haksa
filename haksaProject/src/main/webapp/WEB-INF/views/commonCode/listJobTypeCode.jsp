@@ -71,11 +71,11 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; <select class="btn btn-info">
+								&ensp; <select class="btn btn-info" id="selectBox">
 									<option value="code">코드</option>
 									<option value="name">직종 명</option>
 									<option value="jobGroupName">소속 직군</option>
@@ -88,8 +88,8 @@
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="jobTypeTable">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">직종 코드</td>
 											<td>직종 명</td>
@@ -99,7 +99,8 @@
 											<td>코드 사용유무</td>
 											<td class="view-message  text-left">코드 변경유무</td>
 										</tr>
-
+									</thead>
+									<tbody>
 										<c:forEach var="row" items="${jobTypeCodes}">
 											<tr class="">
 												<td class="view-message  dont-show">${row.jobTypeCode}</td>

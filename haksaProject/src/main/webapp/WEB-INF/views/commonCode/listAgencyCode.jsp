@@ -31,8 +31,7 @@
 			function() {
 				$("#keyword").keyup(
 						function() {
-							var selectBox = $("#selectBox option:selected")
-									.val();
+							var selectBox = $("#selectBox option:selected").val();
 							var word = $('#keyword').val();
 							$("#agencyTable > tbody").children().hide();
 							if (selectBox == "code") {
@@ -42,9 +41,9 @@
 							} else if (selectBox == "establish_date") {
 								var temp = $("#agencyTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
 							} else if (selectBox == "check_a_use") {
-								var temp = $("#agencyTable > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
+								var temp = $("#agencyTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");
 							} else if (selectBox == "check_a_change") {
-								var temp = $("#agencyTable > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
+								var temp = $("#agencyTable > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
 							}
 							$(temp).parent().show();
 				});
@@ -73,12 +72,12 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
 								&ensp;
-								<select class="btn btn-info">
+								<select class="btn btn-info" id="selectBox">
 									<option value="code">코드</option>
 									<option value="name">기관명</option>
 									<option value="establish_date">설치일자</option>
@@ -91,8 +90,8 @@
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="agencyTable">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">기관코드</td>
 											<td>기관명(국문)</td>
@@ -103,16 +102,17 @@
 											<td>코드 사용유무</td>
 											<td class="view-message  text-left">코드 변경유무</td>
 										</tr>
-										
+									</thead>
+									<tbody>
 										<c:forEach var="agency" items="${list}">
-										<tr class="">
-											<td class="view-message  dont-show">${agency.agencyCode}</td>
-											<td colspan="3" class="view-message">${agency.agencyNameKorean}</td>
-											<td>${agency.agencyNameEnglish}</td>
-											<td>${agency.agencyEstablishDate}</td>
-											<td>${agency.agencyIsUsed}</td>
-											<td class="view-message  text-left">${agency.agencyIsChanged}</td>
-										</tr>
+											<tr class="">
+												<td class="view-message  dont-show">${agency.agencyCode}</td>
+												<td colspan="3" class="view-message">${agency.agencyNameKorean}</td>
+												<td>${agency.agencyNameEnglish}</td>
+												<td>${agency.agencyEstablishDate}</td>
+												<td>${agency.agencyIsUsed}</td>
+												<td class="view-message  text-left">${agency.agencyIsChanged}</td>
+											</tr>
 										</c:forEach>
 									</tbody>
 								</table>

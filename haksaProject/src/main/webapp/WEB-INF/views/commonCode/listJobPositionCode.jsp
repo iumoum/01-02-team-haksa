@@ -36,10 +36,10 @@
 						var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(2):contains('" + word + "')");   
 						
 	               }else if(selectBox == "check_a_use"){
-	               		var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");
+	               		var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
 	               		
 	               }else if(selectBox == "check_a_change"){
-	               		var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
+	               		var temp = $("#jobPositionTable > tbody > tr").find("td:nth-child(5):contains('" + word + "')");
 	               		
 	               }
 	               $(temp).parent().show();
@@ -68,12 +68,12 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
 								&ensp; 
-								<select class="btn btn-info">
+								<select class="btn btn-info" id="selectBox">
 									<option value="code">코드</option>
 									<option value="name">직위 명</option>
 									<option value="check_a_use">사용 유무</option>
@@ -85,8 +85,8 @@
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="jobPositionTable">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">직위 코드</td>
 											<td>직위 명 (국문)</td>
@@ -96,7 +96,8 @@
 											<td>코드 사용유무</td>
 											<td class="view-message  text-left">코드 변경유무</td>
 										</tr>
-
+									</thead>
+									<tbody>
 										<c:forEach var="row" items="${jobPositionCodes}">
 											<tr class="">
 												<td class="view-message  dont-show">${row.jobPositionCode}</td>

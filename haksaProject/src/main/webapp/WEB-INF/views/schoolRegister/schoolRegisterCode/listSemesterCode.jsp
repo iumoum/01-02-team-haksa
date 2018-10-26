@@ -29,6 +29,15 @@
 			$('#addButton').click(function(){
 				window.location.href="/schoolRegister/codes/addSemesterCode";
 			})
+			
+			// 학기코드 검색
+			$("#keyword").keyup(function() {
+                let word = $('#keyword').val();
+                $("#semesterCode > tbody").children().hide();
+                let temp = $("#semesterCode > tbody > tr").find("td:nth-child(1):contains('" + word + "')");
+                $(temp).parent().show();
+            });
+
 		})
 	</script>
 
@@ -50,7 +59,7 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="학기코드" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
@@ -60,8 +69,8 @@
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="semesterCode">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">학기 코드</td>
 											<td>시작 일자</td>
@@ -72,7 +81,8 @@
 											<td>코드 변경일자</td>
 											<td>코드 등록일자</td>
 										</tr>
-
+									</thead>
+									<tbody>
 										<c:forEach var="row" items="${semesterCodes}">
 											<tr class="">
 												<td class="view-message  dont-show">${row.semesterCode}</td>
