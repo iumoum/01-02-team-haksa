@@ -4,6 +4,8 @@ public class Attendance {
 	private String studentNumber;
 	private String professorName;
 	private String attendState;
+	private String attendanceNo;
+	private String absentReason;
 	
 	public String getStudentNumber() {
 		return studentNumber;
@@ -22,5 +24,17 @@ public class Attendance {
 	}
 	public void setAttendState(String attendState) {
 		this.attendState = attendState;
+	}
+	public String getAttendanceNo() {
+		return attendanceNo;
+	}
+	public void setAttendanceNo(String attendanceNo) {
+		this.attendanceNo = attendanceNo;
+	}
+	public String getAbsentReason() {
+		return absentReason;
+	}
+	public void setAbsentReason(String absentReason) {
+		this.absentReason = absentReason;
 	}
 }

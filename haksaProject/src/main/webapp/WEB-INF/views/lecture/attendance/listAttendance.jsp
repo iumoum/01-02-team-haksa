@@ -16,6 +16,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
+				// 결석이유 컬럼
+				$('#attendanceTable > thead > tr > td:nth-child(5)').hide();
+				
 				// 학기 조회
 				$.ajax({
 					url:'/rest/schedule/semester'
@@ -166,6 +169,10 @@
 								$(data).each(function(index, item){
 									attendLists = data.attendList;
 									attendNames = data.attendName;
+									console.log(data);
+									console.log(attendLists);
+									console.log(attendNames);
+									
 									$(attendNames).each(function(index, item){
 										attendLists[index].humanName = item;
 									})
@@ -175,6 +182,10 @@
 					                	$('#attendanceTable > tbody').append('<td>'+item.humanName+'</td>');
 					                	$('#attendanceTable > tbody').append('<td>'+item.professorName+'</td>');
 					                	$('#attendanceTable > tbody').append('<td>'+item.attendState+'</td>');
+					                	if("결석" == item.attendState){
+					                		$('#attendanceTable > thead > tr > td:nth-child(5)').show();
+					                		$('#attendanceTable > tbody').append('<td>'+item.absentReason+'</td>');
+					                	}
 					                	$('#attendanceTable > tbody').append('</tr>');
 				                	})
 								})
@@ -246,7 +257,8 @@
 														<td class="view-message  dont-show">학번</td>
 														<td>이름</td>
 														<td>강의교수</td>	
-														<td class="view-message  text-left">상태</td>
+														<td>상태</td>
+														<td class="view-message  text-left">결석이유</td>
 													</tr>
 												</thead>
 												<tbody>
