@@ -55,11 +55,11 @@
 					<div class="carousel-inner">
 						<!--슬라이드1-->
 						<div class="item active"> 
-							<img src="http://www.blueb.co.kr/SRC2/_image/w01.jpg" style="width:100%" alt="First slide">
+							<img src="http://peen4428.cdn3.cafe24.com/img/haksa1.png" style="width:100%" alt="First slide">
 							<div class="container">
 								<div class="carousel-caption">
 									<h1>교직원 로그인 시</h1>
-									<ol style="text-align: left">
+									<ol style="text-align: left; font-weight:bold;">
 										<li>공통코드 관리 : 공통적으로 사용되는 코드를 입력하고 조회할 수 있습니다.</li>
 										<li>학적코드 관리 : 학기 및 학사일정과 학적변동 코드, 상담 구분, 결과 코드를 입력하고 조회할 수 있습니다.</li>
 										<li>수업코드 관리 : 강의와 관련된 코드를 입력하고 조회할 수 있습니다.</li>
@@ -80,11 +80,11 @@
 				
 						<!--슬라이드2-->
 						<div class="item">
-							<img src="http://www.blueb.co.kr/SRC2/_image/w03.jpg" style="width:100%" data-src="" alt="Second slide">
+							<img src="http://peen4428.cdn3.cafe24.com/img/haksa2.jpg" style="width:100%" data-src="" alt="Second slide">
 							<div class="container">
 								<div class="carousel-caption">
 									<h1>학생 로그인 시</h1>
-									<ol style="text-align: left">
+									<ol style="text-align: left; font-weight:bold;">
 										<li>학적 관리 : 자신의 학생정보를 조회할 수 있습니다.</li>
 										<li>시간표 관리 : 시간표를 조회할 수 있습니다.</li>
 										<li>수강신청 : 수강신청을 할 수 있습니다.</li>
