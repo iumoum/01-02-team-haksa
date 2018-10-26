@@ -128,6 +128,18 @@ public class PersonnelAppointmentDao {
 	}
 	
 	// 송원민
+	// 인사기본사항 dao
+	public int insertPersonnelBasic(PersonnelBasic personnelBasic) {
+		System.out.println("인사기본사항 저장 dao");
+		return sqlSessionTemplate.insert(NS+"insertPersonnelBasic", personnelBasic);
+	}
+	
+	// 인사기본사항 번호 조회 dao
+	public int selectPersonnelBasicNumber() {
+		System.out.println("인사기본사항 번호 조회 dao");
+		return sqlSessionTemplate.selectOne(NS+"selectPersonnelBasicNumber");
+	}
+	
 	// 경력사항 저장 dao
 	public int insertCareer(Career career) {
 		System.out.println("경력사항 저장 dao");
@@ -136,7 +148,31 @@ public class PersonnelAppointmentDao {
 	
 	// 경력사항 번호 조회 dao
 	public int selectCareerNumber() {
-		System.out.println("경력사항 저장 dao");
+		System.out.println("경력사항 번호 조회 dao");
 		return sqlSessionTemplate.selectOne(NS+"selectCareerNumber");
+	}
+	
+	// 보직사항 저장 dao
+	public int insertPosition(Position position) {
+		System.out.println("보직사항 저장 dao");
+		return sqlSessionTemplate.insert(NS+"insertPosition", position);
+	}
+	
+	// 보직사항 번호 조회 dao
+	public int selectPositionNumber() {
+		System.out.println("보직사항 번호 조회 dao");
+		return sqlSessionTemplate.selectOne(NS+"selectPositionNumber");
+	}
+	
+	// 가족사항 저장 dao
+	public int insertFamily(Family family) {
+		System.out.println("가족사항사항 저장 dao");
+		return sqlSessionTemplate.insert(NS+"insertFamily", family);
+	}
+	
+	// 가족사항 번호 조회 dao
+	public int selectFamilyNumber() {
+		System.out.println("가족사항 번호 조회 dao");
+		return sqlSessionTemplate.selectOne(NS+"selectFamilyNumber");
 	}
 }

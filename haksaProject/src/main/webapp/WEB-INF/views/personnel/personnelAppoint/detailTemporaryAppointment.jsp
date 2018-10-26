@@ -40,25 +40,25 @@
 		<script>  
 			// 입력 버튼 눌렀을 시 페이지 이동	
 			function addPersonnelBasic(){
-			    window.location.href="/personnelAppoint/addPersonnelBasic";
+			    window.location.href="/personnelAppoint/addPersonnelBasic?temporaryAppointmentSchoolPersonnelNumber="+${detailTemporaryAppointment.appointmentSchoolPersonnelNumber};
 			}
 			function addCareer(){
 			    window.location.href="/personnelAppoint/addCareer?temporaryAppointmentSchoolPersonnelNumber="+${detailTemporaryAppointment.appointmentSchoolPersonnelNumber};
 			}
 			function addPosition(){
-			    window.location.href="/personnelAppoint/addPosition";
+			    window.location.href="/personnelAppoint/addPosition?temporaryAppointmentSchoolPersonnelNumber="+${detailTemporaryAppointment.appointmentSchoolPersonnelNumber};
 			}
 			function addFamily(){
-			    window.location.href="/personnelAppoint/addFamily";
+			    window.location.href="/personnelAppoint/addFamily?temporaryAppointmentSchoolPersonnelNumber="+${detailTemporaryAppointment.appointmentSchoolPersonnelNumber};
 			}
 			function addEducation(){
-			    window.location.href="/personnelAppoint/addEducation";
+			    window.location.href="/personnelAppoint/addEducation?temporaryAppointmentSchoolPersonnelNumber="+${detailTemporaryAppointment.appointmentSchoolPersonnelNumber};
 			}
 			function addMyProfile(){
-			    window.location.href="/personnelAppoint/addMyProfile";
+			    window.location.href="/personnelAppoint/addMyProfile?temporaryAppointmentSchoolPersonnelNumber="+${detailTemporaryAppointment.appointmentSchoolPersonnelNumber};
 			}
 			function addHighSchool(){
-			    window.location.href="/personnelAppoint/addHighSchool";
+			    window.location.href="/personnelAppoint/addHighSchool?temporaryAppointmentSchoolPersonnelNumber="+${detailTemporaryAppointment.appointmentSchoolPersonnelNumber};
 			}
 			
 			// 조회 버튼 눌렀을 시 페이지 이동

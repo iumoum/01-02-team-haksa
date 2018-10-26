@@ -69,81 +69,95 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-					<form id="form">
+					<form action="${pageContext.request.contextPath}/personnelAppoint/savePersonnelBasic" method="post">
 						<input type="button" class="btn btn-info" onclick="goBack()" value="뒤로가기"/>
-						<input type="button" class="btn btn-primary" id="savePersonnelPromotion" value="저장"/>
+						<input type="submit" class="btn btn-primary" id="form" value="저장"/>
+						<br>
+						<table class="table table-bordered">
+							<tr>
+								<td scope="col" colspan="10">
+									<p id="enrolScoreMain">* 교직원 인사기본사항</p>
+								</td>
+							</tr>
+							<tr>
+								<c:choose>
+									<c:when test="${permanentAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="permanentAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${permanentAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+									<c:when test="${temporaryAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="temporaryAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${temporaryAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+									<c:when test="${otherAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="otherAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${otherAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+								</c:choose>
+								<th>채용분류</th>
+								<td>
+									<select class="form-control" name="personnelBasicHireDivision" id="personnelBasicHireDivision">
+										<option value="선택">선택</option>
+										<option value="정규직">정규직</option>
+										<option value="비정규직">비정규직</option>
+										<option value="무기계약">무기계약</option>
+									</select>
+								</td>
+								<th>연봉구분</th>
+								<td>
+									<select class="form-control" name="personnelBasicAnnualIncomeDivision" id="personnelBasicAnnualIncomeDivision">
+										<option value="선택">선택</option>
+										<option value="사원">사원</option>
+										<option value="대리">대리</option>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<th>현직(전직)기관</th>
+								<td><input type="text" class="form-control" name="personnelBasicOrganization" id="personnelBasicOrganization" placeholder="현직(전직)기관"></td>
+								<th>생년월일</th>
+								<td><input type="date" class="form-control" name="personnelBasicYearsMonthDay" id="personnelBasicYearsMonthDay"></td>
+								<th>재임용여부</th>
+								<td>
+									<select class="form-control" name="personnelBasicReassignCheck" id="personnelBasicReassignCheck">
+										<option value="선택">선택</option>
+										<option value="Y">YES</option>
+										<option value="N">NO</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>겸직여부</th>
+								<td>
+									<select class="form-control" name="personnelBasicOtherOfficial" id="personnelBasicOtherOfficial">
+										<option value="선택">선택</option>
+										<option value="Y">YES</option>
+										<option value="N">NO</option>
+									</select>
+								</td>
+								<th>사무실 전화번호</th>
+								<td><input type="text" class="form-control" name="personnelBasicOfficeTelephoneNumber" id="personnelBasicOfficeTelephoneNumber" placeholder="사무실 전화번호"></td>
+								<th>정년보장</th>
+								<td>
+									<select name="personnelBasicRetirementGuarantee" class="form-control" id="personnelBasicRetirementGuarantee">
+										<option value="선택">선택</option>
+										<option value="Y">YES</option>
+										<option value="N">NO</option>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<th>현직(전직)직위</th>
+								<td><input type="text" class="form-control" name="personnelBasicPostposition" id="personnelBasicPostposition" placeholder="현직(전직)직위"></td>
+								<th>음양구분</th>
+								<td><input type="text" class="form-control" name="personnelBasicLunarSolarDivision" id="personnelBasicLunarSolarDivision" placeholder="음양구분"></td>
+								<th>센터입소일</th>
+								<td><input type="date" class="form-control" name="personnelBasicCenterEnterDay" id="personnelBasicCenterEnterDay"></td>
+							</tr>
+						</table>
 					</form>
-					<br>
-					<table class="table table-bordered">
-						<tr>
-							<td scope="col" colspan="10">
-								<p id="enrolScoreMain">* 교직원 인사기본사항</p>
-							</td>
-						</tr>
-						<tr>
-							<th>교직원번호</th>
-							<td><input type="text" class="form-control" name="appointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" placeholder="교직원번호"></td>
-							<th>채용분류</th>
-							<td>
-								<select class="form-control" id="personnelBasicHireDivision">
-									<option value="선택">선택</option>
-									<option value="정규직">정규직</option>
-									<option value="비정규직">비정규직</option>
-									<option value="무기계약">무기계약</option>
-								</select>
-							</td>
-							<th>연봉구분</th>
-							<td>
-								<select class="form-control" id="personnelBasicAnnualIncomeDivision">
-									<option value="선택">선택</option>
-								</select>
-							</td>
-						</tr>
-						
-						<tr>
-							<th>현직(전직)기관</th>
-							<td><input type="text" class="form-control" name="personnelBasicOrganization" id="personnelBasicOrganization" placeholder="현직(전직)기관"></td>
-							<th>생년월일</th>
-							<td><input type="date" class="form-control" name="personnelBasicYearsMonthDay" id="personnelBasicYearsMonthDay"></td>
-							<th>재임용여부</th>
-							<td>
-								<select class="form-control" id="personnelBasicReassignCheck">
-									<option value="선택">선택</option>
-									<option value="Y">YES</option>
-									<option value="N">NO</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th>겸직여부</th>
-							<td>
-								<select class="form-control" id="personnelBasicOtherOfficial">
-									<option value="선택">선택</option>
-									<option value="Y">YES</option>
-									<option value="N">NO</option>
-								</select>
-							</td>
-							<th>사무실 전화번호</th>
-							<td><input type="text" class="form-control" name="personnelBasicOfficeTelephoneNumber" id="personnelBasicOfficeTelephoneNumber" placeholder="사무실 전화번호"></td>
-							<th>정년보장</th>
-							<td>
-								<select class="form-control" id="personnelBasicRetirementGuarantee">
-									<option value="선택">선택</option>
-									<option value="Y">YES</option>
-									<option value="N">NO</option>
-								</select>
-							</td>
-						</tr>
-						
-						<tr>
-							<th>현직(전직)직위</th>
-							<td><input type="text" class="form-control" name="personnelBasicPostposition" id="personnelBasicPostposition" placeholder="현직(전직)직위"></td>
-							<th>음양구분</th>
-							<td><input type="text" class="form-control" name="personnelBasicLunarSolarDivision" id="personnelBasicLunarSolarDivision" placeholder="음양구분"></td>
-							<th>센터입소일</th>
-							<td><input type="date" class="form-control" name="personnelBasicCenterEnterDay" id="personnelBasicCenterEnterDay"></td>
-						</tr>
-					</table>
 				</div>
 				<!-- /.container-fluid -->
 	

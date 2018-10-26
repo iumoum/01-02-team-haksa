@@ -1,9 +1,7 @@
 package com.cafe24.iumium;
 
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -18,9 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cafe24.iumium.personnel.appoint.dto.Career;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelAppointmentOther;
+import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelPromotion;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelTemporaryAppointment;
+import com.cafe24.iumium.personnel.appoint.dto.Position;
 import com.cafe24.iumium.personnel.appoint.service.PersonnelAppointmentService;
 import com.cafe24.iumium.personnel.appoint.service.PersonnelPromotionService;
 
@@ -89,8 +89,21 @@ public class PersonnelAppointController {
 	
 	// 인사기본사항 입력 페이지 호출
 	@RequestMapping(value="/personnelAppoint/addPersonnelBasic", method = RequestMethod.GET)
-	public String addPersonnelBasic() {
+	public String addPersonnelBasic(Model model
+			, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
+			, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
+			, @RequestParam(value="otherAppointmentSchoolPersonnelNumber1", required=false) String otherAppointmentSchoolPersonnelNumber) {
 		System.out.println("인사기본사항 입력 페이지 호출");
+		if(permanentAppointmentSchoolPersonnelNumber != null) {
+			model.addAttribute("permanentAppointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
+			System.out.println("인사기본 정규직 넘버" + permanentAppointmentSchoolPersonnelNumber);
+		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
+			model.addAttribute("temporaryAppointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println("인사기본 비정규직 넘버" + temporaryAppointmentSchoolPersonnelNumber);
+		} else {
+			model.addAttribute("otherAppointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
+			System.out.println("인사기본 무기계약 넘버" + otherAppointmentSchoolPersonnelNumber);
+		}
 		return "personnel/personnelAppoint/addPersonnelBasic";	
 	}
 	
@@ -103,21 +116,34 @@ public class PersonnelAppointController {
 		System.out.println("경력사항 입력 페이지 호출");
 		if(permanentAppointmentSchoolPersonnelNumber != null) {
 			model.addAttribute("permanentAppointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
-			System.out.println("정규직 넘버" + permanentAppointmentSchoolPersonnelNumber);
+			System.out.println("경력사항 정규직 넘버" + permanentAppointmentSchoolPersonnelNumber);
 		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
 			model.addAttribute("temporaryAppointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
-			System.out.println("비정규직 넘버" + temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println("경력사항 비정규직 넘버" + temporaryAppointmentSchoolPersonnelNumber);
 		} else {
 			model.addAttribute("otherAppointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
-			System.out.println("무기계약 넘버" + otherAppointmentSchoolPersonnelNumber);
+			System.out.println("경력사항 무기계약 넘버" + otherAppointmentSchoolPersonnelNumber);
 		}
 		return "personnel/personnelAppoint/addCareer";	
 	}
 	
 	// 보직사항 입력 페이지 호출
 	@RequestMapping(value="/personnelAppoint/addPosition", method = RequestMethod.GET)
-	public String addPosition() {
+	public String addPosition(Model model
+			, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
+			, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
+			, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
 		System.out.println("보직사항 입력 페이지 호출");
+		if(permanentAppointmentSchoolPersonnelNumber != null) {
+			model.addAttribute("permanentAppointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
+			System.out.println("보직사항 정규직 넘버" + permanentAppointmentSchoolPersonnelNumber);
+		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
+			model.addAttribute("temporaryAppointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println("보직사항 비정규직 넘버" + temporaryAppointmentSchoolPersonnelNumber);
+		} else {
+			model.addAttribute("otherAppointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
+			System.out.println("보직사항 무기계약 넘버" + otherAppointmentSchoolPersonnelNumber);
+		}
 		return "personnel/personnelAppoint/addPosition";	
 	}
 	
@@ -202,14 +228,50 @@ public class PersonnelAppointController {
 	}
 	
 	// 송원민
+	// 인사기본사항 데이터 저장 기능
+	@RequestMapping(value="/personnelAppoint/savePersonnelBasic", method = RequestMethod.POST)
+	public String savePersonnelBasic(Model model, PersonnelBasic personnelBasic, HttpSession session
+						, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
+						, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
+						, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
+
+		String id = (String) session.getAttribute("userId");
+		personnelBasic.setRecordId(id);
+		
+		if(permanentAppointmentSchoolPersonnelNumber != null) {
+			personnelBasic.setAppointmentSchoolPersonnelNumber(permanentAppointmentSchoolPersonnelNumber);
+			System.out.println(permanentAppointmentSchoolPersonnelNumber +"정규직 교직원번호");
+			personnelAppointmentService.insertPersonnelBasic(personnelBasic);
+			model.addAttribute("appointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailPermanentAppointment";
+		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
+			personnelBasic.setAppointmentSchoolPersonnelNumber(temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println(temporaryAppointmentSchoolPersonnelNumber +"비정규직 교직원번호");
+			personnelAppointmentService.insertPersonnelBasic(personnelBasic);
+			model.addAttribute("appointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailTemporaryAppointment";
+		} else {
+			personnelBasic.setAppointmentSchoolPersonnelNumber(otherAppointmentSchoolPersonnelNumber);
+			System.out.println(otherAppointmentSchoolPersonnelNumber +"무기계약 교직원번호");
+			personnelAppointmentService.insertPersonnelBasic(personnelBasic);
+			model.addAttribute("appointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailOtherAppointment";
+		}
+	}
+	
+	
 	// 경력사항 데이터 저장 기능(
 	@RequestMapping(value="/personnelAppoint/saveCareer", method = RequestMethod.POST)
 	public String saveCareer(Model model, Career career, HttpSession session
 						, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
 						, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
 						, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
+		System.out.println(permanentAppointmentSchoolPersonnelNumber +"경력 정규직 교직원번호");
+		System.out.println(temporaryAppointmentSchoolPersonnelNumber +"경력 비정규직 교직원번호");
+		System.out.println(otherAppointmentSchoolPersonnelNumber +"경력 무기계약 교직원번호");
 		String id = (String) session.getAttribute("userId");
 		career.setRecordId(id);
+		
 		
 		// 조건문을 걸어 경우의수 3가지를 두고 페이지이동
 		if(permanentAppointmentSchoolPersonnelNumber != null) {
@@ -233,5 +295,38 @@ public class PersonnelAppointController {
 		}
 	}
 	
-	//  
+	// 보직사항 데이터 저장 기능
+	@RequestMapping(value="/personnelAppoint/savePosition", method = RequestMethod.POST)
+	public String saveCareer(Model model, Position position, HttpSession session
+						, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
+						, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
+						, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
+		System.out.println(permanentAppointmentSchoolPersonnelNumber +"보직사항 정규직 교직원번호");
+		System.out.println(temporaryAppointmentSchoolPersonnelNumber +"보직사항 비정규직 교직원번호");
+		System.out.println(otherAppointmentSchoolPersonnelNumber +"보직사항 무기계약 교직원번호");
+		String id = (String) session.getAttribute("userId");
+		position.setRecordId(id);
+		
+		
+		// 조건문을 걸어 경우의수 3가지를 두고 페이지이동
+		if(permanentAppointmentSchoolPersonnelNumber != null) {
+			position.setStudentTeacherNo(permanentAppointmentSchoolPersonnelNumber);
+			System.out.println(permanentAppointmentSchoolPersonnelNumber +"보직사항 정규직 교직원번호(<-view)");
+			personnelAppointmentService.insertPosition(position);
+			model.addAttribute("appointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailPermanentAppointment";
+		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
+			position.setStudentTeacherNo(temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println(temporaryAppointmentSchoolPersonnelNumber +"보직사항 비정규직 교직원번호(<-view)");
+			personnelAppointmentService.insertPosition(position);
+			model.addAttribute("appointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailTemporaryAppointment";
+		} else {
+			position.setStudentTeacherNo(otherAppointmentSchoolPersonnelNumber);
+			System.out.println(otherAppointmentSchoolPersonnelNumber +"보직사항 무기계약 교직원번호(<-view)");
+			personnelAppointmentService.insertPosition(position);
+			model.addAttribute("appointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailOtherAppointment";
+		}
+	}
 }

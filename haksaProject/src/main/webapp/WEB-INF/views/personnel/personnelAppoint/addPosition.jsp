@@ -80,41 +80,53 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-					<form id="form">
+					<form action="${pageContext.request.contextPath}/personnelAppoint/savePosition" method="post">
 						<input type="button" class="btn btn-info" onclick="goBack()" value="뒤로가기"/>
-						<input type="button" class="btn btn-primary" id="savePersonnelPromotion" value="저장"/>
+						<input type="submit" class="btn btn-primary" id="form" value="저장"/>
+						<br>
+						<table class="table table-bordered">
+							<tr>
+								<td scope="col" colspan="10">
+									<p id="enrolScoreMain">* 교직원 보직사항</p>
+								</td>
+							</tr>
+							<tr>
+								<c:choose>
+									<c:when test="${permanentAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="permanentAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${permanentAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+									<c:when test="${temporaryAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="temporaryAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${temporaryAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+									<c:when test="${otherAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="otherAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${otherAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+								</c:choose>
+								<th>보직팀</th>
+								<td>
+									<select class="form-control" name="teamCode" id="teamCode">
+										<option value="선택">선택</option>
+									</select>
+								</td>
+								<th>직위</th>
+								<td>
+									<select class="form-control" name="jobPositionCode" id="jobPositionCode">
+										<option value="선택">선택</option>
+									</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<th>보직임명일</th>
+								<td><input type="date" class="form-control" name="positionStartOfWork" id="positionStartOfWork"></td>
+								<th>보직만료일</th>
+								<td><input type="date" class="form-control" name="positionEndOfWork" id="positionEndOfWork"></td>
+							</tr>
+						</table>
 					</form>
-					<br>
-					<table class="table table-bordered">
-						<tr>
-							<td scope="col" colspan="10">
-								<p id="enrolScoreMain">* 교직원 보직사항</p>
-							</td>
-						</tr>
-						<tr>
-							<th>교직원번호</th>
-							<td><input type="text" class="form-control" name="studentTeacherNo" id="studentTeacherNo" placeholder="교직원번호"></td>
-							<th>보직팀</th>
-							<td>
-								<select class="form-control" id="teamCode">
-									<option value="선택">선택</option>
-								</select>
-							</td>
-							<th>직위</th>
-							<td>
-								<select class="form-control" id="jobPositionCode">
-									<option value="선택">선택</option>
-								</select>
-							</td>
-						</tr>
-						
-						<tr>
-							<th>보직임명일</th>
-							<td><input type="date" class="form-control" name="positionStartOfWork" id="positionStartOfWork"></td>
-							<th>보직만료일</th>
-							<td><input type="date" class="form-control" name="positionEndOfWork" id="positionEndOfWork"></td>
-						</tr>
-					</table>
 				</div>
 				<!-- /.container-fluid -->
 	

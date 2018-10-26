@@ -5,6 +5,7 @@ package com.cafe24.iumium.personnel.appoint.dto;
 public class PersonnelBasic {
 	private String personnelBasicNumber;	// 인사기본사항번호
 	private String appointmentSchoolPersonnelNumber;	// 교직원번호
+	private String recordId; // 등록자아이디
 	private String personnelBasicHireDivision;	// 채용분류
 	private String personnelBasicAnnualIncomeDivision;	// 연봉구분
 	private String personnelBasicOrganization;	// 현직(전직)기관
@@ -23,6 +24,12 @@ public class PersonnelBasic {
 	}
 	public void setPersonnelBasicNumber(String personnelBasicNumber) {
 		this.personnelBasicNumber = personnelBasicNumber;
+	}
+	public String getRecordId() {
+		return recordId;
+	}
+	public void setRecordId(String recordId) {
+		this.recordId = recordId;
 	}
 	public String getAppointmentSchoolPersonnelNumber() {
 		return appointmentSchoolPersonnelNumber;

@@ -128,11 +128,27 @@ public class PersonnelAppointmentService {
 	}
 	
 	// 송원민
+	// 인사기본사항 저장 Service
+	public int insertPersonnelBasic(PersonnelBasic personnelBasic) {
+		System.out.println("인사기본사항 저장 Service");
+		String personnelBasicNumber = String.valueOf(personnelAppointmentDao.selectPersonnelBasicNumber()+1);
+		personnelBasic.setPersonnelBasicNumber(personnelBasicNumber);
+		return personnelAppointmentDao.insertPersonnelBasic(personnelBasic);
+	}
+	
 	// 경력사항 저장 Service
 	public int insertCareer(Career career) {
 		System.out.println("경력사항 저장 Service");
 		String careerNumber = String.valueOf(personnelAppointmentDao.selectCareerNumber()+1);
 		career.setCareerNumber(careerNumber);
 		return personnelAppointmentDao.insertCareer(career);
+	}
+	
+	// 보직사항 저장 Service
+	public int insertPosition(Position position) {
+		System.out.println("보직사항 저장 Service");
+		String positionNumber = String.valueOf(personnelAppointmentDao.selectPositionNumber()+1);
+		position.setPositionNumber(positionNumber);
+		return personnelAppointmentDao.insertPosition(position);
 	}
 }

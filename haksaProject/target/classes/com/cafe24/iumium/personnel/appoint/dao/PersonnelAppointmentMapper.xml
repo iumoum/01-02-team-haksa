@@ -102,7 +102,7 @@
 	</select>
 	
 	<!-- 직위코드 조회 쿼리 -->
-	<select id="jobPositionCode" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic">
+	<select id="jobPositionCode" resultType="com.cafe24.iumium.common.dto.JobPositionCode">
 		SELECT
 				job_position_code as jobPositionCode
 				, job_position_name_korean as jobPositionNameKorean
@@ -361,6 +361,51 @@
 	</select>
 	
 	<!-- 송원민 -->
+	<!-- 인사기본사항 카운트 조회 쿼리 -->
+	<select id="selectPersonnelBasicNumber" resultType="int">
+		SELECT count(personnel_basic_number) 
+		FROM ilban_personnel_basic
+	</select>
+	
+	<!-- 인사기본사항 저장 쿼리 -->
+	<insert id="insertPersonnelBasic" parameterType="com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic">
+		INSERT INTO 
+			ilban_personnel_basic (
+		personnel_basic_number
+		, appointment_school_personnel_number
+		, record_id
+		, personnel_basic_hire_division
+		, personnel_basic_annual_income_division
+		, personnel_basic_organization
+		, personnel_basic_years_month_day
+		, personnel_basic_reassign_check
+		, personnel_basic_other_official
+		, personnel_basic_office_telephone_number
+		, personnel_basic_retirement_guarantee
+		, personnel_basic_postposition
+		, personnel_basic_lunar_solar_division
+		, personnel_basic_center_enter_day
+		, personnel_basic_registration_date
+		)
+	
+	VALUES (
+		#{personnelBasicNumber}
+		, #{appointmentSchoolPersonnelNumber}
+		, #{recordId}
+		, #{personnelBasicHireDivision}
+		, #{personnelBasicAnnualIncomeDivision}
+		, #{personnelBasicOrganization}
+		, #{personnelBasicYearsMonthDay}
+		, #{personnelBasicReassignCheck}
+		, #{personnelBasicOtherOfficial}
+		, #{personnelBasicOfficeTelephoneNumber}
+		, #{personnelBasicRetirementGuarantee}
+		, #{personnelBasicPostposition}
+		, #{personnelBasicLunarSolarDivision}
+		, #{personnelBasicCenterEnterDay}
+		, now()
+	)			
+	</insert>
 	
 	<!-- 경력사항 카운트 조회 쿼리 -->
 	<select id="selectCareerNumber" resultType="int">
@@ -404,5 +449,79 @@
 			, now()
 			, now()
 		)		
+	</insert>
+	
+	<!-- 보직사항 카운터 조회 쿼리 -->
+	<select id="selectPositionNumber" resultType="int">
+		SELECT count(position_number) 
+		FROM ilban_position
+	</select>
+	
+	<!-- 보직사항 저장 쿼리 -->
+	<insert id="insertPosition" parameterType="com.cafe24.iumium.personnel.appoint.dto.Position">
+		INSERT INTO 
+		ilban_position (
+			position_number
+			, record_id
+			, team_code
+			, appointment_school_personnel_number
+			, job_position_code
+			, position_start_of_work
+			, position_end_of_work
+			, human_registration_day
+			, human_modification_date
+		)
+			
+		VALUES (
+			#{positionNumber}
+			, #{recordId}
+			, #{teamCode}
+			, #{studentTeacherNo}
+			, #{jobPositionCode}
+			, #{positionStartOfWork}
+			, #{positionEndOfWork}
+			, now()
+			, now()
+		)
+	</insert>
+	
+	<!-- 가족사항 카운터 조회 쿼리 -->
+	<select id="selectFamilyNumber" resultType="int">
+		SELECT count(family_number) 
+		FROM ilban_family
+	</select>
+	
+	<!-- 가족사항 저장 쿼리 -->
+	<insert id="insertFamily" parameterType="com.cafe24.iumium.personnel.appoint.dto.Family">
+		INSERT INTO 
+			ilban_family (
+				family_number
+				, record_id
+				, student_teacher_no
+				, family_name
+				, family_relationship
+				, family_phone_number
+				, family_birthday
+				, family_academic_background
+				, family_job
+				, family_residence
+				, human_registration_day
+				, human__modification_date
+			)
+			
+			VALUES (
+				#{familyNumber}
+				, #{recordId}
+				, #{studentTeacherNo}
+				, #{familyName}
+				, #{familyRelationship}
+				, #{familyPhoneNumber}
+				, #{familyBirthday}
+				, #{familyAcademicBackground}
+				, #{familyJob}
+				, #{familyResidence}
+				, #{humanRegistrationDay}
+				, #{humanModificationDate}
+			)
 	</insert>
 </mapper>
