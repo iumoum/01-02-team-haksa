@@ -1,8 +1,6 @@
 package com.cafe24.iumium.schoolregister.studentinfo.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,35 +30,15 @@ public class StudentInfoDao {
 	}
 	
 	//학년 불러오기
-	public List<DepartmentCode> selectgradeList(DepartmentCode departmentCode) {
+	public DepartmentCode selectgradeList(DepartmentCode departmentCode) {
 		System.out.println("학년 Dao");
-		List<DepartmentCode> list = new ArrayList<DepartmentCode>();
-		DepartmentCode grade = sqlSessionTemplate.selectOne(nameSpace + "getgradeList", departmentCode);
-		int j = grade.getDeptGraduatedGrade();
-		
-		for(int i=0; i<j; i++) {
-			grade.setDeptGraduatedGrade(i+1);
-			list.add(grade);
-		}
-		return list;
+		return sqlSessionTemplate.selectOne(nameSpace + "getgradeList", departmentCode);
 	}
 	
 	//반 불러오기
-	public List<String> selectdepartmentClassList(DepartmentCode department) {
+	public List<ClassByDepartment> selectdepartmentClassList(DepartmentCode department) {
 		System.out.println("반 Dao");
-		List<ClassByDepartment> classByDepartmentList = sqlSessionTemplate.selectList(nameSpace + "getdepartmentClassList", department);
-		List<String> list = new ArrayList<String>();
-		String className = null;
-		
-		for(int i=0; i<classByDepartmentList.size(); i++) {
-			className = classByDepartmentList.get(i).getClassByDepartmentClass();
-			list.add(className);
-		}
-		
-		TreeSet<String> list2 = new TreeSet<String>(list);
-		list = new ArrayList<String>(list2);
-		
-		return list;
+		return sqlSessionTemplate.selectList(nameSpace + "getdepartmentClassList", department);
 	}
 	
 	// 학생정보 리스트

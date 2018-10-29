@@ -2,12 +2,14 @@ package com.cafe24.iumium.schoolregister.studentinfo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe24.iumium.common.dto.DepartmentCode;
+import com.cafe24.iumium.lesson.lecture.dto.ClassByDepartment;
 import com.cafe24.iumium.schoolregister.studentinfo.dao.StudentInfoDao;
 import com.cafe24.iumium.schoolregister.studentinfo.dto.Advice;
 import com.cafe24.iumium.schoolregister.studentinfo.dto.ClassChange;
@@ -33,13 +35,34 @@ public class StudentInfoService {
 	// 학년 불러오기
 	public List<DepartmentCode> getgradeList(DepartmentCode departmentCode) {
 		System.out.println("학년 service");
-		return studentInfoDao.selectgradeList(departmentCode);
+		List<DepartmentCode> list = new ArrayList<DepartmentCode>();
+		DepartmentCode grade = studentInfoDao.selectgradeList(departmentCode);
+		int j = grade.getDeptGraduatedGrade();
+		
+		for(int i=0; i<j; i++) {
+			grade.setDeptGraduatedGrade(i+1);
+			list.add(grade);
+		}
+		
+		return list;
 	}
 	
 	// 반 불러오기
 	public List<String> getdepartmentClassList(DepartmentCode department) {
 		System.out.println("반 service");
-		return studentInfoDao.selectdepartmentClassList(department);
+		List<ClassByDepartment> classByDepartmentList = studentInfoDao.selectdepartmentClassList(department);
+		List<String> list = new ArrayList<String>();
+		String className = null;
+		
+		for(int i=0; i<classByDepartmentList.size(); i++) {
+			className = classByDepartmentList.get(i).getClassByDepartmentClass();
+			list.add(className);
+		}
+		
+		TreeSet<String> list2 = new TreeSet<String>(list);
+		list = new ArrayList<String>(list2);
+		
+		return list;
 	}
 	
 	// 학생정보 리스트
