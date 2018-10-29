@@ -45,7 +45,7 @@
     
     <!--출석부 출결 조회 쿼리문 -->
 	<select id="getAttendanceList" parameterType="com.cafe24.iumium.lesson.schedule.dto.Search" resultType="com.cafe24.iumium.lesson.attendance.dto.Attendance">
-		select e.enrol_course_student_number as studentNumber, e.enrol_course_prof_name as professorName, a.attend_state as attendState
+		select a.attendance_no as attendanceNo, e.enrol_course_student_number as studentNumber, e.enrol_course_prof_name as professorName, a.attend_state as attendState
 		from haksa_enrol_course e join haksa_attendance a on a.enrol_course_no=e.enrol_course_no
 		where e.enrol_course_no in (select enrol_course_no from haksa_attendance where schedule_no in 
 		(select schedule_no from haksa_schedule where prelect_date=#{prelectDate}))
@@ -53,5 +53,10 @@
 		and enrol_course_school_year=#{gradeCode}
 		and enrol_course_class=#{classesCode}
 		and enrol_course_course_name=#{subjectCode}
+    </select>
+    
+    <!--결석이유 조회 쿼리문 -->
+	<select id="getAbsentReason" parameterType="String" resultType="String">
+		select absent_reason from haksa_absent_reason where attendance_no=#{attendanceNo}
     </select>
 </mapper>

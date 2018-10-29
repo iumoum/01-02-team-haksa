@@ -42,4 +42,9 @@ public class AttendanceDao {
 		return sqlSessionTemplate.selectList(NS+"getAttendanceList", search);
 	}
 	
+	// 결석이유 조회 쿼리문 실행
+	public String absentReasonSearch(String attendanceNo){
+		return sqlSessionTemplate.selectOne(NS+"getAbsentReason", attendanceNo);
+	}
+	
 }

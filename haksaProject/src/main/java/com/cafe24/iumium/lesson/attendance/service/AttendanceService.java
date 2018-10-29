@@ -53,14 +53,23 @@ public class AttendanceService {
 		List<String> attendName = new ArrayList<String>();
 		Map<String, Object> attendancce = new HashMap<String, Object>();
 		
+		// 출석부 조회
 		List<Attendance> attendList = attendanceDao.attendanceSearchList(search);
 		attendancce.put("attendList", attendList);
 		
+		// 이름 조회
 		for(Attendance name : attendList) {
 			String studentName = attendanceDao.courseNameSearchList(name.getStudentNumber());
 			attendName.add(studentName);
+			
+			//결석이유 조회
+			if("결석".equals(name.getAttendState())) {
+				String absentReason = attendanceDao.absentReasonSearch(name.getAttendanceNo());
+				name.setAbsentReason(absentReason);
+			}
 		}
 		attendancce.put("attendName", attendName);
+		
 		return attendancce;
 	}
 }
