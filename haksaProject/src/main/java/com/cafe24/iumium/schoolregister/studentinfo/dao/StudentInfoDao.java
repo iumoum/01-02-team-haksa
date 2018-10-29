@@ -256,4 +256,16 @@ public class StudentInfoDao {
 		System.out.println("2018 신입생 Dao");
 		return sqlSessionTemplate.selectOne(nameSpace + "getFreshman2018");
 	}
+	
+	// 반 변경하기 위한 학생정보 불러오기
+	public StudentInfo selectStudentClassChange(String studentNumber) {
+		System.out.println("반 변경하기 위한 학생정보 불러오기 Dao");
+		return sqlSessionTemplate.selectOne(nameSpace + "getStudentClassChange", studentNumber);
+	}
+	
+	// 학생정보의 반 또는 주야 변경
+	public int updateStudentClassChange(StudentInfo studentInfo) {
+		System.out.println("학생정보의 반 또는 주야 변경 Dao");
+		return sqlSessionTemplate.update(nameSpace + "updateStudentClassChange", studentInfo);
+	}
 }

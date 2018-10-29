@@ -548,4 +548,24 @@
 		FROM haksa_student_info
 		WHERE student_state = "재학" AND DATE(student_entrance_date) BETWEEN '2018-01-01' AND '2018-12-31'
 	</select>
+	
+	<!-- 반 변경을 하기 위한 학생 조회 쿼리 -->
+	<select id="getStudentClassChange" parameterType="String" resultType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+		SELECT
+				haksa_class_by_department.class_by_department_class as classByDepartmentClass
+				, haksa_class_by_department.class_by_department_day_and_night as classByDepartmentDayAndNight
+				, haksa_class_by_department.dept_code as deptCode
+				, haksa_class_by_department.class_by_department_grade as classByDepartmentGrade
+		FROM haksa_student_info
+		JOIN haksa_class_by_department
+		ON haksa_student_info.class_by_department_number=haksa_class_by_department.class_by_department_number
+		WHERE student_number = #{studentNumber}
+	</select>
+	
+	<update id="updateStudentClassChange" parameterType="com.cafe24.iumium.schoolregister.studentinfo.dto.StudentInfo">
+		UPDATE
+				haksa_student_info SET
+				class_by_department_number = #{classByDepartmentNumber}
+		WHERE student_number=#{studentNumber}
+	</update>
 </mapper>

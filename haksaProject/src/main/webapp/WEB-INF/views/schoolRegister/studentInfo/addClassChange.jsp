@@ -24,6 +24,30 @@
 		
 		<script>
 			$(document).ready(function() {
+				$("#studentNumber").keyup(function() {
+	                let studentNumber = $('#studentNumber').val();
+	                
+	                $.ajax({
+						url:'/rest/studentClassChange'
+						, type:'GET'
+						, dataType:'JSON'
+						, data: {studentNumber: studentNumber}
+						, success: function(data){
+							$('#classChangeBefore').empty();
+							$('#classChangeBeforeDayAndNight').empty();
+							$('#deptCode').empty();
+							$('#classByDepartmentGrade').empty();
+
+							$('#classChangeBefore').append("<option value="+data.classByDepartmentClass+">"+data.classByDepartmentClass+"반</option>");
+							$('#classChangeBeforeDayAndNight').append("<option value="+data.classByDepartmentDayAndNight+">"+data.classByDepartmentDayAndNight+"간</option>");
+						
+							$('#deptCode').val(data.deptCode);
+							$('#classByDepartmentGrade').val(data.classByDepartmentGrade);
+						}
+					})
+	                
+	            });
+				
 				$("#dialog1").hide();
 				$("#dialog2").hide();
 				$("#dialog3").hide();
@@ -58,8 +82,10 @@
 						let classChangeAfterDayAndNight = $("#classChangeAfterDayAndNight").val();
 						let classChangeDate = $("#classChangeDate").val();
 						let classChangeReason = $("#classChangeReason").val();
+						let deptCode = $("#deptCode").val();
+						let classByDepartmentGrade = $("#classByDepartmentGrade").val();
 						let request = {
-								recordId: recordId, studentNumber: studentNumber, classChangeBefore: classChangeBefore, classChangeAfter: classChangeAfter, classChangeBeforeDayAndNight: classChangeBeforeDayAndNight, classChangeAfterDayAndNight: classChangeAfterDayAndNight, classChangeDate: classChangeDate, classChangeReason: classChangeReason
+								recordId: recordId, studentNumber: studentNumber, classChangeBefore: classChangeBefore, classChangeAfter: classChangeAfter, classChangeBeforeDayAndNight: classChangeBeforeDayAndNight, classChangeAfterDayAndNight: classChangeAfterDayAndNight, classChangeDate: classChangeDate, classChangeReason: classChangeReason, deptCode: deptCode, classByDepartmentGrade: classByDepartmentGrade
 						}
 						$.ajax({
 							url:'/rest/addClassChange'
@@ -111,16 +137,14 @@
 							<td>
 								<select class="form-control" name="classChangeBefore" id="classChangeBefore">
 									<option value="선택">선택</option>
-									<option value="A">A</option>
-									<option value="B">B</option>
 								</select>
 							</td>
 							<th>변경 후 반</th>
 							<td>
 								<select class="form-control" name="classChangeAfter" id="classChangeAfter">
 									<option value="선택">선택</option>
-									<option value="A">A</option>
-									<option value="B">B</option>
+									<option value="A">A반</option>
+									<option value="B">B반</option>
 								</select>
 							</td>
 				   		</tr>
@@ -130,8 +154,6 @@
 							<td>
 								<select class="form-control" name="classChangeBeforeDayAndNight" id="classChangeBeforeDayAndNight">
 									<option value="선택">선택</option>
-									<option value="주">주간</option>
-									<option value="야">야간</option>
 								</select>
 							</td>
 							<th>변경 후 주야</th>
@@ -149,6 +171,11 @@
 				   		<tr>
 							<th>변경사유</th>
 							<td colspan="6"><textarea class="form-control" rows="4" cols="50" id="classChangeReason" name="classChangeReason"></textarea></td>
+				   		</tr>
+				   		
+				   		<tr>
+							<td><input type="hidden" class="form-control" name="deptCode" id="deptCode"></td>
+							<td><input type="hidden" class="form-control" name="classByDepartmentGrade" id="classByDepartmentGrade"></td>
 				   		</tr>
 		    		</table>
 		    	</div>

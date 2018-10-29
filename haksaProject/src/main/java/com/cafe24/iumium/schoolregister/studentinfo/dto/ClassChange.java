@@ -13,6 +13,22 @@ public class ClassChange {
 	private String classChangeDate;	// 변경일자
 	private String systemRegistrationDate;	// 시스템등록일자
 	
+	//
+	private String deptCode; // 부서 코드
+	private int classByDepartmentGrade; // 학년
+	
+	public String getDeptCode() {
+		return deptCode;
+	}
+	public void setDeptCode(String deptCode) {
+		this.deptCode = deptCode;
+	}
+	public int getClassByDepartmentGrade() {
+		return classByDepartmentGrade;
+	}
+	public void setClassByDepartmentGrade(int classByDepartmentGrade) {
+		this.classByDepartmentGrade = classByDepartmentGrade;
+	}
 	public String getClassChangeNumber() {
 		return classChangeNumber;
 	}

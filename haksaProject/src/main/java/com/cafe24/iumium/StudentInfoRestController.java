@@ -174,4 +174,11 @@ public class StudentInfoRestController {
 		System.out.println("/rest/studentState get");
 		return studentInfoService.getStudentState();
 	}
+	
+	// 반 변경하기 위한 학생정보 불러오기
+	@RequestMapping(value = "/rest/studentClassChange", method = RequestMethod.GET)
+	public StudentInfo studentClassChange(String studentNumber) {
+		System.out.println("/rest/studentClassChange get");
+		return studentInfoService.getStudentClassChange(studentNumber);
+	}
 }
