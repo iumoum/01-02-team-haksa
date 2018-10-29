@@ -61,7 +61,7 @@
 				<!-- 여기에 내용이 담긴다 -->
 					<h1>인사관리 > 증명서용도코드 관리</h1>
 					<br>
-					<p id="enrolScoreMain">* 증명서용도코드 입력</p>
+					<p id="enrolScoreMain">* 증명서용도 코드 입력</p>
 					<form id="form">
 						<input type='button' class="btn btn-info" onclick='certificatePurposeList()' value='조회'/>
 						<input type='button' class="btn btn-primary" id='' value='저장'/>
@@ -69,37 +69,19 @@
 					<br>
 					<table class="table table-bordered">
 						<tr>
-							<th>증명서용도코드</th>
-							<td><input type="text" class="form-control" name="rewardPunishmentCode" id="rewardPunishmentCode" placeholder="상벌코드"></td>
+							<th>증명서용도 코드</th>
+							<td><input type="text" class="form-control" name="certificatePurposeCode" id="certificatePurposeCode" placeholder="증명서용도 코드"></td>
 							
-							<th>증명서용도코드명</th>
-							<td><input type="text" class="form-control" name="rewardPunishmentCodeName" id="rewardPunishmentCodeName" placeholder="상벌코드명"></td>
-							
-							<th>변경사유</th>
-							<td><input type="text" class="form-control" name="rewardPunishmentCodeName" id="rewardPunishmentCodeName" placeholder="상벌코드명"></td>
-						
+							<th>증명서용도 코드명</th>
+							<td><input type="text" class="form-control" name="certificatePurposeCodeName" id="certificatePurposeCodeName" placeholder="증명서용도 코드명"></td>
+
 							<th>인사/급여구분</th>
 							<td>
-								<select class="form-control" name="rewardPunishmentUseExistenceNonexistence">
+								<select class="form-control" name="certificatePurposePersonnelPayDivision" id="certificatePurposePersonnelPayDivision">
 									<option>인사</option>
 									<option>급여</option>
 								</select>
 							</td>
-						</tr>
-						<tr>
-							<th>사용여부</th>
-							<td>
-								<select class="form-control" name="rewardPunishmentUseExistenceNonexistence">
-									<option>Yes</option>
-									<option>No</option>
-								</select>
-							</td>
-							
-							<th>등록일자</th>
-							<td><input type="date" class="form-control" name="rewardPunishmentRegistrationDate" id="rewardPunishmentRegistrationDate" placeholder="등록일자"></td>
-							
-							<th>수정일자</th>
-							<td><input type="date" class="form-control" name="rewardPunishmentModificationDate" id="rewardPunishmentModificationDate" placeholder="수정일자"></td>
 						</tr>
 					</table>
 				</div>

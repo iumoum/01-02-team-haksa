@@ -69,37 +69,19 @@
 					<br>
 					<table class="table table-bordered">
 						<tr>
-							<th>연수코드</th>
-							<td><input type="text" class="form-control" name="rewardPunishmentCode" id="rewardPunishmentCode" placeholder="상벌코드"></td>
+							<th>연수 코드</th>
+							<td><input type="text" class="form-control" name="trainingCode" id="trainingCode" placeholder="연수 코드"></td>
 							
-							<th>연수코드명</th>
-							<td><input type="text" class="form-control" name="rewardPunishmentCodeName" id="rewardPunishmentCodeName" placeholder="상벌코드명"></td>
-							
-							<th>변경사유</th>
-							<td><input type="text" class="form-control" name="rewardPunishmentCodeName" id="rewardPunishmentCodeName" placeholder="상벌코드명"></td>
-						
+							<th>연수 코드명</th>
+							<td><input type="text" class="form-control" name="trainingCodeName" id="trainingCodeName" placeholder="연수 코드명"></td>
+
 							<th>국내외구분</th>
 							<td>
-								<select class="form-control" name="rewardPunishmentUseExistenceNonexistence">
+								<select class="form-control" name="trainingHomeAndAbroadDivision" id="trainingHomeAndAbroadDivision">
 									<option>국내</option>
 									<option>국외</option>
 								</select>
 							</td>
-						</tr>
-						<tr>
-							<th>사용유무</th>
-							<td>
-								<select class="form-control" name="rewardPunishmentUseExistenceNonexistence">
-									<option>Yes</option>
-									<option>No</option>
-								</select>
-							</td>
-							
-							<th>등록일자</th>
-							<td><input type="date" class="form-control" name="rewardPunishmentRegistrationDate" id="rewardPunishmentRegistrationDate" placeholder="등록일자"></td>
-							
-							<th>수정일자</th>
-							<td><input type="date" class="form-control" name="rewardPunishmentModificationDate" id="rewardPunishmentModificationDate" placeholder="수정일자"></td>
 						</tr>
 					</table>
 				</div>

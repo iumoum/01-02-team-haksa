@@ -60,7 +60,7 @@
 				<!-- 여기에 내용이 담긴다 -->
 					<h1>인사관리 > 인사공통코드 관리</h1>
 					<br>
-					<p id="enrolScoreMain">* 인사공통코드 입력</p>
+					<p id="enrolScoreMain">* 인사공통 코드 입력</p>
 					<form id="form">
 						<input type='button' class="btn btn-info" onclick='personnelCommonCodeList()' value='조회'/>
 						<input type='button' class="btn btn-primary" id='' value='저장'/>
@@ -68,26 +68,11 @@
 					<br>
 					<table class="table table-bordered">
 						<tr>
-							<th>발령코드</th>
-							<td><input type="text" class="form-control" name="commonAppointmentCode" id="commonAppointmentCode" placeholder="발령코드"></td>
+							<th>발령 코드</th>
+							<td><input type="text" class="form-control" name="personnelCommonAppointmentCode" id="personnelCommonAppointmentCode" placeholder="발령 코드"></td>
 							
-							<th>발령코드명</th>
-							<td><input type="text" class="form-control" name="commonAppointmentCodeName" id="commonAppointmentCodeName" placeholder="발령코드명"></td>
-							
-							<th>사용유무</th>
-							<td>
-								<select class="form-control">
-									<option>Yes</option>
-									<option>No</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<th>등록일자</th>
-							<td><input type="date" class="form-control" name="commonRegistrationDate" id="commonRegistrationDate" placeholder="등록일자"></td>
-							
-							<th>수정일자</th>
-							<td><input type="date" class="form-control" name="commonModificationDate" id="commonModificationDate" placeholder="수정일자"></td>
+							<th>발령 코드명</th>
+							<td><input type="text" class="form-control" name="personnelCommonAppointmentCodeName" id="personnelCommonAppointmentCodeName" placeholder="발령 코드명"></td>
 						</tr>
 					</table>
 				</div>

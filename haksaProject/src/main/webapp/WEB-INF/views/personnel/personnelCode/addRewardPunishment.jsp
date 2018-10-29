@@ -61,7 +61,7 @@
 				<!-- 여기에 내용이 담긴다 -->
 					<h1>인사관리 > 상벌코드 관리</h1>
 					<br>
-					<p id="enrolScoreMain">* 상벌코드 입력</p>
+					<p id="enrolScoreMain">* 상벌 코드 입력</p>
 					<form id="form">
 						<input type='button' class="btn btn-info" onclick='rewardPunishmentList()' value='조회'/>
 						<input type='button' class="btn btn-primary" id='' value='저장'/>
@@ -69,11 +69,11 @@
 					<br>
 					<table class="table table-bordered">
 						<tr>
-							<th>상벌코드</th>
-							<td><input type="text" class="form-control" name="rewardPunishmentCode" id="rewardPunishmentCode" placeholder="상벌코드"></td>
+							<th>상벌 코드</th>
+							<td><input type="text" class="form-control" name="rewardPunishmentCode" id="rewardPunishmentCode" placeholder="상벌 코드"></td>
 							
-							<th>상벌코드명</th>
-							<td><input type="text" class="form-control" name="rewardPunishmentCodeName" id="rewardPunishmentCodeName" placeholder="상벌코드명"></td>
+							<th>상벌 코드명</th>
+							<td><input type="text" class="form-control" name="rewardPunishmentCodeName" id="rewardPunishmentCodeName" placeholder="상벌 코드명"></td>
 							
 							<th>상벌구분</th>
 							<td>
@@ -82,21 +82,6 @@
 									<option>벌</option>
 								</select>
 							</td>
-						</tr>
-						<tr>
-							<th>사용유무</th>
-							<td>
-								<select class="form-control" name="rewardPunishmentUseExistenceNonexistence">
-									<option>Yes</option>
-									<option>No</option>
-								</select>
-							</td>
-							
-							<th>등록일자</th>
-							<td><input type="date" class="form-control" name="rewardPunishmentRegistrationDate" id="rewardPunishmentRegistrationDate" placeholder="등록일자"></td>
-							
-							<th>수정일자</th>
-							<td><input type="date" class="form-control" name="rewardPunishmentModificationDate" id="rewardPunishmentModificationDate" placeholder="수정일자"></td>
 						</tr>
 					</table>
 				</div>
