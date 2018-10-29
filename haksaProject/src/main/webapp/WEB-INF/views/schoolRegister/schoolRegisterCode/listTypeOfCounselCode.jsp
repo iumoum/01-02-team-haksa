@@ -21,7 +21,6 @@
 	
 	<!-- Custom styles for this template-->
 	<link href="/resources/css/sb-admin.css" rel="stylesheet">
-	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
 	<script>
@@ -29,6 +28,19 @@
 			$('#addButton').click(function(){
 				window.location.href="/schoolRegister/codes/addTypeOfCounsel";
 			})
+			
+			// 상담구분코드 검색
+			$("#keyword").keyup(function() {
+                var selectBox = $("#selectBox option:selected").val();
+                var word = $('#keyword').val();
+                $("#counselCode > tbody").children().hide();
+                if(selectBox == "counsel"){
+                    var temp = $("#counselCode > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+                } else if(selectBox == "conunselResult"){
+                    var temp = $("#counselCode > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
+                }
+                $(temp).parent().show();
+            });
 		})
 	</script>
 
@@ -46,40 +58,48 @@
 
 			<div class="container-fluid">
 			<!-- 여기에 내용이 담긴다 -->
+			
 				<div class="mail-box">
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
 								&ensp;
-								<button class="btn btn-info" type="button" id="addButton">입력</button>
-							
+								<select class="btn btn-info" id="selectBox">
+									<option value="counsel">상담구분</option>
+									<option value="conunselResult">상담결과</option>
+								</select>
+								&ensp;
+								<button class="btn btn-info" type="button">입력</button>		
 							</div>
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="counselCode">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">상담구분 코드</td>
 											<td>상담구분 명</td>
 											<td></td>
 											<td></td>
-											<td>코드 변경유무</td>
+											<td>상담결과 명</td>
+											<td>코드 사용유무</td>
 											<td>코드 변경사유</td>
 											<td>시스템 등록일자</td>
 										</tr>
-
-										<c:forEach var="row" items="${typeOfCounselCodes}">
+									</thead>
+									<tbody>
+										<c:forEach var="row" items="${resultOfCounselCodes}">
 											<tr class="">
-												<td class="view-message  dont-show">${row.counselTypeCode}</td>
+												<td class="view-message  dont-show">${row.counselResultCode}</td>
 												<td colspan="3" class="view-message">${row.counselTypeName}</td>
-												<td>${row.counselTypeIsUsed}</td>
-												<td>${row.counselTypeIsChanged}</td>
-												<td>${row.counselTypeRegisteredDate}</td>
+												<td>${row.counselResultName}</td>
+												<td>${row.counselResultIsUsed}</td>
+												<td>${row.counselResultIsChanged}</td>
+												<td>${row.counselResultRegisteredDate}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -87,7 +107,7 @@
 							</div>
 						</div>
 					</aside>
-				</div>
+				</div>	
 			</div>
 			<!-- /.container-fluid -->
 

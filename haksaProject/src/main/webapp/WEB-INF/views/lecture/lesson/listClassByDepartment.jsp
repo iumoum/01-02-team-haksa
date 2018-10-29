@@ -29,6 +29,29 @@
 			$('#addButton').click(function(){
 				window.location.href="/lesson/lecture/addClassByDepartment";
 			})
+			
+			// 학과별 반 검색
+			$("#keyword").keyup(function() {
+                var selectBox = $("#selectBox option:selected").val();
+                var word = $('#keyword').val();
+                $("#classByDepartment > tbody").children().hide();
+                if(selectBox == "department"){
+                    var temp = $("#classByDepartment > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+                } else if(selectBox == "semester"){
+                    var temp = $("#classByDepartment > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
+                } else if(selectBox == "grade"){
+                    var temp = $("#classByDepartment > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
+                } else if(selectBox == "classes"){
+                    var temp = $("#classByDepartment > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
+                } else if(selectBox == "dayAndNight"){
+                    var temp = $("#classByDepartment > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
+                } else if(selectBox == "division"){
+                    var temp = $("#classByDepartment > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
+                } else if(selectBox == "professorName"){
+                    var temp = $("#classByDepartment > tbody > tr").find("td:nth-child(3):contains('" + word + "')");
+                }
+                $(temp).parent().show();
+            });
 		})
 	</script>
 
@@ -50,16 +73,19 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; <select class="btn btn-info">
-									<option value="code">코드</option>
-									<option value="name">건물명</option>
-									<option value="agencyName">소속 기관</option>
-									<option value="check_a_use">사용유무</option>
-									<option value="check_a_change">변경유무</option>
+								&ensp; 
+								<select class="btn btn-info" id="selectBox">
+									<option value="department">학과</option>
+									<option value="semester">학기</option>
+									<option value="grade">학년</option>
+									<option value="classes">반</option>
+									<option value="dayAndNight">주야</option>
+									<option value="division">과정구분</option>
+									<option value="professorName">지도교수</option>
 								</select>
 								&ensp;
 								<button class="btn btn-info" type="button" id="addButton">입력</button>
@@ -67,8 +93,8 @@
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="classByDepartment">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">학과별 반 번호</td>
 											<td>학과 명</td>
@@ -82,7 +108,8 @@
 											<td>지도 교수</td>
 											<td class="view-message  text-left">시스템 등록일자</td>
 										</tr>
-
+									</thead>
+									<tbody>
 										<c:forEach var="row" items="${classesByDepartment}">
 											<tr class="">
 												<td class="view-message  dont-show">${row.classByDepartmentNumber}</td>

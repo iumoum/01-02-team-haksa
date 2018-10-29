@@ -153,7 +153,7 @@
 						<div class="inbox-head">
 							<div class="input-append">
 								<input type="text" class="sr-input" placeholder="과목명">
-								<button class="btn sr-btn" type="button" id="click">
+								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
 								&ensp; 
@@ -188,6 +188,8 @@
 									<option value="주">주</option>
 									<option value="야">야</option>
 								</select>
+								&ensp;
+								<button type="button" id="click" class="btn btn-info">조회</button>
 								&ensp;
 								<button type="button" id="" class="btn btn-info">저장</button>
 							</div>

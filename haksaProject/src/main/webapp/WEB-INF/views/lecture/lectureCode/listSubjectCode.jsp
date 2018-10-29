@@ -40,6 +40,23 @@
 		$('#addSubject').click(function(){
 			window.location.href="/lecture/codes/addSubjectCodeForm";
 		});
+		
+		// 과목코드 검색
+		$("#keyword").keyup(function() {
+            var selectBox = $("#selectBox option:selected").val();
+            var word = $('#keyword').val();
+            $("#subjectCode > tbody").children().hide();
+            if(selectBox == "subject"){
+                var temp = $("#subjectCode > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+            } else if(selectBox == "score"){
+                var temp = $("#subjectCode > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
+            } else if(selectBox == "theory"){
+                var temp = $("#subjectCode > tbody > tr").find("td:nth-child(5):contains('" + word + "')");
+            } else if(selectBox == "practice"){
+                var temp = $("#subjectCode > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
+            }
+            $(temp).parent().show();
+        });
 	});
 </script>
 </head>
@@ -59,18 +76,25 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
+								&ensp;
+								<select class="btn btn-info" id="selectBox">
+									<option value="subject">과목</option>
+									<option value="score">학점</option>
+									<option value="theory">이론시수</option>
+									<option value="practice">실습시수</option>
+								</select>
 								&ensp;
 								<button class="btn btn-info" type="button" id="addSubject">입력</button>
 							</div>
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="subjectCode">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">과목 코드</td>
 											<td>과목명(국문)</td>
@@ -84,7 +108,8 @@
 											<td>코드 변경유무</td>
 											<td>시스템 등록일자</td>
 										</tr>
-
+									</thead>
+									<tbody>
 										<c:forEach var="sub" items="${list}">
 											<tr class="">
 												<td class="view-message  dont-show">${sub.subjectCode}</td>

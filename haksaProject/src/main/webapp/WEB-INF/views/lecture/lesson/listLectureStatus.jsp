@@ -29,6 +29,27 @@
 			$('#addButton').click(function(){
 				window.location.href="/lesson/lecture/addLectureStatus";
 			})
+			
+			// 강의상황서 검색
+			$("#keyword").keyup(function() {
+                var selectBox = $("#selectBox option:selected").val();
+                var word = $('#keyword').val();
+                $("#lectureStatus > tbody").children().hide();
+                if(selectBox == "subject"){
+                    var temp = $("#lectureStatus > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+                } else if(selectBox == "score"){
+                    var temp = $("#lectureStatus > tbody > tr").find("td:nth-child(4):contains('" + word + "')");
+                } else if(selectBox == "theory"){
+                    var temp = $("#lectureStatus > tbody > tr").find("td:nth-child(5):contains('" + word + "')");
+                } else if(selectBox == "practice"){
+                    var temp = $("#lectureStatus > tbody > tr").find("td:nth-child(6):contains('" + word + "')");
+                } else if(selectBox == "sum"){
+                    var temp = $("#lectureStatus > tbody > tr").find("td:nth-child(7):contains('" + word + "')");
+                } else if(selectBox == "professorName"){
+                    var temp = $("#lectureStatus > tbody > tr").find("td:nth-child(9):contains('" + word + "')");
+                }
+                $(temp).parent().show();
+            });
 		})
 	</script>
 </head>
@@ -49,17 +70,18 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
 								&ensp; 
-								<select class="btn btn-info">
-									<option value="code">코드</option>
-									<option value="name">건물명</option>
-									<option value="agencyName">소속 기관</option>
-									<option value="check_a_use">사용유무</option>
-									<option value="check_a_change">변경유무</option>
+								<select class="btn btn-info" id="selectBox">
+									<option value="subject">과목</option>
+									<option value="score">학점</option>
+									<option value="theory">이론시수</option>
+									<option value="practice">실습시수</option>
+									<option value="sum">총시수</option>
+									<option value="professorName">지도교수</option>
 								</select>
 								&ensp;
 								<button class="btn btn-info" type="button" id="addButton">입력</button>
@@ -67,8 +89,8 @@
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="lectureStatus">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">강의 상황서 번호</td>
 											<td>과목</td>
@@ -80,10 +102,11 @@
 											<td>실습 시수</td>
 											<td>총 시수</td>
 											<td>강의실 명</td>
-											<td >강의교수</td>
+											<td>강의교수</td>
 											<td class="view-message  text-left">시스템 등록일자</td>
 										</tr>
-
+									</thead>
+									<tbody>
 										<c:forEach var="st" items="${list}">
 											<tr class="">
 												<td class="view-message  dont-show">${st.lectureStatusNumber}</td>

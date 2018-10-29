@@ -36,7 +36,6 @@
 				<a class="dropdown-item" href="/schoolRegister/codes/calander">학기별상세일정</a> 
 				<a class="dropdown-item" href="/schoolRegister/codes/reasonForChangeSchoolRegister">학적변동사유 코드</a>
 				<a class="dropdown-item" href="/schoolRegister/codes/typeOfCounsel">상담구분 코드</a> 
-				<a class="dropdown-item" href="/schoolRegister/codes/resultOfCounsel">상담결과 코드</a>
 				<a class="dropdown-item" href="/schoolRegister/codes/reasonForCantGraduate">졸업불가 사유코드</a>
 				<div class="dropdown-divider"></div>
 			</div>

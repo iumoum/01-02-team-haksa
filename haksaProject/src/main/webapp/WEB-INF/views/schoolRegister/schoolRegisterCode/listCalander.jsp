@@ -46,7 +46,6 @@
                 }
                 $(temp).parent().show();
             });
-
 		})
 	</script>
 

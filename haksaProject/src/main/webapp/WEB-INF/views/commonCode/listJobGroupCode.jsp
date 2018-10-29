@@ -32,8 +32,7 @@
 <script>
 	$(document).ready(
 			function() {
-				$("#keyword").keyup(
-						function() {
+				$("#keyword").keyup(function() {
 							var selectBox = $("#selectBox option:selected").val();
 							var word = $('#keyword').val();
 							$("#jobGroupTable > tbody").children().hide();
@@ -80,7 +79,8 @@
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; <select class="btn btn-info" id="keyword">
+								&ensp; 
+								<select class="btn btn-info" id="selectBox">
 									<option value="code">코드</option>
 									<option value="name">직군 명</option>
 									<option value="check_a_use">사용 유무</option>

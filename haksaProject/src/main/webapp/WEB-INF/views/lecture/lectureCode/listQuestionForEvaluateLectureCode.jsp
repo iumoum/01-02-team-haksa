@@ -36,47 +36,19 @@
 	}
 </style>
 <script>
-	$(document).ready(
-			function() {
-				$("#keyword").keyup(
-						function() {
-							var selectBox = $("#selectBox option:selected")
-									.val();
-							var word = $('#keyword').val();
-							$("#agencyTable > tbody").children().hide();
-							if (selectBox == "code") {
-								var temp = $("#agencyTable > tbody > tr").find(
-										"td:nth-child(1):contains('" + word
-												+ "')");
-
-							} else if (selectBox == "name") {
-								var temp = $("#agencyTable > tbody > tr").find(
-										"td:nth-child(2):contains('" + word
-												+ "')");
-
-							} else if (selectBox == "establish_date") {
-								var temp = $("#agencyTable > tbody > tr").find(
-										"td:nth-child(4):contains('" + word
-												+ "')");
-
-							} else if (selectBox == "check_a_use") {
-								var temp = $("#agencyTable > tbody > tr").find(
-										"td:nth-child(6):contains('" + word
-												+ "')");
-
-							} else if (selectBox == "check_a_change") {
-								var temp = $("#agencyTable > tbody > tr").find(
-										"td:nth-child(7):contains('" + word
-												+ "')");
-
-							}
-							$(temp).parent().show();
-						});
+	$(document).ready(function(){
+		$('#addQuestion').click(function(){
+			window.location.href="/lecture/codes/addQuestionForEvaluateLectureCodeForm";
+		});
 				
-				$('#addQuestion').click(function(){
-					window.location.href="/lecture/codes/addQuestionForEvaluateLectureCodeForm";
-				});
-			});
+		// 학기코드 검색
+		$("#keyword").keyup(function() {
+	        let word = $('#keyword').val();
+	        $("#questionCode > tbody").children().hide();
+	        let temp = $("#questionCode > tbody > tr").find("td:nth-child(2):contains('" + word + "')");
+	        $(temp).parent().show();
+	    });
+	});
 </script>
 </head>
 <body id="page-top">
@@ -95,7 +67,7 @@
 					<aside class="lg-side">
 						<div class="inbox-head">
 							<div class="input-append">
-								<input type="text" class="sr-input" placeholder="">
+								<input type="text" class="sr-input" placeholder="학기코드" id="keyword">
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
@@ -105,8 +77,8 @@
 						</div>
 						<div class="inbox-body">
 							<div class="mail-option">
-								<table class="table table-inbox table-hover">
-									<tbody>
+								<table class="table table-inbox table-hover" id="questionCode">
+									<thead>
 										<tr class="unread">
 											<td class="view-message  dont-show">강의평가항목 코드</td>
 											<td>학기 코드</td>
@@ -118,7 +90,8 @@
 											<td>코드 변경유무</td>
 											<td>시스템 등록일자</td>
 										</tr>
-
+									</thead>
+									<tbody>
 										<c:forEach var="qfe" items="${list}">
 											<tr class="">
 												<td class="view-message  dont-show">${qfe.questionForEvaluateCode}</td>

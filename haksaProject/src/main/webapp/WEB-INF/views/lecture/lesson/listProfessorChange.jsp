@@ -48,13 +48,6 @@
 								<button class="btn sr-btn" type="button">
 									<i class="fa fa-search"></i>
 								</button>
-								&ensp; <select class="btn btn-info">
-									<option value="code">코드</option>
-									<option value="name">건물명</option>
-									<option value="agencyName">소속 기관</option>
-									<option value="check_a_use">사용유무</option>
-									<option value="check_a_change">변경유무</option>
-								</select>
 								&ensp;
 								<button class="btn btn-info" type="button">입력</button>
 							</div>

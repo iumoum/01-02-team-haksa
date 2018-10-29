@@ -244,7 +244,6 @@
 										</select>
 										&emsp;
 										<button type="button" id="attendance" class="btn btn-info">조회</button>
-										<button type="button" class="btn btn-info">저장</button>
 									</div>
 								</div>
 								<div class="inbox-body">

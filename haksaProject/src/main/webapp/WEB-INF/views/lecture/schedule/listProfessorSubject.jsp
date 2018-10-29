@@ -116,11 +116,13 @@
 						<aside class="lg-side">
 							<div class="inbox-head">
 								<div class="input-append">
-									<input type="text" class="sr-input" placeholder="">
+									<input type="text" class="sr-input" placeholder="교직원번호">
 									<button class="btn sr-btn" type="button">
 										<i class="fa fa-search"></i>
 									</button>
-									&ensp; 
+									&ensp;
+									<input type="text" id="professorName" readonly>
+									&nbsp;
 									<span>년도-학기 :</span>&nbsp; 
 									<select name="yearBox" id="semesterCode" class="btn btn-info">
 										<option value="선택">선택</option>
@@ -129,14 +131,7 @@
 									<span>학과 :</span>&nbsp; 
 									<select name="departmentBox" id="departmentCode" class="btn btn-info">
 										<option value="선택">선택</option>
-									</select>
-									&ensp;
-									<span>교수 :</span>&nbsp; 
-									<input type="text" id="professorNumber">
-									&ensp;&ensp;
-									<button type="button" id="professorSearch" class="btn btn-info">이미지태그</button>
-									&ensp;
-									<input type="text" id="professorName" readonly>&emsp;
+									</select>&emsp;
 									<button type="button" id="subjectSearch" class="btn btn-info">조회</button>
 								</div>
 							</div>
