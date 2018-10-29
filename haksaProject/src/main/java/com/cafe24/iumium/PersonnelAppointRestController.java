@@ -17,7 +17,7 @@ import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment;
 import com.cafe24.iumium.personnel.appoint.dto.Position;
 import com.cafe24.iumium.personnel.appoint.service.PersonnelAppointmentService;
-import com.cafe24.iumium.schoolregister.studentinfo.dto.Family;
+import com.cafe24.iumium.personnel.appoint.dto.Family;
 
 @CrossOrigin
 @RestController

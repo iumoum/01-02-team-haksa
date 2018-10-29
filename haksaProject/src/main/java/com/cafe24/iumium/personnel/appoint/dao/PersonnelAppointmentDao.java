@@ -16,7 +16,7 @@ import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelTemporaryAppointment;
 import com.cafe24.iumium.personnel.appoint.dto.Position;
-import com.cafe24.iumium.schoolregister.studentinfo.dto.Family;
+import com.cafe24.iumium.personnel.appoint.dto.Family;
 
 @Repository
 public class PersonnelAppointmentDao {
@@ -127,8 +127,9 @@ public class PersonnelAppointmentDao {
 		return sqlSessionTemplate.selectOne(NS+"highSchool", number);
 	}
 	
+	
 	// 송원민
-	// 인사기본사항 dao
+	// 인사기본사항 저장 dao
 	public int insertPersonnelBasic(PersonnelBasic personnelBasic) {
 		System.out.println("인사기본사항 저장 dao");
 		return sqlSessionTemplate.insert(NS+"insertPersonnelBasic", personnelBasic);
@@ -174,5 +175,41 @@ public class PersonnelAppointmentDao {
 	public int selectFamilyNumber() {
 		System.out.println("가족사항 번호 조회 dao");
 		return sqlSessionTemplate.selectOne(NS+"selectFamilyNumber");
+	}
+	
+	// 대학교학력사항 저장 dao
+	public int insertEducation(Education education) {
+		System.out.println("대학교학력사항 저장 dao");
+		return sqlSessionTemplate.insert(NS+"insertEducation", education);
+	}
+	
+	// 대학교학력사항 번호 조회 dao
+	public int selectEducationNumber() {
+		System.out.println("대학교학력사항 번호 조회 dao");
+		return sqlSessionTemplate.selectOne(NS+"selectEducationNumber");
+	}
+	
+	// 신상명세정보 저장 dao
+	public int insertMyProfile(MyProfile myProfile) {
+		System.out.println("신상명세정보 저장 dao");
+		return sqlSessionTemplate.insert(NS+"insertMyProfile", myProfile);
+	}
+	
+	// 신상명세정보 번호 조회 dao
+	public int selectMyProfileNumber() {
+		System.out.println("신상명세정보 번호 조회 dao");
+		return sqlSessionTemplate.selectOne(NS+"selectMyProfileNumber");
+		
+	}
+	
+	// 고등학력사항 저장 dao
+	public int insertHighSchool(HighSchool highSchool) {
+		System.out.println("고등학력사항 저장 dao");
+		return sqlSessionTemplate.insert(NS+"insertHighSchool", highSchool);
+	}
+	
+	// 고등학력사항 번회 조회 dao
+	public int selectHighSchoolNumber() {
+		return sqlSessionTemplate.selectOne(NS+"selectHighSchoolNumber");
 	}
 }

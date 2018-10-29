@@ -56,43 +56,55 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-					<form id="form">
+					<form action="${pageContext.request.contextPath}/personnelAppoint/saveFamily" method="post">
 						<input type="button" class="btn btn-info" onclick="goBack()" value="뒤로가기"/>
-						<input type="button" class="btn btn-primary" id="savePersonnelPromotion" value="저장"/>
-					</form>
-					<br>
-					<table class="table table-bordered">
-						<tr>
-							<td scope="col" colspan="10">
-								<p id="enrolScoreMain">* 교직원 가족사항</p>
-							</td>
-						</tr>
-						
-						<tr>
-							<th>교직원번호</th>
-							<td><input type="text" class="form-control" name="studentTeacherNo" id="studentTeacherNo" placeholder="교직원번호"></td>
-							<th>가족관계</th>
-							<td><input type="text" class="form-control" name="familyRelationship" id="familyRelationship" placeholder="가족관계"></td>
-							<th>성명</th>
-							<td><input type="text" class="form-control" name="familyName" id="familyName" placeholder="성명"></td>
-				   		</tr>
-				   		
-				   		<tr>
-							<th>생년월일</th>
-							<td><input type="date" class="form-control" name="familyBirthday" id="familyBirthday"></td>
-							<th>학력</th>
-							<td><input type="text" class="form-control" name="familyAcademicBackground" id="familyAcademicBackground" placeholder="학력"></td>
-							<th>직업</th>
-							<td><input type="text" class="form-control" name="familyJob" id="familyJob" placeholder="직업"></td>
-				   		</tr>
-				   		
-				   		<tr>
-				   			<th>전화번호</th>
-							<td><input type="text" class="form-control" name="familyPhoneNumber" id="familyPhoneNumber" placeholder="전화번호"></td>
-							<th>주소</th>
-							<td><input type="text" class="form-control" name="familyResidence" id="familyResidence" placeholder="주소"></td>
-				   		</tr>
-		    		</table>
+						<input type="submit" class="btn btn-primary" id="form" value="저장"/>
+						<br>
+						<table class="table table-bordered">
+							<tr>
+								<td scope="col" colspan="10">
+									<p id="enrolScoreMain">* 교직원 가족사항</p>
+								</td>
+							</tr>
+							
+							<tr>
+								<c:choose>
+									<c:when test="${permanentAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="permanentAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${permanentAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+									<c:when test="${temporaryAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="temporaryAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${temporaryAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+									<c:when test="${otherAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="otherAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${otherAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+								</c:choose>
+								<th>가족관계</th>
+								<td><input type="text" class="form-control" name="familyRelationship" id="familyRelationship" placeholder="가족관계"></td>
+								<th>성명</th>
+								<td><input type="text" class="form-control" name="familyName" id="familyName" placeholder="성명"></td>
+					   		</tr>
+					   		
+					   		<tr>
+								<th>생년월일</th>
+								<td><input type="date" class="form-control" name="familyBirthday" id="familyBirthday"></td>
+								<th>학력</th>
+								<td><input type="text" class="form-control" name="familyAcademicBackground" id="familyAcademicBackground" placeholder="학력"></td>
+								<th>직업</th>
+								<td><input type="text" class="form-control" name="familyJob" id="familyJob" placeholder="직업"></td>
+					   		</tr>
+					   		
+					   		<tr>
+					   			<th>전화번호</th>
+								<td><input type="text" class="form-control" name="familyPhoneNumber" id="familyPhoneNumber" placeholder="전화번호"></td>
+								<th>주소</th>
+								<td><input type="text" class="form-control" name="familyResidence" id="familyResidence" placeholder="주소"></td>
+					   		</tr>
+			    		</table>
+		    		</form>
 				</div>
 				<!-- /.container-fluid -->
 	

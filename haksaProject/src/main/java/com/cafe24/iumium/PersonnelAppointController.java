@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cafe24.iumium.personnel.appoint.dto.Career;
+import com.cafe24.iumium.personnel.appoint.dto.Education;
+import com.cafe24.iumium.personnel.appoint.dto.Family;
+import com.cafe24.iumium.personnel.appoint.dto.HighSchool;
+import com.cafe24.iumium.personnel.appoint.dto.MyProfile;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelAppointmentOther;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment;
@@ -149,29 +153,81 @@ public class PersonnelAppointController {
 	
 	// 가족사항 입력 페이지 호출
 	@RequestMapping(value="/personnelAppoint/addFamily", method = RequestMethod.GET)
-	public String addFamily() {
+	public String addFamily(Model model
+			, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
+			, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
+			, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
 		System.out.println("가족사항 입력 페이지 호출");
+		if(permanentAppointmentSchoolPersonnelNumber != null) {
+			model.addAttribute("permanentAppointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
+			System.out.println("가족사항 정규직 넘버" + permanentAppointmentSchoolPersonnelNumber);
+		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
+			model.addAttribute("temporaryAppointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println("가족사항 비정규직 넘버" + temporaryAppointmentSchoolPersonnelNumber);
+		} else {
+			model.addAttribute("otherAppointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
+			System.out.println("가족사항 무기계약 넘버" + otherAppointmentSchoolPersonnelNumber);
+		}
 		return "personnel/personnelAppoint/addFamily";	
 	}
 	
 	// 대학교학력사항 입력 페이지 호출
 	@RequestMapping(value="/personnelAppoint/addEducation", method = RequestMethod.GET)
-	public String addEducation() {
+	public String addEducation(Model model
+			, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
+			, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
+			, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
 		System.out.println("대학교학력사항 입력 페이지 호출");
+		if(permanentAppointmentSchoolPersonnelNumber != null) {
+			model.addAttribute("permanentAppointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
+			System.out.println("대학교학력사항 정규직 넘버" + permanentAppointmentSchoolPersonnelNumber);
+		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
+			model.addAttribute("temporaryAppointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println("대학교학력사항 비정규직 넘버" + temporaryAppointmentSchoolPersonnelNumber);
+		} else {
+			model.addAttribute("otherAppointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
+			System.out.println("대학교학력사항 무기계약 넘버" + otherAppointmentSchoolPersonnelNumber);
+		}
 		return "personnel/personnelAppoint/addEducation";	
 	}
 	
 	// 신상명세정보 입력 페이지 호출
 	@RequestMapping(value="/personnelAppoint/addMyProfile", method = RequestMethod.GET)
-	public String addMyProfile() {
+	public String addMyProfile(Model model
+			, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
+			, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
+			, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
 		System.out.println("신상명세정보 입력 페이지 호출");
+		if(permanentAppointmentSchoolPersonnelNumber != null) {
+			model.addAttribute("permanentAppointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
+			System.out.println("신상명세정보 정규직 넘버" + permanentAppointmentSchoolPersonnelNumber);
+		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
+			model.addAttribute("temporaryAppointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println("신상명세정보 비정규직 넘버" + temporaryAppointmentSchoolPersonnelNumber);
+		} else {
+			model.addAttribute("otherAppointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
+			System.out.println("신상명세정보 무기계약 넘버" + otherAppointmentSchoolPersonnelNumber);
+		}
 		return "personnel/personnelAppoint/addMyProfile";	
 	}
 	
 	// 고등학력사항 입력 페이지 호출
 	@RequestMapping(value="/personnelAppoint/addHighSchool", method = RequestMethod.GET)
-	public String addHighSchool() {
+	public String addHighSchool(Model model
+			, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
+			, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
+			, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
 		System.out.println("고등학력사항 입력 페이지 호출");
+		if(permanentAppointmentSchoolPersonnelNumber != null) {
+			model.addAttribute("permanentAppointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
+			System.out.println("가족사항 정규직 넘버" + permanentAppointmentSchoolPersonnelNumber);
+		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
+			model.addAttribute("temporaryAppointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println("가족사항 비정규직 넘버" + temporaryAppointmentSchoolPersonnelNumber);
+		} else {
+			model.addAttribute("otherAppointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
+			System.out.println("가족사항 무기계약 넘버" + otherAppointmentSchoolPersonnelNumber);
+		}
 		return "personnel/personnelAppoint/addHighSchool";	
 	}
 	
@@ -238,21 +294,24 @@ public class PersonnelAppointController {
 		String id = (String) session.getAttribute("userId");
 		personnelBasic.setRecordId(id);
 		
+		// 조건문을 걸어 경우의수 정규직, 비정규직, 무기계약 3가지를 두고 페이지이동, 뷰에 넘버값을 유지시키기 위한 model 사용
 		if(permanentAppointmentSchoolPersonnelNumber != null) {
 			personnelBasic.setAppointmentSchoolPersonnelNumber(permanentAppointmentSchoolPersonnelNumber);
-			System.out.println(permanentAppointmentSchoolPersonnelNumber +"정규직 교직원번호");
+			System.out.println(permanentAppointmentSchoolPersonnelNumber +"인사기본사항 정규직 교직원번호");
 			personnelAppointmentService.insertPersonnelBasic(personnelBasic);
 			model.addAttribute("appointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
 			return "redirect:/personnelAppoint/detailPermanentAppointment";
+		
 		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
 			personnelBasic.setAppointmentSchoolPersonnelNumber(temporaryAppointmentSchoolPersonnelNumber);
-			System.out.println(temporaryAppointmentSchoolPersonnelNumber +"비정규직 교직원번호");
+			System.out.println(temporaryAppointmentSchoolPersonnelNumber +"인사기본사항 비정규직 교직원번호");
 			personnelAppointmentService.insertPersonnelBasic(personnelBasic);
 			model.addAttribute("appointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
 			return "redirect:/personnelAppoint/detailTemporaryAppointment";
+		
 		} else {
 			personnelBasic.setAppointmentSchoolPersonnelNumber(otherAppointmentSchoolPersonnelNumber);
-			System.out.println(otherAppointmentSchoolPersonnelNumber +"무기계약 교직원번호");
+			System.out.println(otherAppointmentSchoolPersonnelNumber +"인사기본사항 무기계약 교직원번호");
 			personnelAppointmentService.insertPersonnelBasic(personnelBasic);
 			model.addAttribute("appointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
 			return "redirect:/personnelAppoint/detailOtherAppointment";
@@ -260,7 +319,7 @@ public class PersonnelAppointController {
 	}
 	
 	
-	// 경력사항 데이터 저장 기능(
+	// 경력사항 데이터 저장 기능
 	@RequestMapping(value="/personnelAppoint/saveCareer", method = RequestMethod.POST)
 	public String saveCareer(Model model, Career career, HttpSession session
 						, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
@@ -273,22 +332,24 @@ public class PersonnelAppointController {
 		career.setRecordId(id);
 		
 		
-		// 조건문을 걸어 경우의수 3가지를 두고 페이지이동
+		// 조건문을 걸어 경우의수  정규직, 비정규직, 무기계약  3가지를 두고 페이지이동, 뷰에 넘버값을 유지시키기 위한 model 사용
 		if(permanentAppointmentSchoolPersonnelNumber != null) {
 			career.setAppointmentSchoolPersonnelNumber(permanentAppointmentSchoolPersonnelNumber);
-			System.out.println(permanentAppointmentSchoolPersonnelNumber +"정규직 교직원번호");
+			System.out.println(permanentAppointmentSchoolPersonnelNumber +"경력사항 정규직 교직원번호");
 			personnelAppointmentService.insertCareer(career);
 			model.addAttribute("appointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
 			return "redirect:/personnelAppoint/detailPermanentAppointment";
+		
 		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
 			career.setAppointmentSchoolPersonnelNumber(temporaryAppointmentSchoolPersonnelNumber);
-			System.out.println(temporaryAppointmentSchoolPersonnelNumber +"비정규직 교직원번호");
+			System.out.println(temporaryAppointmentSchoolPersonnelNumber +"경력사항 비정규직 교직원번호");
 			personnelAppointmentService.insertCareer(career);
 			model.addAttribute("appointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
 			return "redirect:/personnelAppoint/detailTemporaryAppointment";
+		
 		} else {
 			career.setAppointmentSchoolPersonnelNumber(otherAppointmentSchoolPersonnelNumber);
-			System.out.println(otherAppointmentSchoolPersonnelNumber +"무기계약 교직원번호");
+			System.out.println(otherAppointmentSchoolPersonnelNumber +"경력사항 무기계약 교직원번호");
 			personnelAppointmentService.insertCareer(career);
 			model.addAttribute("appointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
 			return "redirect:/personnelAppoint/detailOtherAppointment";
@@ -297,7 +358,7 @@ public class PersonnelAppointController {
 	
 	// 보직사항 데이터 저장 기능
 	@RequestMapping(value="/personnelAppoint/savePosition", method = RequestMethod.POST)
-	public String saveCareer(Model model, Position position, HttpSession session
+	public String savePosition(Model model, Position position, HttpSession session
 						, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
 						, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
 						, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
@@ -308,23 +369,174 @@ public class PersonnelAppointController {
 		position.setRecordId(id);
 		
 		
-		// 조건문을 걸어 경우의수 3가지를 두고 페이지이동
+		// 조건문을 걸어 경우의수  정규직, 비정규직, 무기계약  3가지를 두고 페이지이동, 뷰에 넘버값을 유지시키기 위한 model 사용
 		if(permanentAppointmentSchoolPersonnelNumber != null) {
 			position.setStudentTeacherNo(permanentAppointmentSchoolPersonnelNumber);
 			System.out.println(permanentAppointmentSchoolPersonnelNumber +"보직사항 정규직 교직원번호(<-view)");
 			personnelAppointmentService.insertPosition(position);
 			model.addAttribute("appointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
 			return "redirect:/personnelAppoint/detailPermanentAppointment";
+		
 		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
 			position.setStudentTeacherNo(temporaryAppointmentSchoolPersonnelNumber);
 			System.out.println(temporaryAppointmentSchoolPersonnelNumber +"보직사항 비정규직 교직원번호(<-view)");
 			personnelAppointmentService.insertPosition(position);
 			model.addAttribute("appointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
 			return "redirect:/personnelAppoint/detailTemporaryAppointment";
+		
 		} else {
 			position.setStudentTeacherNo(otherAppointmentSchoolPersonnelNumber);
 			System.out.println(otherAppointmentSchoolPersonnelNumber +"보직사항 무기계약 교직원번호(<-view)");
 			personnelAppointmentService.insertPosition(position);
+			model.addAttribute("appointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailOtherAppointment";
+		}
+	}
+	
+	// 가족사항 데이터 저장 기능
+	@RequestMapping(value="/personnelAppoint/saveFamily", method = RequestMethod.POST)
+	public String saveFamily(Model model, Family family, HttpSession session
+						, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
+						, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
+						, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
+		System.out.println(permanentAppointmentSchoolPersonnelNumber +"가족사항 정규직 교직원번호");
+		System.out.println(temporaryAppointmentSchoolPersonnelNumber +"가족사항 비정규직 교직원번호");
+		System.out.println(otherAppointmentSchoolPersonnelNumber +"가족사항 무기계약 교직원번호");
+		String id = (String) session.getAttribute("userId");
+		family.setRecordId(id);
+		
+		
+		// 조건문을 걸어 경우의수  정규직, 비정규직, 무기계약  3가지를 두고 페이지이동, 뷰에 넘버값을 유지시키기 위한 model 사용
+		if(permanentAppointmentSchoolPersonnelNumber != null) {
+			family.setStudentTeacherNo(permanentAppointmentSchoolPersonnelNumber);
+			System.out.println(permanentAppointmentSchoolPersonnelNumber +"가족사항 정규직 교직원번호(<-view)");
+			personnelAppointmentService.insertFamily(family);
+			model.addAttribute("appointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailPermanentAppointment";
+		
+		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
+			family.setStudentTeacherNo(temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println(temporaryAppointmentSchoolPersonnelNumber +"가족사항 비정규직 교직원번호(<-view)");
+			personnelAppointmentService.insertFamily(family);
+			model.addAttribute("appointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailTemporaryAppointment";
+		
+		} else {
+			family.setStudentTeacherNo(otherAppointmentSchoolPersonnelNumber);
+			System.out.println(otherAppointmentSchoolPersonnelNumber +"가족사항 무기계약 교직원번호(<-view)");
+			personnelAppointmentService.insertFamily(family);
+			model.addAttribute("appointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailOtherAppointment";
+		}
+	}
+	
+	// 대학교학력사항 데이터 저장 기능
+	@RequestMapping(value="/personnelAppoint/saveEducation", method = RequestMethod.POST)
+	public String saveEducation(Model model, Education education, HttpSession session
+						, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
+						, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
+						, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
+		System.out.println(permanentAppointmentSchoolPersonnelNumber +"대학교학력사항 정규직 교직원번호");
+		System.out.println(temporaryAppointmentSchoolPersonnelNumber +"대학교학력사항 비정규직 교직원번호");
+		System.out.println(otherAppointmentSchoolPersonnelNumber +"대학교학력사항 무기계약 교직원번호");
+		String id = (String) session.getAttribute("userId");
+		education.setRecordId(id);
+		
+		
+		// 조건문을 걸어 경우의수  정규직, 비정규직, 무기계약 3가지를 두고 페이지이동, 뷰에 넘버값을 유지시키기 위한 model 사용
+		if(permanentAppointmentSchoolPersonnelNumber != null) {
+			education.setStudentTeacherNo(permanentAppointmentSchoolPersonnelNumber);
+			System.out.println(permanentAppointmentSchoolPersonnelNumber +"대학교학력사항 정규직 교직원번호(<-view)");
+			personnelAppointmentService.insertEducation(education);
+			model.addAttribute("appointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailPermanentAppointment";
+		
+		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
+			education.setStudentTeacherNo(temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println(temporaryAppointmentSchoolPersonnelNumber +"대학교학력사항 비정규직 교직원번호(<-view)");
+			personnelAppointmentService.insertEducation(education);
+			model.addAttribute("appointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailTemporaryAppointment";
+		
+		} else {
+			education.setStudentTeacherNo(otherAppointmentSchoolPersonnelNumber);
+			System.out.println(otherAppointmentSchoolPersonnelNumber +"대학교학력사항 무기계약 교직원번호(<-view)");
+			personnelAppointmentService.insertEducation(education);
+			model.addAttribute("appointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailOtherAppointment";
+		}
+	}
+	
+	// 신상명세정보 데이터 저장 기능
+	@RequestMapping(value="/personnelAppoint/saveMyProfile", method = RequestMethod.POST)
+	public String saveMyProfile(Model model, MyProfile myProfile, HttpSession session
+						, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
+						, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
+						, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
+		System.out.println(permanentAppointmentSchoolPersonnelNumber +"신상명세정보 정규직 교직원번호");
+		System.out.println(temporaryAppointmentSchoolPersonnelNumber +"신상명세정보 비정규직 교직원번호");
+		System.out.println(otherAppointmentSchoolPersonnelNumber +"신상명세정보 무기계약 교직원번호");
+		String id = (String) session.getAttribute("userId");
+		myProfile.setRecordId(id);
+		
+		
+		// 조건문을 걸어 경우의수  정규직, 비정규직, 무기계약 3가지를 두고 페이지이동, 뷰에 넘버값을 유지시키기 위한 model 사용
+		if(permanentAppointmentSchoolPersonnelNumber != null) {
+			myProfile.setStudentTeacherNo(permanentAppointmentSchoolPersonnelNumber);
+			System.out.println(permanentAppointmentSchoolPersonnelNumber +"신상명세정보 정규직 교직원번호(<-view)");
+			personnelAppointmentService.insertMyProfile(myProfile);
+			model.addAttribute("appointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailPermanentAppointment";
+		
+		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
+			myProfile.setStudentTeacherNo(temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println(temporaryAppointmentSchoolPersonnelNumber +"신상명세정보 비정규직 교직원번호(<-view)");
+			personnelAppointmentService.insertMyProfile(myProfile);
+			model.addAttribute("appointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailTemporaryAppointment";
+		
+		} else {
+			myProfile.setStudentTeacherNo(otherAppointmentSchoolPersonnelNumber);
+			System.out.println(otherAppointmentSchoolPersonnelNumber +"신상명세정보 무기계약 교직원번호(<-view)");
+			personnelAppointmentService.insertMyProfile(myProfile);
+			model.addAttribute("appointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailOtherAppointment";
+		}
+	}
+		
+	
+	// 고등학력사항 데이터 저장 기능
+	@RequestMapping(value="/personnelAppoint/saveHighSchool", method = RequestMethod.POST)
+	public String saveHighSchool(Model model, HighSchool highSchool, HttpSession session
+						, @RequestParam(value="permanentAppointmentSchoolPersonnelNumber", required=false) String permanentAppointmentSchoolPersonnelNumber
+						, @RequestParam(value="temporaryAppointmentSchoolPersonnelNumber", required=false) String temporaryAppointmentSchoolPersonnelNumber
+						, @RequestParam(value="otherAppointmentSchoolPersonnelNumber", required=false) String otherAppointmentSchoolPersonnelNumber) {
+		System.out.println(permanentAppointmentSchoolPersonnelNumber +"고등학력사항 정규직 교직원번호");
+		System.out.println(temporaryAppointmentSchoolPersonnelNumber +"고등학력사항 비정규직 교직원번호");
+		System.out.println(otherAppointmentSchoolPersonnelNumber +"고등학력사항 무기계약 교직원번호");
+		String id = (String) session.getAttribute("userId");
+		highSchool.setRecordId(id);
+		
+		
+		// 조건문을 걸어 경우의수  정규직, 비정규직, 무기계약 3가지를 두고 페이지이동, 뷰에 넘버값을 유지시키기 위한 model 사용
+		if(permanentAppointmentSchoolPersonnelNumber != null) {
+			highSchool.setStudentTeacherNo(permanentAppointmentSchoolPersonnelNumber);
+			System.out.println(permanentAppointmentSchoolPersonnelNumber +"고등학력사항 정규직 교직원번호(<-view)");
+			personnelAppointmentService.insertHighSchool(highSchool);
+			model.addAttribute("appointmentSchoolPersonnelNumber", permanentAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailPermanentAppointment";
+		
+		} else if(temporaryAppointmentSchoolPersonnelNumber != null) {
+			highSchool.setStudentTeacherNo(temporaryAppointmentSchoolPersonnelNumber);
+			System.out.println(temporaryAppointmentSchoolPersonnelNumber +"고등학력사항 비정규직 교직원번호(<-view)");
+			personnelAppointmentService.insertHighSchool(highSchool);
+			model.addAttribute("appointmentSchoolPersonnelNumber", temporaryAppointmentSchoolPersonnelNumber);
+			return "redirect:/personnelAppoint/detailTemporaryAppointment";
+		
+		} else {
+			highSchool.setStudentTeacherNo(otherAppointmentSchoolPersonnelNumber);
+			System.out.println(otherAppointmentSchoolPersonnelNumber +"고등학력사항 무기계약 교직원번호(<-view)");
+			personnelAppointmentService.insertHighSchool(highSchool);
 			model.addAttribute("appointmentSchoolPersonnelNumber", otherAppointmentSchoolPersonnelNumber);
 			return "redirect:/personnelAppoint/detailOtherAppointment";
 		}

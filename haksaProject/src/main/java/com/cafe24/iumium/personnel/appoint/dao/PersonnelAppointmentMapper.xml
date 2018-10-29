@@ -506,7 +506,7 @@
 				, family_job
 				, family_residence
 				, human_registration_day
-				, human__modification_date
+				, human_modification_date
 			)
 			
 			VALUES (
@@ -520,8 +520,104 @@
 				, #{familyAcademicBackground}
 				, #{familyJob}
 				, #{familyResidence}
-				, #{humanRegistrationDay}
-				, #{humanModificationDate}
+				, now()
+				, now()
+			)
+	</insert>
+	
+	<!-- 대학교학력사항 카운터 조회 쿼리 -->
+	<select id="selectEducationNumber" resultType="int">
+		SELECT count(student_teacher_no) 
+		FROM ilban_education
+	</select>
+	
+	<!-- 대학교학력사항 저장 쿼리 -->
+	<insert id="insertEducation" parameterType="com.cafe24.iumium.personnel.appoint.dto.Education">
+		INSERT INTO
+			ilban_education (
+				student_teacher_no
+				, record_id
+				, education_university_schoolname
+				, education_entrance
+				, education_university_graduation
+				, education_major
+				, education_major_category
+				, education_credit
+				, education_credit_point
+				, human_registration_day
+				, human_modification_date
+			)
+			
+			VALUES(
+				#{studentTeacherNo}
+				, #{recordId}
+				, #{educationUniversitySchoolname}
+				, #{educationEntrance}
+				, #{educationUniversityGraduation}
+				, #{educationMajor}
+				, #{educationMajorCategory}
+				, #{educationCredit}
+				, #{educationCreditPoint}
+				, now()
+				, now()
+			)
+	</insert>
+	
+	<!-- 신상명세정보 카운터 조회 쿼리 -->
+	<select id="selectMyProfileNumber" resultType="int">
+		SELECT count(student_teacher_no) 
+		FROM ilban_myprofile
+	</select>
+	
+	<!-- 신상명세정보 저장 쿼리 -->
+	<insert id="insertMyProfile" parameterType="com.cafe24.iumium.personnel.appoint.dto.MyProfile">
+		INSERT INTO
+			ilban_myprofile (
+				student_teacher_no
+				, record_id
+				, human_phone_number
+				, human_email
+				, human_address
+				, human_registration_day
+				, human_modification_date
+			)
+			
+			VALUES(
+				#{studentTeacherNo}
+				, #{recordId}
+				, #{humanPhoneNumber}
+				, #{humanEmail}
+				, #{humanAddress}
+				, now()
+				, now()
+			)
+	</insert>
+	
+	<!-- 고등학력사항 카운터 조회 쿼리 -->
+	<select id="selectHighSchoolNumber" resultType="int">
+		SELECT count(student_teacher_no) 
+		FROM ilban_highschool
+	</select>
+	
+	<!-- 고등학력사항 저장 쿼리 -->
+	<insert id="insertHighSchool" parameterType="com.cafe24.iumium.personnel.appoint.dto.HighSchool">
+		INSERT INTO
+			ilban_highschool (
+				student_teacher_no 
+				, record_id
+				, highschool_schoolname
+				, highschool_graduation
+				, human_registration_day
+				, human_modification_date
+			)
+			
+			VALUES(
+				#{studentTeacherNo}
+				, #{recordId}
+				, #{highSchoolSchoolName}
+				, #{highSchoolGraduation}
+				, now()
+				, now()
 			)
 	</insert>
 </mapper>

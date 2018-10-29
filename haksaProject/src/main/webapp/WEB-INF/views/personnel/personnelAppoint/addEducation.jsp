@@ -56,43 +56,55 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-					<form id="form">
+					<form action="${pageContext.request.contextPath}/personnelAppoint/saveEducation" method="post">
 						<input type="button" class="btn btn-info" onclick="goBack()" value="뒤로가기"/>
-						<input type="button" class="btn btn-primary" id="savePersonnelPromotion" value="저장"/>
-					</form>
-					<br>
-					<table class="table table-bordered">
-						<tr>
-							<td scope="col" colspan="10">
-								<p id="enrolScoreMain">* 교직원 대학교학력사항</p>
-							</td>
-						</tr>
-						
-						<tr>
-							<th>교직원번호</th>
-							<td><input type="text" class="form-control" name="studentTeacherNo" id="studentTeacherNo" placeholder="교직원번호"></td>
-							<th>학교</th>
-							<td><input type="text" class="form-control" name="educationUniversitySchoolname" id="educationUniversitySchoolname" placeholder="학교명"></td>
-							<th>입학일자</th>
-							<td><input type="date" class="form-control" name="educationEntrance" id="educationEntrance"></td>
-				   		</tr>
-				   		
-				   		<tr>
-							<th>졸업일자</th>
-							<td><input type="date" class="form-control" name="educationUniversityGraduation" id="educationUniversityGraduation"></td>
-							<th>전공</th>
-							<td><input type="text" class="form-control" name="educationMajor" id="educationMajor" placeholder="전공"></td>
-							<th>전공계열</th>
-							<td><input type="text" class="form-control" name="educationMajorCategory" id="educationMajorCategory" placeholder="전공계열"></td>
-				   		</tr>
-				   		
-				   		<tr>
-				   			<th>학점평점</th>
-							<td><input type="text" class="form-control" name="educationCredit" id="educationCredit" placeholder="학점평점"></td>
-							<th>이수학점</th>
-							<td><input type="text" class="form-control" name="educationCreditPoint" id="educationCreditPoint" placeholder="이수학점"></td>
-				   		</tr>
-		    		</table>
+						<input type="submit" class="btn btn-primary" id="form" value="저장"/>
+						<br>
+						<table class="table table-bordered">
+							<tr>
+								<td scope="col" colspan="10">
+									<p id="enrolScoreMain">* 교직원 대학교학력사항</p>
+								</td>
+							</tr>
+							
+							<tr>
+								<c:choose>
+									<c:when test="${permanentAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="permanentAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${permanentAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+									<c:when test="${temporaryAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="temporaryAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${temporaryAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+									<c:when test="${otherAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="otherAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${otherAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+								</c:choose>
+								<th>학교</th>
+								<td><input type="text" class="form-control" name="educationUniversitySchoolname" id="educationUniversitySchoolname" placeholder="학교명"></td>
+								<th>입학일자</th>
+								<td><input type="date" class="form-control" name="educationEntrance" id="educationEntrance"></td>
+					   		</tr>
+					   		
+					   		<tr>
+								<th>졸업일자</th>
+								<td><input type="date" class="form-control" name="educationUniversityGraduation" id="educationUniversityGraduation"></td>
+								<th>전공</th>
+								<td><input type="text" class="form-control" name="educationMajor" id="educationMajor" placeholder="전공"></td>
+								<th>전공계열</th>
+								<td><input type="text" class="form-control" name="educationMajorCategory" id="educationMajorCategory" placeholder="전공계열"></td>
+					   		</tr>
+					   		
+					   		<tr>
+					   			<th>학점평점</th>
+								<td><input type="text" class="form-control" name="educationCredit" id="educationCredit" placeholder="학점평점"></td>
+								<th>이수학점</th>
+								<td><input type="text" class="form-control" name="educationCreditPoint" id="educationCreditPoint" placeholder="이수학점"></td>
+					   		</tr>
+			    		</table>
+		    		</form>
 				</div>
 				<!-- /.container-fluid -->
 	

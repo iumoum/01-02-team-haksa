@@ -17,7 +17,7 @@ import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelTemporaryAppointment;
 import com.cafe24.iumium.personnel.appoint.dto.Position;
-import com.cafe24.iumium.schoolregister.studentinfo.dto.Family;
+import com.cafe24.iumium.personnel.appoint.dto.Family;
 
 @Service
 @Transactional
@@ -127,18 +127,20 @@ public class PersonnelAppointmentService {
 		return personnelAppointmentDao.getHighSchool(number);
 	}
 	
-	// 송원민
+	// 송원민, 각각의 기본키에 대한 번호는 view 에서 입력하지 않아 쿼리를 사용하여 번호를 가져옴
 	// 인사기본사항 저장 Service
 	public int insertPersonnelBasic(PersonnelBasic personnelBasic) {
 		System.out.println("인사기본사항 저장 Service");
+		// 인사기본사항 기본키 넘버
 		String personnelBasicNumber = String.valueOf(personnelAppointmentDao.selectPersonnelBasicNumber()+1);
-		personnelBasic.setPersonnelBasicNumber(personnelBasicNumber);
+		personnelBasic.setPersonnelBasicNumber(personnelBasicNumber); 
 		return personnelAppointmentDao.insertPersonnelBasic(personnelBasic);
 	}
 	
 	// 경력사항 저장 Service
 	public int insertCareer(Career career) {
 		System.out.println("경력사항 저장 Service");
+		// 인사기본사항 기본키 넘버
 		String careerNumber = String.valueOf(personnelAppointmentDao.selectCareerNumber()+1);
 		career.setCareerNumber(careerNumber);
 		return personnelAppointmentDao.insertCareer(career);
@@ -147,8 +149,45 @@ public class PersonnelAppointmentService {
 	// 보직사항 저장 Service
 	public int insertPosition(Position position) {
 		System.out.println("보직사항 저장 Service");
+		// 보직사항 기본키 넘버
 		String positionNumber = String.valueOf(personnelAppointmentDao.selectPositionNumber()+1);
 		position.setPositionNumber(positionNumber);
 		return personnelAppointmentDao.insertPosition(position);
+	}
+	
+	// 가족사항 저장 Service
+	public int insertFamily(Family family) {
+		System.out.println("가족사항 저장 Service");
+		// 가족사항 기본키 넘버
+		String familyNumber = String.valueOf(personnelAppointmentDao.selectFamilyNumber()+1);
+		family.setFamilyNumber(familyNumber);
+		return personnelAppointmentDao.insertFamily(family);
+	}
+	
+	// 대학교학력사항 저장 Service
+	public int insertEducation(Education education) {
+		System.out.println("대학교학력사항사항 저장 Service");
+		// 대학교학력사항 기본키 넘버
+		String educationNumber = String.valueOf(personnelAppointmentDao.selectEducationNumber()+1);
+		education.setStudentTeacherNo(educationNumber);
+		return personnelAppointmentDao.insertEducation(education);
+	}
+	
+	// 신상명세정보 저장 Service
+	public int insertMyProfile(MyProfile myProfile) {
+		System.out.println("신상명세정보 저장 Service");
+		// 신상명세정보 기본키 넘버
+		String MyProfileNumber = String.valueOf(personnelAppointmentDao.selectMyProfileNumber()+1);
+		myProfile.setStudentTeacherNo(MyProfileNumber);
+		return personnelAppointmentDao.insertMyProfile(myProfile);
+	}
+	
+	// 고등학력 사항 저장 Service
+	public int insertHighSchool(HighSchool highSchool) {
+		System.out.println("고등학력 저장 Service");
+		// 고등학력 기본키 넘버
+		String highSchoolNumber = String.valueOf(personnelAppointmentDao.selectHighSchoolNumber()+1);
+		highSchool.setStudentTeacherNo(highSchoolNumber);
+		return personnelAppointmentDao.insertHighSchool(highSchool);
 	}
 }

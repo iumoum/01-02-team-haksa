@@ -56,27 +56,39 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-					<form id="form">
+					<form action="${pageContext.request.contextPath}/personnelAppoint/saveHighSchool" method="post">
 						<input type="button" class="btn btn-info" onclick="goBack()" value="뒤로가기"/>
-						<input type="button" class="btn btn-primary" id="savePersonnelPromotion" value="저장"/>
-					</form>
-					<br>
-					<table class="table table-bordered">
-						<tr>
-							<td scope="col" colspan="10">
-								<p id="enrolScoreMain">* 교직원 고등학력사항</p>
-							</td>
-						</tr>
-						
-						<tr>
-							<th>교직원번호</th>
-							<td><input type="text" class="form-control" name="studentTeacherNo" id="studentTeacherNo" placeholder="교직원번호"></td>
-							<th>학교명</th>
-							<td><input type="text" class="form-control" name="highSchoolSchoolName" id="highSchoolSchoolName" placeholder="학교명"></td>
-							<th>졸업일자</th>
-							<td><input type="date" class="form-control" name="highSchoolGraduation" id="highSchoolGraduation"></td>
-				   		</tr>
-		    		</table>
+						<input type="submit" class="btn btn-primary" id="form" value="저장"/>
+						<br>
+						<table class="table table-bordered">
+							<tr>
+								<td scope="col" colspan="10">
+									<p id="enrolScoreMain">* 교직원 고등학력사항</p>
+								</td>
+							</tr>
+							
+							<tr>
+								<c:choose>
+									<c:when test="${permanentAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="permanentAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${permanentAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+									<c:when test="${temporaryAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="temporaryAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${temporaryAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+									<c:when test="${otherAppointmentSchoolPersonnelNumber ne null}">
+										<th>교직원번호</th>
+										<td><input type="text" class="form-control" name="otherAppointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" value='${otherAppointmentSchoolPersonnelNumber}'></td>
+									</c:when>
+								</c:choose>
+								<th>학교명</th>
+								<td><input type="text" class="form-control" name="highSchoolSchoolName" id="highSchoolSchoolName" placeholder="학교명"></td>
+								<th>졸업일자</th>
+								<td><input type="date" class="form-control" name="highSchoolGraduation" id="highSchoolGraduation"></td>
+					   		</tr>
+			    		</table>
+		    		</form>
 				</div>
 				<!-- /.container-fluid -->
 	
